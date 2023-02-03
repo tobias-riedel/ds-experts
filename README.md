@@ -1,3 +1,8 @@
+## Development
+
+Run development server:
+`npm run dev`
+
 ## Environment variables
 
 Provide the following environment variables either in the **.env**-file or on the deployment server:
