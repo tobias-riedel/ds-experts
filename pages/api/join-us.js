@@ -7,8 +7,8 @@ const transporter = {
 };
 
 const mailer = nodemailer.createTransport(sgTransport(transporter));
-const to = process.env.CONTACTS_MAIL_ADDRESS_FROM;
-const from = process.env.CONTACTS_MAIL_ADDRESS_TO;
+const to = process.env.JOIN_US_MAIL_ADDRESS_FROM;
+const from = process.env.JOIN_US_MAIL_ADDRESS_TO;
 
 export default async (req, res) => {
   // console.log(req.body)
@@ -19,16 +19,16 @@ export default async (req, res) => {
   const data = {
     to,
     from,
-    subject: `Kontaktformular ${subject}`,
+    subject: `Bewerbung ${subject}`,
     text,
     html: `
-            <b>Von:</b> Kontaktformular <br /> 
+            <b>Von:</b> Bewerbungsformular <br /> 
             <b>Vorname:</b> ${firstname} <br /> 
             <b>Name:</b> ${name} <br /> 
             <b>eMail:</b> ${email} <br /> 
             <b>Telefon:</b> ${number} <br /> 
-            <b>Betreff:</b> ${subject} <br /> 
-            <b>Anfrage:</b> ${formattedText} 
+            <b>Subject:</b> ${subject} <br /> 
+            <b>Message:</b> ${formattedText} 
         `,
   };
   try {

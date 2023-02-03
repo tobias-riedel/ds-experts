@@ -13,16 +13,16 @@ const Faq = () => {
 
       <PageBanner pageTitle="Impressum" BGImage="/images/page-banner1.jpg" />
 
-      <section>
+      <section id="imprint">
         <Imprint />
+      </section>
+
+      <section id="cookies-policy">
+        <CookiesPolicy />
       </section>
 
       <section id="gdpr">
         <Gdpr />
-      </section>
-
-      <section id="cookies">
-        <CookiesPolicy />
       </section>
 
       <Footer />

@@ -3,14 +3,10 @@ import React from "react";
 const WorkProcess = () => {
   return (
     <>
-      <section className="work-process-area ptb-100">
+      <section className="work-process-area pt-100 pb-70">
         <div className="container">
           <div className="section-title">
-            <h2>Our Work Process</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+            <h2>Unser Erfolg kommt von ...</h2>
           </div>
 
           <div className="work-process">
@@ -21,48 +17,42 @@ const WorkProcess = () => {
                 <div className="icon">
                   <i className="pe-7s-display1"></i>
                 </div>
-                <h3>Surface</h3>
-                <span>Visual Design</span>
+                <h3>Know-How</h3>
               </div>
 
               <div className="single-work-process">
                 <div className="icon">
                   <i className="pe-7s-display2"></i>
                 </div>
-                <h3>Skeleton</h3>
-                <span>Wireframes</span>
+                <h3>Resilienz</h3>
               </div>
 
               <div className="single-work-process">
                 <div className="icon">
                   <i className="pe-7s-airplay"></i>
                 </div>
-                <h3>Structure</h3>
-                <span>Screen Flow</span>
+                <h3>Ausbildung</h3>
               </div>
 
               <div className="single-work-process">
                 <div className="icon">
                   <i className="pe-7s-note2"></i>
                 </div>
-                <h3>Scope</h3>
-                <span>Requirements</span>
+                <h3>Professionalität</h3>
               </div>
 
               <div className="single-work-process">
                 <div className="icon">
                   <i className="pe-7s-light"></i>
                 </div>
-                <h3>User Research</h3>
-                <span>User Research</span>
+                <h3>Entschlossenheit</h3>
               </div>
 
               <div className="single-work-process">
                 <div className="icon">
                   <i className="pe-7s-sun"></i>
+                  <h3>Qualität</h3>
                 </div>
-                <h3>Implement</h3>
-                <span>Lunch/Analyse</span>
               </div>
             </div>
 

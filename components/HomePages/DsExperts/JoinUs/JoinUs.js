@@ -18,45 +18,45 @@ const JoinUs = () => {
     <>
       <div className="pt-100 pb-70">
         <div className="container">
-          <div className="section-title">
+          <div className="section-title mb-30">
             <h2>Komm zu uns als:</h2>
           </div>
 
           <div className="row">
-            <p className="text-center">
-              <button
+            <div className="text-center pb-60">
+              <div
                 onClick={() => setProfile(profiles.backend)}
                 className={
                   profile === profiles.backend
-                    ? "btn btn-primary btn-primary--active"
-                    : "btn btn-primary"
+                    ? "join-us-role join-us-role--active"
+                    : "join-us-role"
                 }
               >
                 Back-End Developer
-              </button>{" "}
-              <button
+              </div>
+              <div
                 onClick={() => setProfile(profiles.frontend)}
                 className={
                   profile === profiles.frontend
-                    ? "btn btn-primary btn-primary--active"
-                    : "btn btn-primary"
+                    ? "join-us-role join-us-role--active"
+                    : "join-us-role"
                 }
               >
                 Front-End Developer
-              </button>{" "}
-              <button
+              </div>
+              <div
                 onClick={() => setProfile(profiles.projectLead)}
                 className={
                   profile === profiles.projectLead
-                    ? "btn btn-primary btn-primary--active"
-                    : "btn btn-primary"
+                    ? "join-us-role join-us-role--active"
+                    : "join-us-role"
                 }
               >
                 Projektleiter
-              </button>{" "}
-            </p>
+              </div>
+            </div>
             <div className="col-lg-6 col-md-12">
-              <div className="join-us-info">
+              <div className="join-us-info pb-70">
                 {profile === profiles.backend && <JoinUsBackEndDeveloper />}
                 {profile === profiles.frontend && <JoinUsFrontEndDeveloper />}
                 {profile === profiles.projectLead && <JoinUsProjectManager />}

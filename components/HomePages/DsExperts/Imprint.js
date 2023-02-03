@@ -41,10 +41,8 @@ const Imprint = () => {
                 </>
               )}
 
-              <div>
-                vertreten durch Geschäftsführer Lutz Schenk Registergericht
-                Amtsgericht Neuruppin
-              </div>
+              <div>vertreten durch Geschäftsführer Lutz Schenk</div>
+              <div>Registergericht Amtsgericht Neuruppin</div>
               <div>Registernummer der GmbH: HRB 11069</div>
               <div>USt.IDNr.: DE299584474</div>
               <div>Steuernummer: 053/107/05189</div>

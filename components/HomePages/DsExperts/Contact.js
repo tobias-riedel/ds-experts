@@ -17,6 +17,10 @@ const Contact = () => {
     <>
       <div className="service-style-two ptb-100">
         <div className="container">
+          <div className="section-title">
+            <h2>Kontakt</h2>
+          </div>
+
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="service-left-img">

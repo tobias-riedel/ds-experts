@@ -3,15 +3,15 @@ import Link from "next/link";
 import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-const MySwal = withReactContent(Swal);
 import baseUrl from "../../utils/baseUrl";
 
+const MySwal = withReactContent(Swal);
 const alertContent = () => {
   MySwal.fire({
     title: "Glückwunsch!",
     text: "Deine Nachricht wurde erfolgreicht versandt. Wir melden uns bald bei Dir.",
     icon: "success",
-    timer: 2000,
+    timer: 5000,
     timerProgressBar: true,
     showConfirmButton: false,
   });
@@ -40,8 +40,8 @@ const ContactForm = () => {
     e.preventDefault();
     try {
       const url = `${baseUrl}/api/contact`;
-      const { name, email, number, subject, text } = contact;
-      const payload = { name, email, number, subject, text };
+      const { firstname, name, email, number, subject, text } = contact;
+      const payload = { firstname, name, email, number, subject, text };
       const response = await axios.post(url, payload);
       console.log(response);
       setContact(INITIAL_STATE);
@@ -63,7 +63,7 @@ const ContactForm = () => {
                 <div className="form-group">
                   <input
                     type="text"
-                    name="name"
+                    name="firstname"
                     placeholder="Vorname"
                     className="form-control"
                     value={contact.firstname}
@@ -147,9 +147,9 @@ const ContactForm = () => {
                     onClick={() => setAggreedToGdpr(!aggreedToGdpr)}
                   />
                   <label htmlFor="contactAgreement">
-                    Ich habe die {/* TODO: Adjust link */}{" "}
-                    <Link href="/gdpr">
-                      <a> Datenschutzerklärung </a>
+                    Ich habe die{" "}
+                    <Link href="/legal#gdpr">
+                      <a target="_blank"> Datenschutzerklärung </a>
                     </Link>{" "}
                     gelesen und akzeptiere diese hiermit.
                   </label>

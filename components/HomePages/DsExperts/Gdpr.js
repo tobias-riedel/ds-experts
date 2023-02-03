@@ -148,12 +148,12 @@ const Gdpr = () => {
             die Funktionalität unserer Website eingeschränkt sein.
           </p>
           <h3>
-            <strong>Kontaktformular</strong>
+            <strong>Formulare</strong>
           </h3>
           <p>
-            Kontaktdaten, die uns über unser Kontaktformular erreichen, werden
-            inklusive des Inhalts der Anfrage für Bearbeitungszwecke und für
-            mögliche Anschlussfragen gespeichert. Diese Daten werden ohne Ihre
+            Daten, die uns über unsere Formulare erreichen, werden inklusive des
+            Inhalts der Anfrage für Bearbeitungszwecke und für mögliche
+            Anschlussfragen gespeichert. Diese Daten werden ohne Ihre
             spezifische Zustimmung nicht weitergegeben.
           </p>
           <h3>
@@ -171,9 +171,6 @@ const Gdpr = () => {
             <strong>Kontakt zum Datenschutzmitarbeiter</strong>
           </h3>
           <p>
-            {/* Für Fragen zum Datenschutz schicken Sie uns bitte eine Nachricht an{" "}
-            <a href="mailto: ds-experts"> ds-experts E-Mail Adresse</a> mit dem
-            Betreff „Datenschutz“. */}
             Für Fragen zum Datenschutz schicken Sie uns bitte eine Nachricht an{" "}
             {showContacts ? (
               <>

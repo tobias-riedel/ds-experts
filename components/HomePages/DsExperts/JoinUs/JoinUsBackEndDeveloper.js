@@ -21,11 +21,8 @@ const JoinUsBackEndDeveloper = () => {
           Mehrjährige Erfahrung in mindestens einem der folgenden
           Datenbanksysteme:
           <ul>
-            <li>MySQL</li>
-            <li>MSSQL</li>
-            <li>PostgreSQL</li>
-            <li>MongoDB</li>
-            <li>NoSQL</li>
+            <li>MySQL, MSSQL, PostgreSQL</li>
+            <li>MongoDB, NoSQL</li>
           </ul>
         </li>
       </ul>

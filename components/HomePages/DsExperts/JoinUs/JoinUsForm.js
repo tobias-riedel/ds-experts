@@ -11,7 +11,7 @@ const alertContent = () => {
     title: "Glückwunsch!",
     text: "Deine Nachricht wurde erfolgreicht versandt. Wir melden uns bald bei Dir.",
     icon: "success",
-    timer: 2000,
+    timer: 5000,
     timerProgressBar: true,
     showConfirmButton: false,
   });
@@ -39,9 +39,9 @@ const JoinUsForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `${baseUrl}/api/contact`;
-      const { name, email, number, subject, text } = contact;
-      const payload = { name, email, number, subject, text };
+      const url = `${baseUrl}/api/join-us`;
+      const { firstname, name, email, number, subject, text } = contact;
+      const payload = { firstname, name, email, number, subject, text };
       const response = await axios.post(url, payload);
       console.log(response);
       setContact(INITIAL_STATE);
@@ -60,7 +60,7 @@ const JoinUsForm = () => {
               <div className="form-group">
                 <input
                   type="text"
-                  name="name"
+                  name="firstname"
                   placeholder="Vorname"
                   className="form-control"
                   value={contact.firstname}
@@ -144,9 +144,9 @@ const JoinUsForm = () => {
                   onClick={() => setAggreedToGdpr(!aggreedToGdpr)}
                 />
                 <label htmlFor="contactAgreement">
-                  Ich habe die {/* TODO: Adjust link */}{" "}
-                  <Link href="/gdpr">
-                    <a> Datenschutzerklärung </a>
+                  Ich habe die{" "}
+                  <Link href="/legal#gdpr">
+                    <a target="_blank"> Datenschutzerklärung </a>
                   </Link>{" "}
                   gelesen und akzeptiere diese hiermit.
                 </label>

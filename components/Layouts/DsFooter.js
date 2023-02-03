@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="container">
             <div className="d-flex align-items-center justify-content-between">
               <p className="">
-                Copyright &copy; 2016-{currentYear} ds-experts IT-Consulting
+                Copyright &copy; 2015-{currentYear} ds-experts IT-Consulting
                 GmbH
               </p>
 
@@ -19,7 +19,7 @@ const Footer = () => {
                 </Link>
               </p>
               <p>
-                <Link href="/legal#cookies">
+                <Link href="/legal#cookies-policy">
                   <a>Cookie-Einstellungen &amp; Richtlinie</a>
                 </Link>
               </p>

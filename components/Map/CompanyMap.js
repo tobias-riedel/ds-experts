@@ -17,7 +17,7 @@ const CompanyMap = () => {
       <ZoomControl />
 
       {isPopupVisible && (
-        <Overlay anchor={address} offset={[140, 128]}>
+        <Overlay anchor={address} offset={[138, 128]}>
           <div className={styles.markerPopup}>
             <div className={styles.markerPopupContentWrapper}>
               <div className={styles.markerPopupContent}>

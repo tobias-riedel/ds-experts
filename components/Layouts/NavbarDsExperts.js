@@ -7,7 +7,7 @@ const Navbar = () => {
     setMenu(!menu);
   };
   React.useEffect(() => {
-    let elementId = document.getElementById("navbar");
+    const elementId = document.getElementById("navbar");
     document.addEventListener("scroll", () => {
       if (window.scrollY > 170) {
         elementId.classList.add("is-sticky");
@@ -257,7 +257,12 @@ const Navbar = () => {
               <div>
                 <Link href="/contact">
                   {/* TODO: Adjust link */}
-                  <a className="btn btn-primary">Lern uns kennen</a>
+                  <a
+                    className="btn btn-primary"
+                    style={{ textTransform: "initial" }}
+                  >
+                    Lern uns kennen
+                  </a>
                 </Link>
               </div>
             </div>
