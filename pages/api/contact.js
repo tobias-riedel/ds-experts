@@ -1,12 +1,8 @@
-import nodemailer from "nodemailer";
-import sgTransport from "nodemailer-sendgrid-transport";
+import sgMail from "@sendgrid/mail";
 import { sanitizeHtml } from "../../utils/mail";
 
-const transporter = {
-  auth: { api_key: process.env.SENDGRID_API_KEY },
-};
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const mailer = nodemailer.createTransport(sgTransport(transporter));
 const to = process.env.CONTACTS_MAIL_ADDRESS_FROM;
 const from = process.env.CONTACTS_MAIL_ADDRESS_TO;
 
@@ -16,27 +12,30 @@ export default async (req, res) => {
 
   const formattedText = sanitizeHtml(text);
 
-  const data = {
+  const msg = {
     to,
     from,
     subject: `Kontaktformular ${subject}`,
     text,
-    html: `
-            <b>Von:</b> Kontaktformular <br /> 
-            <b>Vorname:</b> ${firstname} <br /> 
-            <b>Name:</b> ${name} <br /> 
-            <b>eMail:</b> ${email} <br /> 
-            <b>Telefon:</b> ${number} <br /> 
-            <b>Betreff:</b> ${subject} <br /> 
-            <b>Anfrage:</b> ${formattedText} 
-        `,
+    html: `<b>Von:</b> Kontaktformular <br /> 
+<b>Vorname:</b> ${firstname} <br /> 
+<b>Name:</b> ${name} <br /> 
+<b>eMail:</b> ${email} <br /> 
+<b>Telefon:</b> ${number} <br /> 
+<b>Betreff:</b> ${subject} <br /> 
+<b>Anfrage:</b> ${formattedText} `,
   };
+
   try {
-    const response = await mailer.sendMail(data);
+    const response = await sgMail.send(msg);
     console.log(response);
-    res.status(200).send("Email send successfully");
+    res.status(200).send({ msg: "Email send successfully" });
   } catch (error) {
-    console.log(error);
-    res.status(500).send("Error proccessing charge");
+    console.error(error);
+    if (error.response) {
+      console.error(error.response.body);
+    }
+
+    res.status(500).send({ msg: "Error proccessing charge" });
   }
 };
