@@ -8,7 +8,6 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   trailingSlash: true,
-  distDir: "build",
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
