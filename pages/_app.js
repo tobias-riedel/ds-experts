@@ -43,7 +43,9 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>ds-experts IT-Consulting GmbH</title>
+        <title>
+          ds-experts IT-Consulting GmbH - Professional IT-Consulting
+        </title>
       </Head>
 
       <Component {...pageProps} />
