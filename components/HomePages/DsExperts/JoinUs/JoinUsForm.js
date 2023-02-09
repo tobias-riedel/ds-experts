@@ -1,10 +1,9 @@
-import { useState } from "react";
-import Link from "next/link";
 import axios from "axios";
+import Link from "next/link";
+import { useState } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
-import baseUrl from "../../../../utils/baseUrl";
 
 const alertContent = () => {
   MySwal.fire({
@@ -39,7 +38,7 @@ const JoinUsForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `${baseUrl}/api/join-us`;
+      const url = "/api/join-us";
       const { firstname, name, email, number, subject, text } = contact;
       const payload = { firstname, name, email, number, subject, text };
       const response = await axios.post(url, payload);

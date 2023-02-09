@@ -1,9 +1,8 @@
-import { useState } from "react";
-import Link from "next/link";
 import axios from "axios";
+import Link from "next/link";
+import { useState } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import baseUrl from "../../utils/baseUrl";
 
 const MySwal = withReactContent(Swal);
 const alertContent = () => {
@@ -39,7 +38,7 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `${baseUrl}/api/contact`;
+      const url = "/api/contact";
       const { firstname, name, email, number, subject, text } = contact;
       const payload = { firstname, name, email, number, subject, text };
       const response = await axios.post(url, payload);
