@@ -3,8 +3,8 @@ import PageBanner from "../components/Common/PageBanner";
 import CookiesPolicy from "../components/HomePages/DsExperts/CookiesPolicy";
 import Gdpr from "../components/HomePages/DsExperts/Gdpr";
 import Imprint from "../components/HomePages/DsExperts/Imprint";
-import Footer from "../components/Layouts/DsFooter";
-import Navbar from "../components/Layouts/NavbarDsExperts";
+import Footer from "../components/Layouts/Footer";
+import Navbar from "../components/Layouts/Navbar";
 
 const Faq = () => {
   return (

@@ -8,15 +8,15 @@ const ErrorContent = () => {
         <div className="container">
           <div className="error-content">
             <img src="/images/404.png" alt="Error" />
-            <h3>Error 404 : page not found</h3>
+            <h3>Error 404: Seite nicht gefunden</h3>
             <p>
-              The page you are looking for might have been removed had its name
-              changed or is temporarily unavailable.
+              Diese Seite existiert nicht oder ist vorübergehend nicht
+              verfügbar.
             </p>
 
             <div className="back-btn">
               <Link href="/">
-                <a className="btn btn-primary">Go Back Home</a>
+                <a className="btn btn-primary">Zurück zur Hauptseite</a>
               </Link>
             </div>
           </div>

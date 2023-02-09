@@ -1,10 +1,10 @@
 import sgMail from "@sendgrid/mail";
 import { sanitizeHtml } from "../../utils/mail";
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgMail.setApiKey(process?.env?.SENDGRID_API_KEY);
 
-const to = process.env.JOIN_US_MAIL_ADDRESS_FROM;
-const from = process.env.JOIN_US_MAIL_ADDRESS_TO;
+const to = process?.env?.JOIN_US_MAIL_ADDRESS_FROM;
+const from = process?.env?.JOIN_US_MAIL_ADDRESS_TO;
 
 export default async (req, res) => {
   // console.log(req.body)
