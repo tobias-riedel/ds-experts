@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import callToActionImg from "../../../public//images/call_to_action.jpg";
+import callToActionImg from "../public//images/call_to_action.jpg";
 
 const MainBanner = () => {
   return (
