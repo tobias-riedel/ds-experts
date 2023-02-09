@@ -29,13 +29,13 @@ export default async (req, res) => {
   try {
     const response = await sgMail.send(msg);
     console.log(response);
-    res.status(200).send({ msg: "Email send successfully" });
+    res.status(200).send({ msg: "Email sent successfully" });
   } catch (error) {
     console.error(error);
     if (error.response) {
       console.error(error.response.body);
     }
 
-    res.status(500).send({ msg: "Error proccessing charge" });
+    res.status(500).send({ msg: "Error processing charge" });
   }
 };

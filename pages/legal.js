@@ -1,8 +1,8 @@
 import React from "react";
 import PageBanner from "../components/Common/PageBanner";
-import CookiesPolicy from "../components/HomePages/DsExperts/CookiesPolicy";
-import Gdpr from "../components/HomePages/DsExperts/Gdpr";
-import Imprint from "../components/HomePages/DsExperts/Imprint";
+import CookiesPolicy from "../components/CookiesPolicy";
+import Gdpr from "../components/Gdpr";
+import Imprint from "../components/Imprint";
 import Footer from "../components/Layouts/Footer";
 import Navbar from "../components/Layouts/Navbar";
 

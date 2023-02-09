@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import ContactForm from "../../Contact/DsContactForm";
-import CompanyMap from "../../Map/CompanyMap";
+import ContactForm from "./Contact/ContactForm";
+import CompanyMap from "./Map/CompanyMap";
 import styles from "./Contact.module.css";
 
 const Contact = () => {

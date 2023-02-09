@@ -1,16 +1,16 @@
-import React, { useState } from "react";
 import axios from "axios";
+import Link from "next/link";
+import { useState } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-const MySwal = withReactContent(Swal);
-import baseUrl from "../../utils/baseUrl";
 
+const MySwal = withReactContent(Swal);
 const alertContent = () => {
   MySwal.fire({
-    title: "Congratulations!",
-    text: "Your message was successfully send and will back to you soon",
+    title: "Glückwunsch!",
+    text: "Deine Nachricht wurde erfolgreicht versandt. Wir melden uns bald bei Dir.",
     icon: "success",
-    timer: 2000,
+    timer: 5000,
     timerProgressBar: true,
     showConfirmButton: false,
   });
@@ -18,6 +18,7 @@ const alertContent = () => {
 
 // Form initial state
 const INITIAL_STATE = {
+  firstname: "",
   name: "",
   email: "",
   number: "",
@@ -26,7 +27,9 @@ const INITIAL_STATE = {
 };
 
 const ContactForm = () => {
+  const [aggreedToGdpr, setAggreedToGdpr] = useState(false);
   const [contact, setContact] = useState(INITIAL_STATE);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setContact((prevState) => ({ ...prevState, [name]: value }));
@@ -35,9 +38,9 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `${baseUrl}/api/contact`;
-      const { name, email, number, subject, text } = contact;
-      const payload = { name, email, number, subject, text };
+      const url = "/api/contact";
+      const { firstname, name, email, number, subject, text } = contact;
+      const payload = { firstname, name, email, number, subject, text };
       const response = await axios.post(url, payload);
       console.log(response);
       setContact(INITIAL_STATE);
@@ -50,23 +53,30 @@ const ContactForm = () => {
   return (
     <>
       <div className="contact-form">
-        <div className="contact-title">
-          <h2>Get In Touch</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
+        <div className="contact-title">{/* <h2>Kontakt</h2> */}</div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} id="contact-form">
           <div className="container">
             <div className="row">
               <div className="col-lg-6">
                 <div className="form-group">
                   <input
                     type="text"
+                    name="firstname"
+                    placeholder="Vorname"
+                    className="form-control"
+                    value={contact.firstname}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <input
+                    type="text"
                     name="name"
-                    placeholder="Name"
+                    placeholder="Nachname"
                     className="form-control"
                     value={contact.name}
                     onChange={handleChange}
@@ -79,7 +89,7 @@ const ContactForm = () => {
                   <input
                     type="text"
                     name="email"
-                    placeholder="Email"
+                    placeholder="E-Mail"
                     className="form-control"
                     value={contact.email}
                     onChange={handleChange}
@@ -92,7 +102,7 @@ const ContactForm = () => {
                   <input
                     type="text"
                     name="number"
-                    placeholder="Phone number"
+                    placeholder="Telefonnummer"
                     className="form-control"
                     value={contact.number}
                     onChange={handleChange}
@@ -100,12 +110,12 @@ const ContactForm = () => {
                   />
                 </div>
               </div>
-              <div className="col-lg-6">
+              <div className="col-lg-12">
                 <div className="form-group">
                   <input
                     type="text"
                     name="subject"
-                    placeholder="Subject"
+                    placeholder="Betreff"
                     className="form-control"
                     value={contact.subject}
                     onChange={handleChange}
@@ -119,7 +129,7 @@ const ContactForm = () => {
                     name="text"
                     cols="30"
                     rows="6"
-                    placeholder="Write your message..."
+                    placeholder="Schreib Deine Anfrage..."
                     className="form-control"
                     value={contact.text}
                     onChange={handleChange}
@@ -127,9 +137,31 @@ const ContactForm = () => {
                   />
                 </div>
               </div>
+              <div className="col-lg-12 col-md-12">
+                <div className="form-check">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    id="contactAgreement"
+                    onClick={() => setAggreedToGdpr(!aggreedToGdpr)}
+                  />
+                  <label htmlFor="contactAgreement">
+                    Ich habe die{" "}
+                    <Link href="/legal#gdpr">
+                      <a target="_blank"> Datenschutzerklärung </a>
+                    </Link>{" "}
+                    gelesen und akzeptiere diese hiermit.
+                  </label>
+                </div>
+              </div>
               <div className="col-lg-12 col-sm-12">
-                <button type="submit" className="btn btn-primary">
-                  Send Message
+                {/* TODO: Style disabled button */}
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={!aggreedToGdpr}
+                >
+                  Senden
                 </button>
               </div>
             </div>
