@@ -39,8 +39,13 @@
     font-size: 25px;
   }
   .navbar-area nav .navbar-brand img {
-    max-width: 130px;
+    max-width: 32px;
   }
+
+  .navbar-area.navbar-style-2.is-sticky .navbar-brand .logo-ds-experts {
+    width: 100%;
+  }
+
   .navbar-area nav .navbar-nav {
     overflow-y: scroll;
     max-height: 70vh;
@@ -185,8 +190,7 @@
   }
   .hero-banner .main-banner-content h1 {
     font-size: 30px;
-    /* margin-top: 2rem; */
-    margin-top: 2rem;
+    margin-top: 0;
   }
   .hero-banner .main-banner-content p {
     margin-bottom: 15px;
@@ -1845,7 +1849,7 @@
     font-size: 14px;
   }
   .navbar-area nav .navbar-brand img {
-    max-width: 130px;
+    max-width: 32px;
   }
   .navbar-area nav .navbar-nav .nav-item {
     padding-left: 10px;

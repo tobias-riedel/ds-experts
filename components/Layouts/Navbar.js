@@ -1,12 +1,12 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import Link from "../../utils/ActiveLink";
 
 const Navbar = () => {
-  const [menu, setMenu] = React.useState(true);
+  const [menu, setMenu] = useState(true);
   const toggleNavbar = () => {
     setMenu(!menu);
   };
-  React.useEffect(() => {
+  useEffect(() => {
     const elementId = document.getElementById("navbar");
     document.addEventListener("scroll", () => {
       if (window.scrollY > 170) {
