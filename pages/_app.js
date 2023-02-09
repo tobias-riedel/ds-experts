@@ -43,9 +43,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>
-          Pungent - React Multipurpose Startup & Digital Agency Template
-        </title>
+        <title>ds-experts IT-Consulting GmbH</title>
       </Head>
 
       <Component {...pageProps} />
