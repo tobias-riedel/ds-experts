@@ -185,7 +185,8 @@
   }
   .hero-banner .main-banner-content h1 {
     font-size: 30px;
-    margin-top: 1.5rem;
+    /* margin-top: 2rem; */
+    margin-top: 2rem;
   }
   .hero-banner .main-banner-content p {
     margin-bottom: 15px;
