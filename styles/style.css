@@ -46,6 +46,9 @@ This files table contents are outlined below >>>>>
   --brand-blue: #2e3a6d;
   --brand-white: #fdfdfd;
   --brand-grey: #d1c9ca;
+  --brand-accent-green: #6e9933;
+  --brand-accent-violet: #6d2e6c;
+  --brand-light-blue: #eaf3ff;
 
   /* --brand-blue-gradient1: #2e3a6d;
   --brand-blue-gradient2: #3c4c90;
@@ -221,7 +224,7 @@ a:focus {
 .btn {
   border: none;
   padding: 12px 30px;
-  border-radius: 5px;
+  border-radius: 8px;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   position: relative;
@@ -831,8 +834,8 @@ Navbar CSS
 }
 
 .navbar-area.navbar-style-2 .navbar-brand .white-logo {
-  border: 1px solid #d1c9ca;
-  border-radius: 5px;
+  border: 1px solid var(--brand-white);
+  border-radius: 8px;
 }
 
 .navbar-area.navbar-style-2.is-sticky .navbar-brand .white-logo {
@@ -2076,7 +2079,7 @@ About CSS
   position: absolute;
   left: 0;
   top: 6px;
-  color: #ff2c9c;
+  color: var(--brand-accent-green);
   font-size: 16px;
 }
 
@@ -2979,7 +2982,7 @@ Services CSS
 }
 
 .service-card-one.bg-competencies {
-  background-color: #eaf3ff;
+  background-color: var(--brand-light-blue);
   padding: 40px 30px;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -2992,7 +2995,7 @@ Services CSS
 }
 
 .service-card-one.bg-competencies:hover i {
-  background-color: #eaf3ff !important;
+  background-color: var(--brand-white) !important;
   color: var(--brand-blue);
 }
 
@@ -3218,24 +3221,7 @@ Join Us CSS
   position: absolute;
   left: 0;
   top: 7px;
-  background: -webkit-gradient(
-    linear,
-    right bottom,
-    left top,
-    from(#ff2c9c),
-    color-stop(#ff287b),
-    color-stop(#ff395a),
-    color-stop(#ff5137),
-    to(#ff6a00)
-  );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background-color: var(--brand-accent-green);
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -3260,7 +3246,7 @@ Join Us CSS
 }
 
 .join-us-role--active {
-  background-color: #eaf3ff;
+  background-color: var(--brand-light-blue);
   color: #000;
 }
 
