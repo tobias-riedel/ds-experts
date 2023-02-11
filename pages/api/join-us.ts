@@ -7,8 +7,27 @@ const to = process?.env?.JOIN_US_MAIL_ADDRESS_FROM;
 const from = process?.env?.JOIN_US_MAIL_ADDRESS_TO;
 
 export default async (req, res) => {
+  // const { firstname, name, email, number, subject, text } = req.body;
   // console.log(req.body)
-  const { firstname, name, email, number, subject, text } = req.body;
+  const {
+    firstname: honeyFirstname,
+    name: honeyName,
+    email: honeyEmail,
+    firstname6g234: firstname,
+    name90ad0f: name,
+    emailfd80e: email,
+    telephone,
+    subject,
+    text,
+  } = req.body;
+
+  // Exit on honeypot activation
+  if (honeyFirstname || honeyName || honeyEmail) {
+    const now = new Date().toISOString();
+    console.log(`[${now}] Honeypot triggered: ${JSON.stringify(req.body)}`);
+    res.status(412).send({ msg: "Honeypot triggered" });
+    return;
+  }
 
   const formattedText = sanitizeHtml(text);
 
@@ -21,7 +40,7 @@ export default async (req, res) => {
 <b>Vorname:</b> ${firstname} <br /> 
 <b>Name:</b> ${name} <br /> 
 <b>eMail:</b> ${email} <br /> 
-<b>Telefon:</b> ${number} <br /> 
+<b>Telefon:</b> ${telephone} <br /> 
 <b>Betreff:</b> ${subject} <br /> 
 <b>Anfrage:</b> ${formattedText} `,
   };
@@ -36,6 +55,6 @@ export default async (req, res) => {
       console.error(error.response.body);
     }
 
-    res.status(500).send({ msg: "Error processing charge" });
+    res.status(500).send({ msg: "Error processing payload" });
   }
 };

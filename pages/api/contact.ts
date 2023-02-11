@@ -7,7 +7,6 @@ const to = process?.env?.CONTACTS_MAIL_ADDRESS_FROM;
 const from = process?.env?.CONTACTS_MAIL_ADDRESS_TO;
 
 export default async (req, res) => {
-  // console.log(req.body)
   const {
     firstname: honeyFirstname,
     name: honeyName,
@@ -21,7 +20,10 @@ export default async (req, res) => {
 
   // Exit on honeypot activation
   if (honeyFirstname || honeyName || honeyEmail) {
+    const now = new Date().toISOString();
+    console.log(`[${now}] Honeypot triggered: ${JSON.stringify(req.body)}`);
     res.status(412).send({ msg: "Honeypot triggered" });
+    return;
   }
 
   const formattedText = sanitizeHtml(text);
@@ -40,8 +42,8 @@ export default async (req, res) => {
   };
 
   try {
-    // const response = await sgMail.send(msg);
-    // console.log(response);
+    const response = await sgMail.send(msg);
+    console.log(response);
     res.status(200).send({ msg: "Email sent successfully" });
   } catch (error) {
     console.error(error);
@@ -49,6 +51,6 @@ export default async (req, res) => {
       console.error(error.response.body);
     }
 
-    res.status(500).send({ msg: "Error processing charge" });
+    res.status(500).send({ msg: "Error processing payload" });
   }
 };
