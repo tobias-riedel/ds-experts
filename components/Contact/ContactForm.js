@@ -21,13 +21,15 @@ const INITIAL_STATE = {
   firstname: "",
   name: "",
   email: "",
-  number: "",
+  firstname6g234: "",
+  name90ad0f: "",
+  emailfd80e: "",
   subject: "",
   text: "",
 };
 
 const ContactForm = () => {
-  const [aggreedToGdpr, setAggreedToGdpr] = useState(false);
+  const [agreedToGdpr, setAgreedToGdpr] = useState(false);
   const [contact, setContact] = useState(INITIAL_STATE);
 
   const handleChange = (e) => {
@@ -37,10 +39,30 @@ const ContactForm = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const url = "/api/contact";
-      const { firstname, name, email, number, subject, text } = contact;
-      const payload = { firstname, name, email, number, subject, text };
+      const {
+        firstname,
+        name,
+        email,
+        firstname6g234,
+        name90ad0f,
+        emailfd80e,
+        subject,
+        text,
+      } = contact;
+
+      const payload = {
+        firstname,
+        name,
+        email,
+        firstname6g234,
+        name90ad0f,
+        emailfd80e,
+        subject,
+        text,
+      };
       const response = await axios.post(url, payload);
       console.log(response);
       setContact(INITIAL_STATE);
@@ -57,17 +79,16 @@ const ContactForm = () => {
 
         <form onSubmit={handleSubmit} id="contact-form">
           <div className="container">
-            <div className="row">
+            <div className="row honey">
               <div className="col-lg-6">
                 <div className="form-group">
                   <input
                     type="text"
                     name="firstname"
-                    placeholder="Vorname"
+                    placeholder="Vorname*"
                     className="form-control"
                     value={contact.firstname}
                     onChange={handleChange}
-                    required
                   />
                 </div>
               </div>
@@ -76,22 +97,35 @@ const ContactForm = () => {
                   <input
                     type="text"
                     name="name"
-                    placeholder="Nachname"
+                    placeholder="Nachname*"
                     className="form-control"
                     value={contact.name}
                     onChange={handleChange}
-                    required
                   />
                 </div>
               </div>
-              <div className="col-lg-6">
+              <div>
                 <div className="form-group">
                   <input
                     type="text"
                     name="email"
-                    placeholder="E-Mail"
+                    placeholder="E-Mail*"
                     className="form-control"
                     value={contact.email}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="firstname6g234"
+                    placeholder="Vorname*"
+                    className="form-control"
+                    value={contact.firstname6g234}
                     onChange={handleChange}
                     required
                   />
@@ -101,10 +135,23 @@ const ContactForm = () => {
                 <div className="form-group">
                   <input
                     type="text"
-                    name="number"
-                    placeholder="Telefonnummer"
+                    name="name90ad0f"
+                    placeholder="Nachname*"
                     className="form-control"
-                    value={contact.number}
+                    value={contact.name90ad0f}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+              <div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="emailfd80e"
+                    placeholder="E-Mail*"
+                    className="form-control"
+                    value={contact.emailfd80e}
                     onChange={handleChange}
                     required
                   />
@@ -115,7 +162,7 @@ const ContactForm = () => {
                   <input
                     type="text"
                     name="subject"
-                    placeholder="Betreff"
+                    placeholder="Betreff*"
                     className="form-control"
                     value={contact.subject}
                     onChange={handleChange}
@@ -143,7 +190,7 @@ const ContactForm = () => {
                     type="checkbox"
                     className="form-check-input"
                     id="contactAgreement"
-                    onClick={() => setAggreedToGdpr(!aggreedToGdpr)}
+                    onClick={() => setAgreedToGdpr(!agreedToGdpr)}
                   />
                   <label htmlFor="contactAgreement">
                     Ich habe die{" "}
@@ -159,7 +206,7 @@ const ContactForm = () => {
                 <button
                   type="submit"
                   className="btn btn-primary"
-                  disabled={!aggreedToGdpr}
+                  disabled={!agreedToGdpr}
                 >
                   Senden
                 </button>

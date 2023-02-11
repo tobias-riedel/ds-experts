@@ -42,6 +42,30 @@ This files table contents are outlined below >>>>>
 ** - Go Top CSS
 */
 /* Default CSS */
+:root {
+  --brand-blue: #2e3a6d;
+  --brand-white: #fdfdfd;
+  --brand-grey: #d1c9ca;
+
+  /* --brand-blue-gradient1: #2e3a6d;
+  --brand-blue-gradient2: #3c4c90;
+  --brand-blue-gradient3: #4b5eb4;
+  --brand-blue-gradient4: #6f7fc3;
+  --brand-blue-gradient5: #939fd2; */
+
+  --brand-blue-gradient1: #1e2648;
+  --brand-blue-gradient2: #2e3a6d;
+  --brand-blue-gradient3: #3c4c90;
+  --brand-blue-gradient4: #4b5eb4;
+  --brand-blue-gradient5: #6f7fc3;
+
+  /* --brand-blue-gradient1: #0f1324;
+  --brand-blue-gradient2: #1e2648;
+  --brand-blue-gradient3: #2e3a6d;
+  --brand-blue-gradient4: #3c4c90;
+  --brand-blue-gradient5: #4b5eb4; */
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -207,13 +231,18 @@ a:focus {
 
 .btn.disabled,
 .btn:disabled {
-  opacity: 1;
+  opacity: 0.5;
+}
+
+.btn.disabled:hover,
+.btn:disabled:hover {
+  cursor: not-allowed !important;
 }
 
 .btn-primary {
-  color: #ffffff;
-  background-color: #ffffff;
-  border: 1px solid #ff2c9c;
+  color: var(--brand-white);
+  background-color: var(--brand-white);
+  border: 1px solid var(--brand-blue);
 }
 
 .btn-primary::before {
@@ -230,19 +259,19 @@ a:focus {
     linear,
     right bottom,
     left top,
-    from(#ff2c9c),
-    color-stop(#ff287b),
-    color-stop(#ff395a),
-    color-stop(#ff5137),
-    to(#ff6a00)
+    from(var(--brand-blue-gradient1)),
+    color-stop(var(--brand-blue-gradient2)),
+    color-stop(var(--brand-blue-gradient3)),
+    color-stop(var(--brand-blue-gradient4)),
+    to(var(--brand-blue-gradient5))
   );
   background: linear-gradient(
     to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
+    var(--brand-blue-gradient1),
+    var(--brand-blue-gradient2),
+    var(--brand-blue-gradient3),
+    var(--brand-blue-gradient4),
+    var(--brand-blue-gradient5)
   );
   z-index: -1;
   -webkit-transition: all 0.5s ease;
@@ -261,18 +290,18 @@ a:focus {
 
 .btn-primary.disabled,
 .btn-primary:disabled {
-  color: #ffffff;
-  background-color: #ffffff;
-  border: 1px solid #ff2c9c;
+  color: var(--brand-white);
+  background-color: var(--brand-white);
+  border: 1px solid var(--brand-blue);
 }
 
 .btn-primary:hover,
 .btn-primary:focus {
-  color: #ff2c9c;
+  color: var(--brand-blue);
   -webkit-box-shadow: unset;
   box-shadow: unset;
   background-color: transparent;
-  border-color: #ff2c9c;
+  border-color: var(--brand-blue);
 }
 
 .btn-primary:hover::before,
@@ -498,19 +527,19 @@ Navbar CSS
     linear,
     right bottom,
     left top,
-    from(#ff2c9c),
-    color-stop(#ff287b),
-    color-stop(#ff395a),
-    color-stop(#ff5137),
-    to(#ff6a00)
+    from(var(--brand-blue-gradient1)),
+    color-stop(var(--brand-blue-gradient2)),
+    color-stop(var(--brand-blue-gradient3)),
+    color-stop(var(--brand-blue-gradient4)),
+    to(var(--brand-blue-gradient5))
   );
   background: linear-gradient(
     to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
+    var(--brand-blue-gradient1),
+    var(--brand-blue-gradient2),
+    var(--brand-blue-gradient3),
+    var(--brand-blue-gradient4),
+    var(--brand-blue-gradient5)
   );
   height: 3px;
   -webkit-transition: all 0.5s ease;
@@ -529,7 +558,7 @@ Navbar CSS
 .navbar-area nav .navbar-nav .nav-item a:hover::before,
 .navbar-area nav .navbar-nav .nav-item a:focus::before,
 .navbar-area nav .navbar-nav .nav-item a.active::before {
-  width: 60%;
+  width: 100%;
 }
 
 .navbar-area nav .navbar-nav .nav-item a i {
@@ -792,6 +821,11 @@ Navbar CSS
 
 .navbar-area.navbar-style-2.is-sticky .navbar-brand .logo-ds-experts {
   width: 65%;
+}
+
+.navbar-area.navbar-style-2 .navbar-brand .white-logo {
+  border: 1px solid #d1c9ca;
+  border-radius: 5px;
 }
 
 .navbar-area.navbar-style-2.is-sticky .navbar-brand .white-logo {
@@ -1151,6 +1185,10 @@ Main Banner CSS
   -webkit-animation: border-transform 10s linear infinite alternate forwards;
   animation: border-transform 10s linear infinite alternate forwards;
   margin: auto;
+}
+
+.honey {
+  display: none;
 }
 
 @-webkit-keyframes border-transform {
@@ -2938,13 +2976,13 @@ Services CSS
 
 .service-card-one.bg-competencies:hover,
 .service-card-one.bg-competencies--active {
-  background-color: #2e3a6d;
+  background-color: var(--brand-blue);
   margin-top: -5px;
 }
 
 .service-card-one.bg-competencies:hover i {
   background-color: #eaf3ff !important;
-  color: #2e3a6d;
+  color: var(--brand-blue);
 }
 
 .service-card-one.bg-competencies:hover h3,
@@ -3201,7 +3239,7 @@ Join Us CSS
   border: 1px solid #aaa;
   border-radius: 10px;
   color: #fff;
-  background-color: #2e3a6d;
+  background-color: var(--brand-blue);
 }
 
 .join-us-role:hover {
