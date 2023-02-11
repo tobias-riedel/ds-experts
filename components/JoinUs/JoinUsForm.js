@@ -21,26 +21,49 @@ const INITIAL_STATE = {
   firstname: "",
   name: "",
   email: "",
-  number: "",
+  firstname6g234: "",
+  name90ad0f: "",
+  emailfd80e: "",
+  telephone: "",
   subject: "",
   text: "",
 };
 
 const JoinUsForm = () => {
-  const [aggreedToGdpr, setAggreedToGdpr] = useState(false);
+  const [agreedToGdpr, setAgreedToGdpr] = useState(false);
   const [contact, setContact] = useState(INITIAL_STATE);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setContact((prevState) => ({ ...prevState, [name]: value }));
-    // console.log(contact)
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const url = "/api/join-us";
-      const { firstname, name, email, number, subject, text } = contact;
-      const payload = { firstname, name, email, number, subject, text };
+      const {
+        firstname,
+        name,
+        email,
+        firstname6g234,
+        name90ad0f,
+        emailfd80e,
+        telephone,
+        subject,
+        text,
+      } = contact;
+
+      const payload = {
+        firstname,
+        name,
+        email,
+        firstname6g234,
+        name90ad0f,
+        emailfd80e,
+        telephone,
+        subject,
+        text,
+      };
       const response = await axios.post(url, payload);
       console.log(response);
       setContact(INITIAL_STATE);
@@ -54,17 +77,16 @@ const JoinUsForm = () => {
     <>
       <form onSubmit={handleSubmit} id="contact-form">
         <div className="container">
-          <div className="row">
+          <div className="row honey">
             <div className="col-lg-6">
               <div className="form-group">
                 <input
                   type="text"
                   name="firstname"
-                  placeholder="Vorname"
+                  placeholder="Vorname*"
                   className="form-control"
                   value={contact.firstname}
                   onChange={handleChange}
-                  required
                 />
               </div>
             </div>
@@ -73,22 +95,35 @@ const JoinUsForm = () => {
                 <input
                   type="text"
                   name="name"
-                  placeholder="Nachname"
+                  placeholder="Nachname*"
                   className="form-control"
                   value={contact.name}
                   onChange={handleChange}
-                  required
                 />
               </div>
             </div>
-            <div className="col-lg-6">
+            <div>
               <div className="form-group">
                 <input
                   type="text"
                   name="email"
-                  placeholder="E-Mail"
+                  placeholder="E-Mail*"
                   className="form-control"
                   value={contact.email}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-lg-6">
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="firstname6g234"
+                  placeholder="Vorname"
+                  className="form-control"
+                  value={contact.firstname6g234}
                   onChange={handleChange}
                   required
                 />
@@ -98,10 +133,36 @@ const JoinUsForm = () => {
               <div className="form-group">
                 <input
                   type="text"
-                  name="number"
+                  name="name90ad0f"
+                  placeholder="Nachname"
+                  className="form-control"
+                  value={contact.name90ad0f}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="emailfd80e"
+                  placeholder="E-Mail"
+                  className="form-control"
+                  value={contact.emailfd80e}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="telephone"
                   placeholder="Telefonnummer"
                   className="form-control"
-                  value={contact.number}
+                  value={contact.telephone}
                   onChange={handleChange}
                   required
                 />
@@ -140,7 +201,7 @@ const JoinUsForm = () => {
                   type="checkbox"
                   className="form-check-input"
                   id="contactAgreement"
-                  onClick={() => setAggreedToGdpr(!aggreedToGdpr)}
+                  onClick={() => setAgreedToGdpr(!agreedToGdpr)}
                 />
                 <label htmlFor="contactAgreement">
                   Ich habe die{" "}
@@ -156,7 +217,7 @@ const JoinUsForm = () => {
               <button
                 type="submit"
                 className="btn btn-primary"
-                disabled={!aggreedToGdpr}
+                disabled={!agreedToGdpr}
               >
                 Senden
               </button>

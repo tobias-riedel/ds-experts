@@ -64,6 +64,8 @@ This files table contents are outlined below >>>>>
   --brand-blue-gradient3: #2e3a6d;
   --brand-blue-gradient4: #3c4c90;
   --brand-blue-gradient5: #4b5eb4; */
+
+  --box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -736,6 +738,11 @@ Navbar CSS
 .navbar-area.navbar-style-two nav .others-options .btn:focus {
   border-color: #ff2c9c;
   background: transparent;
+}
+
+.navbar-area .others-options .btn-primary:hover,
+.navbar-area .others-options .btn-primary:focus {
+  background-color: var(--brand-white);
 }
 
 .navbar-area.navbar-style-two.is-sticky .others-options .btn {
@@ -2413,6 +2420,10 @@ Case Studies CSS
   position: relative;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
+
+  border-radius: 8px;
+  -webkit-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
 }
 
 .work-card::before {
@@ -2963,8 +2974,8 @@ Services CSS
 
 .competencies .service-card-one {
   border-radius: 10px;
-  -webkit-box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
-  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
 }
 
 .service-card-one.bg-competencies {
@@ -7286,8 +7297,8 @@ Go Top CSS
   bottom: 20px;
   right: 20px;
   font-size: 35px;
-  color: #ffffff;
-  background-color: #18181b;
+  color: var(--brand-white);
+  background-color: var(--brand-blue);
   z-index: 4;
   width: 40px;
   text-align: center;
@@ -7296,11 +7307,12 @@ Go Top CSS
   border-radius: 50%;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
+  -webkit-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
 }
 
 .scroll-to-top i:hover {
-  color: #ffffff;
-  background: #ff2c9c;
+  background: var(--brand-blue-gradient5);
 }
 
 .lang-didebar {

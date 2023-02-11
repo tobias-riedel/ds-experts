@@ -202,7 +202,6 @@ const ContactForm = () => {
                 </div>
               </div>
               <div className="col-lg-12 col-sm-12">
-                {/* TODO: Style disabled button */}
                 <button
                   type="submit"
                   className="btn btn-primary"
