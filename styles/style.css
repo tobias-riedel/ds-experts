@@ -50,23 +50,23 @@ This files table contents are outlined below >>>>>
   --brand-accent-violet: #6d2e6c;
   --brand-light-blue: #eaf3ff;
 
-  /* --brand-blue-gradient1: #2e3a6d;
-  --brand-blue-gradient2: #3c4c90;
-  --brand-blue-gradient3: #4b5eb4;
-  --brand-blue-gradient4: #6f7fc3;
-  --brand-blue-gradient5: #939fd2; */
+  /* --brand-blue-gradient-1: #2e3a6d;
+  --brand-blue-gradient-2: #3c4c90;
+  --brand-blue-gradient-3: #4b5eb4;
+  --brand-blue-gradient-4: #6f7fc3;
+  --brand-blue-gradient-5: #939fd2; */
 
-  --brand-blue-gradient1: #1e2648;
-  --brand-blue-gradient2: #2e3a6d;
-  --brand-blue-gradient3: #3c4c90;
-  --brand-blue-gradient4: #4b5eb4;
-  --brand-blue-gradient5: #6f7fc3;
+  --brand-blue-gradient-1: #1e2648;
+  --brand-blue-gradient-2: #2e3a6d;
+  --brand-blue-gradient-3: #3c4c90;
+  --brand-blue-gradient-4: #4b5eb4;
+  --brand-blue-gradient-5: #6f7fc3;
 
-  /* --brand-blue-gradient1: #0f1324;
-  --brand-blue-gradient2: #1e2648;
-  --brand-blue-gradient3: #2e3a6d;
-  --brand-blue-gradient4: #3c4c90;
-  --brand-blue-gradient5: #4b5eb4; */
+  /* --brand-blue-gradient-1: #0f1324;
+  --brand-blue-gradient-2: #1e2648;
+  --brand-blue-gradient-3: #2e3a6d;
+  --brand-blue-gradient-4: #3c4c90;
+  --brand-blue-gradient-5: #4b5eb4; */
 
   --box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
@@ -264,19 +264,19 @@ a:focus {
     linear,
     right bottom,
     left top,
-    from(var(--brand-blue-gradient1)),
-    color-stop(var(--brand-blue-gradient2)),
-    color-stop(var(--brand-blue-gradient3)),
-    color-stop(var(--brand-blue-gradient4)),
-    to(var(--brand-blue-gradient5))
+    from(var(--brand-blue-gradient-1)),
+    color-stop(var(--brand-blue-gradient-2)),
+    color-stop(var(--brand-blue-gradient-3)),
+    color-stop(var(--brand-blue-gradient-4)),
+    to(var(--brand-blue-gradient-5))
   );
   background: linear-gradient(
     to left top,
-    var(--brand-blue-gradient1),
-    var(--brand-blue-gradient2),
-    var(--brand-blue-gradient3),
-    var(--brand-blue-gradient4),
-    var(--brand-blue-gradient5)
+    var(--brand-blue-gradient-1),
+    var(--brand-blue-gradient-2),
+    var(--brand-blue-gradient-3),
+    var(--brand-blue-gradient-4),
+    var(--brand-blue-gradient-5)
   );
   z-index: -1;
   -webkit-transition: all 0.5s ease;
@@ -476,6 +476,15 @@ label {
 }
 
 /*================================================
+Shared CSS
+=================================================*/
+
+.shadow {
+  -webkit-box-shadow: var(--box-shadow) !important;
+  box-shadow: var(--box-shadow) !important;
+}
+
+/*================================================
 Navbar CSS
 =================================================*/
 .navbar-area {
@@ -532,19 +541,19 @@ Navbar CSS
     linear,
     right bottom,
     left top,
-    from(var(--brand-blue-gradient1)),
-    color-stop(var(--brand-blue-gradient2)),
-    color-stop(var(--brand-blue-gradient3)),
-    color-stop(var(--brand-blue-gradient4)),
-    to(var(--brand-blue-gradient5))
+    from(var(--brand-blue-gradient-1)),
+    color-stop(var(--brand-blue-gradient-2)),
+    color-stop(var(--brand-blue-gradient-3)),
+    color-stop(var(--brand-blue-gradient-4)),
+    to(var(--brand-blue-gradient-5))
   );
   background: linear-gradient(
     to left top,
-    var(--brand-blue-gradient1),
-    var(--brand-blue-gradient2),
-    var(--brand-blue-gradient3),
-    var(--brand-blue-gradient4),
-    var(--brand-blue-gradient5)
+    var(--brand-blue-gradient-1),
+    var(--brand-blue-gradient-2),
+    var(--brand-blue-gradient-3),
+    var(--brand-blue-gradient-4),
+    var(--brand-blue-gradient-5)
   );
   height: 3px;
   -webkit-transition: all 0.5s ease;
@@ -2423,10 +2432,7 @@ Case Studies CSS
   position: relative;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
-
   border-radius: 8px;
-  -webkit-box-shadow: var(--box-shadow);
-  box-shadow: var(--box-shadow);
 }
 
 .work-card::before {
@@ -2977,8 +2983,6 @@ Services CSS
 
 .competencies .service-card-one {
   border-radius: 10px;
-  -webkit-box-shadow: var(--box-shadow);
-  box-shadow: var(--box-shadow);
 }
 
 .service-card-one.bg-competencies {
@@ -7293,12 +7297,10 @@ Go Top CSS
   border-radius: 50%;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
-  -webkit-box-shadow: var(--box-shadow);
-  box-shadow: var(--box-shadow);
 }
 
 .scroll-to-top i:hover {
-  background: var(--brand-blue-gradient5);
+  background: var(--brand-blue-gradient-5);
 }
 
 .lang-didebar {

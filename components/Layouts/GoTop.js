@@ -26,7 +26,7 @@ const App = () => {
     <>
       {showButton && (
         <div onClick={scrollToTop} className="scroll-to-top">
-          <i className="pe-7s-angle-up"></i>
+          <i className="pe-7s-angle-up shadow"></i>
         </div>
       )}
     </>

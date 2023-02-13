@@ -84,7 +84,7 @@ const OurWorks = () => {
           >
             {references.map((ref, idx) => (
               <SwiperSlide key={idx}>
-                <div className="work-card">
+                <div className="work-card shadow">
                   <img src={ref.img} alt="image" />
 
                   <div className="content text-center">
