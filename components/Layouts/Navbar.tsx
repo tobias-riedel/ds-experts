@@ -92,7 +92,7 @@ const Navbar = () => {
                 </li>
               </ul>
 
-              <div className="others-options">
+              <div>
                 <Link href="/contact">
                   {/* TODO: Adjust link */}
                   <a

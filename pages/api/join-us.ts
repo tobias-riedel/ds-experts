@@ -1,5 +1,9 @@
 import sgMail from "@sendgrid/mail";
 import { sanitizeHtml } from "../../utils/mail";
+import * as multer from "multer";
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage }).single("attachment");
 
 sgMail.setApiKey(process?.env?.SENDGRID_API_KEY);
 
@@ -7,8 +11,8 @@ const to = process?.env?.JOIN_US_MAIL_ADDRESS_FROM;
 const from = process?.env?.JOIN_US_MAIL_ADDRESS_TO;
 
 export default async (req, res) => {
-  // const { firstname, name, email, number, subject, text } = req.body;
-  // console.log(req.body)
+  console.log("Body::", req.body);
+
   const {
     firstname: honeyFirstname,
     name: honeyName,
@@ -19,13 +23,25 @@ export default async (req, res) => {
     telephone,
     subject,
     text,
+    cv,
   } = req.body;
 
+  // const fileInfo = req.file;
+  // console.log("file::", firstname);
+
+  const now = new Date().toISOString();
   // Exit on honeypot activation
   if (honeyFirstname || honeyName || honeyEmail) {
-    const now = new Date().toISOString();
     console.log(`[${now}] Honeypot triggered: ${JSON.stringify(req.body)}`);
     res.status(412).send({ msg: "Honeypot triggered" });
+    return;
+  }
+
+  if (!firstname || !name || !email || !text) {
+    console.log(
+      `[${now}] Submitted data incomplete: ${JSON.stringify(req.body)}`
+    );
+    res.status(400).send({ msg: "Submitted data incomplete" });
     return;
   }
 
@@ -46,8 +62,8 @@ export default async (req, res) => {
   };
 
   try {
-    const response = await sgMail.send(msg);
-    console.log(response);
+    // const response = await sgMail.send(msg);
+    // console.log(response);
     res.status(200).send({ msg: "Email sent successfully" });
   } catch (error) {
     console.error(error);
