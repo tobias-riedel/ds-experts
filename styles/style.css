@@ -414,7 +414,7 @@ a:focus {
 /* section-title */
 .section-title {
   text-align: center;
-  margin: -5px auto 60px;
+  margin: 20px auto 60px;
   max-width: 720px;
 }
 

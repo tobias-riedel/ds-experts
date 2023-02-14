@@ -11,8 +11,9 @@ const Imprint = () => {
   }, []);
 
   return (
-    <>
-      <div className="faq-area pt-100">
+    <section className="pt-100">
+      <div className="section-title"></div>
+      <div className="faq-area">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-5">
@@ -62,7 +63,7 @@ const Imprint = () => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 
