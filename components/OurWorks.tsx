@@ -46,71 +46,69 @@ const references = [
 
 const OurWorks = () => {
   return (
-    <>
-      <section className="case-studies-area ptb-100">
-        <div className="container-fluid">
-          <div className="section-title">
-            <h2>Referenzen</h2>
-          </div>
-
-          <Swiper
-            cssMode={true}
-            spaceBetween={20}
-            navigation={true}
-            pagination={{
-              clickable: true,
-            }}
-            breakpoints={{
-              0: {
-                slidesPerView: 1,
-              },
-              576: {
-                slidesPerView: 2,
-              },
-              768: {
-                slidesPerView: 3,
-              },
-              1200: {
-                slidesPerView: 4,
-              },
-              1800: {
-                slidesPerView: 5,
-              },
-            }}
-            mousewheel={true}
-            keyboard={true}
-            modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-            className="work-slides"
-          >
-            {references.map((ref, idx) => (
-              <SwiperSlide key={idx}>
-                <div className="work-card shadow">
-                  <img src={ref.img} alt="image" />
-
-                  <div className="content text-center">
-                    <span>
-                      <Link href="/portfolio">
-                        <a>{ref.name}</a>
-                      </Link>
-                    </span>
-
-                    <ul>
-                      {ref.tasks.map((task, taskIdx) => (
-                        <li key={taskIdx}>
-                          <Link href="/portfolio-details">
-                            <a>{task}</a>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+    <section id="references" className="case-studies-area ptb-100">
+      <div className="container-fluid">
+        <div className="section-title">
+          <h2>Referenzen</h2>
         </div>
-      </section>
-    </>
+
+        <Swiper
+          cssMode={true}
+          spaceBetween={20}
+          navigation={true}
+          pagination={{
+            clickable: true,
+          }}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            576: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+            1200: {
+              slidesPerView: 4,
+            },
+            1800: {
+              slidesPerView: 5,
+            },
+          }}
+          mousewheel={true}
+          keyboard={true}
+          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+          className="work-slides"
+        >
+          {references.map((ref, idx) => (
+            <SwiperSlide key={idx}>
+              <div className="work-card shadow">
+                <img src={ref.img} alt="image" />
+
+                <div className="content text-center">
+                  <span>
+                    <Link href="/portfolio">
+                      <a>{ref.name}</a>
+                    </Link>
+                  </span>
+
+                  <ul>
+                    {ref.tasks.map((task, taskIdx) => (
+                      <li key={taskIdx}>
+                        <Link href="/portfolio-details">
+                          <a>{task}</a>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </section>
   );
 };
 
