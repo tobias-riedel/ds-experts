@@ -21,7 +21,7 @@ const Contact = () => {
             <h2>Kontakt</h2>
           </div>
 
-          <div className="row align-items-center">
+          <div className="row">
             <div className="col-lg-6">
               <div className="service-left-img">
                 <ul className="list-unstyled">

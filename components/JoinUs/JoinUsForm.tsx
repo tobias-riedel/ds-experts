@@ -27,16 +27,42 @@ const INITIAL_STATE = {
   telephone: "",
   subject: "",
   text: "",
+  cv: "",
 };
+
+// TODO: Add maximum file upload size to 8MB
 
 const JoinUsForm = () => {
   const [agreedToGdpr, setAgreedToGdpr] = useState(false);
   const [contact, setContact] = useState(INITIAL_STATE);
+  const [pdfContent, setPdfContent] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setContact((prevState) => ({ ...prevState, [name]: value }));
   };
+
+  const convertToBase64 = (e) => {
+    handleChange(e);
+    const fileReader = new FileReader();
+
+    fileReader.onload = function (fileLoadedEvent) {
+      const base64 = fileLoadedEvent.target.result;
+      console.log("fileContent::", base64);
+      setPdfContent(base64);
+    };
+
+    const selectedFiles =
+      document.querySelector<HTMLInputElement>("#cv")?.files;
+    if (selectedFiles?.length !== 1) {
+      return;
+    }
+
+    const fileToLoad = selectedFiles[0];
+    fileReader.readAsDataURL(fileToLoad);
+    console.log("return fileContent::", pdfContent);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -51,9 +77,10 @@ const JoinUsForm = () => {
         telephone,
         subject,
         text,
+        // cv,
       } = contact;
 
-      const payload = {
+      let payload = {
         firstname,
         name,
         email,
@@ -63,11 +90,59 @@ const JoinUsForm = () => {
         telephone,
         subject,
         text,
+        // cv: base64.encode(cv),
+        cvMeta: null,
+        cvContent: null,
       };
-      const response = await axios.post(url, payload);
+
+      const formEl = document.querySelector<HTMLFormElement>("#join-us-form");
+      const formData = new FormData(formEl);
+
+      // console.log("first form::", formEl);
+
+      const fileInputEl = document.querySelector<HTMLInputElement>("#cv");
+      console.log("file::", fileInputEl, "\n", fileInputEl?.files?.[0]);
+
+      const files = fileInputEl?.files;
+
+      const pdfFile = files?.[0];
+      // const fileContent = JSON.stringify(pdfFile);
+      // const fileBuffer = Buffer.from(JSON.stringify(pdfFile));
+      // const fileBuffer = Buffer.from(fileContent);
+      // const fileStr = fileBuffer.toString("base64");
+      // payload.cv = atob(pdfFile);
+      // payload.cv = fileStr;
+      payload = {
+        ...payload,
+        cvMeta: pdfFile,
+        cvContent: pdfContent,
+      };
+
+      // formData.append("file", pdfFile.files[0]);
+      // console.log("second form::", formEl);
+      console.log("payload::", payload);
+
+      // const response = await axios.post(url, payload);
+      const response = await axios.post(url, payload, {
+        headers: {
+          // ...formData.getHeaders(),
+          //some other headers
+        },
+      });
+      // const response = await axios.post(url, payload, {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // });
+      // const response = await axios.post(url, formData, {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // });
       console.log(response);
-      setContact(INITIAL_STATE);
-      alertContent();
+      // TODO: uncomment
+      // setContact(INITIAL_STATE);
+      // alertContent();
     } catch (error) {
       console.log(error);
     }
@@ -75,7 +150,7 @@ const JoinUsForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} id="contact-form">
+      <form onSubmit={handleSubmit} id="join-us-form">
         <div className="container">
           <div className="row honey">
             <div className="col-lg-6">
@@ -185,6 +260,20 @@ const JoinUsForm = () => {
               <div className="form-group">
                 <textarea
                   name="text"
+                  cols={30}
+                  rows={6}
+                  placeholder="Schreib Deine Anfrage..."
+                  className="form-control"
+                  value={contact.text}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+            <div className="col-lg-12 col-md-12">
+              <div className="form-group">
+                {/* <input
+                  name="doc"
                   cols="30"
                   rows="6"
                   placeholder="Schreib Deine Anfrage..."
@@ -192,6 +281,15 @@ const JoinUsForm = () => {
                   value={contact.text}
                   onChange={handleChange}
                   required
+                /> */}
+                <input
+                  type="file"
+                  id="cv"
+                  name="cv"
+                  placeholder="Bewerbungsunterlagen hochladen (Optional) | PDF | max. 8 MB"
+                  className="form-control"
+                  value={contact.cv}
+                  onChange={convertToBase64}
                 />
               </div>
             </div>

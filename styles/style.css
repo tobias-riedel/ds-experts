@@ -1,9 +1,9 @@
 /*
 @File: Pungent Template Styles
 
-* This file contains the styling for the actual tepmlate, this
+* This file contains the styling for the actual template, this
 is the file you need to edit to change the look of the
-tepmlate.
+template.
 
 This files table contents are outlined below >>>>> 
 
@@ -46,9 +46,12 @@ This files table contents are outlined below >>>>>
   --brand-blue: #2e3a6d;
   --brand-white: #fdfdfd;
   --brand-grey: #d1c9ca;
-  --brand-accent-green: #6e9933;
-  --brand-accent-violet: #6d2e6c;
+  --brand-accent-green: #a3d65c;
+  --brand-accent-violet: #b44bb2;
   --brand-light-blue: #eaf3ff;
+
+  --brand-link-color: #0d6efd;
+  --brand-link-hover-color: #70a329;
 
   /* --brand-blue-gradient-1: #2e3a6d;
   --brand-blue-gradient-2: #3c4c90;
@@ -207,12 +210,13 @@ a {
   transition: all 0.5s ease;
   text-decoration: none;
   transition: all 0.5s ease;
+  color: var(--brand-link-color);
 }
 
 a:hover,
 a:focus {
   outline: 0 !important;
-  color: #ff2c9c;
+  color: var(--brand-link-hover-color);
   text-decoration: none;
 }
 
@@ -6159,7 +6163,6 @@ Contact CSS
 }
 
 .contact-form .contact-title {
-  margin-bottom: 30px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -7200,7 +7203,7 @@ Footer CSS
 }
 
 .copyright-area {
-  background-color: #000000;
+  background-color: var(--brand-blue-gradient-1);
   text-align: center;
   margin-top: 95px;
   padding-top: 30px;
@@ -7208,13 +7211,13 @@ Footer CSS
 }
 
 .copyright-area p {
-  color: #ffffff;
+  color: var(--brand-white);
   font-size: 15px;
 }
 
 .copyright-area p a {
   display: inline-block;
-  color: #ff2c9c;
+  color: var(--brand-accent-green);
 }
 
 .copyright-area p a:hover,
@@ -7262,7 +7265,7 @@ Go Top CSS
   right: 20px;
   font-size: 35px;
   color: var(--brand-white);
-  background-color: var(--brand-blue);
+  background-color: var(--brand-blue-gradient-5);
   z-index: 4;
   width: 40px;
   text-align: center;

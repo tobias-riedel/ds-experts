@@ -75,8 +75,6 @@ const ContactForm = () => {
   return (
     <>
       <div className="contact-form">
-        <div className="contact-title">{/* <h2>Kontakt</h2> */}</div>
-
         <form onSubmit={handleSubmit} id="contact-form">
           <div className="container">
             <div className="row honey">
@@ -144,38 +142,35 @@ const ContactForm = () => {
                   />
                 </div>
               </div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="emailfd80e"
+                  placeholder="E-Mail*"
+                  className="form-control"
+                  value={contact.emailfd80e}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Betreff*"
+                  className="form-control"
+                  value={contact.subject}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
               <div>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    name="emailfd80e"
-                    placeholder="E-Mail*"
-                    className="form-control"
-                    value={contact.emailfd80e}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-              <div className="col-lg-12">
-                <div className="form-group">
-                  <input
-                    type="text"
-                    name="subject"
-                    placeholder="Betreff*"
-                    className="form-control"
-                    value={contact.subject}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-              <div className="col-lg-12 col-md-12">
                 <div className="form-group">
                   <textarea
                     name="text"
-                    cols="30"
-                    rows="6"
+                    cols={30}
+                    rows={6}
                     placeholder="Schreib Deine Anfrage..."
                     className="form-control"
                     value={contact.text}
@@ -184,8 +179,8 @@ const ContactForm = () => {
                   />
                 </div>
               </div>
-              <div className="col-lg-12 col-md-12">
-                <div className="form-check">
+              <div>
+                <div className="form-check text-start">
                   <input
                     type="checkbox"
                     className="form-check-input"
@@ -201,7 +196,7 @@ const ContactForm = () => {
                   </label>
                 </div>
               </div>
-              <div className="col-lg-12 col-sm-12">
+              <div>
                 <button
                   type="submit"
                   className="btn btn-primary"

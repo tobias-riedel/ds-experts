@@ -1,5 +1,39 @@
 import React from "react";
 
+interface Experts {
+  img: string;
+  name: string;
+  role: string;
+}
+
+const experts: Experts[] = [
+  {
+    img: "Daniel-Schenk.png",
+    name: "Daniel Schenk",
+    role: "Senior Projektleiter",
+  },
+  {
+    img: "Michael-Heit.png",
+    name: "Michael Heit",
+    role: "Projektleiter",
+  },
+  {
+    img: "Marco-Marquardt.png",
+    name: "Marco Marquardt",
+    role: "Projektleiter",
+  },
+  {
+    img: "Tobias-Riedel.png",
+    name: "Tobias Riedel",
+    role: "Software Developer",
+  },
+  {
+    img: "Madelaine-Fröhlich.png",
+    name: "Madelaine Fröhlich",
+    role: "Backoffice",
+  },
+];
+
 const Team = () => {
   return (
     <>
@@ -10,105 +44,28 @@ const Team = () => {
           </div>
 
           <div className="row justify-content-center">
-            <div className="col-lg-2 col-sm-6">
-              <div
-                className="team-card text-center"
-                data-aos="fade-up"
-                data-aos-duration="1200"
-                data-aos-delay="100"
-              >
-                <img
-                  src="/images/team/Daniel-Schenk.png"
-                  alt="Image"
-                  className="rounded-circle"
-                />
+            {experts.map((expert, idx) => (
+              <div className="col-lg-2 col-sm-6" key={idx}>
+                <div
+                  className="team-card text-center"
+                  data-aos="fade-up"
+                  data-aos-duration="1200"
+                  data-aos-delay="100"
+                >
+                  <img
+                    src={`/images/team/${expert.img}`}
+                    alt={`Porträt von ${expert.name}`}
+                    title={expert.name}
+                    className="rounded-circle shadow"
+                  />
 
-                <div className="team-caption">
-                  <h3>Daniel Schenk</h3>
-                  <p>Senior Projektleiter</p>
+                  <div className="team-caption">
+                    <h3>{expert.name}</h3>
+                    <p>{expert.role}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="col-lg-2 col-sm-6">
-              <div
-                className="team-card text-center"
-                data-aos="fade-up"
-                data-aos-duration="1200"
-                data-aos-delay="200"
-              >
-                <img
-                  src="/images/team/Michael-Heit.png"
-                  alt="Image"
-                  className="rounded-circle"
-                />
-
-                <div className="team-caption">
-                  <h3>Michael Heit</h3>
-                  <p>Projektleiter</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-2 col-sm-6">
-              <div
-                className="team-card text-center"
-                data-aos="fade-up"
-                data-aos-duration="1200"
-                data-aos-delay="200"
-              >
-                <img
-                  src="/images/team/Marco-Marquardt.png"
-                  alt="Image"
-                  className="rounded-circle"
-                />
-
-                <div className="team-caption">
-                  <h3>Marco Marquardt</h3>
-                  <p>Projektleiter</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-2 col-sm-6">
-              <div
-                className="team-card text-center"
-                data-aos="fade-up"
-                data-aos-duration="1200"
-                data-aos-delay="400"
-              >
-                <img
-                  src="/images/team/Tobias-Riedel.png"
-                  alt="Image"
-                  className="rounded-circle"
-                />
-
-                <div className="team-caption">
-                  <h3>Tobias Riedel</h3>
-                  <p>Software Developer</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-2 col-sm-6">
-              <div
-                className="team-card text-center"
-                data-aos="fade-up"
-                data-aos-duration="1200"
-                data-aos-delay="400"
-              >
-                <img
-                  src="/images/team/Madelaine-Fröhlich.png"
-                  alt="Image"
-                  className="rounded-circle"
-                />
-
-                <div className="team-caption">
-                  <h3>Madelaine Fröhlich</h3>
-                  <p>Backoffice</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

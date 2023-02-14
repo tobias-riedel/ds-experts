@@ -18,9 +18,9 @@ const JoinUs = () => {
 
   return (
     <>
-      <div className="pt-100 pb-70">
+      <div className="ptb-70">
         <div className="container">
-          <div className="section-title mb-30">
+          <div className="section-title">
             <h2>Komm zu uns als:</h2>
           </div>
 
@@ -51,14 +51,14 @@ const JoinUs = () => {
                 Projektleiter
               </button>
             </div>
-            <div className="col-lg-6 col-md-12">
+            <div className="col-lg-6">
               <div className="join-us-info pb-70">
                 {profile === profiles.backend && <JoinUsBackEndDeveloper />}
                 {profile === profiles.frontend && <JoinUsFrontEndDeveloper />}
                 {profile === profiles.projectLead && <JoinUsProjectManager />}
               </div>
             </div>
-            <div className="col-lg-6 col-md-12">
+            <div className="col-lg-6">
               <JoinUsForm />
             </div>
           </div>

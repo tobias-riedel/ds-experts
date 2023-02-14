@@ -6,7 +6,7 @@ const About = () => {
       <div className="about-area ptb-100">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-lg-7 col-md-12">
+            <div className="col-lg-7">
               <div className="about-content about-content-two">
                 <div className="section-title">
                   <h2>Was ist ds-experts?</h2>
@@ -80,18 +80,8 @@ const About = () => {
                 <img
                   src="/images/about-img5.jpg"
                   alt="image"
-                  className="rounded-10"
+                  className="rounded-10 shadow"
                 />
-                {/* <img
-                  src="/images/services/it-service1.png"
-                  alt="image"
-                  className="rounded-10"
-                /> */}
-                {/* <img
-                  src="/images/services/it-service3.png"
-                  alt="image"
-                  className="rounded-10"
-                /> */}
               </div>
             </div>
           </div>
