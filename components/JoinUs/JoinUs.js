@@ -11,6 +11,8 @@ const profiles = {
   projectLead: "projectLead",
 };
 
+const roleBtnClasses = "btn btn-primary";
+
 const JoinUs = () => {
   const [profile, setProfile] = useState(profiles.backend);
 
@@ -23,37 +25,31 @@ const JoinUs = () => {
           </div>
 
           <div className="row">
-            <div className="text-center pb-60">
-              <div
+            <div className="d-flex align-items-center justify-content-center gap-4 pb-60">
+              <button
                 onClick={() => setProfile(profiles.backend)}
-                className={
-                  profile === profiles.backend
-                    ? "join-us-role join-us-role--active"
-                    : "join-us-role"
-                }
+                className={`${roleBtnClasses} ${
+                  profile === profiles.backend && "btn-primary--active"
+                }`}
               >
                 Back-End Developer
-              </div>
-              <div
+              </button>
+              <button
                 onClick={() => setProfile(profiles.frontend)}
-                className={
-                  profile === profiles.frontend
-                    ? "join-us-role join-us-role--active"
-                    : "join-us-role"
-                }
+                className={`${roleBtnClasses} ${
+                  profile === profiles.frontend && "btn-primary--active"
+                }`}
               >
                 Front-End Developer
-              </div>
-              <div
+              </button>
+              <button
                 onClick={() => setProfile(profiles.projectLead)}
-                className={
-                  profile === profiles.projectLead
-                    ? "join-us-role join-us-role--active"
-                    : "join-us-role"
-                }
+                className={`${roleBtnClasses} ${
+                  profile === profiles.projectLead && "btn-primary--active"
+                }`}
               >
                 Projektleiter
-              </div>
+              </button>
             </div>
             <div className="col-lg-6 col-md-12">
               <div className="join-us-info pb-70">
