@@ -12,7 +12,7 @@ const CompanyMap = () => {
   }, []);
 
   return (
-    <Map height={318} defaultCenter={address} defaultZoom={13}>
+    <Map height={318} defaultCenter={address} defaultZoom={10}>
       <ZoomControl />
 
       {isPopupVisible && (

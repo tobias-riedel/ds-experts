@@ -7,7 +7,7 @@ const MainBanner = () => {
   return (
     <>
       <div
-        className="hero-banner it-banner overly bg-fixed"
+        className="hero-banner it-banner overlay bg-fixed"
         style={{
           backgroundImage: `url(/images/hero-banner14.jpg)`,
         }}

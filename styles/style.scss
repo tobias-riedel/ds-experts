@@ -932,7 +932,7 @@ Main Banner CSS
     repeat: no-repeat;
   }
 
-  &.overly {
+  &.overlay {
     &::before {
       content: "";
       background-color: $black-color;
@@ -944,7 +944,7 @@ Main Banner CSS
       width: 100%;
     }
   }
-  &.overly-6 {
+  &.overlay-6 {
     &::before {
       content: "";
       background-color: $black-color;
