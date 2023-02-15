@@ -1,7 +1,6 @@
-import React from "react";
 import Link from "next/link";
+import { Keyboard, Mousewheel, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
 
 interface References {
   img: string;

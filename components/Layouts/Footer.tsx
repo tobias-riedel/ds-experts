@@ -1,7 +1,26 @@
 import Link from "next/link";
+import Router from "next/router";
+import { resetCookieConsentValue } from "react-cookie-consent";
+
+const ACCEPT_COOKIE_NAME = "ds-experts-cookie-consent";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
+  const resetCookies = (e) => {
+    e.preventDefault();
+    const isCookieResetConfirmed = confirm(
+      "Soll die Cookie-Freigabe zurückgesetzt werden? Die Seite wird danach neugeladen."
+    );
+
+    if (!isCookieResetConfirmed) {
+      return;
+    }
+
+    resetCookieConsentValue(ACCEPT_COOKIE_NAME);
+    Router.reload();
+  };
+
   return (
     <>
       <footer>
@@ -21,8 +40,12 @@ const Footer = () => {
                     </Link>
                   </p>
                   <p className="col-lg-5">
+                    <Link href="#">
+                      <a onClick={resetCookies}>Cookie-Einstellungen</a>
+                    </Link>
+                    {" & "}
                     <Link href="/legal#cookies-policy">
-                      <a>Cookie-Einstellungen &amp; Richtlinie</a>
+                      <a>Richtlinie</a>
                     </Link>
                   </p>
                   <p className="col-lg-3">
