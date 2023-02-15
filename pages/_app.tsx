@@ -10,29 +10,12 @@ import "react-accessible-accordion/dist/fancy-example.css";
 import "swiper/css";
 import "swiper/css/bundle";
 
-// Software Startup Home Style
-import "../styles/software-home-page.css";
-// App Showcase Home Style
-import "../styles/app-home-page.css";
-// Digital Marketing Home Page Style
-import "../styles/digital-marketing-home-page.css";
-// Personal Portfolio Home Style
-import "../styles/personal-portfolio-home-page.css";
-// Business Consulting Home Page Style
-import "../styles/business-consulting-home-page.css";
-// SaaS Startup Home Page Style
-import "../styles/saas-startup-home-page.css";
-// Freelancer Portfolio Home Page Style
-import "../styles/freelancer-portfolio-home-page.css";
-// Cyber Security Agency Home Page Style
-import "../styles/cyber-security-agency-home-page.css";
-
-// Global Style
+// Global Style order must not be changed
 import "../styles/style.css";
 import "../styles/responsive.css";
 
 import Head from "next/head";
-import GoTop from "../components/Layouts/GoTop";
+import Layout from "../components/Layouts/Layout";
 
 function MyApp({ Component, pageProps }) {
   React.useEffect(() => {
@@ -48,9 +31,9 @@ function MyApp({ Component, pageProps }) {
         </title>
       </Head>
 
-      <Component {...pageProps} />
-
-      <GoTop />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </>
   );
 }

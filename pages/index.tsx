@@ -14,7 +14,6 @@ import WorkProcess from "../components/WorkProcess";
 export default () => {
   return (
     <>
-      <Navbar />
       <MainBanner />
       <About />
       <Competencies />
@@ -24,8 +23,6 @@ export default () => {
       <JoinUs />
       <WorkProcess />
       <Contact />
-      <Footer />
-      <CookieAccept />
     </>
   );
 };

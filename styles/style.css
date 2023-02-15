@@ -1181,6 +1181,7 @@ Main Banner CSS
 .hero-banner .main-banner-content p .accent {
   color: var(--brand-accent-1);
   display: inline-block;
+  font-weight: bold;
 }
 
 .hero-banner .main-banner-content .btn {
