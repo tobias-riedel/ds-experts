@@ -2544,8 +2544,7 @@ Case Studies CSS
 }
 
 .work-slides .swiper-button-prev {
-  top: 30px;
-  left: 10px;
+  left: 16px;
   background: #e5e5e5;
   width: 40px;
   height: 40px;
@@ -2560,8 +2559,7 @@ Case Studies CSS
 }
 
 .work-slides .swiper-button-next {
-  top: 30px;
-  right: 10px;
+  right: 16px;
   background: #e5e5e5;
   width: 40px;
   height: 40px;

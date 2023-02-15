@@ -5,7 +5,7 @@ import JoinUs from "../components/JoinUs/JoinUs";
 import Footer from "../components/Layouts/Footer";
 import Navbar from "../components/Layouts/Navbar";
 import MainBanner from "../components/MainBanner";
-import OurWorks from "../components/OurWorks";
+import References from "../components/References";
 import Philosophy from "../components/Philosophy";
 import Team from "../components/Team";
 import WorkProcess from "../components/WorkProcess";
@@ -17,7 +17,7 @@ export default () => {
       <MainBanner />
       <About />
       <Competencies />
-      <OurWorks />
+      <References />
       <Team />
       <Philosophy />
       <JoinUs />
