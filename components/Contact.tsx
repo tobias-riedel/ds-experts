@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import styles from "./Contact.module.css";
 import ContactForm from "./Contact/ContactForm";
 import CompanyMap from "./Map/CompanyMap";
-import styles from "./Contact.module.css";
 
 const Contact = () => {
   const [showContacts, setShowContacts] = useState(false);
@@ -96,28 +96,6 @@ const Contact = () => {
                 </div>
               )}
             </div>
-            {/* <div className="col-lg-6">
-              {showContactForm && (
-                <div data-aos="fade-left" data-aos-duration="1200">
-                  <h3 className="text-center">Kontaktiere uns hier!</h3>
-                  <ContactForm />
-                </div>
-              )}
-              {!showContactForm && (
-                <div
-                  style={{
-                    display: "grid",
-                    placeItems: "center",
-                    height: "100%",
-                  }}
-                  onClick={() => setShowContactForm(true)}
-                >
-                  <button className="btn btn-primary">
-                    Zeige Kontaktformular
-                  </button>
-                </div>
-              )}
-            </div> */}
           </div>
         </div>
       </div>
