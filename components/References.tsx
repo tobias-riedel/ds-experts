@@ -33,7 +33,7 @@ const references: References[] = [
     tasks: ["Update SAP Changemanagement"],
   },
   {
-    img: "/images/references/ref16.jpg",
+    img: "/images/references/ref15.jpg",
     name: "Union Investment",
     location: "Frankfurt Main",
     tasks: ["Strategische Beratung IT-Update"],
@@ -66,12 +66,6 @@ const references: References[] = [
     name: "1&1 Internet AG",
     location: "Flensburg",
     tasks: ["Softwareentwicklung e-Commerce Plattform"],
-  },
-  {
-    img: "/images/references/ref9.jpg",
-    name: "Toyota Kreditbank",
-    location: "Köln",
-    tasks: ["Softwareentwicklung BugFixing"],
   },
   {
     img: "/images/references/ref10.jpg",

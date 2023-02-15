@@ -154,9 +154,6 @@
     margin-top: 0;
     padding-right: 0;
   }
-  .main-banner-content span {
-    font-size: 14px;
-  }
   .main-banner-content h1 {
     font-size: 30px;
     margin: 12px 0 13px;
@@ -1242,9 +1239,6 @@
     text-align: center;
     margin-top: 0;
   }
-  .main-banner-content span {
-    font-size: 15px;
-  }
   .main-banner-content h1 {
     font-size: 36px;
     margin: 12px 0 15px;
@@ -1886,9 +1880,6 @@
   }
   .banner-animation-image img.main-pic {
     display: inline-block;
-  }
-  .main-banner-content span {
-    font-size: 15px;
   }
   .main-banner-content h1 {
     font-size: 40px;

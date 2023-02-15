@@ -65,6 +65,7 @@ const JoinUs = () => {
             </div>
           </div>
           <div className="col-lg-6">
+            <h3 className="text-center">Bewirb Dich bei uns!</h3>
             <JoinUsForm />
           </div>
         </div>

@@ -6,6 +6,7 @@ import styles from "./Contact.module.css";
 
 const Contact = () => {
   const [showContacts, setShowContacts] = useState(false);
+  const [showContactForm, setShowContactForm] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -22,7 +23,8 @@ const Contact = () => {
           </div>
 
           <div className="row">
-            <div className="col-lg-6">
+            <div className={showContactForm ? "col-lg-6" : ""}>
+              <h3 className="text-center">Hier kannst Du uns finden</h3>
               <div className="service-left-img">
                 <ul className="list-unstyled">
                   <li>
@@ -72,12 +74,50 @@ const Contact = () => {
                 </ul>
 
                 <CompanyMap />
+
+                {!showContactForm && (
+                  <div
+                    className="text-center pt-100"
+                    onClick={() => setShowContactForm(true)}
+                  >
+                    <button className="btn btn-primary">
+                      Zeige Kontaktformular an
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
 
-            <div className="col-lg-6">
-              <ContactForm />
+            <div className={showContactForm ? "col-lg-6" : ""}>
+              {showContactForm && (
+                <div data-aos="fade" data-aos-duration="1200">
+                  <h3 className="text-center">Kontaktiere uns hier!</h3>
+                  <ContactForm />
+                </div>
+              )}
             </div>
+            {/* <div className="col-lg-6">
+              {showContactForm && (
+                <div data-aos="fade-left" data-aos-duration="1200">
+                  <h3 className="text-center">Kontaktiere uns hier!</h3>
+                  <ContactForm />
+                </div>
+              )}
+              {!showContactForm && (
+                <div
+                  style={{
+                    display: "grid",
+                    placeItems: "center",
+                    height: "100%",
+                  }}
+                  onClick={() => setShowContactForm(true)}
+                >
+                  <button className="btn btn-primary">
+                    Zeige Kontaktformular
+                  </button>
+                </div>
+              )}
+            </div> */}
           </div>
         </div>
       </div>
