@@ -31,11 +31,10 @@ const Contact = () => {
                     {showContacts ? (
                       <>
                         <span>Adresse: </span>
-                        <Link
-                          href="https://www.google.com/maps/place/Rudolf-Breitscheid-Stra%C3%9Fe+68,+16559+Liebenwalde/@52.874105,13.3796239,16.25z/data=!4m5!3m4!1s0x47a9a72267ac7ba9:0x5e61f97b718143bb!8m2!3d52.8735095!4d13.383309"
-                          target="_blank"
-                        >
-                          <a>Rudolf-Breitscheid-Straße 68, 16559 Liebenwalde</a>
+                        <Link href="https://www.google.com/maps/place/Rudolf-Breitscheid-Stra%C3%9Fe+68,+16559+Liebenwalde/@52.874105,13.3796239,16.25z/data=!4m5!3m4!1s0x47a9a72267ac7ba9:0x5e61f97b718143bb!8m2!3d52.8735095!4d13.383309">
+                          <a target="_blank" rel="noopener">
+                            Rudolf-Breitscheid-Straße 68, 16559 Liebenwalde
+                          </a>
                         </Link>
                       </>
                     ) : (

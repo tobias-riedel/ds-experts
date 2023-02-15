@@ -11,7 +11,7 @@ const CookiesPolicy = () => {
   }, []);
 
   return (
-    <section className="pt-100">
+    <section id="cookies-policy" className="ptb-100">
       <div className="container">
         <div className="section-title text-start mw-100">
           <h1>Cookie-Einstellungen & Richtlinie</h1>
@@ -46,89 +46,71 @@ const CookiesPolicy = () => {
           eine gewisse Kontrolle über die meisten Cookies über die
           Browsereinstellungen. Weitere Informationen zu Cookies, einschließlich
           Informationen darüber, welche Cookies gesetzt wurden, finden Sie unter{" "}
-          <Link
-            href="https://www.aboutcookies.org/"
-            target="_blank"
-            rel="noopener"
-          >
-            <a>www.aboutcookies.org</a>
+          <Link href="https://www.aboutcookies.org/">
+            <a target="_blank" rel="noopener">
+              www.aboutcookies.org
+            </a>
           </Link>{" "}
           oder{" "}
-          <Link
-            href="https://allaboutcookies.org/"
-            target="_blank"
-            rel="noopener"
-          >
-            <a>www.allaboutcookies.org</a>
+          <Link href="https://allaboutcookies.org/">
+            <a target="_blank" rel="noopener">
+              www.allaboutcookies.org
+            </a>
           </Link>
           .
         </p>
         Erfahren Sie, wie Sie Cookies in gängigen Browsern verwalten:
         <ul>
           <li>
-            <Link
-              href="https://support.google.com/accounts/answer/61416?co=GENIE.Platform%3DDesktop&amp;hl=en"
-              target="_blank"
-              rel="noopener"
-            >
-              <a>Google Chrome</a>
+            <Link href="https://support.google.com/accounts/answer/61416?co=GENIE.Platform%3DDesktop&amp;hl=en">
+              <a target="_blank" rel="noopener">
+                Google Chrome
+              </a>
             </Link>
           </li>
           <li>
-            <Link
-              href="https://support.microsoft.com/en-us/windows/microsoft-edge-browsing-data-and-privacy-bb8174ba-9d73-dcf2-9b4a-c582b4e640dd"
-              target="_blank"
-              rel="noopener"
-            >
-              <a>Microsoft Edge</a>
+            <Link href="https://support.microsoft.com/en-us/windows/microsoft-edge-browsing-data-and-privacy-bb8174ba-9d73-dcf2-9b4a-c582b4e640dd">
+              <a target="_blank" rel="noopener">
+                Microsoft Edge
+              </a>
             </Link>
           </li>
           <li>
-            <Link
-              href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop?redirectlocale=en-US&amp;redirectslug=enable-and-disable-cookies-website-preferences"
-              target="_blank"
-              rel="noopener"
-            >
-              <a>Mozilla Firefox</a>
+            <Link href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop?redirectlocale=en-US&amp;redirectslug=enable-and-disable-cookies-website-preferences">
+              <a target="_blank" rel="noopener">
+                Mozilla Firefox
+              </a>
             </Link>
           </li>
           <li>
-            <Link
-              href="https://support.microsoft.com/en-gb/windows/delete-and-manage-cookies-168dab11-0753-043d-7c16-ede5947fc64d"
-              target="_blank"
-              rel="noopener"
-            >
-              <a>Microsoft Internet Explorer</a>
+            <Link href="https://support.microsoft.com/en-gb/windows/delete-and-manage-cookies-168dab11-0753-043d-7c16-ede5947fc64d">
+              <a target="_blank" rel="noopener">
+                Microsoft Internet Explorer
+              </a>
             </Link>
           </li>
           <li>
-            <Link
-              href="https://help.opera.com/en/latest/web-preferences/"
-              target="_blank"
-              rel="noopener"
-            >
-              <a>Opera</a>
+            <Link href="https://help.opera.com/en/latest/web-preferences/">
+              <a target="_blank" rel="noopener">
+                Opera
+              </a>
             </Link>
           </li>
           <li>
-            <Link
-              href="https://support.apple.com/en-gb/safari"
-              target="_blank"
-              rel="noopener"
-            >
-              <a>Apple Safari</a>
+            <Link href="https://support.apple.com/en-gb/safari">
+              <a target="_blank" rel="noopener">
+                Apple Safari
+              </a>
             </Link>
           </li>
         </ul>
         <p>
           Informationen zu anderen Browsern finden Sie auf der Website des
           Browser-Entwicklers. Besuchen Sie{" "}
-          <Link
-            href="http://tools.google.com/dlpage/gaoptout"
-            target="_blank"
-            rel="noopener"
-          >
-            <a>http://tools.google.com/dlpage/gaoptout</a>
+          <Link href="http://tools.google.com/dlpage/gaoptout">
+            <a target="_blank" rel="noopener">
+              http://tools.google.com/dlpage/gaoptout
+            </a>
           </Link>
           , um zu verhindern, dass Sie mit Google Analytics über mehrere
           Websites getrackt werden.

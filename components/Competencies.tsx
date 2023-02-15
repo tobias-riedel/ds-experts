@@ -55,7 +55,12 @@ const Competencies = () => {
           </div>
 
           <div className="row justify-content-center competencies">
-            <div className="col-lg-4 col-sm-6">
+            <div
+              className="col-lg-4 col-sm-6"
+              data-aos="fade-up"
+              data-aos-duration="1200"
+              data-aos-delay="100"
+            >
               <div className="service-card-one bg-competencies text-center shadow">
                 <i className="pe-7s-rocket bg-13c4a1"></i>
                 <h3>
@@ -82,7 +87,12 @@ const Competencies = () => {
               </div>
             </div>
 
-            <div className="col-lg-4 col-sm-6">
+            <div
+              className="col-lg-4 col-sm-6"
+              data-aos="fade-up"
+              data-aos-duration="1200"
+              data-aos-delay="100"
+            >
               <div className="service-card-one bg-competencies text-center shadow">
                 <i className="pe-7s-light bg-ffb700"></i>
                 <h3>
@@ -94,7 +104,12 @@ const Competencies = () => {
               </div>
             </div>
 
-            <div className="col-lg-4 col-sm-6">
+            <div
+              className="col-lg-4 col-sm-6"
+              data-aos="fade-up"
+              data-aos-duration="1200"
+              data-aos-delay="100"
+            >
               <div className="service-card-one bg-competencies text-center shadow">
                 <i className="pe-7s-phone bg-fc3549"></i>
                 <h3>
@@ -108,7 +123,12 @@ const Competencies = () => {
               </div>
             </div>
 
-            <div className="col-lg-4 col-sm-6">
+            <div
+              className="col-lg-4 col-sm-6"
+              data-aos="fade-up"
+              data-aos-duration="1200"
+              data-aos-delay="100"
+            >
               <div className="service-card-one bg-competencies text-center shadow">
                 <i className="pe-7s-cart bg-00d280"></i>
                 <h3>
@@ -123,7 +143,12 @@ const Competencies = () => {
               </div>
             </div>
 
-            <div className="col-lg-4 col-sm-6">
+            <div
+              className="col-lg-4 col-sm-6"
+              data-aos="fade-up"
+              data-aos-duration="1200"
+              data-aos-delay="100"
+            >
               <div className="service-card-one bg-competencies text-center shadow">
                 <i className="pe-7s-users bg-ff612f"></i>
                 <h3>

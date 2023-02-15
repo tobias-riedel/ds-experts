@@ -23,8 +23,8 @@ const JoinUs = () => {
           <h2>Komm zu uns als:</h2>
         </div>
 
-        <div className="row">
-          <div className="d-flex align-items-center justify-content-center gap-4 pb-60">
+        <div className="row text-center">
+          <div className="col-lg-4 pb-60">
             <button
               onClick={() => setProfile(profiles.backend)}
               className={`${roleBtnClasses} ${
@@ -33,6 +33,8 @@ const JoinUs = () => {
             >
               Back-End Developer
             </button>
+          </div>
+          <div className="col-lg-4 pb-60">
             <button
               onClick={() => setProfile(profiles.frontend)}
               className={`${roleBtnClasses} ${
@@ -41,6 +43,8 @@ const JoinUs = () => {
             >
               Front-End Developer
             </button>
+          </div>
+          <div className="col-lg-4 pb-60">
             <button
               onClick={() => setProfile(profiles.projectLead)}
               className={`${roleBtnClasses} ${
@@ -50,6 +54,9 @@ const JoinUs = () => {
               Projektleiter
             </button>
           </div>
+        </div>
+
+        <div className="row">
           <div className="col-lg-6">
             <div className="join-us-info pb-70">
               {profile === profiles.backend && <JoinUsBackEndDeveloper />}

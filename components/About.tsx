@@ -10,15 +10,21 @@ const About = () => {
               <div className="about-content about-content-two">
                 <div className="section-title">
                   <h2>Was ist ds-experts?</h2>
+                </div>
+
+                <div
+                  className="about-text"
+                  data-aos="fade-up"
+                  data-aos-duration="1200"
+                  data-aos-delay="100"
+                >
                   <p>
                     Die ds-experts IT-Consulting GmbH unterstützt seit 2015
                     große und sehr große Unternehmen auf dem deutschen Markt bei
                     der erfolgreichen Umsetzung von IT-Projekten in Form von
                     Projekt- oder Beratungsleistungen.
                   </p>
-                </div>
 
-                <div className="about-text">
                   <h4>Was ist unser Rohstoff?</h4>
                   <p>
                     Unsere Experten haben den besten Rohstoff, den man sich
@@ -33,9 +39,7 @@ const About = () => {
                     Unsere sehr hohe Weiterbildungsquote sorgt dafür, dass
                     dieses Wissen nie versiegt.
                   </p>
-                </div>
 
-                <div className="about-text">
                   <h4>Struktur</h4>
                   <p>
                     Die ds-experts IT-Consulting GmbH zeichnet eine schlanke
@@ -63,7 +67,11 @@ const About = () => {
                   </ul>
                 </div>
 
-                <div>
+                <div
+                  data-aos="fade-up"
+                  data-aos-duration="1200"
+                  data-aos-delay="100"
+                >
                   <Link href="/#philosophy">
                     <a
                       className="btn btn-primary"

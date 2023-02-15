@@ -1,6 +1,20 @@
 import { useEffect, useState } from "react";
 import Link from "../../utils/ActiveLink";
 
+interface NavLinks {
+  to: string;
+  name: string;
+}
+
+const navLinks: NavLinks[] = [
+  { to: "/", name: "Home" },
+  { to: "/#competencies", name: "Kompetenzen" },
+  { to: "/#references", name: "Referenzen" },
+  { to: "/#team", name: "Team" },
+  { to: "/#philosophy", name: "Philosophie" },
+  { to: "/#contact", name: "Kontakt" },
+];
+
 const Navbar = () => {
   const [menu, setMenu] = useState(true);
   const toggleNavbar = () => {
@@ -66,30 +80,13 @@ const Navbar = () => {
 
             <div className={classOne} id="navbarSupportedContent">
               <ul className="navbar-nav">
-                {/* Adjust links */}
-                <li className="nav-item">
-                  <Link href="/" activeClassName="active">
-                    <a className="nav-link">Home</a>
-                  </Link>
-                </li>
-
-                <li className="nav-item">
-                  <Link href="/#references" activeClassName="active">
-                    <a className="nav-link">Referenzen</a>
-                  </Link>
-                </li>
-
-                <li className="nav-item">
-                  <Link href="/#team" activeClassName="active">
-                    <a className="nav-link">Team</a>
-                  </Link>
-                </li>
-
-                <li className="nav-item">
-                  <Link href="/#contact" activeClassName="active">
-                    <a className="nav-link">Kontakt</a>
-                  </Link>
-                </li>
+                {navLinks.map((link, idx) => (
+                  <li className="nav-item" key={idx}>
+                    <Link href={link.to} activeClassName="active">
+                      <a className="nav-link">{link.name}</a>
+                    </Link>
+                  </li>
+                ))}
               </ul>
 
               <div>

@@ -9,7 +9,6 @@ const CompanyMap = () => {
 
   useEffect(() => {
     setIsMarkerVisible(true);
-    setIsPopupVisible(true);
   }, []);
 
   return (
