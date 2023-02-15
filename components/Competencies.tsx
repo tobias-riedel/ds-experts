@@ -48,7 +48,7 @@ const Competencies = () => {
         ]}
       />
 
-      <div className="pt-100 pb-30">
+      <section id="competencies" className="pt-100 pb-30">
         <div className="container">
           <div className="section-title">
             <h2>Unsere Kompetenzen</h2>
@@ -139,7 +139,7 @@ const Competencies = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };

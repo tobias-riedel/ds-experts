@@ -74,6 +74,11 @@ This files table contents are outlined below >>>>>
   --box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
+html {
+  --scroll-behavior: smooth !important;
+  scroll-behavior: smooth !important;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -5363,12 +5368,13 @@ Blog Details CSS
 }
 
 blockquote {
-  background-color: #fafafa;
+  background-color: var(--brand-light-blue);
   padding: 30px 30px 30px 70px !important;
   line-height: 25px;
   font-weight: 500;
   position: relative;
   margin: 20px 0;
+  font-size: 1.1rem;
 }
 
 blockquote::before {
@@ -5377,7 +5383,18 @@ blockquote::before {
   position: absolute;
   left: 30px;
   top: 35px;
-  color: #ff2c9c;
+  color: var(--brand-blue-gradient-4);
+  font-size: 30px;
+  font-weight: 900;
+}
+
+blockquote::after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f10e";
+  position: absolute;
+  right: 30px;
+  top: 35px;
+  color: var(--brand-blue-gradient-4);
   font-size: 30px;
   font-weight: 900;
 }

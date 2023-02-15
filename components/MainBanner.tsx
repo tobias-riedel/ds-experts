@@ -18,18 +18,14 @@ const MainBanner = () => {
               <div className="row align-items-center">
                 <div className="col-lg-6">
                   <div className="main-banner-content">
-                    <h1>
-                      ds-experts
-                      {/* <br /> IT-Consulting GmbH */}
-                    </h1>
+                    <h1>ds-experts</h1>
 
                     <p>
                       Dein <span className="accent">Traumjob</span> ist nur ein
                       paar Klicks entfernt
                     </p>
 
-                    {/* TODO: Adjust link to  */}
-                    <Link href="/contact">
+                    <Link href="/#contact">
                       <a className="btn btn-primary">MEHR ÜBER UNS</a>
                     </Link>
                   </div>

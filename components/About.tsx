@@ -2,8 +2,8 @@ import Link from "next/link";
 
 const About = () => {
   return (
-    <section id="about">
-      <div className="about-area ptb-100">
+    <section id="about" className="ptb-100">
+      <div className="about-area ">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-7">
@@ -63,11 +63,12 @@ const About = () => {
                   </ul>
                 </div>
 
-                {/* <div className="pb-100"> */}
-                <div className="">
-                  {/* TODO: Adjust link to  */}
-                  <Link href="/guidelines">
-                    <a className="btn btn-primary">
+                <div>
+                  <Link href="/#philosophy">
+                    <a
+                      className="btn btn-primary"
+                      style={{ textTransform: "initial" }}
+                    >
                       Erfahre mehr über unsere Leitlinien
                     </a>
                   </Link>

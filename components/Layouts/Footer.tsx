@@ -18,17 +18,17 @@ const Footer = () => {
 
               <div className="col-lg-6 d-flex align-items-center justify-content-between gap-1">
                 <p>
-                  <Link href="/legal#gdpr" scroll={false}>
+                  <Link href="/legal#gdpr">
                     <a>Datenschutzerklärung</a>
                   </Link>
                 </p>
                 <p>
-                  <Link href="/legal#cookies-policy" scroll={false}>
+                  <Link href="/legal#cookies-policy">
                     <a>Cookie-Einstellungen &amp; Richtlinie</a>
                   </Link>
                 </p>
                 <p>
-                  <Link href="/legal#imprint" scroll={false}>
+                  <Link href="/legal#imprint">
                     <a>Impressum</a>
                   </Link>
                 </p>
