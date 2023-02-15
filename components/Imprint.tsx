@@ -11,7 +11,7 @@ const Imprint = () => {
   }, []);
 
   return (
-    <section className="pt-100">
+    <section id="imprint" className="ptb-100">
       <div className="section-title"></div>
       <div className="faq-area">
         <div className="container">

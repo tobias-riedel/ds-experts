@@ -8,31 +8,29 @@ const Footer = () => {
         <div className="copyright-area">
           <div className="container">
             <div className="row">
-              <div className="col-lg-6 d-flex align-items-center">
-                <p>
-                  Copyright &copy; 2015-{currentYear} ds-experts IT-Consulting
-                  GmbH
-                </p>
-                <p></p>
-              </div>
+              <p className="col-lg-5">
+                Copyright &copy; 2015-{currentYear} ds-experts IT-Consulting
+                GmbH
+              </p>
 
-              <div className="col-lg-6 d-flex align-items-center justify-content-between gap-1">
-                <p>
-                  <Link href="/legal#gdpr">
-                    <a>Datenschutzerklärung</a>
-                  </Link>
-                </p>
-                <p>
-                  <Link href="/legal#cookies-policy">
-                    <a>Cookie-Einstellungen &amp; Richtlinie</a>
-                  </Link>
-                </p>
-                <p>
-                  <Link href="/legal#imprint">
-                    <a>Impressum</a>
-                  </Link>
-                </p>
-                <p></p>
+              <div className="col-lg-7">
+                <div className="row">
+                  <p className="col-lg-4">
+                    <Link href="/legal#gdpr">
+                      <a>Datenschutzerklärung</a>
+                    </Link>
+                  </p>
+                  <p className="col-lg-5">
+                    <Link href="/legal#cookies-policy">
+                      <a>Cookie-Einstellungen &amp; Richtlinie</a>
+                    </Link>
+                  </p>
+                  <p className="col-lg-3">
+                    <Link href="/legal#imprint">
+                      <a>Impressum</a>
+                    </Link>
+                  </p>
+                </div>
               </div>
             </div>
           </div>

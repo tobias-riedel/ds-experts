@@ -46,8 +46,9 @@ This files table contents are outlined below >>>>>
   --brand-blue: #2e3a6d;
   --brand-white: #fdfdfd;
   --brand-grey: #d1c9ca;
-  --brand-accent-green: #a3d65c;
-  --brand-accent-violet: #b44bb2;
+  --brand-accent-1: coral;
+  --brand-accent-1-1: orange;
+  --brand-accent-2: #a3d65c;
   --brand-light-blue: #eaf3ff;
 
   --brand-link-color: #0d6efd;
@@ -206,6 +207,14 @@ button {
 }
 
 .pr-20 {
+  padding-right: 20px;
+}
+
+.ds-pl-20 {
+  padding-right: 20px;
+}
+
+.ds-pr-20 {
   padding-right: 20px;
 }
 
@@ -538,7 +547,7 @@ Navbar CSS
   text-transform: capitalize;
   position: relative;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 1rem;
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
@@ -918,7 +927,7 @@ Navbar CSS
   width: 28px;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  background: #ff2c9c;
+  background: var(--brand-blue);
   height: 2px;
   display: block;
 }
@@ -1150,7 +1159,7 @@ Main Banner CSS
 }
 
 .hero-banner .main-banner-content p .accent {
-  color: #23de33;
+  color: var(--brand-accent-1);
   display: inline-block;
 }
 
@@ -2099,7 +2108,7 @@ About CSS
   position: absolute;
   left: 0;
   top: 6px;
-  color: var(--brand-accent-green);
+  color: var(--brand-accent-1);
   font-size: 16px;
 }
 
@@ -2238,6 +2247,19 @@ Case Studies CSS
   padding-left: 30px;
   padding-right: 30px;
   max-width: 1920px;
+}
+
+.case-studies-area .work-card ul {
+  padding-left: 0;
+}
+
+.case-studies-area .work-card ul li {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.case-studies-area .work-card a {
+  pointer-events: none;
 }
 
 .single-case-studies {
@@ -2555,7 +2577,7 @@ Case Studies CSS
 
 .work-slides .swiper-button-prev:hover,
 .work-slides .swiper-button-next:hover {
-  background-color: #ff2c9c;
+  background-color: var(--brand-blue-gradient-5);
 }
 
 .work-slides .swiper-button-prev:hover::after,
@@ -2582,21 +2604,21 @@ Case Studies CSS
     linear,
     right bottom,
     left top,
-    from(#ff2c9c),
-    color-stop(#ff287b),
-    color-stop(#ff395a),
-    color-stop(#ff5137),
-    to(#ff6a00)
+    from(var(--brand-blue-gradient-1)),
+    color-stop(var(--brand-blue-gradient-2)),
+    color-stop(var(--brand-blue-gradient-3)),
+    color-stop(var(--brand-blue-gradient-4)),
+    to(var(--brand-blue-gradient-5))
   );
   background: linear-gradient(
     to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
+    var(--brand-blue-gradient-1),
+    var(--brand-blue-gradient-2),
+    var(--brand-blue-gradient-3),
+    var(--brand-blue-gradient-4),
+    var(--brand-blue-gradient-5)
   );
-  border: 1px solid #ff2c9c;
+  border: 1px solid var(--brand-blue-gradient-1);
 }
 
 /*================================================
@@ -3236,7 +3258,7 @@ Join Us CSS
   position: absolute;
   left: 0;
   top: 7px;
-  background-color: var(--brand-accent-green);
+  background-color: var(--brand-accent-1);
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -5383,18 +5405,7 @@ blockquote::before {
   position: absolute;
   left: 30px;
   top: 35px;
-  color: var(--brand-blue-gradient-4);
-  font-size: 30px;
-  font-weight: 900;
-}
-
-blockquote::after {
-  font-family: "Font Awesome 5 Free";
-  content: "\f10e";
-  position: absolute;
-  right: 30px;
-  top: 35px;
-  color: var(--brand-blue-gradient-4);
+  color: var(--brand-accent-1);
   font-size: 30px;
   font-weight: 900;
 }
@@ -7234,7 +7245,7 @@ Footer CSS
 
 .copyright-area p a {
   display: inline-block;
-  color: var(--brand-accent-green);
+  color: var(--brand-accent-1-1);
 }
 
 .copyright-area p a:hover,

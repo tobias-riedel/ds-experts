@@ -1,6 +1,7 @@
 const JoinUsProjectManager = () => {
   return (
     <>
+      <h2>Projektleiter</h2>
       <h3>Must Have:</h3>
       <ul>
         <li>Erste Erfahrungen als Projektleiter</li>

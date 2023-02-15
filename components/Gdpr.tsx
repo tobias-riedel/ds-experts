@@ -11,7 +11,7 @@ const Gdpr = () => {
   }, []);
 
   return (
-    <section className="pt-100">
+    <section id="gdpr" className="ptb-100">
       <div className="container">
         <div className="section-title text-start mw-100">
           <h1>Datenschutzerklärung</h1>
@@ -81,12 +81,10 @@ const Gdpr = () => {
           die Sammlung der auf Ihre Nutzung der Website bezogenen erzeugten
           Daten und IP-Adressen durch Google verhindern können. Mehr
           Informationen dazu finden Sie hier:{" "}
-          <Link
-            href="http://tools.google.com/dlpage/gaoptout?hl=de"
-            target="_blank"
-            rel="noopener"
-          >
-            <a>http://tools.google.com/dlpage/gaoptout?hl=de</a>
+          <Link href="http://tools.google.com/dlpage/gaoptout?hl=de">
+            <a target="_blank" rel="noopener">
+              http://tools.google.com/dlpage/gaoptout?hl=de
+            </a>
           </Link>
         </p>
         <h3>

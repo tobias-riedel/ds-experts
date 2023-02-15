@@ -5,7 +5,7 @@ const About = () => {
     <section id="philosophy" className="ptb-100">
       <div className="container">
         <div className="row align-items-center">
-          <div className="col-lg-5 ds-hidden-md pr-20">
+          <div className="col-lg-5 ds-hidden-md ds-pr-20">
             <div className="about-image">
               <img
                 src="/images/about-img6.png"
@@ -15,7 +15,12 @@ const About = () => {
             </div>
           </div>
 
-          <div className="col-lg-7 pl-20">
+          <div
+            className="col-lg-7"
+            data-aos="fade-up"
+            data-aos-duration="1200"
+            data-aos-delay="100"
+          >
             <div className="section-title">
               <h2>Unternehmensphilosophie</h2>
             </div>
@@ -39,7 +44,11 @@ const About = () => {
 
               <p>Denn ein Leitsatz von ds-experts lautet:</p>
 
-              <blockquote>
+              <blockquote
+                data-aos="fade-up"
+                data-aos-duration="1200"
+                data-aos-delay="300"
+              >
                 Geht es den Angestellten gut, geht es dem Unternehmen gut.
               </blockquote>
 

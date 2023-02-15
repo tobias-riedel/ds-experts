@@ -81,31 +81,41 @@ const OurWorks = () => {
           modules={[Navigation, Pagination, Mousewheel, Keyboard]}
           className="work-slides"
         >
-          {references.map((ref, idx) => (
-            <SwiperSlide key={idx}>
-              <div className="work-card shadow">
-                <img src={ref.img} alt="image" />
+          {references.map((ref, idx) => {
+            const refProps =
+              idx % 2
+                ? {
+                    "data-aos": "fade-up",
+                    "data-aos-duration": 1200,
+                    "data-aos-delay": 100,
+                  }
+                : {};
+            return (
+              <SwiperSlide key={idx}>
+                <div className="work-card shadow" {...refProps}>
+                  <img src={ref.img} alt="image" />
 
-                <div className="content text-center">
-                  <span>
-                    <Link href="/portfolio">
-                      <a>{ref.name}</a>
-                    </Link>
-                  </span>
+                  <div className="content text-center">
+                    <span>
+                      <Link href="/">
+                        <a>{ref.name}</a>
+                      </Link>
+                    </span>
 
-                  <ul>
-                    {ref.tasks.map((task, taskIdx) => (
-                      <li key={taskIdx}>
-                        <Link href="/portfolio-details">
-                          <a>{task}</a>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                    <ul>
+                      {ref.tasks.map((task, taskIdx) => (
+                        <li key={taskIdx}>
+                          <Link href="/">
+                            <a>{task}</a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </div>
     </section>

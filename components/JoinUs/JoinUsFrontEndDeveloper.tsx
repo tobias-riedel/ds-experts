@@ -1,6 +1,7 @@
 const JoinUsFrontEndDeveloper = () => {
   return (
     <>
+      <h2>Front-End Developer</h2>
       <h3>Must Have:</h3>
       <ul>
         <li>Fortgeschrittene Erfahrung in HTML 5 und CSS 3</li>
