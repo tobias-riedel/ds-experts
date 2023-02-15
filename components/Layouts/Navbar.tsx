@@ -68,41 +68,32 @@ const Navbar = () => {
               <ul className="navbar-nav">
                 {/* Adjust links */}
                 <li className="nav-item">
-                  <Link href="/" activeClassName="active" scroll={false}>
+                  <Link href="/" activeClassName="active">
                     <a className="nav-link">Home</a>
                   </Link>
                 </li>
 
                 <li className="nav-item">
-                  <Link
-                    href="/#references"
-                    activeClassName="active"
-                    scroll={false}
-                  >
+                  <Link href="/#references" activeClassName="active">
                     <a className="nav-link">Referenzen</a>
                   </Link>
                 </li>
 
                 <li className="nav-item">
-                  <Link href="/#team" activeClassName="active" scroll={false}>
+                  <Link href="/#team" activeClassName="active">
                     <a className="nav-link">Team</a>
                   </Link>
                 </li>
 
                 <li className="nav-item">
-                  <Link
-                    href="/#contact"
-                    activeClassName="active"
-                    scroll={false}
-                  >
+                  <Link href="/#contact" activeClassName="active">
                     <a className="nav-link">Kontakt</a>
                   </Link>
                 </li>
               </ul>
 
               <div>
-                <Link href="/#contact">
-                  {/* TODO: Adjust link */}
+                <Link href="/#join-us">
                   <a
                     className="btn btn-primary"
                     style={{ textTransform: "initial" }}
