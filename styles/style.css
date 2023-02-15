@@ -505,6 +505,26 @@ Shared CSS
 }
 
 /*================================================
+Cookie Consent CSS
+=================================================*/
+.CookieConsent {
+  background-color: var(--brand-blue-gradient-1) !important;
+  color: var(--brand-white);
+}
+
+.CookieConsent h3 {
+  color: var(--brand-grey);
+}
+
+.CookieConsent a {
+  color: var(--brand-accent-1-1);
+}
+
+.CookieConsent a:hover {
+  text-decoration: underline;
+}
+
+/*================================================
 Navbar CSS
 =================================================*/
 .navbar-area {
