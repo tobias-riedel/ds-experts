@@ -1,3 +1,4 @@
+import CookieAccept from "../components/Common/CookieAccept";
 import PageBanner from "../components/Common/PageBanner";
 import ErrorContent from "../components/Error/ErrorContent";
 import Footer from "../components/Layouts/Footer";
@@ -13,6 +14,8 @@ const Error = () => {
       <ErrorContent />
 
       <Footer />
+
+      <CookieAccept />
     </>
   );
 };
