@@ -246,7 +246,6 @@ a:focus {
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   position: relative;
-  text-transform: capitalize;
   z-index: 1;
   font-weight: 600;
   font-size: 15px;
@@ -266,6 +265,9 @@ a:focus {
   color: var(--brand-white);
   background-color: var(--brand-white);
   border: 1px solid var(--brand-blue);
+
+  -webkit-box-shadow: var(--box-shadow) !important;
+  box-shadow: var(--box-shadow) !important;
 }
 
 .btn-primary::before {
@@ -423,6 +425,9 @@ a:focus {
   border: 2px solid #000;
   background: #000;
   color: #fff;
+}
+.click {
+  cursor: pointer;
 }
 
 /* section-title */

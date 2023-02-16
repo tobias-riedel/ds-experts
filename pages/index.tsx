@@ -14,8 +14,10 @@ import WorkProcess from "../components/WorkProcess";
 export default () => {
   return (
     <>
-      <MainBanner />
-      <About />
+      <section id="home">
+        <MainBanner />
+        <About />
+      </section>
       <Competencies />
       <References />
       <Team />
