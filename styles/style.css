@@ -4269,6 +4269,15 @@ Our Work Process CSS
   top: 0;
 }
 
+.work-process-list .single-work-process .icon {
+  transition: scale 0.5s ease-in-out, rotate 0.5s ease-in-out;
+}
+
+.work-process-list .single-work-process:hover .icon {
+  scale: 1.2;
+  rotate: 360deg;
+}
+
 .work-process-list .single-work-process:nth-child(1) {
   left: 10%;
   top: 20px;

@@ -51,8 +51,8 @@ const WorkProcess = () => {
               <div className="single-work-process">
                 <div className="icon">
                   <i className="pe-7s-sun"></i>
-                  <h3>Qualität</h3>
                 </div>
+                <h3>Qualität</h3>
               </div>
             </div>
 
