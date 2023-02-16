@@ -54,8 +54,6 @@ const Navbar = () => {
         setScrollDirection("down");
       } else if (scrollY < prevOffset && scrollY > scrollThreshold) {
         setScrollDirection("up");
-      } else {
-        setScrollDirection("");
       }
       setPrevOffset(scrollY);
     };
