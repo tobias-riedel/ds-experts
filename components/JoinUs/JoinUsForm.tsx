@@ -303,15 +303,14 @@ const JoinUsForm = () => {
                 />
                 <label htmlFor="contactAgreement">
                   Ich habe die{" "}
-                  <Link href="/legal#gdpr">
-                    <a target="_blank"> Datenschutzerklärung </a>
+                  <Link href="/legal#gdpr" rel="noopener" target="_blank">
+                    Datenschutzerklärung
                   </Link>{" "}
                   gelesen und akzeptiere diese hiermit.
                 </label>
               </div>
             </div>
             <div className="col-lg-12 col-sm-12  text-center">
-              {/* TODO: Style disabled button */}
               <button
                 type="submit"
                 className="btn btn-primary"

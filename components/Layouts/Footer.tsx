@@ -36,23 +36,17 @@ const Footer = () => {
               <div className="col-lg-7">
                 <div className="row">
                   <p className="col-lg-4">
-                    <Link href="/legal#gdpr">
-                      <a>Datenschutzerklärung</a>
-                    </Link>
+                    <Link href="/legal#gdpr">Datenschutzerklärung</Link>
                   </p>
                   <p className="col-lg-5">
-                    <Link href="#">
-                      <a onClick={resetCookies}>Cookie-Einstellungen</a>
+                    <Link href="#" onClick={resetCookies}>
+                      Cookie-Einstellungen
                     </Link>
                     {" & "}
-                    <Link href="/legal#cookies-policy">
-                      <a>Richtlinie</a>
-                    </Link>
+                    <Link href="/legal#cookies-policy">Richtlinie</Link>
                   </p>
                   <p className="col-lg-3">
-                    <Link href="/legal#imprint">
-                      <a>Impressum</a>
-                    </Link>
+                    <Link href="/legal#imprint">Impressum</Link>
                   </p>
                 </div>
               </div>

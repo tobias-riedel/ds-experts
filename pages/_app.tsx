@@ -11,6 +11,7 @@ import "swiper/css";
 import "swiper/css/bundle";
 
 // Global Style order must not be changed
+import "../styles/fonts.css";
 import "../styles/style.css";
 import "../styles/responsive.css";
 

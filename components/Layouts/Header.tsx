@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
-import Link from "../../utils/ActiveLink";
+import Link from "next/link";
 
 interface NavLinks {
   to: string;
@@ -87,21 +87,19 @@ const Navbar = () => {
       <div id="navbar" className="navbar-area navbar-style-2">
         <nav role="navigation" className="navbar navbar-expand-md navbar-light">
           <div className="container-fluid">
-            <Link href="/">
-              <a className="navbar-brand">
-                <img
-                  src="/images/logo-ds-experts.png"
-                  className="black-logo logo-ds-experts"
-                  title={logoAltText}
-                  alt="logo"
-                />
-                <img
-                  src="/images/logo-ds-experts.png"
-                  className="white-logo logo-ds-experts"
-                  title={logoAltText}
-                  alt="logo"
-                />
-              </a>
+            <Link href="/" className="navbar-brand">
+              <img
+                src="/images/logo-ds-experts.png"
+                className="black-logo logo-ds-experts"
+                title={logoAltText}
+                alt="logo"
+              />
+              <img
+                src="/images/logo-ds-experts.png"
+                className="white-logo logo-ds-experts"
+                title={logoAltText}
+                alt="logo"
+              />
             </Link>
 
             {/* Toggle navigation */}
@@ -137,8 +135,8 @@ const Navbar = () => {
                         {link.name}
                       </ScrollLink>
                     ) : (
-                      <Link href={link.to} activeClassName="active">
-                        <a className="nav-link">{link.name}</a>
+                      <Link href={link.to} className="nav-link">
+                        {link.name}
                       </Link>
                     )}
                   </li>
@@ -146,8 +144,8 @@ const Navbar = () => {
               </ul>
 
               <div>
-                <Link href="/#join-us">
-                  <a className="btn btn-primary">Lern uns kennen</a>
+                <Link href="/#join-us" className="btn btn-primary">
+                  Lern uns kennen
                 </Link>
               </div>
             </div>

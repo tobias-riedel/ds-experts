@@ -33,10 +33,12 @@ const Contact = () => {
                     {showContacts ? (
                       <>
                         <span>Adresse: </span>
-                        <Link href="https://www.google.com/maps/place/Rudolf-Breitscheid-Stra%C3%9Fe+68,+16559+Liebenwalde/@52.874105,13.3796239,16.25z/data=!4m5!3m4!1s0x47a9a72267ac7ba9:0x5e61f97b718143bb!8m2!3d52.8735095!4d13.383309">
-                          <a target="_blank" rel="noopener">
-                            Rudolf-Breitscheid-Straße 68, 16559 Liebenwalde
-                          </a>
+                        <Link
+                          href="https://www.google.com/maps/place/Rudolf-Breitscheid-Stra%C3%9Fe+68,+16559+Liebenwalde/@52.874105,13.3796239,16.25z/data=!4m5!3m4!1s0x47a9a72267ac7ba9:0x5e61f97b718143bb!8m2!3d52.8735095!4d13.383309"
+                          target="_blank"
+                          rel="noopener"
+                        >
+                          Rudolf-Breitscheid-Straße 68, 16559 Liebenwalde
                         </Link>
                       </>
                     ) : (
@@ -50,7 +52,7 @@ const Contact = () => {
                       <>
                         <span>Telefon: </span>
                         <Link href="tel: +49 33 054904 404">
-                          <a>+49 33 054904 404</a>
+                          +49 33 054904 404
                         </Link>
                       </>
                     ) : (
@@ -64,7 +66,7 @@ const Contact = () => {
                       <>
                         <span>eMail: </span>
                         <Link href="mailto:info@ds-experts.de">
-                          <a>info@ds-experts.de</a>
+                          info@ds-experts.de
                         </Link>
                       </>
                     ) : (
@@ -90,8 +92,12 @@ const Contact = () => {
 
             <div className={showContactForm ? "col-lg-6" : ""}>
               {showContactForm && (
-                <div data-aos="fade" data-aos-duration="1200">
-                  <h3 className="text-center">Kontaktiere uns hier!</h3>
+                <div
+                  data-aos="fade"
+                  data-aos-duration="1200"
+                  data-aos-once="true"
+                >
+                  <h3 className="text-center">Kontaktiere uns!</h3>
                   <ContactForm />
                 </div>
               )}

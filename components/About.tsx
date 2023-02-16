@@ -72,13 +72,8 @@ const About = () => {
                   data-aos-duration="1200"
                   data-aos-delay="100"
                 >
-                  <Link href="/#philosophy">
-                    <a
-                      className="btn btn-primary"
-                      style={{ textTransform: "initial" }}
-                    >
-                      Erfahre mehr über unsere Leitlinien
-                    </a>
+                  <Link href="/#philosophy" className="btn btn-primary">
+                    Erfahre mehr über unsere Leitlinien
                   </Link>
                 </div>
               </div>

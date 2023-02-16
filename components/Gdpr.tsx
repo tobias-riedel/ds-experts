@@ -81,10 +81,12 @@ const Gdpr = () => {
           die Sammlung der auf Ihre Nutzung der Website bezogenen erzeugten
           Daten und IP-Adressen durch Google verhindern können. Mehr
           Informationen dazu finden Sie hier:{" "}
-          <Link href="http://tools.google.com/dlpage/gaoptout?hl=de">
-            <a target="_blank" rel="noopener">
-              http://tools.google.com/dlpage/gaoptout?hl=de
-            </a>
+          <Link
+            href="http://tools.google.com/dlpage/gaoptout?hl=de"
+            target="_blank"
+            rel="noopener"
+          >
+            http://tools.google.com/dlpage/gaoptout?hl=de
           </Link>
         </p>
         <h3>
@@ -173,7 +175,7 @@ const Gdpr = () => {
           {showContacts ? (
             <>
               <Link href="mailto:info@ds-experts.de?subject=Datenschutz">
-                <a>info@ds-experts.de</a>
+                info@ds-experts.de
               </Link>
             </>
           ) : (

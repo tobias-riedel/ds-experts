@@ -15,8 +15,8 @@ const ErrorContent = () => {
             </p>
 
             <div className="back-btn">
-              <Link href="/">
-                <a className="btn btn-primary">Zurück zur Hauptseite</a>
+              <Link href="/" className="btn btn-primary">
+                Zurück zur Hauptseite
               </Link>
             </div>
           </div>
