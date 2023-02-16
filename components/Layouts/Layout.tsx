@@ -1,12 +1,12 @@
 import CookieAccept from "../Common/CookieAccept";
 import Footer from "./Footer";
 import GoTop from "./GoTop";
-import MainHeader from "./MainHeader";
+import Header from "./Header";
 
 const Layout = (props) => {
   return (
     <>
-      <MainHeader />
+      <Header />
 
       <main>{props.children}</main>
 
