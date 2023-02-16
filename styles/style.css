@@ -306,11 +306,11 @@ a:focus {
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
-  color: #ff2c9c;
+  color: var(--brand-accent-1);
   -webkit-box-shadow: unset;
   box-shadow: unset;
   background-color: transparent;
-  border-color: #ff2c9c;
+  border-color: var(--brand-accent-1);
 }
 
 .btn-primary.disabled,
@@ -497,7 +497,7 @@ label {
   background: #ffffff;
   -webkit-box-shadow: unset;
   box-shadow: unset;
-  border-color: #ff2c9c;
+  border-color: var(--brand-blue);
 }
 
 /*================================================

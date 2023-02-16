@@ -19,7 +19,7 @@ const CookiesPolicy = () => {
         <p>
           Wir schützten Ihre Privatsphäre und ermöglicht es Ihnen, die Arten von
           Cookies auszuwählen, die wir beim Besuch unserer Website verwenden.
-          Verwenden Sie den Button „Einstellungen“, um unsere
+          Verwenden Sie den Link „Cookie-Einstellungen“, um unsere
           Standardeinstellungen zu ändern.
         </p>
         <h3>
