@@ -58,9 +58,9 @@ const Navbar = () => {
   const logoAltText = "ds-experts IT-Consulting GmbH";
 
   return (
-    <>
+    <header>
       <div id="navbar" className="navbar-area navbar-style-2">
-        <nav className="navbar navbar-expand-md navbar-light">
+        <nav role="navigation" className="navbar navbar-expand-md navbar-light">
           <div className="container-fluid">
             <Link href="/">
               <a className="navbar-brand">
@@ -122,19 +122,14 @@ const Navbar = () => {
 
               <div>
                 <Link href="/#join-us">
-                  <a
-                    className="btn btn-primary"
-                    style={{ textTransform: "initial" }}
-                  >
-                    Lern uns kennen
-                  </a>
+                  <a className="btn btn-primary">Lern uns kennen</a>
                 </Link>
               </div>
             </div>
           </div>
         </nav>
       </div>
-    </>
+    </header>
   );
 };
 
