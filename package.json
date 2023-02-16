@@ -28,7 +28,7 @@
     "react-visibility-sensor": "^5.1.1",
     "sanitize-html": "^2.8.1",
     "sass": "^1.43.4",
-    "sweetalert2": "^11.4.17",
+    "sweetalert2": "^11.4.8",
     "sweetalert2-react-content": "^5.0.0",
     "swiper": "^8.2.2"
   },
