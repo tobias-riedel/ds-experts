@@ -1,25 +1,33 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { Events, Link as ScrollLink } from "react-scroll";
 import Link from "../../utils/ActiveLink";
 
 interface NavLinks {
   to: string;
+  scrollTo?: string;
   name: string;
 }
 
 const navLinks: NavLinks[] = [
-  { to: "/", name: "Home" },
-  { to: "/#competencies", name: "Kompetenzen" },
-  { to: "/#references", name: "Referenzen" },
-  { to: "/#team", name: "Team" },
-  { to: "/#philosophy", name: "Philosophie" },
-  { to: "/#contact", name: "Kontakt" },
+  { to: "/", scrollTo: "home", name: "Home" },
+  { to: "/#competencies", scrollTo: "competencies", name: "Kompetenzen" },
+  { to: "/#references", scrollTo: "references", name: "Referenzen" },
+  { to: "/#team", scrollTo: "team", name: "Team" },
+  { to: "/#philosophy", scrollTo: "philosophy", name: "Philosophie" },
+  { to: "/#contact", scrollTo: "contact", name: "Kontakt" },
 ];
 
 const Navbar = () => {
+  const router = useRouter();
+
   const [menu, setMenu] = useState(true);
+  const [isHomeRoute, setIsHomeRoute] = useState(false);
+
   const toggleNavbar = () => {
     setMenu(!menu);
   };
+
   useEffect(() => {
     const elementId = document.getElementById("navbar");
     document.addEventListener("scroll", () => {
@@ -29,7 +37,16 @@ const Navbar = () => {
         elementId.classList.remove("is-sticky");
       }
     });
-  });
+
+    return () => {
+      Events.scrollEvent.remove("begin");
+      Events.scrollEvent.remove("end");
+    };
+  }, []);
+
+  useEffect(() => {
+    setIsHomeRoute(router.pathname === "/");
+  }, [router]);
 
   const classOne = menu
     ? "collapse navbar-collapse mean-menu"
@@ -82,9 +99,23 @@ const Navbar = () => {
               <ul className="navbar-nav">
                 {navLinks.map((link, idx) => (
                   <li className="nav-item" key={idx}>
-                    <Link href={link.to} activeClassName="active">
-                      <a className="nav-link">{link.name}</a>
-                    </Link>
+                    {isHomeRoute ? (
+                      <ScrollLink
+                        activeClass="active"
+                        className="click"
+                        to={link.scrollTo}
+                        spy={true}
+                        smooth={true}
+                        offset={-50}
+                        duration={0}
+                      >
+                        {link.name}
+                      </ScrollLink>
+                    ) : (
+                      <Link href={link.to} activeClassName="active">
+                        <a className="nav-link">{link.name}</a>
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
