@@ -552,13 +552,13 @@ header {
     position: fixed;
   }
 
-  header.scroll-down:not(:has(.show)) {
+  header.scroll-down.collapse-menu--visible {
     transform: translateY(-110px);
   }
-}
 
-header.scroll-up {
-  transform: translateY(0);
+  header.scroll-up {
+    transform: translateY(0);
+  }
 }
 
 /*================================================
