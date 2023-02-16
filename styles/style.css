@@ -541,6 +541,13 @@ header {
   position: absolute;
 }
 
+header.is-mobile {
+  position: fixed;
+}
+header.is-mobile.scroll-down:not(:has(.show)) {
+  transform: translateY(-110px);
+}
+
 @media only screen and (min-width: 768px) {
   header:has(.navbar-area.is-sticky) {
     position: fixed;
