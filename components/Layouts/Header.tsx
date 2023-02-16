@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Events, Link as ScrollLink } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
 import Link from "../../utils/ActiveLink";
 
 interface NavLinks {
@@ -18,6 +18,9 @@ const navLinks: NavLinks[] = [
   { to: "/#contact", scrollTo: "contact", name: "Kontakt" },
 ];
 
+const navbarHeight = 170;
+const scrollThreshold = 50;
+
 const Navbar = () => {
   const router = useRouter();
 
@@ -28,21 +31,45 @@ const Navbar = () => {
     setMenu(!menu);
   };
 
+  // Make navbar sticky on scrolling down
   useEffect(() => {
     const elementId = document.getElementById("navbar");
     document.addEventListener("scroll", () => {
-      if (window.scrollY > 170) {
+      if (window.scrollY > navbarHeight) {
         elementId.classList.add("is-sticky");
       } else {
         elementId.classList.remove("is-sticky");
       }
     });
-
-    return () => {
-      Events.scrollEvent.remove("begin");
-      Events.scrollEvent.remove("end");
-    };
   }, []);
+
+  // Hide navbar on scrolling down and show on scrolling up for mobile devices
+  const useScrollDirection = () => {
+    const [scrollDirection, setScrollDirection] = useState("");
+    const [prevOffset, setPrevOffset] = useState(0);
+
+    const toggleScrollDirection = () => {
+      let scrollY = window.scrollY;
+      if (scrollY > prevOffset && scrollY > scrollThreshold) {
+        setScrollDirection("down");
+      } else if (scrollY < prevOffset && scrollY > scrollThreshold) {
+        setScrollDirection("up");
+      } else {
+        setScrollDirection("");
+      }
+      setPrevOffset(scrollY);
+    };
+
+    useEffect(() => {
+      window.addEventListener("scroll", toggleScrollDirection);
+      return () => {
+        window.removeEventListener("scroll", toggleScrollDirection);
+      };
+    });
+    return scrollDirection;
+  };
+
+  const scrollDirection = useScrollDirection();
 
   useEffect(() => {
     setIsHomeRoute(router.pathname === "/");
@@ -58,7 +85,7 @@ const Navbar = () => {
   const logoAltText = "ds-experts IT-Consulting GmbH";
 
   return (
-    <header>
+    <header className={`scroll-${scrollDirection}`}>
       <div id="navbar" className="navbar-area navbar-style-2">
         <nav role="navigation" className="navbar navbar-expand-md navbar-light">
           <div className="container-fluid">
