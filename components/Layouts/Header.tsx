@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import Link from "../../utils/ActiveLink";
-import { isMobile } from "react-device-detect";
 
 interface NavLinks {
   to: string;
@@ -84,7 +83,7 @@ const Navbar = () => {
   const logoAltText = "ds-experts IT-Consulting GmbH";
 
   return (
-    <header className={`${isMobile && "is-mobile"} scroll-${scrollDirection}`}>
+    <header className={`scroll-${scrollDirection || "up"}`}>
       <div id="navbar" className="navbar-area navbar-style-2">
         <nav role="navigation" className="navbar navbar-expand-md navbar-light">
           <div className="container-fluid">
