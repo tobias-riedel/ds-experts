@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import callToActionImg from "../public//images/call_to_action.jpg";
+import callToActionImg from "../public/images/call_to_action.jpg";
 
 const MainBanner = () => {
   return (
@@ -25,8 +25,8 @@ const MainBanner = () => {
                       paar Klicks entfernt
                     </p>
 
-                    <Link href="/#contact">
-                      <a className="btn btn-primary">MEHR ÜBER UNS</a>
+                    <Link href="/#contact" className="btn btn-primary">
+                      MEHR ÜBER UNS
                     </Link>
                   </div>
                 </div>
@@ -40,7 +40,9 @@ const MainBanner = () => {
                     <Image
                       src={callToActionImg}
                       alt="Animate image"
+                      width={660}
                       placeholder="blur"
+                      style={{ width: "100%", height: "100%" }}
                     />
                   </div>
                 </div>

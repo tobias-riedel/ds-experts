@@ -40,7 +40,7 @@ const Team = () => {
           <h2>Unsere Experts</h2>
         </div>
 
-        <div className="row justify-content-center">
+        <div className="row justify-content-between">
           {experts.map((expert, idx) => (
             <div className="col-lg-2 col-sm-6" key={idx}>
               <div

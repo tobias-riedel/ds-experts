@@ -152,21 +152,15 @@ const OurWorks = () => {
 
                   <div className="content text-center">
                     <span>
-                      <Link href="/">
-                        <a>{ref.name}</a>
-                      </Link>
+                      <Link href="/">{ref.name}</Link>
                       <br />
-                      <Link href="/">
-                        <a>({ref.location})</a>
-                      </Link>
+                      <Link href="/">({ref.location})</Link>
                     </span>
 
                     <ul>
                       {ref.tasks.map((task, taskIdx) => (
                         <li key={taskIdx}>
-                          <Link href="/">
-                            <a>{task}</a>
-                          </Link>
+                          <Link href="/">{task}</Link>
                         </li>
                       ))}
                     </ul>

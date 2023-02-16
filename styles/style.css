@@ -84,7 +84,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Open Sans", sans-serif;
-  font-size: 15px;
+  font-size: 1rem;
   color: #646464;
 }
 
@@ -113,7 +113,7 @@ h6 {
 
 p {
   line-height: 1.8;
-  font-size: 15px;
+  font-size: 1rem;
   color: #646464;
   margin-bottom: 15px;
 }
@@ -248,7 +248,7 @@ a:focus {
   position: relative;
   z-index: 1;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 1rem;
 }
 
 .btn.disabled,
@@ -415,7 +415,7 @@ a:focus {
   padding: 13px 30px;
   display: inline-block;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 1rem;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
@@ -475,7 +475,7 @@ a:focus {
 
 label {
   color: #18181b;
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: 600;
   margin-bottom: 10px;
 }
@@ -653,7 +653,7 @@ Navbar CSS
 }
 
 .navbar-area nav .navbar-nav .nav-item a i {
-  font-size: 15px;
+  font-size: 1rem;
   position: relative;
   top: 1px;
   display: inline-block;
@@ -1136,9 +1136,12 @@ Main Banner CSS
 }
 
 .hero-banner .main-banner-content h1 {
-  color: #ffffff;
-  /* font-size: 80px; */
-  font-size: 3rem;
+  color: var(--brand-white);
+  color: var(--brand-grey);
+  color: var(--brand-blue-gradient-5);
+  color: var(--brand-accent-1-1);
+  color: var(--brand-accent-1);
+  font-size: 5rem;
   text-transform: none;
 }
 
@@ -1953,7 +1956,7 @@ Featured Services CSS
   display: inline-block;
   position: relative;
   z-index: 1;
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: 600;
 }
 
@@ -3107,7 +3110,7 @@ Services CSS
   -webkit-box-shadow: 0px 2px 4px 0px rgba(12, 0, 46, 0.04);
   box-shadow: 0px 2px 4px 0px rgba(12, 0, 46, 0.04);
   font-weight: 600;
-  font-size: 15px;
+  font-size: 1rem;
   border: 1px solid #f2effc;
   cursor: pointer;
   -webkit-transition: all 0.5s ease;
@@ -3682,7 +3685,7 @@ Team CSS
   width: 35px;
   height: 35px;
   line-height: 35px;
-  font-size: 15px;
+  font-size: 1rem;
   color: #ffffff;
   border: 1px solid #ffffff;
   position: relative;
@@ -3809,7 +3812,7 @@ Team CSS
 
 .team-card .team-caption p {
   margin: 0;
-  font-size: 15px;
+  font-size: 1rem;
 }
 
 .team-card .team-caption ul {
@@ -5625,7 +5628,7 @@ blockquote cite::before {
 }
 
 .comments-area .comment-author {
-  font-size: 15px;
+  font-size: 1rem;
   margin-bottom: 0.4em;
   position: relative;
   z-index: 2;
@@ -5685,12 +5688,12 @@ blockquote cite::before {
   .comment-respond
   .comment-reply-title
   #cancel-comment-reply-link {
-  font-size: 15px;
+  font-size: 1rem;
   display: inline-block;
 }
 
 .comments-area .comment-respond .comment-notes {
-  font-size: 15px;
+  font-size: 1rem;
   margin-bottom: 0;
   margin-top: 10px;
 }
@@ -6453,7 +6456,7 @@ Sidebar CSS
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 1rem;
 }
 
 .widget-area .widget_search form .search-submit:hover {
@@ -6826,7 +6829,7 @@ Portfolio Details CSS
 .service-details-info .single-info-box span {
   display: block;
   color: #646464;
-  font-size: 15px;
+  font-size: 1rem;
 }
 
 .service-details-info .single-info-box .social {
@@ -7247,7 +7250,7 @@ Footer CSS
 
 .copyright-area p {
   color: var(--brand-white);
-  font-size: 15px;
+  font-size: 1rem;
 }
 
 .copyright-area p a {
@@ -7380,7 +7383,7 @@ span.new {
 
 .coming-soon-content .coming-soon-countdown li {
   border-radius: 5px;
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: 500;
   margin-left: 20px;
   margin-right: 20px;
@@ -7413,7 +7416,7 @@ span.new {
   border-radius: 4px;
   padding: 0 0 0 20px;
   color: #000;
-  font-size: 15px;
+  font-size: 1rem;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   background-color: transparent;

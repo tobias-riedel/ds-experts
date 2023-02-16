@@ -30,9 +30,7 @@ const Imprint = () => {
                   <div>Rudolf-Breitscheid-Straße 68</div>
                   <div>16559 Liebenwalde</div>
                   <span>Telefon: </span>
-                  <Link href="tel: +49 33 054904 404">
-                    <a>+49 33 054904 404</a>
-                  </Link>
+                  <Link href="tel: +49 33 054904 404">+49 33 054904 404</Link>
                 </>
               ) : (
                 <>
@@ -53,7 +51,7 @@ const Imprint = () => {
                 <>
                   <span>eMail: </span>
                   <Link href="mailto:info@ds-experts.de">
-                    <a>info@ds-experts.de</a>
+                    info@ds-experts.de
                   </Link>
                 </>
               ) : (

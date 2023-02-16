@@ -28,10 +28,8 @@ const CookieAccept = () => {
       oder ablehnen. Sie können Ihre Einstellungen jederzeit ändern, indem Sie
       in der Fußzeile jeder Seite auf Cookie-Einstellungen klicken. Weitere
       Informationen zu den Cookies finden Sie in unseren{" "}
-      <Link href="/legal#cookies-policy">
-        <a rel="noopener" target="_blank">
-          Cookie-Richtlinien
-        </a>
+      <Link href="/legal#cookies-policy" target="_blank" rel="noopener">
+        Cookie-Richtlinien
       </Link>
       .
     </CookieConsent>
