@@ -23,7 +23,8 @@ const Footer = () => {
 
   return (
     <>
-      <footer>
+      <div className="pt-100"></div>
+      <footer className="pt-100">
         <div className="copyright-area">
           <div className="container">
             <div className="row">
