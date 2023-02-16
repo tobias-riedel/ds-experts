@@ -1665,7 +1665,7 @@ Main Banner CSS
 .slider-area ul li .tp-caption.NotGeneric-SubTitle,
 .slider-area ul li .NotGeneric-SubTitle {
   font-family: "Open Sans", sans-serif !important;
-  font-size: 15px !important;
+  font-size: 1rem !important;
   font-weight: 500 !important;
   letter-spacing: 0 !important;
   line-height: 1.8 !important;
