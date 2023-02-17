@@ -1,3 +1,5 @@
+import SectionDivider from "./Common/SectionDivider";
+
 interface Experts {
   img: string;
   name: string;
@@ -34,7 +36,7 @@ const experts: Experts[] = [
 
 const Team = () => {
   return (
-    <section id="team" className="ptb-100">
+    <section id="team" className="pt-100">
       <div className="container">
         <div className="section-title">
           <h2>Unsere Experts</h2>
@@ -65,6 +67,8 @@ const Team = () => {
           ))}
         </div>
       </div>
+
+      <SectionDivider />
     </section>
   );
 };

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Keyboard, Mousewheel, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import SectionDivider from "./Common/SectionDivider";
 
 interface References {
   img: string;
@@ -101,7 +102,7 @@ const references: References[] = [
 
 const OurWorks = () => {
   return (
-    <section id="references" className="case-studies-area ptb-100">
+    <section id="references" className="case-studies-area pt-100">
       <div className="container-fluid">
         <div className="section-title">
           <h2>Referenzen</h2>
@@ -171,6 +172,8 @@ const OurWorks = () => {
           })}
         </Swiper>
       </div>
+
+      <SectionDivider />
     </section>
   );
 };

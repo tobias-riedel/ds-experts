@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import SectionDivider from "../Common/SectionDivider";
 import JoinUsBackEndDeveloper from "./JoinUsBackEndDeveloper";
+import JoinUsForm from "./JoinUsForm";
 import JoinUsFrontEndDeveloper from "./JoinUsFrontEndDeveloper";
 import JoinUsProjectManager from "./JoinUsProjectManager";
-import JoinUsForm from "./JoinUsForm";
 
 const profiles = {
   backend: "backend",
@@ -17,7 +17,7 @@ const JoinUs = () => {
   const [profile, setProfile] = useState(profiles.backend);
 
   return (
-    <section id="join-us" className="ptb-100">
+    <section id="join-us" className="pt-100">
       <div className="container">
         <div className="section-title">
           <h2>Komm zu uns als:</h2>
@@ -70,6 +70,8 @@ const JoinUs = () => {
           </div>
         </div>
       </div>
+
+      <SectionDivider />
     </section>
   );
 };
