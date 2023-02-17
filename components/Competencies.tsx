@@ -48,7 +48,7 @@ const Competencies = () => {
         ]}
       />
 
-      <section id="competencies" className="pt-100 pb-30">
+      <section id="competencies" className="ptb-100">
         <div className="container">
           <div className="section-title">
             <h2>Unsere Kompetenzen</h2>

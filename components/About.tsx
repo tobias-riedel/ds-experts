@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const About = () => {
   return (
-    <section id="about" className="ptb-100">
+    <div className="ptb-100">
       <div className="about-area ">
         <div className="container">
           <div className="row align-items-center">
@@ -94,7 +94,7 @@ const About = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

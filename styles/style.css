@@ -53,6 +53,7 @@ This files table contents are outlined below >>>>>
 
   --brand-link-color: #0d6efd;
   --brand-link-hover-color: #70a329;
+  --brand-section-bg: #f7f9fb;
 
   /* --brand-blue-gradient-1: #2e3a6d;
   --brand-blue-gradient-2: #3c4c90;
@@ -86,6 +87,15 @@ body {
   font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   color: #646464;
+}
+
+/* color every even section's background */
+section:nth-child(2n + 2) {
+  background-color: var(--brand-section-bg);
+}
+
+footer {
+  background-color: var(--brand-section-bg);
 }
 
 h1,
@@ -489,7 +499,7 @@ label {
   padding: 15px 20px;
   font-size: 14px;
   color: #18181b;
-  border: 1px solid #eeeeee;
+  border: 1px solid #aaa;
   border-radius: 6px;
   background: #eeeeee;
   -webkit-transition: all 0.5s ease;
@@ -6222,7 +6232,6 @@ Contact CSS
 }
 
 .contact-form {
-  background-color: #ffffff;
   text-align: center;
 }
 
