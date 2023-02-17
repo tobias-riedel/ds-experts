@@ -24,9 +24,7 @@ const Gdpr = () => {
           <br />
           16559 Liebenwalde
         </p>
-        <h3>
-          <strong>Datenschutz</strong>
-        </h3>
+        <h3>Datenschutz</h3>
         <p>
           Als Webseitenbetreiber nehmen wir den Schutz aller persönlichen Daten
           sehr ernst. Alle personenbezogenen Informationen werden vertraulich
@@ -46,9 +44,7 @@ const Gdpr = () => {
           Sicherheitslücken aufweisen. Der komplette Schutz der Daten ist im
           Internet nicht möglich.
         </p>
-        <h3>
-          <strong>Datenschutzerklärung Google Analytics</strong>
-        </h3>
+        <h3>Datenschutzerklärung Google Analytics</h3>
         <p>
           Unsere Website nutzt den Analysedienst Google Analytics, betrieben von
           Google Inc. 1600 Amphitheatre Parkway Mountain View, CA 94043, USA.
@@ -89,9 +85,7 @@ const Gdpr = () => {
             http://tools.google.com/dlpage/gaoptout?hl=de
           </Link>
         </p>
-        <h3>
-          <strong>Auskunft, Löschung, Sperrung</strong>
-        </h3>
+        <h3>Auskunft, Löschung, Sperrung</h3>
         <p>
           Zu jedem Zeitpunkt können Sie sich über die personenbezogenen Daten,
           deren Herkunft und Empfänger und den Nutzen der Datenverarbeitung
@@ -100,9 +94,7 @@ const Gdpr = () => {
           angegebenen Kontaktwege. Für weitere Fragen zum Thema stehen wir Ihnen
           ebenfalls jederzeit zur Verfügung.
         </p>
-        <h3>
-          <strong>Server-Log-Files</strong>
-        </h3>
+        <h3>Server-Log-Files</h3>
         <p>
           Der Seiten-Provider erhebt und speichert automatisch Daten in
           Server-Log Files, die von Ihrem Browser an uns übermittelt werden.
@@ -123,9 +115,7 @@ const Gdpr = () => {
           behalten wir uns das Recht vor, diese Daten nachträglich zu
           überprüfen.
         </p>
-        <h3>
-          <strong>Cookies</strong>
-        </h3>
+        <h3>Cookies</h3>
         <p>
           Viele Internetseiten verwenden Cookies. Cookies sind unschädlich für
           Ihren Rechner und virenfrei. Sie dienen dazu, Internet-Angebote für
@@ -148,18 +138,14 @@ const Gdpr = () => {
           des Browser aktivieren. Werden Cookies desaktiviert, kann die
           Funktionalität unserer Website eingeschränkt sein.
         </p>
-        <h3>
-          <strong>Formulare</strong>
-        </h3>
+        <h3>Formulare</h3>
         <p>
           Daten, die uns über unsere Formulare erreichen, werden inklusive des
           Inhalts der Anfrage für Bearbeitungszwecke und für mögliche
           Anschlussfragen gespeichert. Diese Daten werden ohne Ihre spezifische
           Zustimmung nicht weitergegeben.
         </p>
-        <h3>
-          <strong>Änderung der Datenschutzbestimmungen</strong>
-        </h3>
+        <h3>Änderung der Datenschutzbestimmungen</h3>
         <p>
           Unsere Datenschutzerklärung können in unregelmäßigen Abständen
           angepasst werden, damit sie den aktuellen rechtlichen Anforderungen
@@ -167,9 +153,7 @@ const Gdpr = () => {
           B. bei der Einfügung neuer Angebote. Für Ihren nächsten Besuch gilt
           dann automatisch die neue <strong>Datenschutzerklärung</strong>.
         </p>
-        <h3>
-          <strong>Kontakt zum Datenschutzmitarbeiter</strong>
-        </h3>
+        <h3>Kontakt zum Datenschutzmitarbeiter</h3>
         <p>
           Für Fragen zum Datenschutz schicken Sie uns bitte eine Nachricht an{" "}
           {showContacts ? (

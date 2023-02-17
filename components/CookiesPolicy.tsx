@@ -1,20 +1,11 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 const CookiesPolicy = () => {
-  const [showContacts, setShowContacts] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setShowContacts(true);
-    }, 1000);
-  }, []);
-
   return (
     <section id="cookies-policy" className="ptb-100">
       <div className="container">
         <div className="section-title text-start mw-100">
-          <h1>Cookie-Einstellungen & Richtlinie</h1>
+          <h2>Cookie-Einstellungen & Richtlinie</h2>
         </div>
         <p>
           Wir schützten Ihre Privatsphäre und ermöglicht es Ihnen, die Arten von
@@ -22,16 +13,12 @@ const CookiesPolicy = () => {
           Verwenden Sie den Link „Cookie-Einstellungen“, um unsere
           Standardeinstellungen zu ändern.
         </p>
-        <h3>
-          <strong>Was ist ein Cookie?</strong>
-        </h3>
+        <h3>Was ist ein Cookie?</h3>
         <p>
           Ein Cookie ist eine kleine Textdatei, die beim Zugriff auf eine
           Website auf Ihr Gerät heruntergeladen wird.
         </p>
-        <h3>
-          <strong>Was machen Cookies?</strong>
-        </h3>
+        <h3>Was machen Cookies?</h3>
         <p>
           Auf diese Weise kann die Website Ihr Gerät erkennen und einige
           Informationen zu Ihren Einstellungen oder früheren Aktionen speichern,

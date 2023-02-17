@@ -97,6 +97,10 @@ h6 {
   font-family: "Saira", sans-serif;
   color: #18181b;
   font-weight: bold;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
 }
 
 h1,
