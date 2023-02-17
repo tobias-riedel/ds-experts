@@ -29,28 +29,28 @@ const WorkProcess = () => {
 
               <div className="single-work-process">
                 <div className="icon">
-                  <i className="pe-7s-airplay"></i>
+                  <i className="pe-7s-study"></i>
                 </div>
                 <h3>Ausbildung</h3>
               </div>
 
               <div className="single-work-process">
                 <div className="icon">
-                  <i className="pe-7s-note2"></i>
+                  <i className="pe-7s-id"></i>
                 </div>
                 <h3>Professionalität</h3>
               </div>
 
               <div className="single-work-process">
                 <div className="icon">
-                  <i className="pe-7s-light"></i>
+                  <i className="pe-7s-diamond"></i>
                 </div>
                 <h3>Entschlossenheit</h3>
               </div>
 
               <div className="single-work-process">
                 <div className="icon">
-                  <i className="pe-7s-sun"></i>
+                  <i className="pe-7s-gift"></i>
                 </div>
                 <h3>Qualität</h3>
               </div>
