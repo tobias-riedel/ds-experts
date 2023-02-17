@@ -54,122 +54,124 @@ const Competencies = () => {
             <h2>Unsere Kompetenzen</h2>
           </div>
 
-          <div className="row competencies">
-            <div
-              data-aos="fade-up"
-              data-aos-duration="1200"
-              data-aos-delay="100"
-            >
-              <div className="service-card-one bg-competencies text-center shadow">
-                <i className="pe-7s-note2 bg-13c4a1"></i>
-                <h3>
-                  <Link href="/" onClick={(e) => toggleInfo(e, "")}>
-                    Anforderungen
-                  </Link>
-                </h3>
-                <p>
-                  Erfolgreiche Projekte unterstützen wir mit
-                  Anforderungsanalysen
-                </p>
+          <div className="d-flex justify-content-center">
+            <div className="row competencies">
+              <div
+                data-aos="fade-up"
+                data-aos-duration="1200"
+                data-aos-delay="100"
+              >
+                <div className="service-card-one bg-competencies text-center shadow">
+                  <i className="pe-7s-note2 bg-13c4a1"></i>
+                  <h3>
+                    <Link href="/" onClick={(e) => toggleInfo(e, "")}>
+                      Anforderungen
+                    </Link>
+                  </h3>
+                  <p>
+                    Erfolgreiche Projekte unterstützen wir mit
+                    Anforderungsanalysen
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <div>
-              <div className="service-card-one bg-competencies bg-competencies--active text-center shadow">
-                <i className="pe-7s-display2 bg-6610f2"></i>
-                <h3>
-                  <Link
-                    href="/service-details"
-                    onClick={(e) => toggleInfo(e, "")}
-                  >
-                    Projekte
-                  </Link>
-                </h3>
-                <p>Wir setzen erfolgreich agile und klassische Projekte um</p>
+              <div>
+                <div className="service-card-one bg-competencies bg-competencies--active text-center shadow">
+                  <i className="pe-7s-display2 bg-6610f2"></i>
+                  <h3>
+                    <Link
+                      href="/service-details"
+                      onClick={(e) => toggleInfo(e, "")}
+                    >
+                      Projekte
+                    </Link>
+                  </h3>
+                  <p>Wir setzen erfolgreich agile und klassische Projekte um</p>
+                </div>
               </div>
-            </div>
 
-            <div
-              data-aos="fade-up"
-              data-aos-duration="1200"
-              data-aos-delay="100"
-            >
-              <div className="service-card-one bg-competencies text-center shadow">
-                <i className="pe-7s-graph2 bg-ffb700"></i>
-                <h3>
-                  <Link
-                    href="/service-details"
-                    onClick={(e) => toggleInfo(e, "")}
-                  >
-                    Transitionen
-                  </Link>
-                </h3>
-                <p>Vom Projekt in den Betrieb, damit aus einmal oft wird</p>
+              <div
+                data-aos="fade-up"
+                data-aos-duration="1200"
+                data-aos-delay="100"
+              >
+                <div className="service-card-one bg-competencies text-center shadow">
+                  <i className="pe-7s-graph2 bg-ffb700"></i>
+                  <h3>
+                    <Link
+                      href="/service-details"
+                      onClick={(e) => toggleInfo(e, "")}
+                    >
+                      Transitionen
+                    </Link>
+                  </h3>
+                  <p>Vom Projekt in den Betrieb, damit aus einmal oft wird</p>
+                </div>
               </div>
-            </div>
 
-            <div
-              data-aos="fade-up"
-              data-aos-duration="1200"
-              data-aos-delay="100"
-            >
-              <div className="service-card-one bg-competencies text-center shadow">
-                <i className="pe-7s-network bg-fc3549"></i>
-                <h3>
-                  <Link
-                    href="/service-details"
-                    onClick={(e) => toggleInfo(e, "")}
-                  >
-                    Consulting
-                  </Link>
-                </h3>
-                <p>
-                  Wir beraten unsere Kunden über zukunftssichere Technologien
-                </p>
+              <div
+                data-aos="fade-up"
+                data-aos-duration="1200"
+                data-aos-delay="100"
+              >
+                <div className="service-card-one bg-competencies text-center shadow">
+                  <i className="pe-7s-network bg-fc3549"></i>
+                  <h3>
+                    <Link
+                      href="/service-details"
+                      onClick={(e) => toggleInfo(e, "")}
+                    >
+                      Consulting
+                    </Link>
+                  </h3>
+                  <p>
+                    Wir beraten unsere Kunden über zukunftssichere Technologien
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <div
-              data-aos="fade-up"
-              data-aos-duration="1200"
-              data-aos-delay="100"
-            >
-              <div className="service-card-one bg-competencies text-center shadow">
-                <i className="pe-7s-science bg-00d280"></i>
-                <h3>
-                  <Link
-                    href="/service-details"
-                    onClick={(e) => toggleInfo(e, "")}
-                  >
-                    Development
-                  </Link>
-                </h3>
-                <p>
-                  Wir entwickeln zukunftsfähige Lösungen für und mit unseren
-                  Kunden
-                </p>
+              <div
+                data-aos="fade-up"
+                data-aos-duration="1200"
+                data-aos-delay="100"
+              >
+                <div className="service-card-one bg-competencies text-center shadow">
+                  <i className="pe-7s-science bg-00d280"></i>
+                  <h3>
+                    <Link
+                      href="/service-details"
+                      onClick={(e) => toggleInfo(e, "")}
+                    >
+                      Development
+                    </Link>
+                  </h3>
+                  <p>
+                    Wir entwickeln zukunftsfähige Lösungen für und mit unseren
+                    Kunden
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <div
-              data-aos="fade-up"
-              data-aos-duration="1200"
-              data-aos-delay="100"
-            >
-              <div className="service-card-one bg-competencies text-center shadow">
-                <i className="pe-7s-users bg-ff612f"></i>
-                <h3>
-                  <Link
-                    href="/service-details"
-                    onClick={(e) => toggleInfo(e, "")}
-                  >
-                    Services
-                  </Link>
-                </h3>
-                <p>
-                  Wir unterstützen unsere Kunden beim Betrieb von neuen
-                  Technologien
-                </p>
+              <div
+                data-aos="fade-up"
+                data-aos-duration="1200"
+                data-aos-delay="100"
+              >
+                <div className="service-card-one bg-competencies text-center shadow">
+                  <i className="pe-7s-users bg-ff612f"></i>
+                  <h3>
+                    <Link
+                      href="/service-details"
+                      onClick={(e) => toggleInfo(e, "")}
+                    >
+                      Services
+                    </Link>
+                  </h3>
+                  <p>
+                    Wir unterstützen unsere Kunden beim Betrieb von neuen
+                    Technologien
+                  </p>
+                </div>
               </div>
             </div>
           </div>
