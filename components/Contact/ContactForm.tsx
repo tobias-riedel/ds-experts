@@ -171,7 +171,7 @@ const ContactForm = () => {
                     name="text"
                     cols={30}
                     rows={6}
-                    placeholder="Schreib Deine Anfrage..."
+                    placeholder="Schreib Deine Anfrage...*"
                     className="form-control"
                     value={contact.text}
                     onChange={handleChange}

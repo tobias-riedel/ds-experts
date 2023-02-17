@@ -273,13 +273,14 @@ const JoinUsForm = () => {
             <div className="col-lg-12 col-md-12">
               <div className="form-group">
                 <span>
-                  Bewerbungsunterlagen hochladen (Optional) | PDF | max. 8 MB
+                  Bewerbungsunterlagen hochladen{" "}
+                  <small>(Optional) | PDF | max. 8 MB</small>
                 </span>
                 {/* <input
                   name="doc"
                   cols="30"
                   rows="6"
-                  placeholder="Schreib Deine Anfrage..."
+                  placeholder="Schreib Deine Anfrage...*"
                   className="form-control"
                   value={contact.text}
                   onChange={handleChange}
@@ -290,7 +291,6 @@ const JoinUsForm = () => {
                   type="file"
                   id="cv"
                   name="cv"
-                  placeholder="Bewerbungsunterlagen hochladen (Optional) | PDF | max. 8 MB"
                   className="form-control"
                   value={contact.cv}
                   onChange={convertToBase64}

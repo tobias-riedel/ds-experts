@@ -31,7 +31,14 @@ const About = () => {
                     vorstellen kann:
                   </p>
 
-                  <p className="resource">Know-How</p>
+                  <p
+                    className="resource"
+                    data-aos="fade-up"
+                    data-aos-duration="1200"
+                    data-aos-delay="300"
+                  >
+                    Know-How
+                  </p>
 
                   <p>
                     Unser Know-How bringen wir erfolgreich bei unseren Kunden
@@ -67,11 +74,7 @@ const About = () => {
                   </ul>
                 </div>
 
-                <div
-                  data-aos="fade-up"
-                  data-aos-duration="1200"
-                  data-aos-delay="100"
-                >
+                <div>
                   <Link href="/#philosophy" className="btn btn-primary">
                     Erfahre mehr über unsere Leitlinien
                   </Link>
