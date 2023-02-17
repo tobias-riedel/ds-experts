@@ -42,7 +42,7 @@ const Team = () => {
 
         <div className="row justify-content-between">
           {experts.map((expert, idx) => (
-            <div className="col-lg-2 col-sm-6" key={idx}>
+            <div className="col-lg-2 col-md-4 col-sm-6" key={idx}>
               <div
                 className="team-card text-center"
                 data-aos="fade-up"
