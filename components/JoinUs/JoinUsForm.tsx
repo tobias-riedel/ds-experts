@@ -196,7 +196,7 @@ const JoinUsForm = () => {
                 <input
                   type="text"
                   name="firstname6g234"
-                  placeholder="Vorname"
+                  placeholder="Vorname*"
                   className="form-control"
                   value={contact.firstname6g234}
                   onChange={handleChange}
@@ -209,7 +209,7 @@ const JoinUsForm = () => {
                 <input
                   type="text"
                   name="name90ad0f"
-                  placeholder="Nachname"
+                  placeholder="Nachname*"
                   className="form-control"
                   value={contact.name90ad0f}
                   onChange={handleChange}
@@ -222,7 +222,7 @@ const JoinUsForm = () => {
                 <input
                   type="text"
                   name="emailfd80e"
-                  placeholder="E-Mail"
+                  placeholder="E-Mail*"
                   className="form-control"
                   value={contact.emailfd80e}
                   onChange={handleChange}
@@ -248,7 +248,7 @@ const JoinUsForm = () => {
                 <input
                   type="text"
                   name="subject"
-                  placeholder="Betreff"
+                  placeholder="Betreff*"
                   className="form-control"
                   value={contact.subject}
                   onChange={handleChange}
@@ -262,7 +262,7 @@ const JoinUsForm = () => {
                   name="text"
                   cols={30}
                   rows={6}
-                  placeholder="Schreib Deine Anfrage..."
+                  placeholder="Schreib Deine Anfrage...*"
                   className="form-control"
                   value={contact.text}
                   onChange={handleChange}
@@ -272,6 +272,9 @@ const JoinUsForm = () => {
             </div>
             <div className="col-lg-12 col-md-12">
               <div className="form-group">
+                <span>
+                  Bewerbungsunterlagen hochladen (Optional) | PDF | max. 8 MB
+                </span>
                 {/* <input
                   name="doc"
                   cols="30"
@@ -282,6 +285,7 @@ const JoinUsForm = () => {
                   onChange={handleChange}
                   required
                 /> */}
+
                 <input
                   type="file"
                   id="cv"

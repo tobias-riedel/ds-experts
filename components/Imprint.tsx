@@ -23,7 +23,7 @@ const Imprint = () => {
             </div>
 
             <div className="col-lg-7">
-              <h5>ds-experts IT-Consulting GmbH</h5>
+              <h2>ds-experts IT-Consulting GmbH</h2>
 
               {showContacts ? (
                 <>
