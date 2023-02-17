@@ -33,15 +33,15 @@ export default async (req, res) => {
   // Exit on honeypot activation
   if (honeyFirstname || honeyName || honeyEmail) {
     console.log(`[${now}] Honeypot triggered: ${JSON.stringify(req.body)}`);
-    res.status(412).send({ msg: "Honeypot triggered" });
+    res.status(412).json({ msg: "Honeypot triggered" });
     return;
   }
 
-  if (!firstname || !name || !email || !text) {
+  if (!firstname || !name || !email || !subject || !text) {
     console.log(
       `[${now}] Submitted data incomplete: ${JSON.stringify(req.body)}`
     );
-    res.status(400).send({ msg: "Submitted data incomplete" });
+    res.status(400).json({ msg: "Submitted data incomplete" });
     return;
   }
 
@@ -64,13 +64,13 @@ export default async (req, res) => {
   try {
     // const response = await sgMail.send(msg);
     // console.log(response);
-    res.status(200).send({ msg: "Email sent successfully" });
+    res.status(200).json({ msg: "Email sent successfully" });
   } catch (error) {
     console.error(error);
     if (error.response) {
       console.error(error.response.body);
     }
 
-    res.status(500).send({ msg: "Error processing payload" });
+    res.status(500).json({ msg: "Error processing payload" });
   }
 };

@@ -523,6 +523,21 @@ Shared CSS
   box-shadow: var(--box-shadow) !important;
 }
 
+.form-feedback {
+  font-size: smaller;
+  color: red;
+  padding: 0.25rem 0.2rem 0;
+  font-weight: bold;
+}
+
+/* remove typical Bootstrap look from form-controls */
+.form-control.is-valid:focus,
+.was-validated .form-control:valid:focus,
+.form-control.is-invalid:focus,
+.was-validated .form-control:invalid:focus {
+  box-shadow: none;
+}
+
 /*================================================
 Cookie Consent CSS
 =================================================*/
@@ -6229,10 +6244,6 @@ Contact CSS
 
 .contact-area .section-title h2 {
   margin-bottom: 12px;
-}
-
-.contact-form {
-  text-align: center;
 }
 
 .contact-form .contact-title {

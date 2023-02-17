@@ -10,7 +10,7 @@ const alertContent = () => {
     title: "Glückwunsch!",
     text: "Deine Nachricht wurde erfolgreicht versandt. Wir melden uns bald bei Dir.",
     icon: "success",
-    timer: 5000,
+    timer: 4000,
     timerProgressBar: true,
     showConfirmButton: false,
   });
