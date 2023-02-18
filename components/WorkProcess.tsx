@@ -6,7 +6,7 @@ const WorkProcess = () => {
       <section className="work-process-area pt-100">
         <div className="container">
           <div className="section-title">
-            <h2>Unser Erfolg kommt von ...</h2>
+            <h2>Unser Erfolg kommt von...</h2>
           </div>
 
           <div className="work-process">
