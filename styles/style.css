@@ -54,6 +54,7 @@ This files table contents are outlined below >>>>>
   --brand-link-color: #0d6efd;
   --brand-link-hover-color: #70a329;
   --brand-section-bg: #f7f9fb;
+  /* --brand-section-bg: transparent; */
 
   /* --brand-blue-gradient-1: #2e3a6d;
   --brand-blue-gradient-2: #3c4c90;
@@ -74,6 +75,9 @@ This files table contents are outlined below >>>>>
   --brand-blue-gradient-5: #4b5eb4; */
 
   --box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+
+  --section-separator-display: block;
+  /* --section-separator-display: none; */
 }
 
 html {
@@ -340,7 +344,7 @@ a:focus {
   color: var(--brand-blue);
   -webkit-box-shadow: unset;
   box-shadow: unset;
-  background-color: transparent;
+  background-color: #fff;
   border-color: var(--brand-blue);
 }
 
@@ -521,6 +525,69 @@ Shared CSS
 .shadow {
   -webkit-box-shadow: var(--box-shadow) !important;
   box-shadow: var(--box-shadow) !important;
+}
+
+.hero-banner .btn-primary:hover,
+.hero-banner .btn-primary:focus,
+.navbar .btn-primary:hover,
+.navbar .btn-primary:focus {
+  background-color: transparent;
+}
+
+.form-feedback {
+  font-size: smaller;
+  color: red;
+  padding: 0.25rem 0.2rem 0;
+  font-weight: bold;
+}
+
+/* remove typical Bootstrap look from form-controls */
+.form-control.is-valid:focus,
+.form-control.is-invalid:focus,
+.was-validated .form-control:valid:focus,
+.was-validated .form-control:invalid:focus {
+  box-shadow: none;
+}
+
+.divider {
+  display: var(--section-separator-display);
+  position: relative;
+  margin-top: 90px;
+  height: 1px;
+}
+
+.div-transparent:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    rgb(48, 49, 51),
+    transparent
+  );
+}
+
+.div-arrow-down:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -7px;
+  left: calc(50% - 7px);
+  width: 14px;
+  height: 14px;
+  transform: rotate(45deg);
+  background-color: white;
+  border-bottom: 1px solid rgb(48, 49, 51);
+  border-right: 1px solid rgb(48, 49, 51);
+}
+
+section:nth-child(2n + 2) .div-arrow-down:after {
+  background-color: var(--brand-section-bg);
 }
 
 /*================================================
@@ -4278,7 +4345,7 @@ Pricing Area CSS
 Our Work Process CSS
 =================================================*/
 .work-process-area {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .work-process-area .section-title {
@@ -6229,10 +6296,6 @@ Contact CSS
 
 .contact-area .section-title h2 {
   margin-bottom: 12px;
-}
-
-.contact-form {
-  text-align: center;
 }
 
 .contact-form .contact-title {

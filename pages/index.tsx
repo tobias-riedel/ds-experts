@@ -14,7 +14,9 @@ export default () => {
       <section id="home">
         <MainBanner />
         <About />
+        <div className="divider div-transparent div-arrow-down"></div>
       </section>
+
       <Competencies />
       <References />
       <Team />

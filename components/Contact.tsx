@@ -75,7 +75,7 @@ const Contact = () => {
                   </li>
                 </ul>
 
-                <CompanyMap />
+                <CompanyMap height={320} />
 
                 {!showContactForm && (
                   <div

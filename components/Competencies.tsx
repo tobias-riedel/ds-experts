@@ -1,6 +1,7 @@
+import FsLightbox from "fslightbox-react";
 import Link from "next/link";
 import { useState } from "react";
-import FsLightbox from "fslightbox-react";
+import SectionDivider from "./Common/SectionDivider";
 import JoinUsBackEndDeveloper from "./JoinUs/JoinUsBackEndDeveloper";
 
 const Competencies = () => {
@@ -48,7 +49,7 @@ const Competencies = () => {
         ]}
       />
 
-      <section id="competencies" className="ptb-100">
+      <section id="competencies" className="pt-100">
         <div className="container">
           <div className="section-title">
             <h2>Unsere Kompetenzen</h2>
@@ -176,6 +177,8 @@ const Competencies = () => {
             </div>
           </div>
         </div>
+
+        <SectionDivider />
       </section>
     </>
   );

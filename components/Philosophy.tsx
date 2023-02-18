@@ -1,6 +1,8 @@
+import SectionDivider from "./Common/SectionDivider";
+
 const About = () => {
   return (
-    <section id="philosophy" className="ptb-100">
+    <section id="philosophy" className="pt-100">
       <div className="container">
         <div className="row align-items-center">
           <div className="col-lg-5 ds-hidden-md ds-pr-20">
@@ -62,6 +64,8 @@ const About = () => {
           </div>
         </div>
       </div>
+
+      <SectionDivider />
     </section>
   );
 };

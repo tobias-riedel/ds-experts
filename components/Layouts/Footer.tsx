@@ -1,24 +1,46 @@
 import Link from "next/link";
 import Router from "next/router";
 import { resetCookieConsentValue } from "react-cookie-consent";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const ACCEPT_COOKIE_NAME = "ds-experts-cookie-consent";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const resetCookies = (e) => {
+  const MySwal = withReactContent(Swal);
+  const confirmCookieReset = async (e) => {
     e.preventDefault();
-    const isCookieResetConfirmed = confirm(
-      "Soll die Cookie-Freigabe zurückgesetzt werden? Die Seite wird danach neugeladen."
-    );
 
-    if (!isCookieResetConfirmed) {
-      return;
+    const result = await MySwal.fire({
+      title: "Cookie-Einstellungen zurücksetzen",
+      text: "Soll die Cookie-Freigabe zurückgesetzt werden? Die Seite wird danach neugeladen.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Ja",
+      cancelButtonText: "Abbrechen",
+    });
+
+    console.log("res::", result);
+
+    if (result.isConfirmed) {
+      resetCookieConsentValue(ACCEPT_COOKIE_NAME);
+
+      const reloadDelay = 4000;
+      MySwal.fire({
+        title: "Cookies zurückgesetzt!",
+        text: "Die Seite wird jetzt neugeladen.",
+        icon: "success",
+        timer: reloadDelay,
+        timerProgressBar: true,
+        showConfirmButton: false,
+      });
+
+      setTimeout(() => Router.reload(), reloadDelay);
     }
-
-    resetCookieConsentValue(ACCEPT_COOKIE_NAME);
-    Router.reload();
   };
 
   return (
@@ -38,7 +60,8 @@ const Footer = () => {
                     <Link href="/legal#gdpr">Datenschutzerklärung</Link>
                   </p>
                   <p className="col-lg-5">
-                    <Link href="#" onClick={resetCookies}>
+                    {/* <Link href="#" onClick={resetCookies}> */}
+                    <Link href="#" onClick={confirmCookieReset}>
                       Cookie-Einstellungen
                     </Link>
                     {" & "}
