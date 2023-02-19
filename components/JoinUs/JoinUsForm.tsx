@@ -17,7 +17,6 @@ const alertContent = () => {
   });
 };
 
-// Form initial state
 interface FormItem {
   firstName: string;
   name: string;
@@ -42,13 +41,16 @@ const INITIAL_STATE: FormItem = {
 
 const JoinUsForm = ({ subject }: { subject: string }) => {
   const [agreedToGdpr, setAgreedToGdpr] = useState(false);
-
-  console.log("props::", subject);
+  const [file, setFile] = useState({});
 
   const handleSubmit = async (payload: FormItem) => {
     const url = "/api/join-us";
     try {
-      const response = await axios.post(url, payload);
+      const response = await axios.post(url, payload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       console.log(response);
       alertContent();
     } catch (error) {
@@ -56,9 +58,18 @@ const JoinUsForm = ({ subject }: { subject: string }) => {
     }
   };
 
+  const handleFileUpload = (event) => {
+    const reader = new FileReader();
+    const file = event.target.files[0];
+    reader.onloadend = () => {
+      setFile(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <>
-      <div className="contact-form">
+      <div className="join-us-form">
         <Formik
           initialValues={{ ...INITIAL_STATE }}
           validate={(values: FormItem): Partial<FormItem> => {
@@ -219,6 +230,29 @@ const JoinUsForm = ({ subject }: { subject: string }) => {
                       )}
                     </div>
                   </div>
+                  <div className="col-lg-12 col-md-12">
+                    <div className="form-group">
+                      <span>
+                        Bewerbungsunterlagen hochladen{" "}
+                        <small>
+                          (Optional) | PDF | max.{" "}
+                          {process.env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE} MB{" "}
+                        </small>
+                      </span>
+                      <input
+                        type="file"
+                        id="file"
+                        name="file"
+                        accept="application/pdf"
+                        className="form-control"
+                        onChange={(event) => {
+                          // TODO: validate file size
+                          setFieldValue("file", event.currentTarget.files[0]);
+                          handleFileUpload(event);
+                        }}
+                      />
+                    </div>
+                  </div>
                   <div>
                     <div className="form-check text-start">
                       <input
@@ -246,7 +280,8 @@ const JoinUsForm = ({ subject }: { subject: string }) => {
                     }
                     className="btn btn-primary "
                   >
-                    Absenden
+                    {/* TODO: Show upload percentage for larger files */}
+                    Senden
                   </button>
                 </div>
               </Form>

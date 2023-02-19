@@ -232,7 +232,7 @@ const ContactForm = () => {
                     }
                     className="btn btn-primary "
                   >
-                    Absenden
+                    Senden
                   </button>
                 </div>
               </Form>

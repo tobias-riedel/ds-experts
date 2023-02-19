@@ -1,45 +1,18 @@
 import multer from "multer";
 
-// const upload = multer({
-//   storage: multer.diskStorage({
-//     destination: "./public/uploads",
-//     filename: (req, file, cb) => cb(null, file.originalname),
-//   }),
-// });
-
-// const apiRoute = createRouter({
-//   onError(error, req, res) {
-//     res
-//       .status(501)
-//       .json({ error: `Sorry something Happened! ${error.message}` });
-//   },
-//   onNoMatch(req, res) {
-//     res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
-//   },
-// });
-
-// apiRoute.use(upload.array("theFiles"));
-
-// apiRoute.post((req, res) => {
-//   res.status(200).json({ data: "success" });
-// });
-
-// export default apiRoute;
-
-// export const config = {
-//   api: {
-//     bodyParser: false, // Disallow body parsing, consume as stream
-//   },
-// };
-
 import sgMail from "@sendgrid/mail";
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse, PageConfig } from "next";
 import { InferType, object, string, ValidationError } from "yup";
 import { sanitizeHtml } from "../../utils/mail";
 
 const allowedMethods = ["POST"];
 
 sgMail.setApiKey(process?.env?.SENDGRID_API_KEY);
+
+const JOIN_US_MAX_FILE_SIZE = +(
+  process.env?.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE ?? "8"
+);
+const maxUploadedFileSize = JOIN_US_MAX_FILE_SIZE * 1024 * 1024;
 
 const HONEYPOT_MSG = "Honeypot triggered";
 const to = process?.env?.JOIN_US_MAIL_ADDRESS_FROM;
@@ -58,12 +31,19 @@ const formSchema = object({
 
 type FormValue = InferType<typeof formSchema>;
 
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: "./public/uploads",
-    filename: (req, file, cb) => cb(null, file.originalname),
-  }),
-});
+const upload = multer({ storage: multer.memoryStorage() });
+
+function runMiddleware(req, res, fn) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+
+      return resolve(result);
+    });
+  });
+}
 
 export default async (
   req: NextApiRequest,
@@ -75,15 +55,37 @@ export default async (
       .json({ error: `Method '${req.method}' Not Allowed` });
   }
 
-  const body = typeof req.body === "object" ? req.body : JSON.parse(req.body);
+  try {
+    await runMiddleware(req, res, upload.single("file"));
+  } catch (e) {
+    /* handle error */
+    console.log("Middleware error:", e);
+  }
+
+  let body;
+  try {
+    body = typeof req.body === "object" ? req.body : JSON.parse(req.body);
+  } catch (parseErr) {
+    console.log("Body parse error:", parseErr);
+    return res.status(500).json({ error: parseErr });
+  }
+
   let payload: FormValue;
   try {
     payload = await formSchema.validate(body);
   } catch (validationError: unknown) {
-    console.log("Validation failed::", validationError);
+    console.log("Validation failed:", validationError);
 
     return res.status(400).json({
       error: (validationError as ValidationError).errors,
+    });
+  }
+
+  const { file: uploadedFile }: { file: Express.Multer.File } = req as any;
+
+  if (uploadedFile?.size > maxUploadedFileSize) {
+    return res.status(413).json({
+      error: `Uploaded file is too large. Only ${JOIN_US_MAX_FILE_SIZE} MB is allowed. `,
     });
   }
 
@@ -109,18 +111,31 @@ export default async (
 <b>eMail:</b> ${email} <br /> 
 <b>Betreff:</b> ${subject} <br /> 
 <b>Anfrage:</b> ${formattedText} `,
+      attachments: [
+        {
+          content: Buffer.from(uploadedFile.buffer).toString("base64"),
+          filename: uploadedFile.originalname,
+          type: "application/pdf",
+          disposition: "attachment",
+        },
+      ],
     };
 
-    // TODO: Re-enable after proper upload implementation
-    // const response = await sgMail.send(msg);
-    // console.log(response);
-    res.status(200).json({ msg: "Email sent successfully" });
+    const response = await sgMail.send(msg);
+    console.log(response);
+    return res.status(200).json({ msg: "Email sent successfully" });
   } catch (error) {
     console.error(error);
     if (error.response) {
       console.error(error.response.body);
     }
 
-    res.status(500).json({ msg: "Error processing payload" });
+    return res.status(500).json({ msg: "Error processing payload" });
   }
+};
+
+export const config: PageConfig = {
+  api: {
+    bodyParser: false,
+  },
 };
