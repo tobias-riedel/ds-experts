@@ -1,4 +1,5 @@
 import multer from "multer";
+import path from "path";
 
 import sgMail from "@sendgrid/mail";
 import type { NextApiRequest, NextApiResponse, PageConfig } from "next";
@@ -6,13 +7,14 @@ import { InferType, object, string, ValidationError } from "yup";
 import { sanitizeHtml } from "../../utils/mail";
 
 const allowedMethods = ["POST"];
+const allowedUploadFileMimeTypes = ["application/pdf"];
 
 sgMail.setApiKey(process?.env?.SENDGRID_API_KEY);
 
-const JOIN_US_MAX_FILE_SIZE = +(
+const JoinUsMaxFileSize = +(
   process.env?.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE ?? "8"
 );
-const maxUploadedFileSize = JOIN_US_MAX_FILE_SIZE * 1024 * 1024;
+const maxUploadedFileSize = JoinUsMaxFileSize * 1024 * 1024;
 
 const HONEYPOT_MSG = "Honeypot triggered";
 const to = process?.env?.JOIN_US_MAIL_ADDRESS_FROM;
@@ -31,7 +33,23 @@ const formSchema = object({
 
 type FormValue = InferType<typeof formSchema>;
 
-const upload = multer({ storage: multer.memoryStorage() });
+const uploadFilter = function (
+  _,
+  file: Express.Multer.File,
+  cb: multer.FileFilterCallback
+): void {
+  const acceptFile = allowedUploadFileMimeTypes.includes(file.mimetype);
+
+  cb(null, acceptFile);
+  if (!acceptFile) {
+    throw new Error("Only .pdf files allowed!");
+  }
+};
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  fileFilter: uploadFilter,
+});
 
 function runMiddleware(req, res, fn) {
   return new Promise((resolve, reject) => {
@@ -58,8 +76,8 @@ export default async (
   try {
     await runMiddleware(req, res, upload.single("file"));
   } catch (e) {
-    /* handle error */
     console.log("Middleware error:", e);
+    return res.status(500).json({ error: e.message });
   }
 
   let body;
@@ -85,7 +103,7 @@ export default async (
 
   if (uploadedFile?.size > maxUploadedFileSize) {
     return res.status(413).json({
-      error: `Uploaded file is too large. Only ${JOIN_US_MAX_FILE_SIZE} MB is allowed. `,
+      error: `Uploaded file is too large. Only ${JoinUsMaxFileSize} MB is allowed. `,
     });
   }
 
@@ -100,7 +118,7 @@ export default async (
   try {
     const formattedText = sanitizeHtml(text);
 
-    const msg = {
+    const mail = {
       to,
       from,
       subject: `Kontaktformular ${subject}`,
@@ -121,7 +139,7 @@ export default async (
       ],
     };
 
-    const response = await sgMail.send(msg);
+    const response = await sgMail.send(mail);
     console.log(response);
     return res.status(200).json({ msg: "Email sent successfully" });
   } catch (error) {

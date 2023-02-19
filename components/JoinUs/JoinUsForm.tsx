@@ -126,7 +126,6 @@ const JoinUsForm = ({ subject }: { subject: string }) => {
               }`;
 
             useEffect(() => {
-              console.log("subject changed::", subject);
               setFieldValue("subject", subject);
             }, [subject]);
 
