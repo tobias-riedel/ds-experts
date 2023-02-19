@@ -2,6 +2,7 @@ import axios from "axios";
 import { Field, Form, Formik } from "formik";
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
+import { ProgressBar, Spinner } from "react-bootstrap";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -82,7 +83,7 @@ const JoinUsForm = ({ subject, ...props }: { subject: string }) => {
   const handleSubmit = async (payload: FormItem) => {
     const url = "/api/join-us";
     try {
-      const response = await axios.post(url, payload, {
+      await axios.post(url, payload, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -132,6 +133,7 @@ const JoinUsForm = ({ subject, ...props }: { subject: string }) => {
           ) => {
             await handleSubmit(values);
             setSubmitting(false);
+
             resetForm();
             setAgreedToGdpr(false);
             setFieldValue("file", null);
@@ -314,18 +316,57 @@ const JoinUsForm = ({ subject, ...props }: { subject: string }) => {
                   </div>
                 </div>
 
-                <div className="text-center">
-                  <button
-                    type="submit"
-                    disabled={isSubmitBtnDisabled}
-                    className="btn btn-primary "
+                <div className="row">
+                  <div
+                    className={`text-center ${
+                      isSubmitting ? "col-6" : "col-12"
+                    }`}
                   >
-                    {/* TODO: Show upload percentage for larger files */}
-                    Senden
-                  </button>
+                    <button
+                      type="submit"
+                      disabled={isSubmitBtnDisabled}
+                      className="btn btn-primary "
+                    >
+                      Senden{" "}
+                      {isSubmitting && (
+                        <Spinner
+                          as="span"
+                          size="sm"
+                          role="status"
+                          animation="border"
+                          variant="light"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </button>
+                  </div>
+                  {isSubmitting && (
+                    <div className="col-6">
+                      <ProgressBar
+                        striped
+                        animated
+                        variant="success"
+                        now={100}
+                        label="Formular wird verarbeitet..."
+                      />
 
-                  {0 < progress && progress < 100 && (
-                    <div>Progress: {progress}%</div>
+                      {0 < progress && (
+                        <ProgressBar
+                          now={progress}
+                          animated
+                          label={`Datei-Upload: ${progress}%`}
+                        />
+                      )}
+                      {progress === 100 && (
+                        <ProgressBar
+                          striped
+                          animated
+                          variant="success"
+                          now={100}
+                          label="Verarbeitung wird abgeschlossen..."
+                        />
+                      )}
+                    </div>
                   )}
                 </div>
               </Form>

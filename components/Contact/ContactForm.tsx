@@ -88,7 +88,9 @@ const ContactForm = () => {
             setTimeout(() => {
               handleSubmit(values);
               setSubmitting(false);
+
               resetForm();
+              setAgreedToGdpr(false);
             }, 400);
           }}
         >
@@ -211,7 +213,8 @@ const ContactForm = () => {
                         type="checkbox"
                         className="form-check-input"
                         id="contactAgreement"
-                        onClick={() => setAgreedToGdpr(!agreedToGdpr)}
+                        checked={agreedToGdpr}
+                        onChange={() => setAgreedToGdpr(!agreedToGdpr)}
                       />
                       <label htmlFor="contactAgreement">
                         Ich habe die{" "}
