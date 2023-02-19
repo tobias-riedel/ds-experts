@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Field, Form, Formik } from "formik";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -39,9 +39,45 @@ const INITIAL_STATE: FormItem = {
   text: "",
 };
 
-const JoinUsForm = ({ subject }: { subject: string }) => {
+const JoinUsForm = ({ subject, ...props }: { subject: string }) => {
   const [agreedToGdpr, setAgreedToGdpr] = useState(false);
-  const [file, setFile] = useState({});
+  const [fileMeta, setFileMeta] = useState("");
+  const [fileCtrlClassName, setFileCtrlClassName] = useState("");
+  const [fileSizeError, setFileSizeError] = useState("");
+  const [progress, setProgress] = useState(0);
+
+  const handleFileChange = (
+    event: ChangeEvent<HTMLInputElement>,
+    setFieldValue: (
+      field: string,
+      value: any,
+      shouldValidate?: boolean
+    ) => void,
+    maxFileSizeInMb = "8"
+  ) => {
+    const file = event.currentTarget?.files?.[0];
+    if (!file) {
+      setFileCtrlClassName("");
+      setFileSizeError("");
+      setFileMeta("");
+      return;
+    }
+
+    setFileMeta(event.currentTarget.value);
+
+    const maxFileSizeInBytes = +maxFileSizeInMb * 1024 * 1024;
+    if (file.size > maxFileSizeInBytes) {
+      setFileCtrlClassName("is-invalid");
+      setFileSizeError(
+        `Ausgewählte Datei ist zu groß (max. ${maxFileSizeInMb} MB)`
+      );
+      return;
+    }
+
+    setFileCtrlClassName("is-valid");
+    setFileSizeError("");
+    setFieldValue("file", event.currentTarget.files[0]);
+  };
 
   const handleSubmit = async (payload: FormItem) => {
     const url = "/api/join-us";
@@ -50,23 +86,12 @@ const JoinUsForm = ({ subject }: { subject: string }) => {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+        onUploadProgress: (data) =>
+          setProgress(Math.round((100 * data.loaded) / data.total)),
       });
-      console.log(response);
       alertContent();
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const handleFileUpload = (event) => {
-    const reader = new FileReader();
-    const file = event.target.files[0];
-    reader.onloadend = () => {
-      setFile(reader.result);
-    };
-
-    if (!!file) {
-      reader.readAsDataURL(file);
     }
   };
 
@@ -76,6 +101,7 @@ const JoinUsForm = ({ subject }: { subject: string }) => {
         <Formik
           initialValues={{ ...INITIAL_STATE }}
           validate={(values: FormItem): Partial<FormItem> => {
+            // TODO: Replace validation with YUP schema
             const errors: Partial<FormItem> = {};
             if (!values.firstName6g234.trim()) {
               errors.firstName6g234 = "Pflichtfeld";
@@ -100,12 +126,16 @@ const JoinUsForm = ({ subject }: { subject: string }) => {
             }
             return errors;
           }}
-          onSubmit={(values, { setSubmitting, resetForm }) => {
-            setTimeout(() => {
-              handleSubmit(values);
-              setSubmitting(false);
-              resetForm();
-            }, 400);
+          onSubmit={async (
+            values,
+            { setSubmitting, resetForm, setFieldValue }
+          ) => {
+            await handleSubmit(values);
+            setSubmitting(false);
+            resetForm();
+            setAgreedToGdpr(false);
+            setFieldValue("file", null);
+            setFileMeta("");
           }}
         >
           {({
@@ -125,9 +155,12 @@ const JoinUsForm = ({ subject }: { subject: string }) => {
                   : ""
               }`;
 
-            useEffect(() => {
-              setFieldValue("subject", subject);
-            }, [subject]);
+            const isSubmitBtnDisabled =
+              isSubmitting ||
+              !dirty ||
+              !isValid ||
+              !agreedToGdpr ||
+              !!fileSizeError;
 
             return (
               <Form className="needs-validation">
@@ -238,7 +271,7 @@ const JoinUsForm = ({ subject }: { subject: string }) => {
                         Bewerbungsunterlagen hochladen{" "}
                         <small>
                           (Optional) | PDF | max.{" "}
-                          {process.env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE} MB{" "}
+                          {process.env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE} MB
                         </small>
                       </span>
                       <input
@@ -246,13 +279,19 @@ const JoinUsForm = ({ subject }: { subject: string }) => {
                         id="file"
                         name="file"
                         accept="application/pdf"
-                        className="form-control"
-                        onChange={(event) => {
-                          // TODO: validate file size
-                          setFieldValue("file", event.currentTarget.files[0]);
-                          handleFileUpload(event);
-                        }}
+                        value={fileMeta as unknown as string}
+                        className={`form-control ${fileCtrlClassName}`}
+                        onChange={(evt) =>
+                          handleFileChange(
+                            evt,
+                            setFieldValue,
+                            process.env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE
+                          )
+                        }
                       />
+                      {fileSizeError && (
+                        <div className="form-feedback">{fileSizeError}</div>
+                      )}
                     </div>
                   </div>
                   <div>
@@ -261,7 +300,8 @@ const JoinUsForm = ({ subject }: { subject: string }) => {
                         type="checkbox"
                         className="form-check-input"
                         id="joinUsAgreement"
-                        onClick={() => setAgreedToGdpr(!agreedToGdpr)}
+                        checked={agreedToGdpr}
+                        onChange={() => setAgreedToGdpr(!agreedToGdpr)}
                       />
                       <label htmlFor="joinUsAgreement">
                         Ich habe die{" "}
@@ -277,14 +317,16 @@ const JoinUsForm = ({ subject }: { subject: string }) => {
                 <div className="text-center">
                   <button
                     type="submit"
-                    disabled={
-                      isSubmitting || !dirty || !isValid || !agreedToGdpr
-                    }
+                    disabled={isSubmitBtnDisabled}
                     className="btn btn-primary "
                   >
                     {/* TODO: Show upload percentage for larger files */}
                     Senden
                   </button>
+
+                  {0 < progress && progress < 100 && (
+                    <div>Progress: {progress}%</div>
+                  )}
                 </div>
               </Form>
             );
