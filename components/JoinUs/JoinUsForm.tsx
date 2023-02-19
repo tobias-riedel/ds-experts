@@ -64,7 +64,10 @@ const JoinUsForm = ({ subject }: { subject: string }) => {
     reader.onloadend = () => {
       setFile(reader.result);
     };
-    reader.readAsDataURL(file);
+
+    if (!!file) {
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
