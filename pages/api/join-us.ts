@@ -1,5 +1,4 @@
 import multer from "multer";
-import path from "path";
 
 import sgMail from "@sendgrid/mail";
 import type { NextApiRequest, NextApiResponse, PageConfig } from "next";
@@ -40,9 +39,10 @@ const uploadFilter = function (
 ): void {
   const acceptFile = allowedUploadFileMimeTypes.includes(file.mimetype);
 
-  cb(null, acceptFile);
-  if (!acceptFile) {
-    throw new Error("Only .pdf files allowed!");
+  if (acceptFile) {
+    cb(null, true);
+  } else {
+    return cb(new Error("Only .pdf files allowed!"));
   }
 };
 
@@ -76,8 +76,8 @@ export default async (
   try {
     await runMiddleware(req, res, upload.single("file"));
   } catch (e) {
-    console.log("Middleware error:", e);
-    return res.status(500).json({ error: e.message });
+    console.log("File upload error:", e);
+    return res.status(400).json({ error: (e as Error).message });
   }
 
   let body;
@@ -118,6 +118,17 @@ export default async (
   try {
     const formattedText = sanitizeHtml(text);
 
+    const attachments = uploadedFile
+      ? [
+          {
+            content: Buffer.from(uploadedFile.buffer).toString("base64"),
+            filename: uploadedFile.originalname,
+            type: "application/pdf",
+            disposition: "attachment",
+          },
+        ]
+      : [];
+
     const mail = {
       to,
       from,
@@ -129,14 +140,7 @@ export default async (
 <b>eMail:</b> ${email} <br /> 
 <b>Betreff:</b> ${subject} <br /> 
 <b>Anfrage:</b> ${formattedText} `,
-      attachments: [
-        {
-          content: Buffer.from(uploadedFile.buffer).toString("base64"),
-          filename: uploadedFile.originalname,
-          type: "application/pdf",
-          disposition: "attachment",
-        },
-      ],
+      attachments,
     };
 
     const response = await sgMail.send(mail);
