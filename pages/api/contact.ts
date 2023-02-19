@@ -57,7 +57,7 @@ export default async (
   try {
     const formattedText = sanitizeHtml(text);
 
-    const msg = {
+    const mail = {
       to,
       from,
       subject: `Kontaktformular ${subject}`,
@@ -70,7 +70,7 @@ export default async (
 <b>Anfrage:</b> ${formattedText} `,
     };
 
-    const response = await sgMail.send(msg);
+    const response = await sgMail.send(mail);
     console.log(response);
     res.status(200).json({ msg: "Email sent successfully" });
   } catch (error) {
