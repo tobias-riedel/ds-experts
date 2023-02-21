@@ -25,7 +25,7 @@ const About = () => {
                     Projekt- oder Beratungsleistungen.
                   </p>
 
-                  <h4>Was ist unser Rohstoff?</h4>
+                  <h3>Was ist unser Rohstoff?</h3>
                   <p>
                     Unsere Experten haben den besten Rohstoff, den man sich
                     vorstellen kann:
@@ -47,7 +47,7 @@ const About = () => {
                     dieses Wissen nie versiegt.
                   </p>
 
-                  <h4>Struktur</h4>
+                  <h3>Struktur</h3>
                   <p>
                     Die ds-experts IT-Consulting GmbH zeichnet eine schlanke
                     Struktur aus.
