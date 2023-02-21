@@ -1,7 +1,9 @@
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
-import Link from "next/link";
+import logoImg from "../../public/images/logo-ds-experts.png";
 
 interface NavLinks {
   to: string;
@@ -92,17 +94,19 @@ const Navbar = () => {
         <nav role="navigation" className="navbar navbar-expand-md navbar-light">
           <div className="container-fluid">
             <Link href="/" className="navbar-brand">
-              <img
-                src="/images/logo-ds-experts.png"
+              <Image
+                src={logoImg}
                 className="black-logo logo-ds-experts"
                 title={logoAltText}
-                alt="logo"
+                alt="Firmen-Logo"
+                style={{ height: "auto" }}
               />
-              <img
-                src="/images/logo-ds-experts.png"
+              <Image
+                src={logoImg}
                 className="white-logo logo-ds-experts"
                 title={logoAltText}
-                alt="logo"
+                alt="Firmen-Logo"
+                style={{ height: "auto" }}
               />
             </Link>
 

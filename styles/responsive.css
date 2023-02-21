@@ -1192,7 +1192,7 @@
     font-size: 22px;
   }
   .navbar-area nav .navbar-brand img {
-    max-width: 115px;
+    max-width: 64px;
   }
   .navbar-area nav .navbar-nav .nav-item {
     padding-left: 7px;
@@ -1843,7 +1843,7 @@
     font-size: 14px;
   }
   .navbar-area nav .navbar-brand img {
-    max-width: 32px;
+    max-width: 64px;
   }
   .navbar-area nav .navbar-nav .nav-item {
     padding-left: 10px;

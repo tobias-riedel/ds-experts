@@ -56,7 +56,8 @@ const MainBanner = () => {
             alt="Shape"
             width={5000}
             height={330}
-            style={{ height: "initial" }}
+            style={{ height: "auto" }}
+            loading="eager"
           />
         </div>
       </div>
