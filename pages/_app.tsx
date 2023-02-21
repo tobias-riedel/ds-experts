@@ -27,6 +27,18 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="description"
+          content="ds-experts IT-Consulting GmbH ist Ihr Ansprechpartner für IT-Lösungen im Bereich Software-Entwicklung und -transition."
+        />
+        <meta
+          name="keywords"
+          content="IT, Consulting, Software, Entwicklung, Transition, Ds-experts, Ds-experts IT-Consulting GmbH"
+        />
+        <meta name="author" content="Tobias Riedel" />
+        <meta name="copyright" content="ds-experts" />
+        <meta name="robots" content="index,nofollow" />
+
         <title>
           ds-experts IT-Consulting GmbH - Professional IT-Consulting
         </title>

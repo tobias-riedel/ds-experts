@@ -131,6 +131,7 @@ const Navbar = () => {
                         activeClass="active"
                         className="click"
                         to={link.scrollTo}
+                        href={link.to}
                         spy={true}
                         smooth={true}
                         offset={-50}
