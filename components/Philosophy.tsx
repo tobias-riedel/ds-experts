@@ -1,3 +1,4 @@
+import Image from "next/image";
 import SectionDivider from "./Common/SectionDivider";
 
 const About = () => {
@@ -7,10 +8,12 @@ const About = () => {
         <div className="row align-items-center">
           <div className="col-lg-5 ds-hidden-md ds-pr-20">
             <div className="about-image">
-              <img
+              <Image
                 src="/images/about-img6.jpg"
-                alt="image"
-                className="rounded-10 shadow"
+                alt="Philosophie"
+                className="rounded-10 shadow optimized-image"
+                width={500}
+                height={650}
               />
             </div>
           </div>

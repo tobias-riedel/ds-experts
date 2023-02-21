@@ -1,3 +1,5 @@
+import Image from "next/image";
+import mobileImg from "../public/images/man-with-mobile.png";
 import SectionDivider from "./Common/SectionDivider";
 
 const WorkProcess = () => {
@@ -9,7 +11,7 @@ const WorkProcess = () => {
         </div>
 
         <div className="work-process">
-          <img src="/images/man-with-mobile.png" alt="logo" />
+          <Image src={mobileImg} alt="Smartphone" style={{ height: "auto" }} />
 
           <div className="work-process-list">
             <div className="single-work-process">

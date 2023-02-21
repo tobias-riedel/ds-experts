@@ -590,6 +590,11 @@ section:nth-child(2n + 2) .div-arrow-down:after {
   background-color: var(--brand-section-bg);
 }
 
+.optimized-image {
+  width: 100%;
+  height: 100%;
+}
+
 /*================================================
 Cookie Consent CSS
 =================================================*/

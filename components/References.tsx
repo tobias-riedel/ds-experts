@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Keyboard, Mousewheel, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -149,7 +150,13 @@ const OurWorks = () => {
             return (
               <SwiperSlide key={idx}>
                 <div className="work-card shadow" {...refProps}>
-                  <img src={ref.img} alt="image" />
+                  <Image
+                    src={ref.img}
+                    alt={`Referenzbild zu ${ref.name}`}
+                    width={510}
+                    height={700}
+                    className="optimized-image"
+                  />
 
                   <div className="content text-center">
                     <span>
