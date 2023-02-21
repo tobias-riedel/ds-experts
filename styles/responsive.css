@@ -232,13 +232,6 @@
   .about-content-two {
     padding-left: 0;
   }
-  .featured-services-area {
-    margin-top: -30px;
-    margin-bottom: 0;
-  }
-  .featured-services-area.boxes-style-three {
-    margin-top: -75px;
-  }
   .service-card-one i {
     margin-bottom: 20px;
   }
@@ -249,24 +242,8 @@
     margin-bottom: 30px;
     text-align: center;
   }
-  .featured-services-box {
-    padding: 35px 20px;
-  }
-  .featured-services-box .icon {
-    font-size: 30px;
-  }
-  .featured-services-box h3 {
-    font-size: 19px;
-    margin: 14px 0 12px;
-  }
-  .featured-services-box p {
-    margin-bottom: 15px;
-  }
   .read-more-btn {
     font-size: 14px;
-  }
-  .featured-services-area.boxes-style-two {
-    padding-top: 30px;
   }
   .case-studies-tabs .react-tabs .react-tabs__tab-list {
     padding: 0;
@@ -1267,26 +1244,8 @@
   .banner-image img {
     max-width: 75%;
   }
-  .featured-services-area {
-    margin-top: 0;
-  }
-  .featured-services-area.boxes-style-three {
-    margin-top: -80px;
-  }
-  .featured-services-box {
-    padding: 45px 25px;
-  }
-  .featured-services-box .icon {
-    font-size: 35px;
-  }
-  .featured-services-box h3 {
-    font-size: 20px;
-  }
   .read-more-btn {
     font-size: 14px;
-  }
-  .featured-services-area.boxes-style-two {
-    padding-top: 50px;
   }
   .newsletter h4 {
     margin-bottom: 30px;
@@ -1889,12 +1848,6 @@
   }
   .banner-form {
     margin-left: 0 !important;
-  }
-  .featured-services-box .icon {
-    font-size: 40px;
-  }
-  .featured-services-box h3 {
-    font-size: 22px;
   }
   .section-title h2 {
     font-size: 40px;
