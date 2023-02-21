@@ -8,7 +8,7 @@ const MainBanner = () => {
       <div
         className="hero-banner it-banner overlay bg-fixed"
         style={{
-          backgroundImage: `url(/images/hero-banner14.jpg)`,
+          backgroundImage: `url(/images/hero-banner14.webp)`,
         }}
       >
         <div className="d-table">
@@ -51,7 +51,13 @@ const MainBanner = () => {
         </div>
 
         <div className="oval-shape">
-          <img src="/images/oval-shape.png" alt="Shape" />
+          <Image
+            src="/images/oval-shape.png"
+            alt="Shape"
+            width={5000}
+            height={330}
+            style={{ height: "initial" }}
+          />
         </div>
       </div>
     </>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import SectionDivider from "./Common/SectionDivider";
 
 interface Experts {
@@ -51,11 +52,13 @@ const Team = () => {
                 data-aos-duration="1200"
                 data-aos-delay="100"
               >
-                <img
+                <Image
                   src={`/images/team/${expert.img}`}
                   alt={`Porträt von ${expert.name}`}
                   title={expert.name}
-                  className="rounded-circle shadow"
+                  className="rounded-circle shadow optimized-image"
+                  width={263}
+                  height={261}
                 />
 
                 <div className="team-caption">
