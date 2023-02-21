@@ -1,6 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
-
+import Link from "next/link";
 import callToActionImg from "../public/images/call_to_action.jpg";
 
 const MainBanner = () => {
@@ -42,7 +41,7 @@ const MainBanner = () => {
                       alt="Animate image"
                       width={660}
                       placeholder="blur"
-                      style={{ width: "100%", height: "100%" }}
+                      className=" optimized-image"
                     />
                   </div>
                 </div>

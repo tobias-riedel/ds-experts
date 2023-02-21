@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const About = () => {
@@ -84,10 +85,12 @@ const About = () => {
 
             <div className="col-lg-5 ds-hidden-md">
               <div className="about-image">
-                <img
+                <Image
                   src="/images/about-img5.jpg"
                   alt="image"
-                  className="rounded-10 shadow"
+                  className="rounded-10 shadow optimized-image"
+                  width={500}
+                  height={650}
                 />
               </div>
             </div>
