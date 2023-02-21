@@ -258,82 +258,6 @@
   .case-studies-tabs .react-tabs .react-tabs__tab-list li::before {
     display: none;
   }
-  .col-lg-4:nth-child(1) .single-case-studies,
-  .col-lg-4:nth-child(3) .single-case-studies {
-    margin-top: 0;
-  }
-  .col-lg-4:nth-child(5) .single-case-studies,
-  .col-lg-4:nth-child(8) .single-case-studies,
-  .col-lg-4:nth-child(11) .single-case-studies,
-  .col-lg-4:nth-child(14) .single-case-studies,
-  .col-lg-4:nth-child(17) .single-case-studies {
-    margin-top: 0;
-  }
-  .single-case-studies {
-    min-height: 400px;
-  }
-  .single-case-studies .content span {
-    font-size: 13px;
-  }
-  .single-case-studies .content h3 {
-    font-size: 20px;
-    margin: 8px 0 0;
-  }
-  .single-case-studies .btn-primary {
-    font-size: 13px;
-  }
-  .quotes-area {
-    overflow: hidden;
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
-  .quotes-content p {
-    line-height: 32px;
-    font-size: 19px;
-  }
-  .quotes-content h3 {
-    font-size: 16px;
-    margin-top: 20px;
-  }
-  .quotes-content span {
-    font-size: 13px;
-  }
-  .services-inner {
-    padding-top: 60px;
-    padding-right: 15px;
-    padding-left: 15px;
-  }
-  .services-inner .services-section-title {
-    max-width: unset;
-    padding-right: 0;
-    margin-left: 0;
-  }
-  .services-inner .services-section-title h2 {
-    font-size: 23px;
-  }
-  .services-inner .services-section-title .bar {
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
-  .services-list {
-    padding-top: 60px;
-    padding-bottom: 60px;
-    padding-right: 0;
-  }
-  .single-services .content {
-    bottom: -100px;
-  }
-  .single-services .content .icon {
-    width: 55px;
-    height: 55px;
-    font-size: 20px;
-    line-height: 58px;
-  }
-  .single-services .content h3 {
-    font-size: 19px;
-    margin-top: 20px;
-    margin-bottom: 12px;
-  }
   .feedback-list .quotes-icon {
     width: 60px;
     height: 60px;
@@ -598,6 +522,9 @@
   }
   .about-content .section-title h2 {
     font-size: 19px;
+  }
+  .about-content h3 {
+    font-size: 16px;
   }
   .about-inner-area {
     margin-top: 0;
@@ -968,39 +895,6 @@
     bottom: -7px;
     height: 1px;
   }
-  .single-services .content {
-    bottom: 0;
-  }
-  .single-services .content .icon::before {
-    width: 100%;
-    height: 100%;
-  }
-  .single-services .content p {
-    opacity: 1;
-    visibility: visible;
-  }
-  .single-services .content a {
-    opacity: 1;
-    visibility: visible;
-  }
-  .single-services .content .read-more-btn {
-    color: #ffffff;
-    visibility: visible;
-    opacity: 1;
-  }
-  .quotes-content p::before {
-    width: 80px;
-    height: 50px;
-    left: 0;
-    top: 0;
-  }
-  .single-case-studies .content {
-    padding: 20px;
-  }
-  .single-case-studies .btn {
-    left: 25px;
-    bottom: 25px;
-  }
   .services-details-image .video-box .video-btn {
     width: 50px;
     height: 50px;
@@ -1100,9 +994,6 @@
   }
   .service-card-one.white-bg h3 {
     font-size: 18px;
-  }
-  .single-case-studies .content h3 {
-    font-size: 21px;
   }
   .service-card-one.bg-fcfbfb {
     padding: 20px 15px;
@@ -1268,93 +1159,6 @@
     margin-right: 12px;
     font-size: 14px;
   }
-  .col-lg-4:nth-child(1) .single-case-studies,
-  .col-lg-4:nth-child(3) .single-case-studies {
-    margin-top: 0;
-  }
-  .col-lg-4:nth-child(5) .single-case-studies,
-  .col-lg-4:nth-child(8) .single-case-studies,
-  .col-lg-4:nth-child(11) .single-case-studies,
-  .col-lg-4:nth-child(14) .single-case-studies,
-  .col-lg-4:nth-child(17) .single-case-studies {
-    margin-top: 0;
-  }
-  .single-case-studies {
-    min-height: 400px;
-  }
-  .single-case-studies .content span {
-    font-size: 13px;
-  }
-  .single-case-studies .content h3 {
-    font-size: 20px;
-  }
-  .single-case-studies .btn-primary {
-    font-size: 13px;
-  }
-  .quotes-area {
-    padding-top: 90px;
-    padding-bottom: 60px;
-  }
-  .quotes-content p {
-    margin: 0 auto;
-    max-width: 580px;
-    line-height: initial;
-    font-size: 20px;
-  }
-  .quotes-content p::before {
-    width: 100px;
-    height: 100px;
-    background-size: contain;
-    left: 0;
-    top: 0;
-  }
-  .quotes-content h3 {
-    font-size: 17px;
-    margin-bottom: 5px;
-    margin-top: 25px;
-  }
-  .quotes-content span {
-    font-size: 13px;
-  }
-  .services-inner {
-    padding-top: 90px;
-    padding-left: 15px;
-    padding-right: 15px;
-    text-align: center;
-  }
-  .services-inner .services-section-title {
-    max-width: unset;
-    padding-right: 0;
-    margin-left: 0;
-  }
-  .services-inner .services-section-title h2 {
-    font-size: 27px;
-  }
-  .services-inner .services-section-title h2 {
-    text-align: left;
-  }
-  .services-inner .services-section-title p {
-    text-align: left;
-  }
-  .services-list {
-    padding-top: 90px;
-    padding-bottom: 90px;
-    padding-right: 0;
-  }
-  .single-services .content {
-    bottom: -135px;
-  }
-  .single-services .content .icon {
-    width: 60px;
-    height: 60px;
-    font-size: 25px;
-    line-height: 60px;
-  }
-  .single-services .content .content h3 {
-    font-size: 20px;
-    margin-top: 20px;
-    margin-bottom: 15px;
-  }
   .client-image-box img:nth-child(1) {
     display: none;
   }
@@ -1500,6 +1304,9 @@
   }
   .about-content .section-title h2 {
     font-size: 20px;
+  }
+  .about-content h3 {
+    font-size: 17px;
   }
   .about-inner-area {
     margin-top: 10px;
@@ -1724,26 +1531,6 @@
   .main-banner.startup-agency .main-banner-content h1 {
     font-size: 40px;
   }
-  .single-services .content {
-    bottom: 0;
-  }
-  .single-services .content .icon::before {
-    width: 100%;
-    height: 100%;
-  }
-  .single-services .content p {
-    opacity: 1;
-    visibility: visible;
-  }
-  .single-services .content a {
-    opacity: 1;
-    visibility: visible;
-  }
-  .single-services .content .read-more-btn {
-    color: #ffffff;
-    visibility: visible;
-    opacity: 1;
-  }
   .portfolio-details .pr_0 {
     padding-right: 0;
   }
@@ -1855,48 +1642,8 @@
   .tab .tabs li a {
     font-size: 15px;
   }
-  .single-case-studies .content h3 {
-    font-size: 22px;
-  }
-  .quotes-content p {
-    margin: 0 auto;
-    max-width: 710px;
-    line-height: initial;
-    font-size: 24px;
-  }
   .newsletter h4 {
     font-size: 30px;
-  }
-  .services-inner {
-    padding-right: 15px;
-    padding-left: 15px;
-  }
-  .services-inner .services-section-title {
-    max-width: unset;
-    padding-right: 0;
-    margin-left: 0;
-  }
-  .services-inner .services-section-title h2 {
-    font-size: 30px;
-  }
-  .services-inner img {
-    width: 200px;
-  }
-  .services-list {
-    padding-right: 15px;
-  }
-  .single-services .content {
-    bottom: -170px;
-    padding: 20px 15px 35px;
-  }
-  .single-services .content .icon {
-    width: 60px;
-    height: 60px;
-    font-size: 25px;
-    line-height: 60px;
-  }
-  .single-services .content h3 {
-    font-size: 22px;
   }
   .single-portfolio .portfolio-content h3 {
     font-size: 19px;
@@ -1962,6 +1709,9 @@
   .about-content .section-title h2 {
     font-size: 22px;
   }
+  .about-content h3 {
+    font-size: 19px;
+  }
   .portfolio-details .offset-md-3 {
     margin-left: 0;
   }
@@ -1994,9 +1744,6 @@
   }
   .service-card-one h3 {
     font-size: 20px;
-  }
-  .single-case-studies {
-    min-height: 400px;
   }
   .team-card .team-caption h3 {
     font-size: 20px;
@@ -2097,14 +1844,6 @@
   }
   .main-banner.startup-agency .main-banner-content h1 {
     font-size: 36px;
-  }
-  .quotes-content p::before {
-    content: "";
-    width: 140px;
-    height: 80px;
-    left: 0;
-    background-size: contain;
-    top: 0;
   }
   .faq-accordion .accordion .accordion__item .accordion__button {
     font-size: 16px;
