@@ -40,6 +40,7 @@ const MainBanner = () => {
                       src={callToActionImg}
                       alt="Animate image"
                       width={660}
+                      height={440}
                       placeholder="blur"
                       className=" optimized-image"
                     />
