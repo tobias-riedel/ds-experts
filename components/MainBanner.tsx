@@ -57,7 +57,7 @@ const MainBanner = () => {
             width={5000}
             height={330}
             style={{ height: "auto" }}
-            loading="eager"
+            priority={true}
           />
         </div>
       </div>
