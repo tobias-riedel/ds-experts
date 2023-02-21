@@ -345,18 +345,6 @@ $transition: 0.5s;
     }
   }
 
-  .feedback-list {
-    .quotes-icon {
-      width: 60px;
-      height: 60px;
-      margin-bottom: 30px;
-      line-height: 60px;
-
-      img {
-        width: 30px;
-      }
-    }
-  }
   .single-feedback {
     p {
       font-size: 15px;
@@ -369,11 +357,6 @@ $transition: 0.5s;
     }
     span {
       font-size: $font-size;
-    }
-  }
-  .client-image-box {
-    img {
-      display: none;
     }
   }
 
@@ -395,36 +378,6 @@ $transition: 0.5s;
         width: 155px;
         margin-top: 15px;
       }
-    }
-  }
-
-  .single-portfolio {
-    .portfolio-content {
-      margin: 10px;
-
-      h3 {
-        font-size: 19px;
-      }
-    }
-    img {
-      width: 100%;
-    }
-  }
-
-  .services-details-desc {
-    margin-top: 30px;
-
-    h3 {
-      font-size: 19px;
-      margin-bottom: 15px;
-    }
-  }
-  .services-details-info {
-    margin-top: 30px;
-
-    h3 {
-      font-size: 19px;
-      margin-bottom: 15px;
     }
   }
 
@@ -717,28 +670,6 @@ $transition: 0.5s;
     }
   }
 
-  .portfolio-details-image {
-    margin-bottom: 30px;
-
-    img {
-      width: 100%;
-    }
-  }
-  .portfolio-desc {
-    margin-top: 0;
-    h1,
-    h2 {
-      font-size: 22px;
-    }
-    h3,
-    h4 {
-      font-size: 20px;
-    }
-
-    &.style-2 {
-      margin-top: 30px;
-    }
-  }
   .portfolio-information {
     margin-top: 30px;
 
@@ -1072,10 +1003,6 @@ $transition: 0.5s;
       margin-bottom: 30px;
     }
   }
-  .feature-list {
-    margin-bottom: 20px;
-    font-size: 14px;
-  }
   .right-image {
     margin-top: 30px;
   }
@@ -1200,16 +1127,6 @@ $transition: 0.5s;
             height: 1px;
           }
         }
-      }
-    }
-  }
-
-  .services-details-image {
-    .video-box {
-      .video-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 30px;
       }
     }
   }
@@ -1573,47 +1490,6 @@ $transition: 0.5s;
     }
   }
 
-  .client-image-box {
-    img {
-      &:nth-child(1) {
-        display: none;
-      }
-      &:nth-child(2) {
-        left: 0;
-        top: 0;
-      }
-      &:nth-child(3) {
-        display: none;
-      }
-      &:nth-child(4) {
-        display: none;
-      }
-      &:nth-child(5) {
-        right: 0;
-        top: 0;
-      }
-      &:nth-child(6) {
-        bottom: 0;
-        left: 0;
-      }
-      &:nth-child(7) {
-        display: none;
-      }
-      &:nth-child(8) {
-        right: 0;
-        bottom: 0;
-      }
-    }
-  }
-
-  .single-portfolio {
-    .portfolio-content {
-      h3 {
-        font-size: 20px;
-      }
-    }
-  }
-
   .team-area {
     padding-bottom: 60px;
   }
@@ -1804,31 +1680,6 @@ $transition: 0.5s;
   }
 
   .portfolio-information {
-    margin-top: 30px;
-
-    h3 {
-      font-size: 20px;
-    }
-    ul {
-      li {
-        font-size: 14px;
-
-        span {
-          font-size: 14px;
-        }
-      }
-    }
-  }
-
-  .services-details-desc {
-    margin-top: 30px;
-
-    h3 {
-      font-size: 20px;
-      margin-bottom: 15px;
-    }
-  }
-  .services-details-info {
     margin-top: 30px;
 
     h3 {
@@ -2167,22 +2018,6 @@ $transition: 0.5s;
       }
     }
   }
-
-  .portfolio-desc {
-    margin-top: 0;
-    h1,
-    h2 {
-      font-size: 25px;
-    }
-    h3,
-    h4 {
-      font-size: 22px;
-    }
-
-    &.style-2 {
-      margin-top: 30px;
-    }
-  }
 }
 
 /* Min width 992px to Max width 1199px */
@@ -2297,14 +2132,6 @@ $transition: 0.5s;
   .newsletter {
     h4 {
       font-size: 30px;
-    }
-  }
-
-  .single-portfolio {
-    .portfolio-content {
-      h3 {
-        font-size: 19px;
-      }
     }
   }
 
@@ -2432,31 +2259,8 @@ $transition: 0.5s;
       margin-left: 0;
     }
   }
-  .portfolio-details-image {
-    img {
-      width: 100%;
-    }
-  }
 
   .portfolio-information {
-    h3 {
-      font-size: 22px;
-    }
-    ul {
-      li {
-        span {
-          font-size: 15px;
-        }
-      }
-    }
-  }
-
-  .services-details-desc {
-    h3 {
-      font-size: 22px;
-    }
-  }
-  .services-details-info {
     h3 {
       font-size: 22px;
     }
@@ -2540,15 +2344,6 @@ $transition: 0.5s;
       &.pl-50 {
         padding-left: 0;
       }
-    }
-  }
-
-  .feature-list {
-    padding: 13px 10px 13px 40px;
-    font-size: 13px;
-
-    i {
-      left: 12px;
     }
   }
 

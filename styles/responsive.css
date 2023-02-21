@@ -258,15 +258,6 @@
   .case-studies-tabs .react-tabs .react-tabs__tab-list li::before {
     display: none;
   }
-  .feedback-list .quotes-icon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 30px;
-    line-height: 60px;
-  }
-  .feedback-list .quotes-icon img {
-    width: 30px;
-  }
   .single-feedback p {
     font-size: 15px;
   }
@@ -278,9 +269,6 @@
   }
   .single-feedback span {
     font-size: 14px;
-  }
-  .client-image-box img {
-    display: none;
   }
   .newsletter h4 {
     font-size: 23px;
@@ -297,29 +285,6 @@
     height: 50px;
     width: 155px;
     margin-top: 15px;
-  }
-  .single-portfolio .portfolio-content {
-    margin: 10px;
-  }
-  .single-portfolio .portfolio-content h3 {
-    font-size: 19px;
-  }
-  .single-portfolio img {
-    width: 100%;
-  }
-  .services-details-desc {
-    margin-top: 30px;
-  }
-  .services-details-desc h3 {
-    font-size: 19px;
-    margin-bottom: 15px;
-  }
-  .services-details-info {
-    margin-top: 30px;
-  }
-  .services-details-info h3 {
-    font-size: 19px;
-    margin-bottom: 15px;
   }
   .team-area {
     padding-bottom: 30px;
@@ -534,26 +499,6 @@
   }
   .about-inner-area .about-text h3 {
     font-size: 19px;
-  }
-  .portfolio-details-image {
-    margin-bottom: 30px;
-  }
-  .portfolio-details-image img {
-    width: 100%;
-  }
-  .portfolio-desc {
-    margin-top: 0;
-  }
-  .portfolio-desc h1,
-  .portfolio-desc h2 {
-    font-size: 22px;
-  }
-  .portfolio-desc h3,
-  .portfolio-desc h4 {
-    font-size: 20px;
-  }
-  .portfolio-desc.style-2 {
-    margin-top: 30px;
   }
   .portfolio-information {
     margin-top: 30px;
@@ -807,10 +752,6 @@
   .service-style-two .service-left-img {
     margin-bottom: 30px;
   }
-  .feature-list {
-    margin-bottom: 20px;
-    font-size: 14px;
-  }
   .right-image {
     margin-top: 30px;
   }
@@ -894,11 +835,6 @@
   .case-studies-tabs .react-tabs .react-tabs__tab-list li::before {
     bottom: -7px;
     height: 1px;
-  }
-  .services-details-image .video-box .video-btn {
-    width: 50px;
-    height: 50px;
-    font-size: 30px;
   }
   .service-details-info .single-info-box {
     -ms-flex: 0 0 100%;
@@ -1159,37 +1095,6 @@
     margin-right: 12px;
     font-size: 14px;
   }
-  .client-image-box img:nth-child(1) {
-    display: none;
-  }
-  .client-image-box img:nth-child(2) {
-    left: 0;
-    top: 0;
-  }
-  .client-image-box img:nth-child(3) {
-    display: none;
-  }
-  .client-image-box img:nth-child(4) {
-    display: none;
-  }
-  .client-image-box img:nth-child(5) {
-    right: 0;
-    top: 0;
-  }
-  .client-image-box img:nth-child(6) {
-    bottom: 0;
-    left: 0;
-  }
-  .client-image-box img:nth-child(7) {
-    display: none;
-  }
-  .client-image-box img:nth-child(8) {
-    right: 0;
-    bottom: 0;
-  }
-  .single-portfolio .portfolio-content h3 {
-    font-size: 20px;
-  }
   .team-area {
     padding-bottom: 60px;
   }
@@ -1327,25 +1232,6 @@
     font-size: 14px;
   }
   .portfolio-information ul li span {
-    font-size: 14px;
-  }
-  .services-details-desc {
-    margin-top: 30px;
-  }
-  .services-details-desc h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
-  }
-  .services-details-info {
-    margin-top: 30px;
-  }
-  .services-details-info h3 {
-    font-size: 20px;
-  }
-  .services-details-info ul li {
-    font-size: 14px;
-  }
-  .services-details-info ul li span {
     font-size: 14px;
   }
   .pagination-area {
@@ -1561,20 +1447,6 @@
   .video-studio.center .video-box .video-btn {
     margin-top: 0;
   }
-  .portfolio-desc {
-    margin-top: 0;
-  }
-  .portfolio-desc h1,
-  .portfolio-desc h2 {
-    font-size: 25px;
-  }
-  .portfolio-desc h3,
-  .portfolio-desc h4 {
-    font-size: 22px;
-  }
-  .portfolio-desc.style-2 {
-    margin-top: 30px;
-  }
 }
 
 /* Min width 992px to Max width 1199px */
@@ -1645,9 +1517,6 @@
   .newsletter h4 {
     font-size: 30px;
   }
-  .single-portfolio .portfolio-content h3 {
-    font-size: 19px;
-  }
   .cta-content h3 {
     font-size: 30px;
   }
@@ -1715,22 +1584,10 @@
   .portfolio-details .offset-md-3 {
     margin-left: 0;
   }
-  .portfolio-details-image img {
-    width: 100%;
-  }
   .portfolio-information h3 {
     font-size: 22px;
   }
   .portfolio-information ul li span {
-    font-size: 15px;
-  }
-  .services-details-desc h3 {
-    font-size: 22px;
-  }
-  .services-details-info h3 {
-    font-size: 22px;
-  }
-  .services-details-info ul li span {
     font-size: 15px;
   }
   .single-footer-widget h3 {
@@ -1777,13 +1634,6 @@
   }
   .service-style-two .service-info.pl-50 {
     padding-left: 0;
-  }
-  .feature-list {
-    padding: 13px 10px 13px 40px;
-    font-size: 13px;
-  }
-  .feature-list i {
-    left: 12px;
   }
   .service-style-two .service-info .title {
     font-size: 34px;
