@@ -28,21 +28,22 @@ const Navbar = () => {
 
   const [menu, setMenu] = useState(true);
   const [isHomeRoute, setIsHomeRoute] = useState(false);
+  const [navbarSticky, setNavbarSticky] = useState("");
 
   const toggleNavbar = () => {
     setMenu(!menu);
   };
 
   // Make navbar sticky on scrolling down
+  const toggleNavbarStickiness = (): void => {
+    setNavbarSticky(window.scrollY > navbarHeight ? "is-sticky" : "");
+  };
+
   useEffect(() => {
-    const elementId = document.getElementById("navbar");
-    document.addEventListener("scroll", () => {
-      if (window.scrollY > navbarHeight) {
-        elementId.classList.add("is-sticky");
-      } else {
-        elementId.classList.remove("is-sticky");
-      }
-    });
+    window.addEventListener("scroll", toggleNavbarStickiness);
+    return () => {
+      window.removeEventListener("scroll", toggleNavbarStickiness);
+    };
   }, []);
 
   // Hide navbar on scrolling down and show on scrolling up for mobile devices
@@ -51,7 +52,7 @@ const Navbar = () => {
     const [prevOffset, setPrevOffset] = useState(0);
 
     const toggleScrollDirection = () => {
-      let scrollY = window.scrollY;
+      const scrollY = window.scrollY;
       if (scrollY > prevOffset && scrollY > scrollThreshold) {
         setScrollDirection("down");
       } else if (scrollY < prevOffset && scrollY > scrollThreshold) {
@@ -90,7 +91,7 @@ const Navbar = () => {
         menu ? "collapse-menu--visible" : ""
       }`}
     >
-      <div id="navbar" className="navbar-area navbar-style-2">
+      <div id="navbar" className={`navbar-area navbar-style-2 ${navbarSticky}`}>
         <nav role="navigation" className="navbar navbar-expand-md navbar-light">
           <div className="container-fluid">
             <Link href="/" className="navbar-brand">
