@@ -45,9 +45,7 @@ This files table contents are outlined below >>>>>
   --brand-blue: #2e3a6d;
   --brand-white: #fdfdfd;
   --brand-grey: #d1c9ca;
-  --brand-accent-1: coral;
-  --brand-accent-1-1: orange;
-  --brand-accent-2: #a3d65c;
+  --brand-accent-1: #2e3a6d;
   --brand-light-blue: #eaf3ff;
 
   --brand-link-color: #024bb6;
@@ -524,6 +522,7 @@ Shared CSS
 .links--underlined a,
 a.link--underlined {
   text-decoration: underline;
+  font-weight: bold;
 }
 
 .links--underlined a:hover,
@@ -619,7 +618,8 @@ Cookie Consent CSS
 }
 
 .CookieConsent a {
-  color: var(--brand-accent-1-1);
+  color: var(--brand-white);
+  text-decoration: underline;
 }
 
 .CookieConsent a:hover {
@@ -1229,15 +1229,13 @@ Main Banner CSS
 }
 
 .hero-banner .main-banner-content span {
-  color: #ff2c9c;
+  color: var(--brand-white);
+  font-style: italic;
+  font-size: 38px;
 }
 
 .hero-banner .main-banner-content h1 {
   color: var(--brand-white);
-  color: var(--brand-grey);
-  color: var(--brand-blue-gradient-5);
-  color: var(--brand-accent-1-1);
-  color: var(--brand-accent-1);
   font-size: 5rem;
   text-transform: none;
 }
@@ -1933,7 +1931,7 @@ About CSS
 
 .about-content-two .about-text .resource {
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 
 .about-content-two .about-text:last-child {
@@ -2237,11 +2235,14 @@ Case Studies CSS
 
 .work-card .content {
   position: absolute;
+  display: grid;
+  place-items: center;
+  height: 100%;
   bottom: 0;
   left: 0;
   right: 0;
   width: 100%;
-  padding: 30px;
+  padding: 0.5rem;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   z-index: 5;
@@ -2249,29 +2250,21 @@ Case Studies CSS
 
 .work-card .content span {
   display: block;
-  margin-bottom: 10px;
-}
-
-.work-card .content span a {
-  color: #c6c9d8;
-  font-weight: 600;
-}
-
-.work-card .content h3 {
-  font-size: 24px;
-  line-height: 1.4;
-}
-
-.work-card .content .custom-btn {
-  margin-top: 20px;
 }
 
 .work-card .content a {
-  color: #ffffff;
+  color: var(--brand-white);
+  background-color: #00000080;
+  border-radius: 16px;
+  padding: 0.25rem 1rem;
+  margin: 0.125rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  display: inline-block;
 }
 
-.work-card:hover .content {
-  bottom: 20px;
+.work-card:hover .content a {
+  background-color: initial;
 }
 
 .custom-btn {
@@ -2422,6 +2415,7 @@ Services CSS
 
 .service-card-one h3 a {
   color: #18181b;
+  pointer-events: none;
 }
 
 .service-card-one h3 a:hover {
@@ -4423,6 +4417,7 @@ blockquote {
   position: relative;
   margin: 20px 0;
   font-size: 1.1rem;
+  border-radius: 8px;
 }
 
 blockquote::before {
@@ -6194,7 +6189,7 @@ Footer CSS
 
 .copyright-area p a {
   display: inline-block;
-  color: var(--brand-accent-1-1);
+  color: var(--brand-white);
 }
 
 .footer-dark {

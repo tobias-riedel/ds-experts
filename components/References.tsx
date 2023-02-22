@@ -160,18 +160,15 @@ const OurWorks = () => {
 
                   <div className="content text-center">
                     <span>
-                      <Link href="/">{ref.name}</Link>
-                      <br />
-                      <Link href="/">({ref.location})</Link>
+                      <div>
+                        <Link href="/">{ref.name}</Link>
+                      </div>
+                      <div>
+                        <Link href="/">
+                          <small>({ref.location})</small>
+                        </Link>
+                      </div>
                     </span>
-
-                    <ul>
-                      {ref.tasks.map((task, taskIdx) => (
-                        <li key={taskIdx}>
-                          <Link href="/">{task}</Link>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
                 </div>
               </SwiperSlide>

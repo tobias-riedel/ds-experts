@@ -17,15 +17,15 @@ const MainBanner = () => {
               <div className="row align-items-center">
                 <div className="col-lg-6">
                   <div className="main-banner-content">
-                    <h1>ds-experts</h1>
+                    {/* <h1>ds-experts</h1> */}
 
                     <p>
-                      Dein <span className="accent">Traumjob</span> ist nur ein
-                      paar Klicks entfernt
+                      Dein <span>Traumjob</span> ist nur ein paar Klicks
+                      entfernt
                     </p>
 
-                    <Link href="/#contact" className="btn btn-primary">
-                      MEHR ÜBER UNS
+                    <Link href="/#join-us" className="btn btn-primary">
+                      DEIN TRAUMJOB
                     </Link>
                   </div>
                 </div>

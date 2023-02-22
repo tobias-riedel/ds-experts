@@ -26,7 +26,7 @@ const Contact = () => {
             <div className={showContactForm ? "col-lg-6" : ""}>
               <h3 className="text-center">Hier kannst Du uns finden</h3>
               <div className="service-left-img">
-                <ul className="list-unstyled">
+                <ul className="list-unstyled links--underlined">
                   <li>
                     <i className={"fas fa-map-marker-alt " + styles.icon}></i>
                     &nbsp;

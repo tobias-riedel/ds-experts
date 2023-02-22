@@ -17,12 +17,12 @@ export default () => {
         <div className="divider div-transparent div-arrow-down"></div>
       </section>
 
-      <Competencies />
-      <References />
       <Team />
       <Philosophy />
-      <JoinUs />
       <WorkProcess />
+      <JoinUs />
+      <Competencies />
+      <References />
       <Contact />
     </>
   );
