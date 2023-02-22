@@ -368,7 +368,7 @@ const JoinUsForm = ({ subject, ...props }: { subject: string }) => {
                           animated
                           variant="success"
                           now={100}
-                          label="Verarbeitung wird abgeschlossen..."
+                          label="Upload wird verifiziert..."
                         />
                       )}
                     </div>

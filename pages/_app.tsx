@@ -33,11 +33,11 @@ function MyApp({ Component, pageProps }) {
         />
         <meta
           name="keywords"
-          content="IT, Consulting, Software, Entwicklung, Transition, Ds-experts, Ds-experts IT-Consulting GmbH"
+          content="IT, Consulting, Software, Entwicklung, Transition, ds-experts, ds-experts IT-Consulting GmbH"
         />
         <meta name="author" content="Tobias Riedel" />
         <meta name="copyright" content="ds-experts" />
-        <meta name="robots" content="index,nofollow" />
+        <meta name="robots" content="index,follow" />
 
         <title>
           ds-experts IT-Consulting GmbH - Professional IT-Consulting

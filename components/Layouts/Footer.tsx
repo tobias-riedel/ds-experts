@@ -18,7 +18,7 @@ const Footer = () => {
       text: "Soll die Cookie-Freigabe zurückgesetzt werden? Die Seite wird danach neugeladen.",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#1a6d2d",
       cancelButtonColor: "#d33",
       confirmButtonText: "Ja",
       cancelButtonText: "Abbrechen",

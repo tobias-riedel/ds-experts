@@ -726,6 +726,9 @@
   .hero-slider .swiper-button-next {
     display: none;
   }
+  .hero-banner .main-banner-content p span {
+    font-size: 19px;
+  }
   .hero-slider .main-banner-content p {
     font-size: 15px;
   }
@@ -1045,6 +1048,9 @@
   .main-banner-content h1 {
     font-size: 36px;
     margin: 12px 0 15px;
+  }
+  .hero-banner .main-banner-content p span {
+    font-size: 22px;
   }
   .main-banner-content p {
     max-width: 570px;
@@ -1658,6 +1664,11 @@
     font-size: 14px;
     padding: 12px 25px;
   }
+
+  .hero-banner .main-banner-content p span {
+    font-size: 20px;
+  }
+
   .hero-banner .main-banner-content p {
     margin-bottom: 15px;
     font-size: 16px;

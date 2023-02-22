@@ -14,6 +14,11 @@ const experts: Experts[] = [
     role: "Senior Projektleiter",
   },
   {
+    img: "Madelaine-Fröhlich.png",
+    name: "Madelaine Fröhlich",
+    role: "Backoffice",
+  },
+  {
     img: "Michael-Heit.png",
     name: "Michael Heit",
     role: "Projektleiter",
@@ -27,11 +32,6 @@ const experts: Experts[] = [
     img: "Tobias-Riedel.png",
     name: "Tobias Riedel",
     role: "Software Developer",
-  },
-  {
-    img: "Madelaine-Fröhlich.png",
-    name: "Madelaine Fröhlich",
-    role: "Backoffice",
   },
 ];
 

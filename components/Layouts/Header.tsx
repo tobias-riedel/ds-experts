@@ -13,10 +13,10 @@ interface NavLinks {
 
 const navLinks: NavLinks[] = [
   { to: "/", scrollTo: "home", name: "Home" },
-  { to: "/#competencies", scrollTo: "competencies", name: "Kompetenzen" },
-  { to: "/#references", scrollTo: "references", name: "Referenzen" },
   { to: "/#team", scrollTo: "team", name: "Team" },
   { to: "/#philosophy", scrollTo: "philosophy", name: "Philosophie" },
+  { to: "/#competencies", scrollTo: "competencies", name: "Kompetenzen" },
+  { to: "/#references", scrollTo: "references", name: "Referenzen" },
   { to: "/#contact", scrollTo: "contact", name: "Kontakt" },
 ];
 
@@ -155,7 +155,7 @@ const Navbar = () => {
 
               <div>
                 <Link href="/#join-us" className="btn btn-primary">
-                  Lern uns kennen
+                  Jetzt bewerben
                 </Link>
               </div>
             </div>

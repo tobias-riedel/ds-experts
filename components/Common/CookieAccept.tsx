@@ -8,16 +8,20 @@ const CookieAccept = () => {
     <CookieConsent
       enableDeclineButton
       flipButtons
+      setDeclineCookie={false}
       location="bottom"
-      buttonText="Alle akzeptieren"
-      declineButtonText="Alle ablehnen"
+      buttonText="Akzeptieren"
+      declineButtonText="Ablehnen"
       cookieName={ACCEPT_COOKIE_NAME}
       buttonStyle={{
-        color: "#000",
+        color: "#fff",
         fontSize: "1rem",
+        backgroundColor: "#1a6d2d",
       }}
       declineButtonStyle={{
+        color: "#fff",
         margin: "1rem 2rem 1rem 0",
+        backgroundColor: "#d33",
       }}
       expires={450}
     >
