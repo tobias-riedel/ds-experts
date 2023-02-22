@@ -269,13 +269,13 @@ const JoinUsForm = ({ subject, ...props }: { subject: string }) => {
                   </div>
                   <div className="col-lg-12 col-md-12">
                     <div className="form-group">
-                      <span>
+                      <label htmlFor="file">
                         Bewerbungsunterlagen hochladen{" "}
                         <small>
                           (Optional) | PDF | max.{" "}
                           {process.env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE} MB
                         </small>
-                      </span>
+                      </label>
                       <input
                         type="file"
                         id="file"
@@ -307,7 +307,12 @@ const JoinUsForm = ({ subject, ...props }: { subject: string }) => {
                       />
                       <label htmlFor="joinUsAgreement">
                         Ich habe die{" "}
-                        <Link href="/legal#gdpr" target="_blank" rel="noopener">
+                        <Link
+                          href="/legal#gdpr"
+                          target="_blank"
+                          rel="noopener"
+                          className="link--underlined"
+                        >
                           Datenschutzerklärung
                         </Link>{" "}
                         gelesen und akzeptiere diese hiermit.

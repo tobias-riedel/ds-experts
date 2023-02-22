@@ -55,7 +55,7 @@ const Footer = () => {
               </p>
 
               <div className="col-lg-7">
-                <div className="row">
+                <div className="row links--underlined">
                   <p className="col-lg-4">
                     <Link href="/legal#gdpr">Datenschutzerklärung</Link>
                   </p>

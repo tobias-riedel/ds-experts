@@ -8,11 +8,13 @@ const Legal = () => {
     <>
       <PageBanner pageTitle="Impressum" BGImage="/images/page-banner1.jpg" />
 
-      <Imprint />
+      <div className="links--underlined">
+        <Imprint />
 
-      <CookiesPolicy />
+        <CookiesPolicy />
 
-      <Gdpr />
+        <Gdpr />
+      </div>
     </>
   );
 };

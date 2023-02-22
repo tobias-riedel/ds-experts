@@ -218,7 +218,12 @@ const ContactForm = () => {
                       />
                       <label htmlFor="contactAgreement">
                         Ich habe die{" "}
-                        <Link href="/legal#gdpr" target="_blank" rel="noopener">
+                        <Link
+                          href="/legal#gdpr"
+                          target="_blank"
+                          rel="noopener"
+                          className="link--underlined"
+                        >
                           Datenschutzerklärung
                         </Link>{" "}
                         gelesen und akzeptiere diese hiermit.

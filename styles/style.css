@@ -241,7 +241,6 @@ a {
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   text-decoration: none;
-  text-decoration: underline;
   transition: all 0.5s ease;
   color: var(--brand-link-color);
 }
@@ -522,6 +521,17 @@ label {
 /*================================================
 Shared CSS
 =================================================*/
+.links--underlined a,
+a.link--underlined {
+  text-decoration: underline;
+}
+
+.links--underlined a:hover,
+.links--underlined a:focus,
+a.link--underlined:hover,
+a.link--underlined:focus {
+  text-decoration: none;
+}
 
 .shadow {
   -webkit-box-shadow: var(--box-shadow) !important;
