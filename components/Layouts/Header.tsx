@@ -85,12 +85,11 @@ const Navbar = () => {
   const logoAltText = "ds-experts IT-Consulting GmbH";
 
   return (
-    // <header
-    //   className={`scroll-${scrollDirection || "up"} ${
-    //     menu ? "collapse-menu--visible" : ""
-    //   }`}
-    // >
-    <header className={`scroll-up ${menu ? "collapse-menu--visible" : ""}`}>
+    <header
+      className={`scroll-${scrollDirection || "up"} ${
+        menu ? "collapse-menu--visible" : ""
+      }`}
+    >
       <div id="navbar" className="navbar-area navbar-style-2">
         <nav role="navigation" className="navbar navbar-expand-md navbar-light">
           <div className="container-fluid">
