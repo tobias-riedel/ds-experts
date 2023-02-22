@@ -50,8 +50,9 @@ This files table contents are outlined below >>>>>
   --brand-accent-2: #a3d65c;
   --brand-light-blue: #eaf3ff;
 
-  --brand-link-color: #0d6efd;
-  --brand-link-hover-color: #70a329;
+  --brand-link-color: #024bb6;
+  /* --brand-link-hover-color: #3f5d18; */
+  --brand-link-hover-color: var(--brand-link-color);
   --brand-section-bg: #f7f9fb;
   /* --brand-section-bg: transparent; */
 
@@ -240,6 +241,7 @@ a {
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   text-decoration: none;
+  text-decoration: underline;
   transition: all 0.5s ease;
   color: var(--brand-link-color);
 }
@@ -6183,11 +6185,6 @@ Footer CSS
 .copyright-area p a {
   display: inline-block;
   color: var(--brand-accent-1-1);
-}
-
-.copyright-area p a:hover,
-.copyright-area p a:focus {
-  text-decoration: underline;
 }
 
 .footer-dark {
