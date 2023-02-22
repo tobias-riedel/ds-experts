@@ -8,16 +8,16 @@ import { sanitizeHtml } from "../../utils/mail";
 const allowedMethods = ["POST"];
 const allowedUploadFileMimeTypes = ["application/pdf"];
 
-sgMail.setApiKey(process?.env?.SENDGRID_API_KEY);
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const JoinUsMaxFileSize = +(
-  process.env?.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE ?? "8"
+  process.env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE ?? "8"
 );
 const maxUploadedFileSize = JoinUsMaxFileSize * 1024 * 1024;
 
 const HONEYPOT_MSG = "Honeypot triggered";
-const to = process?.env?.JOIN_US_MAIL_ADDRESS_FROM;
-const from = process?.env?.JOIN_US_MAIL_ADDRESS_TO;
+const to = process.env.JOIN_US_MAIL_ADDRESS_FROM;
+const from = process.env.JOIN_US_MAIL_ADDRESS_TO;
 
 const formSchema = object({
   firstName: string().max(0, HONEYPOT_MSG),
@@ -103,7 +103,7 @@ export default async (
 
   if (uploadedFile?.size > maxUploadedFileSize) {
     return res.status(413).json({
-      error: `Uploaded file is too large. Only ${JoinUsMaxFileSize} MB is allowed. `,
+      error: `Uploaded file is too large. Only ${JoinUsMaxFileSize} MB is allowed.`,
     });
   }
 

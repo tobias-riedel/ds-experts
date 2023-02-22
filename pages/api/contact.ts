@@ -5,11 +5,11 @@ import { sanitizeHtml } from "../../utils/mail";
 
 const allowedMethods = ["POST"];
 
-sgMail.setApiKey(process?.env?.SENDGRID_API_KEY);
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const HONEYPOT_MSG = "Honeypot triggered";
-const to = process?.env?.CONTACTS_MAIL_ADDRESS_FROM;
-const from = process?.env?.CONTACTS_MAIL_ADDRESS_TO;
+const to = process.env.CONTACTS_MAIL_ADDRESS_FROM;
+const from = process.env.CONTACTS_MAIL_ADDRESS_TO;
 
 const formSchema = object({
   firstName: string().max(0, HONEYPOT_MSG),
