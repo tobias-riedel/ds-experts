@@ -3245,6 +3245,10 @@ Pricing Area CSS
 /*================================================
 Our Work Process CSS
 =================================================*/
+.work-process-area {
+  overflow: hidden;
+}
+
 .work-process-area .section-title {
   margin-bottom: 70px;
 }

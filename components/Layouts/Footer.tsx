@@ -60,8 +60,7 @@ const Footer = () => {
                     <Link href="/legal#gdpr">Datenschutzerklärung</Link>
                   </p>
                   <p className="col-lg-5">
-                    {/* <Link href="#" onClick={resetCookies}> */}
-                    <Link href="#" onClick={confirmCookieReset}>
+                    <Link href="/#reset-cookies" onClick={confirmCookieReset}>
                       Cookie-Einstellungen
                     </Link>
                     {" & "}

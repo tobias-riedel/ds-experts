@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -18,7 +19,13 @@ const Imprint = () => {
           <div className="row align-items-center">
             <div className="col-lg-5">
               <div className="faq-img">
-                <img src="/images/faq-img.jpg" alt="Image" />
+                <Image
+                  src="/images/faq-img.jpg"
+                  alt="Impressum"
+                  className="optimized-image"
+                  width={400}
+                  height={267}
+                />
               </div>
             </div>
 
