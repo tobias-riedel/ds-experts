@@ -155,6 +155,7 @@ const OurWorks = () => {
                     alt={`Referenzbild zu ${ref.name}`}
                     width={510}
                     height={700}
+                    sizes="(max-width: 1199px) 24vw, (max-width: 991px) 30vw, (max-width: 767px) 45vw, (max-width: 575px) 95vw, 20vw"
                     className="optimized-image"
                   />
 
