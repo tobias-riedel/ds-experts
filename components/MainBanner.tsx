@@ -1,6 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link as ScrollLink } from "react-scroll";
 import callToActionImg from "../public/images/call_to_action.jpg";
+import { SCROLL_LINKS_PROPS } from "../shared/constants";
 
 const MainBanner = () => {
   return (
@@ -24,9 +25,14 @@ const MainBanner = () => {
                       entfernt
                     </p>
 
-                    <Link href="/#join-us" className="btn btn-primary">
+                    <ScrollLink
+                      href="/#join-us"
+                      to="join-us"
+                      className="btn btn-primary"
+                      {...SCROLL_LINKS_PROPS}
+                    >
                       ERFAHRE MEHR
-                    </Link>
+                    </ScrollLink>
                   </div>
                 </div>
 

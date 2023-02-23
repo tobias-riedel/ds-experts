@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import logoImg from "../../public/images/logo-ds-experts.png";
+import { SCROLL_LINKS_PROPS } from "../../shared/constants";
 
 interface NavLinks {
   to: string;
@@ -139,8 +140,7 @@ const Navbar = () => {
                         href={link.to}
                         spy={true}
                         smooth={true}
-                        offset={-50}
-                        duration={0}
+                        {...SCROLL_LINKS_PROPS}
                       >
                         {link.name}
                       </ScrollLink>
@@ -159,6 +159,7 @@ const Navbar = () => {
                     href="/#join-us"
                     className="btn btn-primary"
                     to="join-us"
+                    {...SCROLL_LINKS_PROPS}
                   >
                     Jetzt bewerben
                   </ScrollLink>

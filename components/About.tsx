@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link as ScrollLink } from "react-scroll";
+import { SCROLL_LINKS_PROPS } from "../shared/constants";
 
 const About = () => {
   return (
@@ -76,9 +77,14 @@ const About = () => {
                 </div>
 
                 <div>
-                  <Link href="/#philosophy" className="btn btn-primary">
+                  <ScrollLink
+                    to="philosophy"
+                    href="/#philosophy"
+                    className="btn btn-primary"
+                    {...SCROLL_LINKS_PROPS}
+                  >
                     Erfahre mehr über unsere Leitlinien
-                  </Link>
+                  </ScrollLink>
                 </div>
               </div>
             </div>
