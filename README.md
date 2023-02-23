@@ -13,4 +13,6 @@ CONTACTS_MAIL_ADDRESS_FROM=example@mail.com
 CONTACTS_MAIL_ADDRESS_TO=example@mail.com
 JOIN_US_MAIL_ADDRESS_FROM=example@mail.com
 JOIN_US_MAIL_ADDRESS_TO=example@mail.com
+# Maximum size of uploadable application file in MB
+NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE=8
 ```
