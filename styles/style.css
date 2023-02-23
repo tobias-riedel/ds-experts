@@ -519,6 +519,10 @@ label {
 /*================================================
 Shared CSS
 =================================================*/
+main section:last-child {
+  padding-bottom: 24rem;
+}
+
 .links--underlined a,
 a.link--underlined {
   text-decoration: underline;
@@ -2105,6 +2109,9 @@ Case Studies CSS
   max-width: 1920px;
 }
 
+.case-studies-area .work-card .ref-location {
+  font-size: 1rem;
+}
 .case-studies-area .work-card ul {
   padding-left: 0;
 }
@@ -2265,6 +2272,14 @@ Case Studies CSS
 
 .work-card:hover .content a {
   background-color: initial;
+}
+
+.work-card:hover a {
+  font-size: 1.5rem;
+}
+
+.work-card:hover a.ref-location {
+  font-size: 1.25rem;
 }
 
 .custom-btn {
@@ -6177,7 +6192,6 @@ Footer CSS
 .copyright-area {
   background-color: var(--brand-blue-gradient-1);
   text-align: center;
-  margin-top: 95px;
   padding-top: 30px;
   padding-bottom: 30px;
 }

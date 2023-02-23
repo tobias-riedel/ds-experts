@@ -32,7 +32,7 @@ const references: References[] = [
     img: "/images/references/ref3.jpg",
     name: "Diehl Aerospace",
     location: "Frankfurt Main",
-    tasks: ["Update SAP Changemanagement"],
+    tasks: ["Update SAP Change Management"],
   },
   {
     img: "/images/references/ref15.jpg",
@@ -165,8 +165,8 @@ const OurWorks = () => {
                         <Link href="/">{ref.name}</Link>
                       </div>
                       <div>
-                        <Link href="/">
-                          <small>({ref.location})</small>
+                        <Link href="/" className="ref-location">
+                          ({ref.location})
                         </Link>
                       </div>
                     </span>

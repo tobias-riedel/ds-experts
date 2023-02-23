@@ -1,5 +1,6 @@
 import { Map, Marker, Overlay, ZoomControl } from "pigeon-maps";
 import { useEffect, useState } from "react";
+import { COMPANY_ADDRESS } from "../../shared/constants";
 import styles from "./Map.module.css";
 
 const CompanyMap = ({ height: mapHeight }) => {
@@ -22,8 +23,12 @@ const CompanyMap = ({ height: mapHeight }) => {
               <div className={styles.markerPopupContentWrapper}>
                 <div className={styles.markerPopupContent}>
                   <div className={styles.markerTooltip}>
-                    <div>Rudolf-Breitscheid-Straße 68,</div>
-                    <div>16559 Liebenwalde</div>
+                    <div>
+                      {COMPANY_ADDRESS.street} {COMPANY_ADDRESS.streetNo},
+                    </div>
+                    <div>
+                      {COMPANY_ADDRESS.zipCode} {COMPANY_ADDRESS.city}
+                    </div>
                   </div>
                 </div>
               </div>

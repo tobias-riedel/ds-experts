@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { COMPANY_ADDRESS } from "../shared/constants";
 import styles from "./Contact.module.css";
 import ContactForm from "./Contact/ContactForm";
 import CompanyMap from "./Map/CompanyMap";
@@ -38,7 +39,8 @@ const Contact = () => {
                           target="_blank"
                           rel="noopener"
                         >
-                          Rudolf-Breitscheid-Straße 68, 16559 Liebenwalde
+                          {COMPANY_ADDRESS.street} {COMPANY_ADDRESS.streetNo},{" "}
+                          {COMPANY_ADDRESS.zipCode} {COMPANY_ADDRESS.city}
                         </Link>
                       </>
                     ) : (

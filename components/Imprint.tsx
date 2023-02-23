@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { COMPANY_ADDRESS } from "../shared/constants";
 
 const Imprint = () => {
   const [showContacts, setShowContacts] = useState(false);
@@ -35,10 +36,16 @@ const Imprint = () => {
 
               {showContacts ? (
                 <>
-                  <div>Rudolf-Breitscheid-Straße 68</div>
-                  <div>16559 Liebenwalde</div>
+                  <div>
+                    {COMPANY_ADDRESS.street} {COMPANY_ADDRESS.streetNo}
+                  </div>
+                  <div>
+                    {COMPANY_ADDRESS.zipCode} {COMPANY_ADDRESS.city}
+                  </div>
                   <span>Telefon: </span>
-                  <Link href="tel: +49 33 054904 404">+49 33 054904 404</Link>
+                  <Link href={`tel: ${COMPANY_ADDRESS.telephone}`}>
+                    +49 33 054904 404
+                  </Link>
                 </>
               ) : (
                 <>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { COMPANY_ADDRESS } from "../shared/constants";
 
 const Gdpr = () => {
   const [showContacts, setShowContacts] = useState(false);
@@ -20,9 +21,9 @@ const Gdpr = () => {
         <p>
           ds-experts IT-Consulting GmbH
           <br />
-          Rudolf-Breitscheid-Straße 68
+          {COMPANY_ADDRESS.street} {COMPANY_ADDRESS.streetNo}
           <br />
-          16559 Liebenwalde
+          {COMPANY_ADDRESS.zipCode} {COMPANY_ADDRESS.city}
         </p>
         <h3>Datenschutz</h3>
         <p>
