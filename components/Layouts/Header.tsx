@@ -154,9 +154,19 @@ const Navbar = () => {
               </ul>
 
               <div>
-                <Link href="/#join-us" className="btn btn-primary">
-                  Jetzt bewerben
-                </Link>
+                {isHomeRoute ? (
+                  <ScrollLink
+                    href="/#join-us"
+                    className="btn btn-primary"
+                    to="join-us"
+                  >
+                    Jetzt bewerben
+                  </ScrollLink>
+                ) : (
+                  <Link href="/#join-us" className="btn btn-primary">
+                    Jetzt bewerben
+                  </Link>
+                )}
               </div>
             </div>
           </div>
