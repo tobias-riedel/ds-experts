@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import AOS from "aos";
 import "../node_modules/aos/dist/aos.css";
 import "../styles/bootstrap.min.css";
@@ -19,9 +19,10 @@ import Head from "next/head";
 import Layout from "../components/Layouts/Layout";
 
 function MyApp({ Component, pageProps }) {
-  React.useEffect(() => {
+  useEffect(() => {
     AOS.init();
   }, []);
+
   return (
     <>
       <Head>

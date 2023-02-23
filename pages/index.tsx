@@ -1,14 +1,37 @@
+import dynamic from "next/dynamic";
 import About from "../components/About";
-import Competencies from "../components/Competencies";
-import Contact from "../components/Contact";
-import JoinUs from "../components/JoinUs/JoinUs";
 import MainBanner from "../components/MainBanner";
-import Philosophy from "../components/Philosophy";
-import References from "../components/References";
-import Team from "../components/Team";
-import WorkProcess from "../components/WorkProcess";
 
 export default () => {
+  const Team = dynamic(
+    () => import("../components/Team").then((cmp) => cmp.default),
+    { ssr: false }
+  );
+  const Philosophy = dynamic(
+    () => import("../components/Philosophy").then((cmp) => cmp.default),
+    { ssr: false }
+  );
+  const WorkProcess = dynamic(
+    () => import("../components/WorkProcess").then((cmp) => cmp.default),
+    { ssr: false }
+  );
+  const JoinUs = dynamic(
+    () => import("../components/JoinUs/JoinUs").then((cmp) => cmp.default),
+    { ssr: false }
+  );
+  const Competencies = dynamic(
+    () => import("../components/Competencies").then((cmp) => cmp.default),
+    { ssr: false }
+  );
+  const References = dynamic(
+    () => import("../components/References").then((cmp) => cmp.default),
+    { ssr: false }
+  );
+  const Contact = dynamic(
+    () => import("../components/Contact").then((cmp) => cmp.default),
+    { ssr: false }
+  );
+
   return (
     <>
       <section id="home">
