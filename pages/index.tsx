@@ -19,11 +19,11 @@ export default () => {
 
       <Team />
       <Philosophy />
-      {/* <WorkProcess />
+      <WorkProcess />
       <JoinUs />
       <Competencies />
       <References />
-      <Contact /> */}
+      <Contact />
     </>
   );
 };
