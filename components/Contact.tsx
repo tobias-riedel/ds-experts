@@ -6,7 +6,7 @@ import CompanyMap from "./Map/CompanyMap";
 
 const Contact = () => {
   const [showContacts, setShowContacts] = useState(false);
-  const [showContactForm, setShowContactForm] = useState(false);
+  const [showContactForm, setShowContactForm] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -83,7 +83,7 @@ const Contact = () => {
                     onClick={() => setShowContactForm(true)}
                   >
                     <button className="btn btn-primary">
-                      Zeige Kontaktformular an
+                      Kontaktformular anzeigen
                     </button>
                   </div>
                 )}

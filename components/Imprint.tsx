@@ -25,6 +25,7 @@ const Imprint = () => {
                   className="optimized-image"
                   width={400}
                   height={267}
+                  priority
                 />
               </div>
             </div>
