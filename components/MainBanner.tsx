@@ -25,7 +25,7 @@ const MainBanner = () => {
                     </p>
 
                     <Link href="/#join-us" className="btn btn-primary">
-                      DEIN TRAUMJOB
+                      ERFAHRE MEHR
                     </Link>
                   </div>
                 </div>
