@@ -1,10 +1,19 @@
 import axios from "axios";
 import { Field, Form, Formik } from "formik";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
-import { ProgressBar, Spinner } from "react-bootstrap";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+
+const ProgressBar = dynamic(
+  () => import("react-bootstrap").then((cmp) => cmp.ProgressBar),
+  { loading: () => <div>Lade ProgressBar...</div> }
+);
+const Spinner = dynamic(
+  () => import("react-bootstrap").then((cmp) => cmp.Spinner),
+  { loading: () => <div>Lade Spinner...</div> }
+);
 
 const MySwal = withReactContent(Swal);
 const alertContent = () => {
