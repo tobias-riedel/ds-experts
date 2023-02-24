@@ -520,7 +520,7 @@ label {
 Shared CSS
 =================================================*/
 main section:last-child {
-  padding-bottom: 24rem;
+  padding-bottom: 12rem;
 }
 
 .links--underlined a,
