@@ -1,13 +1,13 @@
-import FsLightbox from "fslightbox-react";
-import Link from "next/link";
-import { useState } from "react";
-import SectionDivider from "./Common/SectionDivider";
-import JoinUsBackEndDeveloper from "./JoinUs/JoinUsBackEndDeveloper";
+import FsLightbox from 'fslightbox-react';
+import Link from 'next/link';
+import { useState } from 'react';
+import SectionDivider from './Common/SectionDivider';
+import JoinUsBackEndDeveloper from './JoinUs/JoinUsBackEndDeveloper';
 
 const Competencies = () => {
   const [toggler, setToggler] = useState(false);
 
-  let sources = "http://localhost:3000/ds-experts/legal";
+  let sources = 'http://localhost:3000/ds-experts/legal';
 
   const toggleInfo = (e, competence) => {
     e.preventDefault();
@@ -23,23 +23,23 @@ const Competencies = () => {
         sources={[
           <div
             style={{
-              width: "640px",
-              height: "80%",
-              maxHeight: "60vh",
-              maxWidth: "44vh",
-              padding: "0.5rem",
-              color: "#000",
-              backgroundColor: "#fff",
-              borderRadius: "10px",
-              border: "2px solid black",
+              width: '640px',
+              height: '80%',
+              maxHeight: '60vh',
+              maxWidth: '44vh',
+              padding: '0.5rem',
+              color: '#000',
+              backgroundColor: '#fff',
+              borderRadius: '10px',
+              border: '2px solid black',
             }}
           >
             <div
               style={{
-                width: "100%",
-                height: "100%",
-                padding: "0",
-                overflowY: "auto",
+                width: '100%',
+                height: '100%',
+                padding: '0',
+                overflowY: 'auto',
               }}
             >
               {/* TODO: Add correct components */}
@@ -57,22 +57,15 @@ const Competencies = () => {
 
           <div className="d-flex justify-content-center">
             <div className="row competencies">
-              <div
-                data-aos="fade-up"
-                data-aos-duration="1200"
-                data-aos-delay="100"
-              >
+              <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
                 <div className="service-card-one bg-competencies text-center shadow">
                   <i className="pe-7s-note2 bg-13c4a1"></i>
                   <h3>
-                    <Link href="/" onClick={(e) => toggleInfo(e, "")}>
+                    <Link href="/" onClick={(e) => toggleInfo(e, '')}>
                       Anforderungen
                     </Link>
                   </h3>
-                  <p>
-                    Erfolgreiche Projekte unterstützen wir mit
-                    Anforderungsanalysen
-                  </p>
+                  <p>Erfolgreiche Projekte unterstützen wir mit Anforderungsanalysen</p>
                 </div>
               </div>
 
@@ -80,10 +73,7 @@ const Competencies = () => {
                 <div className="service-card-one bg-competencies bg-competencies--active text-center shadow">
                   <i className="pe-7s-display2 bg-6610f2"></i>
                   <h3>
-                    <Link
-                      href="/service-details"
-                      onClick={(e) => toggleInfo(e, "")}
-                    >
+                    <Link href="/service-details" onClick={(e) => toggleInfo(e, '')}>
                       Projekte
                     </Link>
                   </h3>
@@ -91,18 +81,11 @@ const Competencies = () => {
                 </div>
               </div>
 
-              <div
-                data-aos="fade-up"
-                data-aos-duration="1200"
-                data-aos-delay="100"
-              >
+              <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
                 <div className="service-card-one bg-competencies text-center shadow">
                   <i className="pe-7s-graph2 bg-ffb700"></i>
                   <h3>
-                    <Link
-                      href="/service-details"
-                      onClick={(e) => toggleInfo(e, "")}
-                    >
+                    <Link href="/service-details" onClick={(e) => toggleInfo(e, '')}>
                       Transitionen
                     </Link>
                   </h3>
@@ -110,68 +93,39 @@ const Competencies = () => {
                 </div>
               </div>
 
-              <div
-                data-aos="fade-up"
-                data-aos-duration="1200"
-                data-aos-delay="100"
-              >
+              <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
                 <div className="service-card-one bg-competencies text-center shadow">
                   <i className="pe-7s-network bg-fc3549"></i>
                   <h3>
-                    <Link
-                      href="/service-details"
-                      onClick={(e) => toggleInfo(e, "")}
-                    >
+                    <Link href="/service-details" onClick={(e) => toggleInfo(e, '')}>
                       Consulting
                     </Link>
                   </h3>
-                  <p>
-                    Wir beraten unsere Kunden über zukunftssichere Technologien
-                  </p>
+                  <p>Wir beraten unsere Kunden über zukunftssichere Technologien</p>
                 </div>
               </div>
 
-              <div
-                data-aos="fade-up"
-                data-aos-duration="1200"
-                data-aos-delay="100"
-              >
+              <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
                 <div className="service-card-one bg-competencies text-center shadow">
                   <i className="pe-7s-science bg-00d280"></i>
                   <h3>
-                    <Link
-                      href="/service-details"
-                      onClick={(e) => toggleInfo(e, "")}
-                    >
+                    <Link href="/service-details" onClick={(e) => toggleInfo(e, '')}>
                       Development
                     </Link>
                   </h3>
-                  <p>
-                    Wir entwickeln zukunftsfähige Lösungen für und mit unseren
-                    Kunden
-                  </p>
+                  <p>Wir entwickeln zukunftsfähige Lösungen für und mit unseren Kunden</p>
                 </div>
               </div>
 
-              <div
-                data-aos="fade-up"
-                data-aos-duration="1200"
-                data-aos-delay="100"
-              >
+              <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
                 <div className="service-card-one bg-competencies text-center shadow">
                   <i className="pe-7s-users bg-ff612f"></i>
                   <h3>
-                    <Link
-                      href="/service-details"
-                      onClick={(e) => toggleInfo(e, "")}
-                    >
+                    <Link href="/service-details" onClick={(e) => toggleInfo(e, '')}>
                       Services
                     </Link>
                   </h3>
-                  <p>
-                    Wir unterstützen unsere Kunden beim Betrieb von neuen
-                    Technologien
-                  </p>
+                  <p>Wir unterstützen unsere Kunden beim Betrieb von neuen Technologien</p>
                 </div>
               </div>
             </div>

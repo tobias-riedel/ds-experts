@@ -1,5 +1,5 @@
-import PageBanner from "../components/Common/PageBanner";
-import ErrorContent from "../components/Error/ErrorContent";
+import PageBanner from '../components/Common/PageBanner';
+import ErrorContent from '../components/Error/ErrorContent';
 
 const Error = () => {
   return (

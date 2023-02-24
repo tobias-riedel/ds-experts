@@ -1,10 +1,10 @@
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { Link as ScrollLink } from "react-scroll";
-import logoImg from "../../public/images/logo-ds-experts.png";
-import { SCROLL_LINKS_PROPS } from "../../shared/constants";
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { Link as ScrollLink } from 'react-scroll';
+import logoImg from '../../public/images/logo-ds-experts.png';
+import { SCROLL_LINKS_PROPS } from '../../shared/constants';
 
 interface NavLinks {
   to: string;
@@ -13,12 +13,12 @@ interface NavLinks {
 }
 
 const navLinks: NavLinks[] = [
-  { to: "/", scrollTo: "home", name: "Home" },
-  { to: "/#team", scrollTo: "team", name: "Team" },
-  { to: "/#philosophy", scrollTo: "philosophy", name: "Philosophie" },
-  { to: "/#competencies", scrollTo: "competencies", name: "Kompetenzen" },
-  { to: "/#references", scrollTo: "references", name: "Referenzen" },
-  { to: "/#contact", scrollTo: "contact", name: "Kontakt" },
+  { to: '/', scrollTo: 'home', name: 'Home' },
+  { to: '/#team', scrollTo: 'team', name: 'Team' },
+  { to: '/#philosophy', scrollTo: 'philosophy', name: 'Philosophie' },
+  { to: '/#competencies', scrollTo: 'competencies', name: 'Kompetenzen' },
+  { to: '/#references', scrollTo: 'references', name: 'Referenzen' },
+  { to: '/#contact', scrollTo: 'contact', name: 'Kontakt' },
 ];
 
 const navbarHeight = 170;
@@ -29,7 +29,7 @@ const Navbar = () => {
 
   const [menu, setMenu] = useState(true);
   const [isHomeRoute, setIsHomeRoute] = useState(false);
-  const [navbarSticky, setNavbarSticky] = useState("");
+  const [navbarSticky, setNavbarSticky] = useState('');
 
   const toggleNavbar = () => {
     setMenu(!menu);
@@ -37,35 +37,35 @@ const Navbar = () => {
 
   // Make navbar sticky on scrolling down
   const toggleNavbarStickiness = (): void => {
-    setNavbarSticky(window.scrollY > navbarHeight ? "is-sticky" : "");
+    setNavbarSticky(window.scrollY > navbarHeight ? 'is-sticky' : '');
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", toggleNavbarStickiness);
+    window.addEventListener('scroll', toggleNavbarStickiness);
     return () => {
-      window.removeEventListener("scroll", toggleNavbarStickiness);
+      window.removeEventListener('scroll', toggleNavbarStickiness);
     };
   }, []);
 
   // Hide navbar on scrolling down and show on scrolling up for mobile devices
   const useScrollDirection = () => {
-    const [scrollDirection, setScrollDirection] = useState("");
+    const [scrollDirection, setScrollDirection] = useState('');
     const [prevOffset, setPrevOffset] = useState(0);
 
     const toggleScrollDirection = () => {
       const scrollY = window.scrollY;
       if (scrollY > prevOffset && scrollY > scrollThreshold) {
-        setScrollDirection("down");
+        setScrollDirection('down');
       } else if (scrollY < prevOffset && scrollY > scrollThreshold) {
-        setScrollDirection("up");
+        setScrollDirection('up');
       }
       setPrevOffset(scrollY);
     };
 
     useEffect(() => {
-      window.addEventListener("scroll", toggleScrollDirection);
+      window.addEventListener('scroll', toggleScrollDirection);
       return () => {
-        window.removeEventListener("scroll", toggleScrollDirection);
+        window.removeEventListener('scroll', toggleScrollDirection);
       };
     });
     return scrollDirection;
@@ -74,24 +74,16 @@ const Navbar = () => {
   const scrollDirection = useScrollDirection();
 
   useEffect(() => {
-    setIsHomeRoute(router.pathname === "/");
+    setIsHomeRoute(router.pathname === '/');
   }, [router]);
 
-  const classOne = menu
-    ? "collapse navbar-collapse mean-menu"
-    : "collapse navbar-collapse show";
-  const classTwo = menu
-    ? "navbar-toggler navbar-toggler-right collapsed"
-    : "navbar-toggler navbar-toggler-right";
+  const classOne = menu ? 'collapse navbar-collapse mean-menu' : 'collapse navbar-collapse show';
+  const classTwo = menu ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';
 
-  const logoAltText = "ds-experts IT-Consulting GmbH";
+  const logoAltText = 'ds-experts IT-Consulting GmbH';
 
   return (
-    <header
-      className={`scroll-${scrollDirection || "up"} ${
-        menu ? "collapse-menu--visible" : ""
-      }`}
-    >
+    <header className={`scroll-${scrollDirection || 'up'} ${menu ? 'collapse-menu--visible' : ''}`}>
       <div id="navbar" className={`navbar-area navbar-style-2 ${navbarSticky}`}>
         <nav role="navigation" className="navbar navbar-expand-md navbar-light">
           <div className="container-fluid">
@@ -101,14 +93,14 @@ const Navbar = () => {
                 className="black-logo logo-ds-experts"
                 title={logoAltText}
                 alt="Firmen-Logo"
-                style={{ height: "auto" }}
+                style={{ height: 'auto' }}
               />
               <Image
                 src={logoImg}
                 className="white-logo logo-ds-experts"
                 title={logoAltText}
                 alt="Firmen-Logo"
-                style={{ height: "auto" }}
+                style={{ height: 'auto' }}
               />
             </Link>
 
@@ -155,12 +147,7 @@ const Navbar = () => {
 
               <div>
                 {isHomeRoute ? (
-                  <ScrollLink
-                    href="/#join-us"
-                    className="btn btn-primary"
-                    to="join-us"
-                    {...SCROLL_LINKS_PROPS}
-                  >
+                  <ScrollLink href="/#join-us" className="btn btn-primary" to="join-us" {...SCROLL_LINKS_PROPS}>
                     Jetzt bewerben
                   </ScrollLink>
                 ) : (

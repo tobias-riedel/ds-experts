@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { COMPANY_ADDRESS } from "../shared/constants";
-import styles from "./Contact.module.css";
-import ContactForm from "./Contact/ContactForm";
-import CompanyMap from "./Map/CompanyMap";
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { COMPANY_ADDRESS } from '../shared/constants';
+import styles from './Contact.module.css';
+import ContactForm from './Contact/ContactForm';
+import CompanyMap from './Map/CompanyMap';
 
 const Contact = () => {
   const [showContacts, setShowContacts] = useState(false);
@@ -24,12 +24,12 @@ const Contact = () => {
           </div>
 
           <div className="row">
-            <div className={showContactForm ? "col-lg-6" : ""}>
+            <div className={showContactForm ? 'col-lg-6' : ''}>
               <h3 className="text-center">Hier kannst Du uns finden</h3>
               <div className="service-left-img">
                 <ul className="list-unstyled links--underlined">
                   <li>
-                    <i className={"fas fa-map-marker-alt " + styles.icon}></i>
+                    <i className={'fas fa-map-marker-alt ' + styles.icon}></i>
                     &nbsp;
                     {showContacts ? (
                       <>
@@ -39,40 +39,36 @@ const Contact = () => {
                           target="_blank"
                           rel="noopener"
                         >
-                          {COMPANY_ADDRESS.street} {COMPANY_ADDRESS.streetNo},{" "}
-                          {COMPANY_ADDRESS.zipCode} {COMPANY_ADDRESS.city}
+                          {COMPANY_ADDRESS.street} {COMPANY_ADDRESS.streetNo}, {COMPANY_ADDRESS.zipCode}{' '}
+                          {COMPANY_ADDRESS.city}
                         </Link>
                       </>
                     ) : (
-                      "Lade Adresse..."
+                      'Lade Adresse...'
                     )}
                   </li>
                   <li>
-                    <i className={"fas fa-phone-square-alt " + styles.icon}></i>
+                    <i className={'fas fa-phone-square-alt ' + styles.icon}></i>
                     &nbsp;
                     {showContacts ? (
                       <>
                         <span>Telefon: </span>
-                        <Link href="tel: +49 33 054904 404">
-                          +49 33 054904 404
-                        </Link>
+                        <Link href="tel: +49 33 054904 404">+49 33 054904 404</Link>
                       </>
                     ) : (
-                      "Lade Telefonnummer..."
+                      'Lade Telefonnummer...'
                     )}
                   </li>
                   <li>
-                    <i className={"fas fa-envelope-square " + styles.icon}></i>
+                    <i className={'fas fa-envelope-square ' + styles.icon}></i>
                     &nbsp;
                     {showContacts ? (
                       <>
                         <span>eMail: </span>
-                        <Link href="mailto:info@ds-experts.de">
-                          info@ds-experts.de
-                        </Link>
+                        <Link href="mailto:info@ds-experts.de">info@ds-experts.de</Link>
                       </>
                     ) : (
-                      "Lade eMail-Adresse..."
+                      'Lade eMail-Adresse...'
                     )}
                   </li>
                 </ul>
@@ -80,25 +76,16 @@ const Contact = () => {
                 <CompanyMap height={320} />
 
                 {!showContactForm && (
-                  <div
-                    className="text-center pt-100"
-                    onClick={() => setShowContactForm(true)}
-                  >
-                    <button className="btn btn-primary">
-                      Kontaktformular anzeigen
-                    </button>
+                  <div className="text-center pt-100" onClick={() => setShowContactForm(true)}>
+                    <button className="btn btn-primary">Kontaktformular anzeigen</button>
                   </div>
                 )}
               </div>
             </div>
 
-            <div className={showContactForm ? "col-lg-6" : ""}>
+            <div className={showContactForm ? 'col-lg-6' : ''}>
               {showContactForm && (
-                <div
-                  data-aos="fade"
-                  data-aos-duration="1200"
-                  data-aos-once="true"
-                >
+                <div data-aos="fade" data-aos-duration="1200" data-aos-once="true">
                   <h3 className="text-center">Kontaktiere uns!</h3>
                   <ContactForm />
                 </div>

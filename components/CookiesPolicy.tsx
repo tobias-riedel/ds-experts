@@ -1,5 +1,5 @@
-import Link from "next/link";
-import SectionDivider from "./Common/SectionDivider";
+import Link from 'next/link';
+import SectionDivider from './Common/SectionDivider';
 
 const CookiesPolicy = () => {
   return (
@@ -9,44 +9,30 @@ const CookiesPolicy = () => {
           <h2>Cookie-Einstellungen & Richtlinie</h2>
         </div>
         <p>
-          Wir schützten Ihre Privatsphäre und ermöglicht es Ihnen, die Arten von
-          Cookies auszuwählen, die wir beim Besuch unserer Website verwenden.
-          Verwenden Sie den Link „Cookie-Einstellungen“, um unsere
+          Wir schützten Ihre Privatsphäre und ermöglicht es Ihnen, die Arten von Cookies auszuwählen, die wir beim
+          Besuch unserer Website verwenden. Verwenden Sie den Link „Cookie-Einstellungen“, um unsere
           Standardeinstellungen zu ändern.
         </p>
         <h3>Was ist ein Cookie?</h3>
         <p>
-          Ein Cookie ist eine kleine Textdatei, die beim Zugriff auf eine
-          Website auf Ihr Gerät heruntergeladen wird.
+          Ein Cookie ist eine kleine Textdatei, die beim Zugriff auf eine Website auf Ihr Gerät heruntergeladen wird.
         </p>
         <h3>Was machen Cookies?</h3>
         <p>
-          Auf diese Weise kann die Website Ihr Gerät erkennen und einige
-          Informationen zu Ihren Einstellungen oder früheren Aktionen speichern,
-          damit Websites funktionieren oder effizienter arbeiten und den
-          Betreibern der Website Informationen zur Verfügung gestellt werden.
-          Kurz gesagt, Cookies helfen uns, Ihnen beim Surfen auf unserer Website
-          eine gute Nutzererfahrung zu bieten, und ermöglichen uns auch, unsere
-          Website zu verbessern. Bitte beachten Sie, dass die Entscheidung,
-          bestimmte Arten von Cookies nicht zu aktivieren, Ihre Nutzererfahrung
-          mit der Website und die Verfügbarkeit einiger Dienste beeinträchtigen
-          kann. [cookie_settings] Alternativ erlauben die meisten Webbrowser
-          eine gewisse Kontrolle über die meisten Cookies über die
-          Browsereinstellungen. Weitere Informationen zu Cookies, einschließlich
-          Informationen darüber, welche Cookies gesetzt wurden, finden Sie unter{" "}
-          <Link
-            href="https://www.aboutcookies.org/"
-            target="_blank"
-            rel="noopener"
-          >
+          Auf diese Weise kann die Website Ihr Gerät erkennen und einige Informationen zu Ihren Einstellungen oder
+          früheren Aktionen speichern, damit Websites funktionieren oder effizienter arbeiten und den Betreibern der
+          Website Informationen zur Verfügung gestellt werden. Kurz gesagt, Cookies helfen uns, Ihnen beim Surfen auf
+          unserer Website eine gute Nutzererfahrung zu bieten, und ermöglichen uns auch, unsere Website zu verbessern.
+          Bitte beachten Sie, dass die Entscheidung, bestimmte Arten von Cookies nicht zu aktivieren, Ihre
+          Nutzererfahrung mit der Website und die Verfügbarkeit einiger Dienste beeinträchtigen kann. [cookie_settings]
+          Alternativ erlauben die meisten Webbrowser eine gewisse Kontrolle über die meisten Cookies über die
+          Browsereinstellungen. Weitere Informationen zu Cookies, einschließlich Informationen darüber, welche Cookies
+          gesetzt wurden, finden Sie unter{' '}
+          <Link href="https://www.aboutcookies.org/" target="_blank" rel="noopener">
             www.aboutcookies.org
-          </Link>{" "}
-          oder{" "}
-          <Link
-            href="https://allaboutcookies.org/"
-            target="_blank"
-            rel="noopener"
-          >
+          </Link>{' '}
+          oder{' '}
+          <Link href="https://allaboutcookies.org/" target="_blank" rel="noopener">
             www.allaboutcookies.org
           </Link>
           .
@@ -90,36 +76,22 @@ const CookiesPolicy = () => {
             </Link>
           </li>
           <li>
-            <Link
-              href="https://help.opera.com/en/latest/web-preferences/"
-              target="_blank"
-              rel="noopener"
-            >
+            <Link href="https://help.opera.com/en/latest/web-preferences/" target="_blank" rel="noopener">
               Opera
             </Link>
           </li>
           <li>
-            <Link
-              href="https://support.apple.com/en-gb/safari"
-              target="_blank"
-              rel="noopener"
-            >
+            <Link href="https://support.apple.com/en-gb/safari" target="_blank" rel="noopener">
               Apple Safari
             </Link>
           </li>
         </ul>
         <p>
-          Informationen zu anderen Browsern finden Sie auf der Website des
-          Browser-Entwicklers. Besuchen Sie{" "}
-          <Link
-            href="http://tools.google.com/dlpage/gaoptout"
-            target="_blank"
-            rel="noopener"
-          >
+          Informationen zu anderen Browsern finden Sie auf der Website des Browser-Entwicklers. Besuchen Sie{' '}
+          <Link href="http://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">
             http://tools.google.com/dlpage/gaoptout
           </Link>
-          , um zu verhindern, dass Sie mit Google Analytics über mehrere
-          Websites getrackt werden.
+          , um zu verhindern, dass Sie mit Google Analytics über mehrere Websites getrackt werden.
         </p>
       </div>
 

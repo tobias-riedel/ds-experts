@@ -1,5 +1,5 @@
-import Image from "next/image";
-import SectionDivider from "./Common/SectionDivider";
+import Image from 'next/image';
+import SectionDivider from './Common/SectionDivider';
 
 interface Experts {
   img: string;
@@ -9,29 +9,29 @@ interface Experts {
 
 const experts: Experts[] = [
   {
-    img: "Daniel-Schenk.png",
-    name: "Daniel Schenk",
-    role: "Senior Projektleiter",
+    img: 'Daniel-Schenk.png',
+    name: 'Daniel Schenk',
+    role: 'Senior Projektleiter',
   },
   {
-    img: "Madelaine-Fröhlich.png",
-    name: "Madelaine Fröhlich",
-    role: "Backoffice",
+    img: 'Madelaine-Fröhlich.png',
+    name: 'Madelaine Fröhlich',
+    role: 'Backoffice',
   },
   {
-    img: "Michael-Heit.png",
-    name: "Michael Heit",
-    role: "Projektleiter",
+    img: 'Michael-Heit.png',
+    name: 'Michael Heit',
+    role: 'Projektleiter',
   },
   {
-    img: "Marco-Marquardt.png",
-    name: "Marco Marquardt",
-    role: "Projektleiter",
+    img: 'Marco-Marquardt.png',
+    name: 'Marco Marquardt',
+    role: 'Projektleiter',
   },
   {
-    img: "Tobias-Riedel.png",
-    name: "Tobias Riedel",
-    role: "Software Developer",
+    img: 'Tobias-Riedel.png',
+    name: 'Tobias Riedel',
+    role: 'Software Developer',
   },
 ];
 
@@ -46,12 +46,7 @@ const Team = () => {
         <div className="row justify-content-between">
           {experts.map((expert, idx) => (
             <div className="col-lg-2 col-md-4 col-6" key={idx}>
-              <div
-                className="team-card text-center"
-                data-aos="fade-up"
-                data-aos-duration="1200"
-                data-aos-delay="100"
-              >
+              <div className="team-card text-center" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
                 <Image
                   src={`/images/team/${expert.img}`}
                   alt={`Porträt von ${expert.name}`}

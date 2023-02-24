@@ -1,7 +1,7 @@
-import PageBanner from "../components/Common/PageBanner";
-import CookiesPolicy from "../components/CookiesPolicy";
-import Gdpr from "../components/Gdpr";
-import Imprint from "../components/Imprint";
+import PageBanner from '../components/Common/PageBanner';
+import CookiesPolicy from '../components/CookiesPolicy';
+import Gdpr from '../components/Gdpr';
+import Imprint from '../components/Imprint';
 
 const Legal = () => {
   return (

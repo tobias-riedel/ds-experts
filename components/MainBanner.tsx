@@ -1,7 +1,7 @@
-import Image from "next/image";
-import { Link as ScrollLink } from "react-scroll";
-import callToActionImg from "../public/images/call_to_action.jpg";
-import { SCROLL_LINKS_PROPS } from "../shared/constants";
+import Image from 'next/image';
+import { Link as ScrollLink } from 'react-scroll';
+import callToActionImg from '../public/images/call_to_action.jpg';
+import { SCROLL_LINKS_PROPS } from '../shared/constants';
 
 const MainBanner = () => {
   return (
@@ -21,27 +21,17 @@ const MainBanner = () => {
                     {/* <h1>ds-experts</h1> */}
 
                     <p>
-                      Dein <span>Traumjob</span> ist nur ein paar Klicks
-                      entfernt
+                      Dein <span>Traumjob</span> ist nur ein paar Klicks entfernt
                     </p>
 
-                    <ScrollLink
-                      href="/#join-us"
-                      to="join-us"
-                      className="btn btn-primary"
-                      {...SCROLL_LINKS_PROPS}
-                    >
+                    <ScrollLink href="/#join-us" to="join-us" className="btn btn-primary" {...SCROLL_LINKS_PROPS}>
                       ERFAHRE MEHR
                     </ScrollLink>
                   </div>
                 </div>
 
                 <div className="col-lg-6">
-                  <div
-                    className="animate-banner-image"
-                    data-aos="zoom-in"
-                    data-aos-duration="1200"
-                  >
+                  <div className="animate-banner-image" data-aos="zoom-in" data-aos-duration="1200">
                     <Image
                       src={callToActionImg}
                       alt="Animate image"
@@ -65,7 +55,7 @@ const MainBanner = () => {
             alt="Shape"
             width={5000}
             height={330}
-            style={{ height: "auto" }}
+            style={{ height: 'auto' }}
             sizes="100vw"
             priority
           />
