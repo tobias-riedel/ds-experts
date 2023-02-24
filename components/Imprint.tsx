@@ -1,8 +1,8 @@
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { COMPANY_ADDRESS } from "../shared/constants";
-import SectionDivider from "./Common/SectionDivider";
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { COMPANY_ADDRESS } from '../shared/constants';
+import SectionDivider from './Common/SectionDivider';
 
 const Imprint = () => {
   const [showContacts, setShowContacts] = useState(false);
@@ -44,9 +44,7 @@ const Imprint = () => {
                     {COMPANY_ADDRESS.zipCode} {COMPANY_ADDRESS.city}
                   </div>
                   <span>Telefon: </span>
-                  <Link href={`tel: ${COMPANY_ADDRESS.telephone}`}>
-                    +49 33 054904 404
-                  </Link>
+                  <Link href={`tel: ${COMPANY_ADDRESS.telephone}`}>+49 33 054904 404</Link>
                 </>
               ) : (
                 <>
@@ -66,9 +64,7 @@ const Imprint = () => {
               {showContacts ? (
                 <>
                   <span>eMail: </span>
-                  <Link href="mailto:info@ds-experts.de">
-                    info@ds-experts.de
-                  </Link>
+                  <Link href="mailto:info@ds-experts.de">info@ds-experts.de</Link>
                 </>
               ) : (
                 <div>Lade eMail-Adresse...</div>

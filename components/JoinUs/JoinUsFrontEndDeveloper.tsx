@@ -8,8 +8,7 @@ const JoinUsFrontEndDeveloper = () => {
           <li>Fortgeschrittene Erfahrung in HTML 5 und CSS 3</li>
           <li>Mindestens zwei Jahre praktische Erfahrung mit JavaScript</li>
           <li>
-            Mindestens ein Jahr praktische Erfahrung in einem der drei
-            JavaScript-Frameworks/Libraries:
+            Mindestens ein Jahr praktische Erfahrung in einem der drei JavaScript-Frameworks/Libraries:
             <ul>
               <li>Angular</li>
               <li>React</li>

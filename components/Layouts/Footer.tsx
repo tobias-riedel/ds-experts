@@ -1,10 +1,10 @@
-import Link from "next/link";
-import Router from "next/router";
-import { resetCookieConsentValue } from "react-cookie-consent";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
+import Link from 'next/link';
+import Router from 'next/router';
+import { resetCookieConsentValue } from 'react-cookie-consent';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
-const ACCEPT_COOKIE_NAME = "ds-experts-cookie-consent";
+const ACCEPT_COOKIE_NAME = 'ds-experts-cookie-consent';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -14,26 +14,26 @@ const Footer = () => {
     e.preventDefault();
 
     const result = await MySwal.fire({
-      title: "Cookie-Einstellungen zurücksetzen",
-      text: "Soll die Cookie-Freigabe zurückgesetzt werden? Die Seite wird danach neugeladen.",
-      icon: "warning",
+      title: 'Cookie-Einstellungen zurücksetzen',
+      text: 'Soll die Cookie-Freigabe zurückgesetzt werden? Die Seite wird danach neugeladen.',
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#1a6d2d",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Ja",
-      cancelButtonText: "Abbrechen",
+      confirmButtonColor: '#1a6d2d',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ja',
+      cancelButtonText: 'Abbrechen',
     });
 
-    console.log("res::", result);
+    console.log('res::', result);
 
     if (result.isConfirmed) {
       resetCookieConsentValue(ACCEPT_COOKIE_NAME);
 
       const reloadDelay = 4000;
       MySwal.fire({
-        title: "Cookies zurückgesetzt!",
-        text: "Die Seite wird jetzt neugeladen.",
-        icon: "success",
+        title: 'Cookies zurückgesetzt!',
+        text: 'Die Seite wird jetzt neugeladen.',
+        icon: 'success',
         timer: reloadDelay,
         timerProgressBar: true,
         showConfirmButton: false,
@@ -48,9 +48,7 @@ const Footer = () => {
       <div className="copyright-area">
         <div className="container">
           <div className="row">
-            <p className="col-lg-5">
-              Copyright &copy; 2015-{currentYear} ds-experts IT-Consulting GmbH
-            </p>
+            <p className="col-lg-5">Copyright &copy; 2015-{currentYear} ds-experts IT-Consulting GmbH</p>
 
             <div className="col-lg-7">
               <div className="row links--underlined">
@@ -61,7 +59,7 @@ const Footer = () => {
                   <Link href="/#reset-cookies" onClick={confirmCookieReset}>
                     Cookie-Einstellungen
                   </Link>
-                  {" & "}
+                  {' & '}
                   <Link href="/legal#cookies-policy">Richtlinie</Link>
                 </p>
                 <p className="col-lg-3">

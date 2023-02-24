@@ -8,10 +8,7 @@ const JoinUsProjectManager = () => {
           <li>Erste Erfahrungen als Projektleiter</li>
           <li>Entweder agile oder klassische Vorgehensmodelle verinnerlicht</li>
           <li>sehr gute Kommunikationsfähigkeiten</li>
-          <li>
-            In der Lage, ein Projektteam zu führen ohne disziplinarische
-            Verantwortung auszuüben
-          </li>
+          <li>In der Lage, ein Projektteam zu führen ohne disziplinarische Verantwortung auszuüben</li>
           <li>hoher Organisationsgrad</li>
           <li>Reisebereitschaft</li>
           <li>Selbstmotivation</li>

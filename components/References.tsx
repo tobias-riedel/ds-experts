@@ -1,8 +1,8 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Keyboard, Mousewheel, Navigation, Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SectionDivider from "./Common/SectionDivider";
+import Image from 'next/image';
+import Link from 'next/link';
+import { Autoplay, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SectionDivider from './Common/SectionDivider';
 
 interface References {
   img: string;
@@ -13,91 +13,86 @@ interface References {
 
 const references: References[] = [
   {
-    img: "/images/references/ref1.jpg",
-    name: "Panalpina AG",
-    location: "Basel",
-    tasks: ["Erstellung Softwarelösung in Exchange"],
+    img: '/images/references/ref1.jpg',
+    name: 'Panalpina AG',
+    location: 'Basel',
+    tasks: ['Erstellung Softwarelösung in Exchange'],
   },
   {
-    img: "/images/references/ref5.jpg",
-    name: "Diehl AirCabin GmbH",
-    location: "Laupheim",
+    img: '/images/references/ref5.jpg',
+    name: 'Diehl AirCabin GmbH',
+    location: 'Laupheim',
     tasks: [
-      "Projektleitung IT-Rollout",
-      "Projektleitung Erstellung Engineering Cloud",
-      "Aufbau Gültigkeitsmanagement in Teamcenter",
+      'Projektleitung IT-Rollout',
+      'Projektleitung Erstellung Engineering Cloud',
+      'Aufbau Gültigkeitsmanagement in Teamcenter',
     ],
   },
   {
-    img: "/images/references/ref3.jpg",
-    name: "Diehl Aerospace",
-    location: "Frankfurt Main",
-    tasks: ["Update SAP Change Management"],
+    img: '/images/references/ref3.jpg',
+    name: 'Diehl Aerospace',
+    location: 'Frankfurt Main',
+    tasks: ['Update SAP Change Management'],
   },
   {
-    img: "/images/references/ref15.jpg",
-    name: "Union Investment",
-    location: "Frankfurt Main",
-    tasks: ["Strategische Beratung IT-Update"],
+    img: '/images/references/ref15.jpg',
+    name: 'Union Investment',
+    location: 'Frankfurt Main',
+    tasks: ['Strategische Beratung IT-Update'],
   },
   {
-    img: "/images/references/ref2.jpg",
-    name: "QSCA AG",
-    location: "Hamburg",
-    tasks: [
-      "Transition Management für namhafte Kunden (Spiegel, Otto-Gruppe, ...)",
-    ],
+    img: '/images/references/ref2.jpg',
+    name: 'QSCA AG',
+    location: 'Hamburg',
+    tasks: ['Transition Management für namhafte Kunden (Spiegel, Otto-Gruppe, ...)'],
   },
   {
-    img: "/images/references/ref6.jpg",
-    name: "WEH Verbindungstechnik GmbH",
-    location: "Illertissen",
-    tasks: [
-      "Projektleitung Outsourcing",
-      "Projektleitung Industrie 4.0 Bereich Digitalisierung",
-    ],
+    img: '/images/references/ref6.jpg',
+    name: 'WEH Verbindungstechnik GmbH',
+    location: 'Illertissen',
+    tasks: ['Projektleitung Outsourcing', 'Projektleitung Industrie 4.0 Bereich Digitalisierung'],
   },
   {
-    img: "/images/references/ref7.jpg",
-    name: "Toyota Kreditbank",
-    location: "Köln",
-    tasks: ["Softwareentwicklung Bugfixing"],
+    img: '/images/references/ref7.jpg',
+    name: 'Toyota Kreditbank',
+    location: 'Köln',
+    tasks: ['Softwareentwicklung Bugfixing'],
   },
   {
-    img: "/images/references/ref8.jpg",
-    name: "1&1 Internet AG",
-    location: "Flensburg",
-    tasks: ["Softwareentwicklung e-Commerce Plattform"],
+    img: '/images/references/ref8.jpg',
+    name: '1&1 Internet AG',
+    location: 'Flensburg',
+    tasks: ['Softwareentwicklung e-Commerce Plattform'],
   },
   {
-    img: "/images/references/ref10.jpg",
-    name: "DNVGL SE",
-    location: "Hamburg",
-    tasks: ["Softwareentwicklung Modulprogrammierung", "Kalkulationsplattform"],
+    img: '/images/references/ref10.jpg',
+    name: 'DNVGL SE',
+    location: 'Hamburg',
+    tasks: ['Softwareentwicklung Modulprogrammierung', 'Kalkulationsplattform'],
   },
   {
-    img: "/images/references/ref11.jpg",
-    name: "Ingenico",
-    location: "Hamburg",
-    tasks: ["Softwareentwicklung Widgets zur Zahlungsabwicklung"],
+    img: '/images/references/ref11.jpg',
+    name: 'Ingenico',
+    location: 'Hamburg',
+    tasks: ['Softwareentwicklung Widgets zur Zahlungsabwicklung'],
   },
   {
-    img: "/images/references/ref4.jpg",
-    name: "Healex GmbH",
-    location: "Berlin",
-    tasks: ["Softwareentwicklung Corona Tracking App"],
+    img: '/images/references/ref4.jpg',
+    name: 'Healex GmbH',
+    location: 'Berlin',
+    tasks: ['Softwareentwicklung Corona Tracking App'],
   },
   {
-    img: "/images/references/ref13.jpg",
-    name: "Hannover RE",
-    location: "Hannover",
-    tasks: ["Softwareentwicklung Migration Tools"],
+    img: '/images/references/ref13.jpg',
+    name: 'Hannover RE',
+    location: 'Hannover',
+    tasks: ['Softwareentwicklung Migration Tools'],
   },
   {
-    img: "/images/references/ref14.jpg",
-    name: "Siemens Energy AG ",
-    location: "Berlin",
-    tasks: ["Projektleitung IT-Rollout ", "Projektleitung Softwareentwicklung"],
+    img: '/images/references/ref14.jpg',
+    name: 'Siemens Energy AG ',
+    location: 'Berlin',
+    tasks: ['Projektleitung IT-Rollout ', 'Projektleitung Softwareentwicklung'],
   },
 ];
 
@@ -133,18 +128,23 @@ const OurWorks = () => {
               slidesPerView: 5,
             },
           }}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: true,
+            pauseOnMouseEnter: true,
+          }}
           mousewheel={true}
           keyboard={true}
-          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+          modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
           className="work-slides"
         >
           {references.map((ref, idx) => {
             const refProps =
               idx % 2
                 ? {
-                    "data-aos": "fade-up",
-                    "data-aos-duration": 1200,
-                    "data-aos-delay": 100,
+                    'data-aos': 'fade-up',
+                    'data-aos-duration': 1200,
+                    'data-aos-delay': 100,
                   }
                 : {};
             return (

@@ -46,16 +46,9 @@ This files table contents are outlined below >>>>>
 // Global Variable
 
 $main-color: #ff2c9c;
-$gradient-color: linear-gradient(
-  to left top,
-  #ff2c9c,
-  #ff287b,
-  #ff395a,
-  #ff5137,
-  #ff6a00
-);
-$main-font-family: "Open Sans", sans-serif;
-$heading-font-family: "Saira", sans-serif;
+$gradient-color: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
+$main-font-family: 'Open Sans', sans-serif;
+$heading-font-family: 'Saira', sans-serif;
 $font-size: 15px;
 $black-color: #18181b;
 $paragraph-color: #646464;
@@ -222,7 +215,7 @@ a {
 
   &::before {
     border-radius: 5px;
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     top: 0;
@@ -267,7 +260,7 @@ a {
 
   &::before {
     border-radius: 5px;
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     top: 0;
@@ -450,7 +443,7 @@ Navbar CSS
             height: 3px;
             transition: $transition;
             left: 1px;
-            content: "";
+            content: '';
             position: absolute;
           }
           &:hover,
@@ -826,7 +819,7 @@ Main Banner CSS
     height: 800px;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       top: 0;
@@ -934,7 +927,7 @@ Main Banner CSS
 
   &.overlay {
     &::before {
-      content: "";
+      content: '';
       background-color: $black-color;
       opacity: 0.85;
       position: absolute;
@@ -946,7 +939,7 @@ Main Banner CSS
   }
   &.overlay-6 {
     &::before {
-      content: "";
+      content: '';
       background-color: $black-color;
       opacity: 0.6;
       position: absolute;
@@ -1423,7 +1416,7 @@ Main Banner CSS
       z-index: 1;
 
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         top: 0;
@@ -1657,7 +1650,7 @@ About CSS
 
     &::after,
     &::before {
-      content: "";
+      content: '';
       display: block;
       position: absolute;
       top: 0;
@@ -1788,7 +1781,7 @@ Case Studies CSS
           weight: 600;
         }
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           left: 0;
           bottom: -12px;
@@ -1832,7 +1825,7 @@ Case Studies CSS
   transition: $transition;
 
   &::before {
-    content: "";
+    content: '';
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 100%;
@@ -2088,7 +2081,6 @@ Services CSS
   }
 }
 
-
 /*================================================
 Team CSS
 =================================================*/
@@ -2098,7 +2090,7 @@ Team CSS
   z-index: 1;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     left: 0;
@@ -2120,7 +2112,7 @@ Team CSS
     position: relative;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       bottom: 0;
@@ -2183,7 +2175,7 @@ Team CSS
             z-index: 1;
 
             &::before {
-              content: "";
+              content: '';
               position: absolute;
               left: 0;
               top: 50%;
@@ -2393,7 +2385,7 @@ Pricing CSS
       bottom: 1px solid #eeeeee;
     }
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       top: 0;
@@ -2744,7 +2736,7 @@ Our Work Process CSS
     z-index: 1;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       top: 0;
@@ -2853,7 +2845,7 @@ CTA CSS
 }
 
 .cta-area-two {
-  background-image: url("/images/cta-bg.jpg");
+  background-image: url('/images/cta-bg.jpg');
   background-position: center center;
   background-size: cover;
   text-align: center;
@@ -2867,7 +2859,7 @@ CTA CSS
     width: 100%;
     top: 0;
     left: 0;
-    content: "";
+    content: '';
     opacity: 0.95;
   }
 
@@ -2917,7 +2909,7 @@ CTA CSS
       width: 100%;
       top: 0;
       left: 0;
-      content: "";
+      content: '';
       opacity: 0.95;
     }
     .cta-btn-box {
@@ -3105,7 +3097,7 @@ Subscribe CSS
   text-align: center;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     width: 100%;
     height: 100%;
@@ -3178,7 +3170,7 @@ Blog CSS
     }
     &::before,
     &::after {
-      content: "";
+      content: '';
       background: $white-color;
       height: 0;
       right: 0;
@@ -3229,7 +3221,7 @@ Blog CSS
           transform: translateY(-50%);
         }
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           right: -10px;
           top: 50%;
@@ -3333,7 +3325,7 @@ Blog CSS
             transform: translateY(-50%);
           }
           &::before {
-            content: "";
+            content: '';
             position: absolute;
             right: -8px;
             top: 50%;
@@ -3380,7 +3372,7 @@ Blog CSS
       }
       &::before,
       &::after {
-        content: "";
+        content: '';
         background: $white-color;
         height: 0;
         right: 0;
@@ -3585,7 +3577,7 @@ Blog Details CSS
 
           &::before {
             position: absolute;
-            content: "";
+            content: '';
             position: absolute;
             left: 0;
             top: 0;
@@ -3621,8 +3613,8 @@ blockquote {
   margin: 20px 0;
 
   &::before {
-    font-family: "Font Awesome 5 Free";
-    content: "\f10d";
+    font-family: 'Font Awesome 5 Free';
+    content: '\f10d';
     position: absolute;
     left: 30px;
     top: 35px;
@@ -3641,7 +3633,7 @@ blockquote {
       weight: 600;
     }
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -3680,7 +3672,7 @@ blockquote {
       }
       &::before {
         position: absolute;
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         top: 0;
@@ -3753,7 +3745,7 @@ blockquote {
         z-index: 1;
 
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           left: 0;
           top: 0;
@@ -3864,18 +3856,18 @@ blockquote {
       font-weight: 600;
       color: $black-color;
     }
-    input[type="date"],
-    input[type="time"],
-    input[type="datetime-local"],
-    input[type="week"],
-    input[type="month"],
-    input[type="text"],
-    input[type="email"],
-    input[type="url"],
-    input[type="password"],
-    input[type="search"],
-    input[type="tel"],
-    input[type="number"],
+    input[type='date'],
+    input[type='time'],
+    input[type='datetime-local'],
+    input[type='week'],
+    input[type='month'],
+    input[type='text'],
+    input[type='email'],
+    input[type='url'],
+    input[type='password'],
+    input[type='search'],
+    input[type='tel'],
+    input[type='number'],
     textarea {
       display: block;
       width: 100%;
@@ -3998,7 +3990,7 @@ Page Title CSS
   }
 
   &::before {
-    content: "";
+    content: '';
     background-color: $black-color;
     position: absolute;
     top: 0;
@@ -4395,7 +4387,7 @@ Sidebar CSS
           background: $gradient-color;
           height: 7px;
           width: 7px;
-          content: "";
+          content: '';
           left: 0;
           top: 8px;
           position: absolute;
@@ -4968,7 +4960,7 @@ Footer CSS
         margin-right: 5px;
 
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           left: 0;
           top: 50%;
@@ -5005,7 +4997,7 @@ Footer CSS
       weight: 600;
     }
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       bottom: -2px;
@@ -5014,7 +5006,7 @@ Footer CSS
       background: $gradient-color;
     }
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       left: 35px;
       bottom: -2px;
@@ -5036,7 +5028,7 @@ Footer CSS
           color: $paragraph-color;
 
           &::before {
-            content: "";
+            content: '';
             position: absolute;
             left: 0;
             top: 50%;

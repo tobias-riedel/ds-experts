@@ -1,5 +1,5 @@
-import Image from "next/image";
-import SectionDivider from "./Common/SectionDivider";
+import Image from 'next/image';
+import SectionDivider from './Common/SectionDivider';
 
 const About = () => {
   return (
@@ -18,50 +18,36 @@ const About = () => {
             </div>
           </div>
 
-          <div
-            className="col-lg-7"
-            data-aos="fade-up"
-            data-aos-duration="1200"
-            data-aos-delay="100"
-          >
+          <div className="col-lg-7" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
             <div className="section-title">
               <h2>Unternehmensphilosophie</h2>
             </div>
 
             <div className="about-text">
               <p>
-                Wir haben uns als Ziel gesetzt, jeden Mitarbeiter nur
-                entsprechend seiner Qualifikation einzusetzen. Wir qualifizieren
-                unsere Mitarbeiter regelmäßig weiter. Dies bedeutet, dass im
-                Rahmen der jährlich stattfindenden Ziel-; Gehalts- und
-                Mitarbeitergespräche Weiterbildungsmaßnahmen für das Folgejahr
+                Wir haben uns als Ziel gesetzt, jeden Mitarbeiter nur entsprechend seiner Qualifikation einzusetzen. Wir
+                qualifizieren unsere Mitarbeiter regelmäßig weiter. Dies bedeutet, dass im Rahmen der jährlich
+                stattfindenden Ziel-; Gehalts- und Mitarbeitergespräche Weiterbildungsmaßnahmen für das Folgejahr
                 definiert werden.
               </p>
 
               <p>
-                In der ds-experts IT-Consulting GmbH wird Führung nicht als
-                Top-Down-Ansatz gelebt, sondern ist durch ein starkes
-                Miteinander geprägt. Eine Führungskraft ist in erster Linie
-                Diener der Angestellten und nicht umgekehrt.
+                In der ds-experts IT-Consulting GmbH wird Führung nicht als Top-Down-Ansatz gelebt, sondern ist durch
+                ein starkes Miteinander geprägt. Eine Führungskraft ist in erster Linie Diener der Angestellten und
+                nicht umgekehrt.
               </p>
 
               <p>Denn ein Leitsatz von ds-experts lautet:</p>
 
-              <blockquote
-                data-aos="fade-up"
-                data-aos-duration="1200"
-                data-aos-delay="300"
-              >
+              <blockquote data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
                 Geht es den Angestellten gut, geht es dem Unternehmen gut.
               </blockquote>
 
               <p>
-                Durch den Einsatz geschulter und qualifizierter Mitarbeiter sind
-                wir in der Lage, Projekte zur höchsten Zufriedenheit der Kunden
-                umzusetzen. Dies zeichnet sich dadurch aus, dass wir mehrfach
-                von Kunden wieder reaktiviert wurden und neue Projekte für diese
-                umsetzen durften. Unser Ziel ist es, eine 100 % Zufriedenheit
-                bei den Kunden zu erreichen.
+                Durch den Einsatz geschulter und qualifizierter Mitarbeiter sind wir in der Lage, Projekte zur höchsten
+                Zufriedenheit der Kunden umzusetzen. Dies zeichnet sich dadurch aus, dass wir mehrfach von Kunden wieder
+                reaktiviert wurden und neue Projekte für diese umsetzen durften. Unser Ziel ist es, eine 100 %
+                Zufriedenheit bei den Kunden zu erreichen.
               </p>
             </div>
           </div>

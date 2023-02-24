@@ -15,13 +15,9 @@ const JoinUsBackEndDeveloper = () => {
               <li>PHP</li>
             </ul>
           </li>
+          <li>Erfahrungen in mindestens einem der Frameworks zu den jeweiligen Programmiersprachen</li>
           <li>
-            Erfahrungen in mindestens einem der Frameworks zu den jeweiligen
-            Programmiersprachen
-          </li>
-          <li>
-            Mehrjährige Erfahrung in mindestens einem der folgenden
-            Datenbanksysteme:
+            Mehrjährige Erfahrung in mindestens einem der folgenden Datenbanksysteme:
             <ul>
               <li>MySQL, MSSQL, PostgreSQL</li>
               <li>MongoDB, NoSQL</li>

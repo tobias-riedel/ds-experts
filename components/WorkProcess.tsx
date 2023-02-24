@@ -1,6 +1,6 @@
-import Image from "next/image";
-import mobileImg from "../public/images/man-with-mobile.png";
-import SectionDivider from "./Common/SectionDivider";
+import Image from 'next/image';
+import mobileImg from '../public/images/man-with-mobile.png';
+import SectionDivider from './Common/SectionDivider';
 
 const WorkProcess = () => {
   return (
@@ -11,7 +11,14 @@ const WorkProcess = () => {
         </div>
 
         <div className="work-process">
-          <Image src={mobileImg} alt="Smartphone" style={{ height: "auto" }} />
+          <Image
+            src={mobileImg}
+            alt="Smartphone"
+            style={{ height: 'auto' }}
+            data-aos="zoom-in"
+            data-aos-duration="1200"
+            data-aos-delay="200"
+          />
 
           <div className="work-process-list">
             <div className="single-work-process">

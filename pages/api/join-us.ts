@@ -1,21 +1,19 @@
-import multer from "multer";
+import multer from 'multer';
 
-import sgMail from "@sendgrid/mail";
-import type { NextApiRequest, NextApiResponse, PageConfig } from "next";
-import { InferType, object, string, ValidationError } from "yup";
-import { sanitizeHtml } from "../../utils/mail";
+import sgMail from '@sendgrid/mail';
+import type { NextApiRequest, NextApiResponse, PageConfig } from 'next';
+import { InferType, object, string, ValidationError } from 'yup';
+import { sanitizeHtml } from '../../utils/mail';
 
-const allowedMethods = ["POST"];
-const allowedUploadFileMimeTypes = ["application/pdf"];
+const allowedMethods = ['POST'];
+const allowedUploadFileMimeTypes = ['application/pdf'];
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const JoinUsMaxFileSize = +(
-  process.env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE ?? "8"
-);
+const JoinUsMaxFileSize = +(process.env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE ?? '8');
 const maxUploadedFileSize = JoinUsMaxFileSize * 1024 * 1024;
 
-const HONEYPOT_MSG = "Honeypot triggered";
+const HONEYPOT_MSG = 'Honeypot triggered';
 const to = process.env.JOIN_US_MAIL_ADDRESS_FROM;
 const from = process.env.JOIN_US_MAIL_ADDRESS_TO;
 
@@ -32,17 +30,13 @@ const formSchema = object({
 
 type FormValue = InferType<typeof formSchema>;
 
-const uploadFilter = function (
-  _,
-  file: Express.Multer.File,
-  cb: multer.FileFilterCallback
-): void {
+const uploadFilter = function (_, file: Express.Multer.File, cb: multer.FileFilterCallback): void {
   const acceptFile = allowedUploadFileMimeTypes.includes(file.mimetype);
 
   if (acceptFile) {
     cb(null, true);
   } else {
-    return cb(new Error("Only .pdf files allowed!"));
+    return cb(new Error('Only .pdf files allowed!'));
   }
 };
 
@@ -63,28 +57,23 @@ function runMiddleware(req, res, fn) {
   });
 }
 
-export default async (
-  req: NextApiRequest,
-  res: NextApiResponse<{ error?: string | any; msg?: string }>
-) => {
-  if (!allowedMethods.includes(req?.method) || req.method == "OPTIONS") {
-    return res
-      .status(405)
-      .json({ error: `Method '${req.method}' Not Allowed` });
+export default async (req: NextApiRequest, res: NextApiResponse<{ error?: string | any; msg?: string }>) => {
+  if (!allowedMethods.includes(req?.method) || req.method == 'OPTIONS') {
+    return res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
   }
 
   try {
-    await runMiddleware(req, res, upload.single("file"));
+    await runMiddleware(req, res, upload.single('file'));
   } catch (e) {
-    console.log("File upload error:", e);
+    console.log('File upload error:', e);
     return res.status(400).json({ error: (e as Error).message });
   }
 
   let body;
   try {
-    body = typeof req.body === "object" ? req.body : JSON.parse(req.body);
+    body = typeof req.body === 'object' ? req.body : JSON.parse(req.body);
   } catch (parseErr) {
-    console.log("Body parse error:", parseErr);
+    console.log('Body parse error:', parseErr);
     return res.status(500).json({ error: parseErr });
   }
 
@@ -92,7 +81,7 @@ export default async (
   try {
     payload = await formSchema.validate(body);
   } catch (validationError: unknown) {
-    console.log("Validation failed:", validationError);
+    console.log('Validation failed:', validationError);
 
     return res.status(400).json({
       error: (validationError as ValidationError).errors,
@@ -107,13 +96,7 @@ export default async (
     });
   }
 
-  const {
-    firstName6g234: firstName,
-    name90ad0f: name,
-    emailfd80e: email,
-    subject,
-    text,
-  } = payload;
+  const { firstName6g234: firstName, name90ad0f: name, emailfd80e: email, subject, text } = payload;
 
   try {
     const formattedText = sanitizeHtml(text);
@@ -121,10 +104,10 @@ export default async (
     const attachments = uploadedFile
       ? [
           {
-            content: Buffer.from(uploadedFile.buffer).toString("base64"),
+            content: Buffer.from(uploadedFile.buffer).toString('base64'),
             filename: uploadedFile.originalname,
-            type: "application/pdf",
-            disposition: "attachment",
+            type: 'application/pdf',
+            disposition: 'attachment',
           },
         ]
       : [];
@@ -145,14 +128,14 @@ export default async (
 
     const response = await sgMail.send(mail);
     console.log(response);
-    return res.status(200).json({ msg: "Email sent successfully" });
+    return res.status(200).json({ msg: 'Email sent successfully' });
   } catch (error) {
     console.error(error);
     if (error.response) {
       console.error(error.response.body);
     }
 
-    return res.status(500).json({ msg: "Error processing payload" });
+    return res.status(500).json({ msg: 'Error processing payload' });
   }
 };
 

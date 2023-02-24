@@ -1,7 +1,7 @@
-import { Map, Marker, Overlay, ZoomControl } from "pigeon-maps";
-import { useEffect, useState } from "react";
-import { COMPANY_ADDRESS } from "../../shared/constants";
-import styles from "./Map.module.css";
+import { Map, Marker, Overlay, ZoomControl } from 'pigeon-maps';
+import { useEffect, useState } from 'react';
+import { COMPANY_ADDRESS } from '../../shared/constants';
+import styles from './Map.module.css';
 
 const CompanyMap = ({ height: mapHeight }) => {
   const address = [52.87365, 13.3835];
@@ -42,7 +42,7 @@ const CompanyMap = ({ height: mapHeight }) => {
           <Marker
             width={50}
             anchor={address}
-            color={isPopupVisible ? "coral" : "cadetblue"}
+            color={isPopupVisible ? 'coral' : 'cadetblue'}
             onClick={() => setIsPopupVisible(!isPopupVisible)}
           />
         )}

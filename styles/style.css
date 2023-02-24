@@ -86,7 +86,7 @@ html {
 body {
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1rem;
   color: #646464;
 }
@@ -106,7 +106,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Saira", sans-serif;
+  font-family: 'Saira', sans-serif;
   color: #18181b;
   font-weight: bold;
   word-break: break-word;
@@ -288,7 +288,7 @@ a:focus {
 
 .btn-primary::before {
   border-radius: 5px;
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -360,7 +360,7 @@ a:focus {
 
 .btn-secondary::before {
   border-radius: 5px;
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -378,14 +378,7 @@ a:focus {
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   z-index: -1;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -571,23 +564,18 @@ a.link--underlined:focus {
 }
 
 .div-transparent:before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 5%;
   right: 5%;
   width: 90%;
   height: 1px;
-  background-image: linear-gradient(
-    to right,
-    transparent,
-    rgb(48, 49, 51),
-    transparent
-  );
+  background-image: linear-gradient(to right, transparent, rgb(48, 49, 51), transparent);
 }
 
 .div-arrow-down:after {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 1;
   top: -7px;
@@ -737,7 +725,7 @@ Navbar CSS
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   left: 1px;
-  content: "";
+  content: '';
   position: absolute;
 }
 
@@ -817,33 +805,9 @@ Navbar CSS
   color: #18181b;
 }
 
-.navbar-area
-  nav
-  .navbar-nav
-  .nav-item
-  .dropdown-menu
-  li
-  .dropdown-menu
-  li
-  a:hover,
-.navbar-area
-  nav
-  .navbar-nav
-  .nav-item
-  .dropdown-menu
-  li
-  .dropdown-menu
-  li
-  a:focus,
-.navbar-area
-  nav
-  .navbar-nav
-  .nav-item
-  .dropdown-menu
-  li
-  .dropdown-menu
-  li
-  a.active {
+.navbar-area nav .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li a:hover,
+.navbar-area nav .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li a:focus,
+.navbar-area nav .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li a.active {
   color: #ff2c9c;
 }
 
@@ -878,13 +842,7 @@ Navbar CSS
   display: block;
 }
 
-.navbar-area
-  nav
-  .navbar-nav
-  .nav-item
-  .mega-dropdown-menu
-  .nav-item
-  a:last-child {
+.navbar-area nav .navbar-nav .nav-item .mega-dropdown-menu .nav-item a:last-child {
   border-bottom: none !important;
 }
 
@@ -1081,7 +1039,7 @@ Main Banner CSS
 }
 
 .main-banner.gradient-banner::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -1097,14 +1055,7 @@ Main Banner CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   z-index: -1;
   opacity: 0.7;
 }
@@ -1195,7 +1146,7 @@ Main Banner CSS
 }
 
 .hero-banner.overlay::before {
-  content: "";
+  content: '';
   background-color: #18181b;
   opacity: 0.85;
   position: absolute;
@@ -1206,7 +1157,7 @@ Main Banner CSS
 }
 
 .hero-banner.overlay-6::before {
-  content: "";
+  content: '';
   background-color: #18181b;
   opacity: 0.6;
   position: absolute;
@@ -1462,9 +1413,7 @@ Main Banner CSS
   opacity: 1;
 }
 
-.hero-slider
-  .swiper-pagination
-  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+.hero-slider .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: -webkit-gradient(
     linear,
     right bottom,
@@ -1475,14 +1424,7 @@ Main Banner CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   border: 1px solid #ff2c9c;
 }
 
@@ -1744,7 +1686,7 @@ Main Banner CSS
 }
 
 .slider-area ul li::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -1758,12 +1700,12 @@ Main Banner CSS
 
 .slider-area ul li .tp-caption.NotGeneric-Title,
 .slider-area ul li .NotGeneric-Title {
-  font-family: "Saira", sans-serif !important;
+  font-family: 'Saira', sans-serif !important;
 }
 
 .slider-area ul li .tp-caption.NotGeneric-SubTitle,
 .slider-area ul li .NotGeneric-SubTitle {
-  font-family: "Open Sans", sans-serif !important;
+  font-family: 'Open Sans', sans-serif !important;
   font-size: 1rem !important;
   font-weight: 500 !important;
   letter-spacing: 0 !important;
@@ -2000,7 +1942,7 @@ About CSS
 
 .video-box .video-btn::after,
 .video-box .video-btn::before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   top: 0;
@@ -2150,7 +2092,7 @@ Case Studies CSS
 }
 
 .case-studies-tabs .react-tabs .react-tabs__tab-list li::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   bottom: -12px;
@@ -2168,14 +2110,7 @@ Case Studies CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
 }
 
 .case-studies-tabs .react-tabs .react-tabs__tab-list li:hover,
@@ -2191,17 +2126,11 @@ Case Studies CSS
   width: 100%;
 }
 
-.case-studies-tabs
-  .react-tabs
-  .react-tabs__tab-list
-  li.react-tabs__tab--selected {
+.case-studies-tabs .react-tabs .react-tabs__tab-list li.react-tabs__tab--selected {
   color: #ff2c9c;
 }
 
-.case-studies-tabs
-  .react-tabs
-  .react-tabs__tab-list
-  li.react-tabs__tab--selected::before {
+.case-studies-tabs .react-tabs .react-tabs__tab-list li.react-tabs__tab--selected::before {
   width: 100%;
 }
 
@@ -2222,7 +2151,7 @@ Case Studies CSS
 }
 
 .work-card::before {
-  content: "";
+  content: '';
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
@@ -2353,9 +2282,7 @@ Case Studies CSS
   opacity: 1;
 }
 
-.work-slides
-  .swiper-pagination
-  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+.work-slides .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: -webkit-gradient(
     linear,
     right bottom,
@@ -2610,7 +2537,7 @@ Join Us CSS
 }
 
 .join-us-info ul li::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 7px;
@@ -2630,7 +2557,7 @@ Team CSS
 }
 
 .team-area::before {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
@@ -2652,7 +2579,7 @@ Team CSS
 }
 
 .single-team .team-img::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   bottom: 0;
@@ -2722,7 +2649,7 @@ Team CSS
 }
 
 .single-team .team-img .overlay ul li a::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 50%;
@@ -2740,14 +2667,7 @@ Team CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   width: 0;
   height: 0;
   z-index: -1;
@@ -2777,14 +2697,7 @@ Team CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   padding: 25px 30px;
 }
 
@@ -2890,14 +2803,7 @@ Team CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   width: 100%;
   height: 0%;
   top: 0;
@@ -3005,7 +2911,7 @@ Pricing CSS
 }
 
 .pricing-table .pricing-header::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -3022,14 +2928,7 @@ Pricing CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   opacity: 0;
   visibility: hidden;
   -webkit-transition: all 0.5s ease;
@@ -3238,10 +3137,7 @@ Pricing Area CSS
   left: 30px;
 }
 
-.pricing-list-tab
-  .react-tabs
-  .react-tabs__tab-list
-  li.react-tabs__tab--selected,
+.pricing-list-tab .react-tabs .react-tabs__tab-list li.react-tabs__tab--selected,
 .pricing-list-tab .react-tabs .react-tabs__tab-list li:focus,
 .pricing-list-tab .react-tabs .react-tabs__tab-list li:focus-visible {
   color: #ffffff;
@@ -3249,11 +3145,7 @@ Pricing Area CSS
   outline: 0;
 }
 
-.pricing-list-tab
-  .react-tabs
-  .react-tabs__tab-list
-  li.react-tabs__tab--selected
-  i,
+.pricing-list-tab .react-tabs .react-tabs__tab-list li.react-tabs__tab--selected i,
 .pricing-list-tab .react-tabs .react-tabs__tab-list li:focus i,
 .pricing-list-tab .react-tabs .react-tabs__tab-list li:focus-visible i {
   color: #ffffff;
@@ -3408,7 +3300,7 @@ Our Work Process CSS
 }
 
 .single-work-process .icon::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -3493,14 +3385,7 @@ CTA CSS
     color-stop(#ff5137),
     to(#ff6a00)
   ) !important;
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  ) !important;
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00) !important;
 }
 
 .cta-area.bg-gradient .cta-content h3 {
@@ -3544,7 +3429,7 @@ CTA CSS
 }
 
 .cta-area-two {
-  background-image: url("/images/cta-bg.jpg");
+  background-image: url('/images/cta-bg.jpg');
   background-position: center center;
   background-size: cover;
   text-align: center;
@@ -3563,20 +3448,13 @@ CTA CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   position: absolute;
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
-  content: "";
+  content: '';
   opacity: 0.95;
 }
 
@@ -3629,7 +3507,7 @@ CTA CSS
   width: 100%;
   top: 0;
   left: 0;
-  content: "";
+  content: '';
   opacity: 0.95;
 }
 
@@ -3825,7 +3703,7 @@ Subscribe CSS
 }
 
 .newsletter-inner-area::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   height: 100%;
@@ -3841,14 +3719,7 @@ Subscribe CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   opacity: 0.9;
 }
 
@@ -3894,14 +3765,7 @@ Subscribe CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   color: #ffffff;
   border: none;
   top: 0;
@@ -3939,7 +3803,7 @@ Blog CSS
 
 .single-blog-post .post-image::before,
 .single-blog-post .post-image::after {
-  content: "";
+  content: '';
   background: #ffffff;
   height: 0;
   right: 0;
@@ -3998,7 +3862,7 @@ Blog CSS
 }
 
 .single-blog-post .post-content .post-meta li::before {
-  content: "";
+  content: '';
   position: absolute;
   right: -10px;
   top: 50%;
@@ -4104,7 +3968,7 @@ Blog CSS
 }
 
 .blog-item-box .blog-item .post-content .post-meta li::before {
-  content: "";
+  content: '';
   position: absolute;
   right: -8px;
   top: 50%;
@@ -4152,7 +4016,7 @@ Blog CSS
 
 .blog-item-box .blog-item .post-image::before,
 .blog-item-box .blog-item .post-image::after {
-  content: "";
+  content: '';
   background: #ffffff;
   height: 0;
   right: 0;
@@ -4290,9 +4154,7 @@ Blog CSS
   opacity: 1;
 }
 
-.blog-slides
-  .swiper-pagination
-  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+.blog-slides .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: -webkit-gradient(
     linear,
     right bottom,
@@ -4303,14 +4165,7 @@ Blog CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   border: 1px solid #ff2c9c;
 }
 
@@ -4385,7 +4240,7 @@ Blog Details CSS
 
 .blog-details .article-content .category li a::before {
   position: absolute;
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -4401,14 +4256,7 @@ Blog Details CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   z-index: -1;
   border-radius: 5px;
   opacity: 0;
@@ -4440,8 +4288,8 @@ blockquote {
 }
 
 blockquote::before {
-  font-family: "Font Awesome 5 Free";
-  content: "\f10d";
+  font-family: 'Font Awesome 5 Free';
+  content: '\f10d';
   position: absolute;
   left: 30px;
   top: 35px;
@@ -4457,12 +4305,12 @@ blockquote p {
 blockquote cite {
   position: relative;
   padding-left: 17px;
-  font-family: "Saira", sans-serif;
+  font-family: 'Saira', sans-serif;
   font-weight: 600;
 }
 
 blockquote cite::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -4477,14 +4325,7 @@ blockquote cite::before {
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   left: 0;
   width: 10px;
   height: 2px;
@@ -4519,7 +4360,7 @@ blockquote cite::before {
 
 .post-controls-buttons div a::before {
   position: absolute;
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -4535,14 +4376,7 @@ blockquote cite::before {
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   z-index: -1;
   border-radius: 5px;
   opacity: 0;
@@ -4612,7 +4446,7 @@ blockquote cite::before {
 }
 
 .comments-area .comment-body .reply a::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -4628,14 +4462,7 @@ blockquote cite::before {
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   opacity: 0;
   visibility: hidden;
   -webkit-transition: all 0.5s ease;
@@ -4673,7 +4500,7 @@ blockquote cite::before {
 
 .comments-area .comment-author .fn {
   font-weight: 600;
-  font-family: "Saira", sans-serif;
+  font-family: 'Saira', sans-serif;
 }
 
 .comments-area .comment-author .says {
@@ -4714,10 +4541,7 @@ blockquote cite::before {
   font-weight: 700;
 }
 
-.comments-area
-  .comment-respond
-  .comment-reply-title
-  #cancel-comment-reply-link {
+.comments-area .comment-respond .comment-reply-title #cancel-comment-reply-link {
   font-size: 1rem;
   display: inline-block;
 }
@@ -4745,18 +4569,18 @@ blockquote cite::before {
   color: #18181b;
 }
 
-.comments-area .comment-respond input[type="date"],
-.comments-area .comment-respond input[type="time"],
-.comments-area .comment-respond input[type="datetime-local"],
-.comments-area .comment-respond input[type="week"],
-.comments-area .comment-respond input[type="month"],
-.comments-area .comment-respond input[type="text"],
-.comments-area .comment-respond input[type="email"],
-.comments-area .comment-respond input[type="url"],
-.comments-area .comment-respond input[type="password"],
-.comments-area .comment-respond input[type="search"],
-.comments-area .comment-respond input[type="tel"],
-.comments-area .comment-respond input[type="number"],
+.comments-area .comment-respond input[type='date'],
+.comments-area .comment-respond input[type='time'],
+.comments-area .comment-respond input[type='datetime-local'],
+.comments-area .comment-respond input[type='week'],
+.comments-area .comment-respond input[type='month'],
+.comments-area .comment-respond input[type='text'],
+.comments-area .comment-respond input[type='email'],
+.comments-area .comment-respond input[type='url'],
+.comments-area .comment-respond input[type='password'],
+.comments-area .comment-respond input[type='search'],
+.comments-area .comment-respond input[type='tel'],
+.comments-area .comment-respond input[type='number'],
 .comments-area .comment-respond textarea {
   display: block;
   width: 100%;
@@ -4768,18 +4592,18 @@ blockquote cite::before {
   transition: all 0.5s ease;
 }
 
-.comments-area .comment-respond input[type="date"]:focus,
-.comments-area .comment-respond input[type="time"]:focus,
-.comments-area .comment-respond input[type="datetime-local"]:focus,
-.comments-area .comment-respond input[type="week"]:focus,
-.comments-area .comment-respond input[type="month"]:focus,
-.comments-area .comment-respond input[type="text"]:focus,
-.comments-area .comment-respond input[type="email"]:focus,
-.comments-area .comment-respond input[type="url"]:focus,
-.comments-area .comment-respond input[type="password"]:focus,
-.comments-area .comment-respond input[type="search"]:focus,
-.comments-area .comment-respond input[type="tel"]:focus,
-.comments-area .comment-respond input[type="number"]:focus,
+.comments-area .comment-respond input[type='date']:focus,
+.comments-area .comment-respond input[type='time']:focus,
+.comments-area .comment-respond input[type='datetime-local']:focus,
+.comments-area .comment-respond input[type='week']:focus,
+.comments-area .comment-respond input[type='month']:focus,
+.comments-area .comment-respond input[type='text']:focus,
+.comments-area .comment-respond input[type='email']:focus,
+.comments-area .comment-respond input[type='url']:focus,
+.comments-area .comment-respond input[type='password']:focus,
+.comments-area .comment-respond input[type='search']:focus,
+.comments-area .comment-respond input[type='tel']:focus,
+.comments-area .comment-respond input[type='number']:focus,
 .comments-area .comment-respond textarea:focus {
   border-color: #ff2c9c;
 }
@@ -4839,14 +4663,7 @@ blockquote cite::before {
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   border: 1px solid #ff2c9c;
   color: #ffffff;
   padding: 11px 25px;
@@ -4912,7 +4729,7 @@ Page Title CSS
 }
 
 .page-title-area::before {
-  content: "";
+  content: '';
   background-color: #18181b;
   position: absolute;
   top: 0;
@@ -5260,7 +5077,7 @@ textarea.form-control {
 
 .contact-sidebar .contact-item span {
   font-size: 18px;
-  font-family: "Saira", sans-serif;
+  font-family: 'Saira', sans-serif;
   font-weight: 600;
   display: block;
   margin-bottom: 10px;
@@ -5418,17 +5235,10 @@ Sidebar CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   height: 7px;
   width: 7px;
-  content: "";
+  content: '';
   left: 0;
   top: 8px;
   position: absolute;
@@ -5694,7 +5504,7 @@ Case Studies Details CSS
 .case-studies-information ul li span {
   font-size: 16px;
   font-weight: 700;
-  font-family: "Saira", sans-serif;
+  font-family: 'Saira', sans-serif;
   color: #18181b;
   display: inline-block;
   margin-right: 4px;
@@ -5736,7 +5546,7 @@ Portfolio Details CSS
 .portfolio-information ul li span {
   font-size: 16px;
   font-weight: 700;
-  font-family: "Saira", sans-serif;
+  font-family: 'Saira', sans-serif;
   color: #18181b;
   display: inline-block;
   margin-right: 4px;
@@ -5885,7 +5695,7 @@ FAQ CSS
   color: #18181b;
   font-size: 18px;
   font-weight: 700;
-  font-family: "Saira", sans-serif;
+  font-family: 'Saira', sans-serif;
 }
 
 .faq-accordion .accordion .accordion__item .accordion__button:hover,
@@ -5926,7 +5736,7 @@ FAQ CSS
 .faq-contact h3 {
   margin-bottom: 35px;
   font-size: 24px;
-  font-family: "Saira", sans-serif;
+  font-family: 'Saira', sans-serif;
 }
 
 .faq-contact form .btn {
@@ -5979,7 +5789,7 @@ Footer CSS
 }
 
 .single-footer-widget .social-links li a::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 50%;
@@ -5997,14 +5807,7 @@ Footer CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   width: 0;
   height: 0;
   z-index: -1;
@@ -6033,7 +5836,7 @@ Footer CSS
 }
 
 .single-footer-widget h3::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   bottom: -2px;
@@ -6049,18 +5852,11 @@ Footer CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
 }
 
 .single-footer-widget h3::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 35px;
   bottom: -2px;
@@ -6085,7 +5881,7 @@ Footer CSS
 }
 
 .single-footer-widget ul.list li a::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 50%;
@@ -6101,14 +5897,7 @@ Footer CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   width: 10px;
   height: 2px;
   opacity: 0;
@@ -6164,14 +5953,7 @@ Footer CSS
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   border-radius: 50%;
   text-align: center;
   position: absolute;
@@ -6434,9 +6216,7 @@ span.new {
   opacity: 1;
 }
 
-.quotes-slides
-  .swiper-pagination
-  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+.quotes-slides .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: -webkit-gradient(
     linear,
     right bottom,
@@ -6447,14 +6227,7 @@ span.new {
     color-stop(#ff5137),
     to(#ff6a00)
   );
-  background: linear-gradient(
-    to left top,
-    #ff2c9c,
-    #ff287b,
-    #ff395a,
-    #ff5137,
-    #ff6a00
-  );
+  background: linear-gradient(to left top, #ff2c9c, #ff287b, #ff395a, #ff5137, #ff6a00);
   border: 1px solid #ff2c9c;
 }
 
