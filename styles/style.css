@@ -512,6 +512,13 @@ label {
 /*================================================
 Shared CSS
 =================================================*/
+a[target='_blank']:after {
+  font-family: 'Font Awesome 5 Free';
+  content: '\f08e';
+  display: inline-block;
+  padding-left: 0.25rem;
+}
+
 main section:last-child {
   padding-bottom: 12rem;
 }
