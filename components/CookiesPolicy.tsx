@@ -1,8 +1,9 @@
 import Link from "next/link";
+import SectionDivider from "./Common/SectionDivider";
 
 const CookiesPolicy = () => {
   return (
-    <section id="cookies-policy" className="ptb-100">
+    <section id="cookies-policy" className="pt-100">
       <div className="container">
         <div className="section-title text-start mw-100">
           <h2>Cookie-Einstellungen & Richtlinie</h2>
@@ -121,6 +122,8 @@ const CookiesPolicy = () => {
           Websites getrackt werden.
         </p>
       </div>
+
+      <SectionDivider />
     </section>
   );
 };

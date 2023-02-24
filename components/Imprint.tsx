@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { COMPANY_ADDRESS } from "../shared/constants";
+import SectionDivider from "./Common/SectionDivider";
 
 const Imprint = () => {
   const [showContacts, setShowContacts] = useState(false);
@@ -13,7 +14,7 @@ const Imprint = () => {
   }, []);
 
   return (
-    <section id="imprint" className="ptb-100">
+    <section id="imprint" className="pt-100">
       <div className="section-title"></div>
       <div className="faq-area">
         <div className="container">
@@ -76,6 +77,8 @@ const Imprint = () => {
           </div>
         </div>
       </div>
+
+      <SectionDivider />
     </section>
   );
 };

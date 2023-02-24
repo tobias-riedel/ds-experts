@@ -12,7 +12,7 @@ const Gdpr = () => {
   }, []);
 
   return (
-    <section id="gdpr" className="ptb-100">
+    <section id="gdpr" className="pt-100">
       <div className="container">
         <div className="section-title text-start mw-100">
           <h1>Datenschutzerklärung</h1>
