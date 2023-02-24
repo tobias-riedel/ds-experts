@@ -32,7 +32,7 @@ const About = () => {
               <p>
                 Wir haben uns als Ziel gesetzt, jeden Mitarbeiter nur
                 entsprechend seiner Qualifikation einzusetzen. Wir qualifizieren
-                unser Mitarbeiter regelmäßig weiter. Dies bedeutet, dass im
+                unsere Mitarbeiter regelmäßig weiter. Dies bedeutet, dass im
                 Rahmen der jährlich stattfindenden Ziel-; Gehalts- und
                 Mitarbeitergespräche Weiterbildungsmaßnahmen für das Folgejahr
                 definiert werden.
