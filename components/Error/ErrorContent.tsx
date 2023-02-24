@@ -4,8 +4,8 @@ import errorImg from "../../public/images/404.png";
 
 const ErrorContent = () => {
   return (
-    <>
-      <div className="error-area ptb-100">
+    <section>
+      <div className="error-area pt-100">
         <div className="container">
           <div className="error-content">
             <Image
@@ -29,7 +29,7 @@ const ErrorContent = () => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

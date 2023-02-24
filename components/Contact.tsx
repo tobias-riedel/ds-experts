@@ -16,7 +16,7 @@ const Contact = () => {
   }, []);
 
   return (
-    <section id="contact" className="ptb-100">
+    <section id="contact" className="pt-100">
       <div className="service-style-two">
         <div className="container">
           <div className="section-title">

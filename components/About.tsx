@@ -4,7 +4,7 @@ import { SCROLL_LINKS_PROPS } from "../shared/constants";
 
 const About = () => {
   return (
-    <div className="ptb-100">
+    <div className="pt-100">
       <div className="about-area ">
         <div className="container">
           <div className="row align-items-center">

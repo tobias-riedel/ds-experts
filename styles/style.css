@@ -918,8 +918,8 @@ Navbar CSS
   padding-bottom: 2px;
   padding-top: 2px;
   z-index: 999;
-  -webkit-box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.06);
-  box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.06);
+  -webkit-box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.2);
   background-color: #ffffff !important;
   -webkit-animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
   animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
