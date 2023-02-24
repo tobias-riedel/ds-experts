@@ -39,7 +39,7 @@ const About = () => {
               </p>
 
               <p>
-                Die der ds-experts IT-Consulting GmbH wird Führung nicht als
+                In der ds-experts IT-Consulting GmbH wird Führung nicht als
                 Top-Down-Ansatz gelebt, sondern ist durch ein starkes
                 Miteinander geprägt. Eine Führungskraft ist in erster Linie
                 Diener der Angestellten und nicht umgekehrt.
