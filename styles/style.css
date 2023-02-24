@@ -2122,6 +2122,10 @@ Case Studies CSS
 }
 
 .case-studies-area .work-card a {
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
   pointer-events: none;
 }
 
