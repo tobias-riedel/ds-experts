@@ -8,7 +8,6 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="de">
-        {/* TODO: Add keywords for SEO */}
         <Head>
           <link rel="icon" type="image/png" href="/favicon.png"></link>
         </Head>
