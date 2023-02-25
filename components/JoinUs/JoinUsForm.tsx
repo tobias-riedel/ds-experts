@@ -40,7 +40,7 @@ const INITIAL_STATE: FormItem = {
   text: '',
 };
 
-const JoinUsForm = ({ subject, ...props }: { subject: string }) => {
+const JoinUsForm = () => {
   const [agreedToGdpr, setAgreedToGdpr] = useState(false);
   const [fileMeta, setFileMeta] = useState('');
   const [fileCtrlClassName, setFileCtrlClassName] = useState('');
@@ -49,7 +49,7 @@ const JoinUsForm = ({ subject, ...props }: { subject: string }) => {
 
   const handleFileChange = (
     event: ChangeEvent<HTMLInputElement>,
-    setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void,
+    setFieldValue: (field: string, value: unknown, shouldValidate?: boolean) => void,
     maxFileSizeInMb = '8'
   ) => {
     const file = event.currentTarget?.files?.[0];

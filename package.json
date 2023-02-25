@@ -6,6 +6,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "lint": "next lint",
     "prettier": "prettier --write ."
   },
   "author": "ds-experts.de",
@@ -49,7 +50,10 @@
     "@types/react": "18.0.28",
     "@types/react-scroll": "^1.8.6",
     "@types/sanitize-html": "^2.8.0",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.53.0",
     "autoprefixer": "^10.4.13",
+    "eslint-plugin-only-warn": "^1.1.0",
     "husky": "^8.0.3",
     "postcss": "^8.4.21",
     "postcss-flexbugs-fixes": "^5.0.2",

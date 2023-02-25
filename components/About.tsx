@@ -36,7 +36,7 @@ const About = () => {
                   <h3>Struktur</h3>
                   <p>Die ds-experts IT-Consulting GmbH zeichnet eine schlanke Struktur aus.</p>
 
-                  <p>Schlank bedeutet für uns… </p>
+                  <p>Schlank bedeutet für uns…</p>
 
                   <ul>
                     <li>
