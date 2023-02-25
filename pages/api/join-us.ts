@@ -57,7 +57,7 @@ function runMiddleware(req, res, fn) {
   });
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse<{ error?: string | any; msg?: string }>) => {
+export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?: string | object; msg?: string }>) => {
   if (!allowedMethods.includes(req?.method) || req.method == 'OPTIONS') {
     return res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
   }
@@ -88,7 +88,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<{ error?: string
     });
   }
 
-  const { file: uploadedFile }: { file: Express.Multer.File } = req as any;
+  const uploadedFile = req.file as Express.Multer.File;
 
   if (uploadedFile?.size > maxUploadedFileSize) {
     return res.status(413).json({
@@ -144,3 +144,5 @@ export const config: PageConfig = {
     bodyParser: false,
   },
 };
+
+export default handler;

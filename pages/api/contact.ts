@@ -24,7 +24,7 @@ const formSchema = object({
 
 type FormValue = InferType<typeof formSchema>;
 
-export default async (req: NextApiRequest, res: NextApiResponse<{ error?: string | any; msg?: string }>) => {
+export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?: string | object; msg?: string }>) => {
   if (!allowedMethods.includes(req?.method) || req.method == 'OPTIONS') {
     return res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
   }
@@ -71,3 +71,5 @@ export default async (req: NextApiRequest, res: NextApiResponse<{ error?: string
     res.status(500).json({ msg: 'Error processing payload' });
   }
 };
+
+export default handler;

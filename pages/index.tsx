@@ -8,7 +8,7 @@ import References from '../components/References';
 import Team from '../components/Team';
 import WorkProcess from '../components/WorkProcess';
 
-export default () => {
+export const MainPage = () => {
   return (
     <>
       <section id="home">
@@ -27,3 +27,5 @@ export default () => {
     </>
   );
 };
+
+export default MainPage;
