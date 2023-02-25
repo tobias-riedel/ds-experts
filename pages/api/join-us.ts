@@ -88,7 +88,7 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?
     });
   }
 
-  const { file: uploadedFile } = req as { file: Express.Multer.File };
+  const { file: uploadedFile } = req as unknown as { file: Express.Multer.File };
 
   if (uploadedFile?.size > maxUploadedFileSize) {
     return res.status(413).json({
