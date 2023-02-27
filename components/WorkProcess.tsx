@@ -70,6 +70,7 @@ const WorkProcess = () => {
             fill
             className="rotateme circle-image"
             sizes="100vw"
+            style={{ aspectRatio: '905 / 908' }}
           />
         </div>
       </div>
