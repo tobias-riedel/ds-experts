@@ -6,7 +6,7 @@ import Imprint from '../components/Imprint';
 const Legal = () => {
   return (
     <>
-      <PageBanner pageTitle="Impressum" BGImage="/images/page-banner1.jpg" />
+      <PageBanner pageTitle="Impressum" BGImage="/images/page-banner1.webp" />
 
       <div className="links--underlined">
         <Imprint />
