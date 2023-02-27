@@ -12,44 +12,17 @@ import dynamic from 'next/dynamic';
 
 const section = 'Lade Abschnitt...';
 
-const Team = dynamic(
-  import('../components/Team').then((cmp) => cmp.default),
-  {
-    loading: () => <>{section}</>,
-  }
-);
-const Philosophy = dynamic(
-  import('../components/Philosophy').then((cmp) => cmp.default),
-  { loading: () => <>{section}</> }
-);
-const References = dynamic(
-  import('../components/References').then((cmp) => cmp.default),
-  { loading: () => <>{section}</> }
-);
-const MainBanner = dynamic(
-  import('../components/MainBanner').then((cmp) => cmp.default),
-  { loading: () => <>{section}</> }
-);
-const About = dynamic(
-  import('../components/About').then((cmp) => cmp.default),
-  { loading: () => <>{section}</> }
-);
-const Competencies = dynamic(
-  import('../components/Competencies').then((cmp) => cmp.default),
-  { loading: () => <>{section}</> }
-);
-const JoinUs = dynamic(
-  import('../components/JoinUs/JoinUs').then((cmp) => cmp.default),
-  { loading: () => <>{section}</> }
-);
-const Contact = dynamic(
-  import('../components/Contact').then((cmp) => cmp.default),
-  { loading: () => <>{section}</> }
-);
-const WorkProcess = dynamic(
-  import('../components/WorkProcess').then((cmp) => cmp.default),
-  { loading: () => <>{section}</> }
-);
+const Team = dynamic(import('../components/Team'), {
+  loading: () => <>{section}</>,
+});
+const Philosophy = dynamic(import('../components/Philosophy'), { loading: () => <>{section}</> });
+const References = dynamic(import('../components/References'), { loading: () => <>{section}</> });
+const MainBanner = dynamic(import('../components/MainBanner'), { loading: () => <>{section}</> });
+const About = dynamic(import('../components/About'), { loading: () => <>{section}</> });
+const Competencies = dynamic(import('../components/Competencies'), { loading: () => <>{section}</> });
+const JoinUs = dynamic(import('../components/JoinUs/JoinUs'), { loading: () => <>{section}</> });
+const Contact = dynamic(import('../components/Contact'), { loading: () => <>{section}</> });
+const WorkProcess = dynamic(import('../components/WorkProcess'), { loading: () => <>{section}</> });
 
 export const MainPage = () => {
   return (
