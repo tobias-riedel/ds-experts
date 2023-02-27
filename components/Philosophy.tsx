@@ -10,10 +10,11 @@ const About = () => {
             <div className="about-image">
               <Image
                 src="/images/about-img6.jpg"
-                alt="Philosophie"
+                alt="Vereinte Hände"
                 className="rounded-10 shadow optimized-image"
                 width={500}
                 height={650}
+                sizes="(max-width: 991px) 95vw, 45vw"
               />
             </div>
           </div>
