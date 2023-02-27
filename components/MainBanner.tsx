@@ -39,7 +39,7 @@ const MainBanner = () => {
                       height={440}
                       placeholder="blur"
                       className="optimized-image"
-                      sizes="(max-width: 991px) 85vw, 45vw"
+                      sizes="(max-width: 992px) 85vw, 45vw"
                       priority
                     />
                   </div>
