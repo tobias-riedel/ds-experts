@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import mobileImg from '../public/images/man-with-mobile.png';
+import circleImg from '../public/images/circle.png';
 import SectionDivider from './Common/SectionDivider';
 
 const WorkProcess = () => {
@@ -65,12 +66,10 @@ const WorkProcess = () => {
           </div>
 
           <Image
-            src="/images/circle.png"
+            src={circleImg}
             alt="Rotierender Smartphone-Hintergrund"
-            fill
-            className="rotateme circle-image"
+            className="rotateme circle-image optimized-image"
             sizes="100vw"
-            style={{ aspectRatio: '905 / 908' }}
           />
         </div>
       </div>

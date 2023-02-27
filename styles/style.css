@@ -3171,6 +3171,7 @@ Our Work Process CSS
 =================================================*/
 .work-process-area {
   overflow: hidden;
+  padding-bottom: 2rem;
 }
 
 .work-process-area .section-title {
@@ -3190,7 +3191,7 @@ Our Work Process CSS
   left: 0;
   right: 0;
   margin: 0 auto;
-  top: -10px;
+  top: 0;
   z-index: -1;
 }
 
