@@ -1,9 +1,16 @@
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import CookieConsent from 'react-cookie-consent';
 
 const ACCEPT_COOKIE_NAME = 'ds-experts-cookie-consent';
 
 const CookieAccept = () => {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setVisible(true), 3000);
+  }, []);
+
   return (
     <CookieConsent
       enableDeclineButton
@@ -24,6 +31,7 @@ const CookieAccept = () => {
         backgroundColor: '#d33',
       }}
       expires={450}
+      style={{ display: visible ? 'block' : 'none' }}
     >
       <h3>Wir respektieren Ihre Privatsphäre</h3>
       Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern. Sie helfen uns, die Leistung der

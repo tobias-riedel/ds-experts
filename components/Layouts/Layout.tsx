@@ -1,9 +1,7 @@
-import dynamic from 'next/dynamic';
+import CookieAccept from '../Common/CookieAccept';
 import Footer from './Footer';
 import GoTop from './GoTop';
 import Header from './Header';
-
-const CookieAccept = dynamic(import('../Common/CookieAccept'));
 
 const Layout = (props) => {
   return (
