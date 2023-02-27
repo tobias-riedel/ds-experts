@@ -67,10 +67,11 @@ const About = () => {
               <div className="about-image">
                 <Image
                   src="/images/about-img5.jpg"
-                  alt="image"
+                  alt="Über uns"
                   className="rounded-10 shadow optimized-image"
                   width={500}
                   height={650}
+                  sizes="(max-width: 991px) 95vw, 45vw"
                 />
               </div>
             </div>

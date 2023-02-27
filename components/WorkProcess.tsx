@@ -67,9 +67,8 @@ const WorkProcess = () => {
           <Image
             src="/images/circle.png"
             alt="Rotierender Smartphone-Hintergrund"
-            width={905}
-            height={908}
-            className="rotateme circle-image optimized-image"
+            fill
+            className="rotateme circle-image"
             sizes="100vw"
           />
         </div>
