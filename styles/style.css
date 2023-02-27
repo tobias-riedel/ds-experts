@@ -3187,10 +3187,6 @@ Our Work Process CSS
 }
 
 .work-process img.circle-image {
-  /* max-width: 905px;
-  max-height: 908px; */
-  max-width: 100%;
-  aspect-ratio: 905/908;
   position: absolute;
   left: 0;
   right: 0;

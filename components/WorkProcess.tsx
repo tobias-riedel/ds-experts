@@ -70,6 +70,7 @@ const WorkProcess = () => {
             alt="Rotierender Smartphone-Hintergrund"
             className="rotateme circle-image optimized-image"
             sizes="100vw"
+            style={{ maxWidth: '905px', maxHeight: '908px' }}
           />
         </div>
       </div>
