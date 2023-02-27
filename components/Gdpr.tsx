@@ -15,7 +15,7 @@ const Gdpr = () => {
     <section id="gdpr" className="pt-100">
       <div className="container">
         <div className="section-title text-start mw-100">
-          <h1>Datenschutzerklärung</h1>
+          <h2>Datenschutzerklärung</h2>
         </div>
         <p>Verantwortlich im Sinne der Datenschutzgesetzes:</p>
         <p>
