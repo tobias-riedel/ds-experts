@@ -3187,6 +3187,7 @@ Our Work Process CSS
 }
 
 .work-process img.circle-image {
+  max-width: 905px;
   position: absolute;
   left: 0;
   right: 0;
