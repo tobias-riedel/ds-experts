@@ -890,43 +890,7 @@ $transition: 0.5s;
   .footer-area {
     padding-top: 60px;
   }
-  .single-footer-widget {
-    padding-left: 0 !important;
-    margin: {
-      bottom: 30px;
-      left: 0 !important;
-    }
-    h3 {
-      font-size: 19px;
 
-      &::before {
-        bottom: -2px;
-      }
-      &::after {
-        bottom: -2px;
-      }
-    }
-    ul {
-      &.get-in-touch {
-        margin: 33px 0 0;
-
-        li {
-          margin-bottom: 21px;
-          padding-left: 40px;
-
-          i {
-            top: -5px;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-          }
-          &:first-child {
-            margin-bottom: 30px;
-          }
-        }
-      }
-    }
-  }
   .copyright-area {
     margin-top: 30px;
   }
@@ -1182,28 +1146,6 @@ $transition: 0.5s;
             color: #fff;
           }
         }
-      }
-    }
-  }
-
-  .coming-soon-content {
-    padding: 20px;
-    text-align: center;
-    h2 {
-      font-size: 25px;
-      margin-top: 20px;
-    }
-    .coming-soon-countdown {
-      margin-top: 15px;
-      display: block !important;
-      li {
-        display: inline-block !important;
-      }
-    }
-    form {
-      .default-btn-two {
-        font-size: 13px;
-        padding: 7px 20px;
       }
     }
   }
@@ -1756,42 +1698,7 @@ $transition: 0.5s;
   .footer-area {
     padding-top: 70px;
   }
-  .single-footer-widget {
-    padding-left: 0 !important;
-    margin: {
-      bottom: 30px;
-      left: 0 !important;
-    }
-    h3 {
-      font-size: 20px;
-    }
-    ul {
-      &.list {
-        li {
-          font-size: 14px;
-        }
-      }
-      &.get-in-touch {
-        margin: 33px 0 0;
 
-        li {
-          margin-bottom: 21px;
-          font-size: 14px;
-          padding-left: 40px;
-
-          i {
-            top: -5px;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-          }
-          &:first-child {
-            margin-bottom: 30px;
-          }
-        }
-      }
-    }
-  }
   .copyright-area {
     margin-top: 50px;
   }
@@ -2263,12 +2170,6 @@ $transition: 0.5s;
           font-size: 15px;
         }
       }
-    }
-  }
-
-  .single-footer-widget {
-    h3 {
-      font-size: 20px;
     }
   }
 

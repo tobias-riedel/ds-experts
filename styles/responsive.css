@@ -659,36 +659,7 @@
   .footer-area {
     padding-top: 60px;
   }
-  .single-footer-widget {
-    padding-left: 0 !important;
-    margin-bottom: 30px;
-    margin-left: 0 !important;
-  }
-  .single-footer-widget h3 {
-    font-size: 19px;
-  }
-  .single-footer-widget h3::before {
-    bottom: -2px;
-  }
-  .single-footer-widget h3::after {
-    bottom: -2px;
-  }
-  .single-footer-widget ul.get-in-touch {
-    margin: 33px 0 0;
-  }
-  .single-footer-widget ul.get-in-touch li {
-    margin-bottom: 21px;
-    padding-left: 40px;
-  }
-  .single-footer-widget ul.get-in-touch li i {
-    top: -5px;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-  }
-  .single-footer-widget ul.get-in-touch li:first-child {
-    margin-bottom: 30px;
-  }
+
   .copyright-area {
     margin-top: 30px;
   }
@@ -864,25 +835,6 @@
   }
   .navbar-area.dark-navbar .navbar-nav .nav-link:hover {
     color: #fff;
-  }
-  .coming-soon-content {
-    padding: 20px;
-    text-align: center;
-  }
-  .coming-soon-content h2 {
-    font-size: 25px;
-    margin-top: 20px;
-  }
-  .coming-soon-content .coming-soon-countdown {
-    margin-top: 15px;
-    display: block !important;
-  }
-  .coming-soon-content .coming-soon-countdown li {
-    display: inline-block !important;
-  }
-  .coming-soon-content form .default-btn-two {
-    font-size: 13px;
-    padding: 7px 20px;
   }
 }
 
@@ -1270,34 +1222,7 @@
   .footer-area {
     padding-top: 70px;
   }
-  .single-footer-widget {
-    padding-left: 0 !important;
-    margin-bottom: 30px;
-    margin-left: 0 !important;
-  }
-  .single-footer-widget h3 {
-    font-size: 20px;
-  }
-  .single-footer-widget ul.list li {
-    font-size: 14px;
-  }
-  .single-footer-widget ul.get-in-touch {
-    margin: 33px 0 0;
-  }
-  .single-footer-widget ul.get-in-touch li {
-    margin-bottom: 21px;
-    font-size: 14px;
-    padding-left: 40px;
-  }
-  .single-footer-widget ul.get-in-touch li i {
-    top: -5px;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-  }
-  .single-footer-widget ul.get-in-touch li:first-child {
-    margin-bottom: 30px;
-  }
+
   .copyright-area {
     margin-top: 50px;
   }
@@ -1584,9 +1509,6 @@
   }
   .portfolio-information ul li span {
     font-size: 15px;
-  }
-  .single-footer-widget h3 {
-    font-size: 20px;
   }
   .modal-video-body {
     padding: 0 50px;
