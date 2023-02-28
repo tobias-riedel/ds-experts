@@ -7,12 +7,8 @@ import 'animate.css';
 import '../styles/all.min.css';
 import '../styles/pe-icon-7-stroke.css';
 import 'react-accessible-accordion/dist/fancy-example.css';
-// import 'swiper/css';
-// // import all Swiper modules with below line
-// // import 'swiper/css/bundle';
-// // import only selected swiper modules
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
+import 'swiper/css';
+import 'swiper/css/bundle';
 
 // Global Style order must not be changed
 import '../styles/fonts.css';
