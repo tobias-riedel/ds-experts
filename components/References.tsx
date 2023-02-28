@@ -1,3 +1,10 @@
+import 'swiper/css';
+// import all Swiper modules with below line
+// import 'swiper/css/bundle';
+// import only selected swiper modules
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Autoplay, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper';
