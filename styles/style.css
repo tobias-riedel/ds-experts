@@ -519,7 +519,7 @@ Shared CSS
 }
 
 a[target='_blank']:after {
-  font-family: 'Font Awesome 5 Free';
+  font-family: 'Font Awesome 6 Free';
   content: '\f08e';
   display: inline-block;
   padding-left: 0.25rem;
@@ -4303,7 +4303,7 @@ blockquote {
 }
 
 blockquote::before {
-  font-family: 'Font Awesome 5 Free';
+  font-family: 'Font Awesome 6 Free';
   content: '\f10d';
   position: absolute;
   left: 30px;
