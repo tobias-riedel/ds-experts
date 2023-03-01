@@ -57,7 +57,7 @@ const About = () => {
 
                 <div>
                   <ScrollLink to="philosophy" href="/#philosophy" className="btn btn-primary" {...SCROLL_LINKS_PROPS}>
-                    Erfahre mehr über unsere Leitlinien
+                    Erfahre mehr über unsere Leitlinien <i className="fas fa-chevron-right"></i>
                   </ScrollLink>
                 </div>
               </div>

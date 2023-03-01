@@ -25,7 +25,7 @@ const MainBanner = () => {
                     </p>
 
                     <ScrollLink href="/#join-us" to="join-us" className="btn btn-primary" {...SCROLL_LINKS_PROPS}>
-                      ERFAHRE MEHR
+                      ERFAHRE MEHR <i className="fas fa-chevron-right"></i>
                     </ScrollLink>
                   </div>
                 </div>
