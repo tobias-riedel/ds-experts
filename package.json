@@ -32,12 +32,11 @@
     "react-cookie-consent": "^8.0.1",
     "react-dom": "^18.2.0",
     "react-scroll": "^1.8.9",
-    "react-tabs": "^5.1.0",
     "react-visibility-sensor": "^5.1.1",
     "sanitize-html": "^2.8.1",
-    "sweetalert2": "11.4.8",
+    "sweetalert2": "^11.4.8",
     "sweetalert2-react-content": "^5.0.0",
-    "swiper": "^8.2.2",
+    "swiper": "^9.1.0",
     "yup": "^1.0.0"
   },
   "devDependencies": {
