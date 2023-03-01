@@ -25,7 +25,7 @@ const Contact = () => {
 
           <div className="row">
             <div className={showContactForm ? 'col-lg-6' : ''}>
-              <h3 className="text-center">Hier kannst Du uns finden</h3>
+              <h3>Hier kannst Du uns finden</h3>
               <div className="service-left-img">
                 <ul className="list-unstyled links--underlined">
                   <li>
@@ -86,7 +86,7 @@ const Contact = () => {
             <div className={showContactForm ? 'col-lg-6' : ''}>
               {showContactForm && (
                 <div data-aos="fade" data-aos-duration="1200" data-aos-once="true">
-                  <h3 className="text-center">Kontaktiere uns!</h3>
+                  <h3>Kontaktiere uns!</h3>
                   <ContactForm />
                 </div>
               )}

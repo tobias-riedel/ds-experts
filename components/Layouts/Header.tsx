@@ -86,7 +86,7 @@ const Navbar = () => {
     <header className={`scroll-${scrollDirection || 'up'} ${menu ? 'collapse-menu--visible' : ''}`}>
       <div id="navbar" className={`navbar-area navbar-style-2 ${navbarSticky}`}>
         <nav role="navigation" className="navbar navbar-expand-md navbar-light">
-          <div className="container-fluid">
+          <div className="container">
             <Link href="/" className="navbar-brand">
               <Image
                 src={logoImg}
