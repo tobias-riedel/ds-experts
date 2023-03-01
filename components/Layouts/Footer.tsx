@@ -1,47 +1,7 @@
 import Link from 'next/link';
-import Router from 'next/router';
-import { resetCookieConsentValue } from 'react-cookie-consent';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-
-const ACCEPT_COOKIE_NAME = 'ds-experts-cookie-consent';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  const MySwal = withReactContent(Swal);
-  const confirmCookieReset = async (e) => {
-    e.preventDefault();
-
-    const result = await MySwal.fire({
-      title: 'Cookie-Einstellungen zurücksetzen',
-      text: 'Soll die Cookie-Freigabe zurückgesetzt werden? Die Seite wird danach neugeladen.',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#1a6d2d',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Ja',
-      cancelButtonText: 'Abbrechen',
-    });
-
-    console.log('res::', result);
-
-    if (result.isConfirmed) {
-      resetCookieConsentValue(ACCEPT_COOKIE_NAME);
-
-      const reloadDelay = 4000;
-      MySwal.fire({
-        title: 'Cookies zurückgesetzt!',
-        text: 'Die Seite wird jetzt neugeladen.',
-        icon: 'success',
-        timer: reloadDelay,
-        timerProgressBar: true,
-        showConfirmButton: false,
-      });
-
-      setTimeout(() => Router.reload(), reloadDelay);
-    }
-  };
 
   return (
     <footer>
@@ -56,11 +16,7 @@ const Footer = () => {
                   <Link href="/legal#gdpr">Datenschutzerklärung</Link>
                 </p>
                 <p className="col-lg-5">
-                  <Link href="/#reset-cookies" onClick={confirmCookieReset}>
-                    Cookie-Einstellungen
-                  </Link>
-                  {' & '}
-                  <Link href="/legal#cookies-policy">Richtlinie</Link>
+                  <Link href="/legal#cookies-policy">Cookie-Einstellungen &amp; Richtlinie</Link>
                 </p>
                 <p className="col-lg-3">
                   <Link href="/legal#imprint">Impressum</Link>
