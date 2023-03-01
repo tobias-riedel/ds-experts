@@ -218,9 +218,6 @@
   .slider-area .zeus.tparrows::before {
     line-height: 50px;
   }
-  .about-content-two {
-    padding-left: 0;
-  }
   .service-card-one i {
     margin-bottom: 20px;
   }
@@ -1253,9 +1250,6 @@
   .navbar-area nav .navbar-nav .nav-item:nth-last-child(4) ul {
     right: 0;
     left: auto;
-  }
-  .about-content-two {
-    padding-left: 0;
   }
   .funfact {
     margin-bottom: 30px;
