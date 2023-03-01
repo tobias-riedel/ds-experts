@@ -1,5 +1,5 @@
 export const SCROLL_LINKS_PROPS = {
-  offset: -109,
+  offset: -59,
   duration: 0,
 };
 
