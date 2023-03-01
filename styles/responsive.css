@@ -878,9 +878,6 @@
   .service-card-one.bg-fcfbfb h3 {
     font-size: 17px;
   }
-  .service-style-two .container {
-    max-width: 540px;
-  }
   .single-pricing-table .pricing-header {
     padding: 15px 20px;
   }
@@ -1259,9 +1256,6 @@
     padding-top: 140px;
     padding-bottom: 100px;
   }
-  .service-style-two .container {
-    max-width: 720px;
-  }
   .service-style-two .service-info .title {
     font-size: 32px;
   }
@@ -1536,9 +1530,6 @@
   }
   .service-card-one.bg-fcfbfb {
     padding: 30px 25px;
-  }
-  .service-style-two .container {
-    max-width: 960px;
   }
   .service-style-two .service-info.pr-50 {
     padding-right: 0;
