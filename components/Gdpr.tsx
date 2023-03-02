@@ -67,7 +67,13 @@ const Gdpr = () => {
           Datenquellen. Wenn uns konkrete Anhaltspunkte für eine rechtswidrige Nutzung bekannt werden behalten wir uns
           das Recht vor, diese Daten nachträglich zu überprüfen.
         </p>
-
+        <h3>Cookies</h3>
+        <p>
+          Viele Internetseiten verwenden Cookies. Cookies sind unschädlich für Ihren Rechner und virenfrei. Sie dienen
+          dazu, Internet-Angebote für die Besucher einer Webseite freundlicher, effektiver und sicherer zu machen.
+          Cookies sind kleine Textdateien, die auf Ihrem Computer abgelegt werden und die Ihr Browser verwendet.
+        </p>
+        <p>Wir nehmen Datenschutz sehr ernst und verwenden keine Cookies.</p>
         <h3>Formulare</h3>
         <p>
           Daten, die uns über unsere Formulare erreichen, werden inklusive des Inhalts der Anfrage für

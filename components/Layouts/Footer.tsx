@@ -12,14 +12,11 @@ const Footer = () => {
 
             <div className="col-lg-7">
               <div className="row links--underlined">
-                <p className="col-lg-4">
-                  <Link href="/legal#gdpr">Datenschutzerklärung</Link>
-                </p>
-                <p className="col-lg-5">
-                  <Link href="/legal#cookies-policy">Cookie-Einstellungen &amp; Richtlinie</Link>
-                </p>
-                <p className="col-lg-3">
+                <p className="col-lg-6">
                   <Link href="/legal#imprint">Impressum</Link>
+                </p>
+                <p className="col-lg-6">
+                  <Link href="/legal#gdpr">Datenschutzerklärung</Link>
                 </p>
               </div>
             </div>
