@@ -6,7 +6,7 @@ const JoinUsBackEndDeveloper = () => {
         <h4>Must Have:</h4>
         <ul>
           <li>
-            Mehrjährige Erfahrung in einem von:
+            Mehrjährige Back-End-Erfahrung in mindestens einer dieser Programmiersprachen:
             <ul>
               <li>C#</li>
               <li>Java</li>

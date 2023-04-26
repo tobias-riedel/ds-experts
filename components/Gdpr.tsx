@@ -17,7 +17,7 @@ const Gdpr = () => {
         <div className="section-title text-start mw-100">
           <h2>Datenschutzerklärung</h2>
         </div>
-        <p>Verantwortlich im Sinne der Datenschutzgesetzes:</p>
+        <p>Verantwortlich im Sinne des Datenschutzgesetzes:</p>
         <p>
           ds-experts IT-Consulting GmbH
           <br />
