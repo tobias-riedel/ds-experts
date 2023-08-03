@@ -71,7 +71,7 @@ const JoinUsForm = () => {
 
     setFileCtrlClassName('is-valid');
     setFileSizeError('');
-    setFieldValue('file', event.currentTarget.files[0]);
+    setFieldValue('file', event.currentTarget.files?.[0]);
   };
 
   const handleSubmit = async (payload: FormItem) => {
@@ -81,7 +81,7 @@ const JoinUsForm = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-        onUploadProgress: (data) => setProgress(Math.round((100 * data.loaded) / data.total)),
+        onUploadProgress: (data) => setProgress(Math.round((100 * data.loaded) / (data.total ?? 1))),
       });
       alertContent();
     } catch (error) {
@@ -95,7 +95,7 @@ const JoinUsForm = () => {
         <Formik
           initialValues={{ ...INITIAL_STATE }}
           validate={(values: FormItem): Partial<FormItem> => {
-            // TODO: Replace validation with YUP schema
+            // TODO: Replace validation with Zod schema
             const errors: Partial<FormItem> = {};
             if (!values.firstName6g234.trim()) {
               errors.firstName6g234 = 'Pflichtfeld';
