@@ -1,0 +1,14 @@
+@import 'animate.css';
+@import 'react-accessible-accordion/dist/fancy-example.css';
+@import 'swiper/css';
+@import 'swiper/css/bundle';
+@import '../node_modules/aos/dist/aos.css';
+@import './all.min.css';
+@import './animate.min.css';
+@import './bootstrap.min.css';
+@import './pe-icon-7-stroke.css';
+
+/* Global Style order must not be changed */
+@import './fonts.css';
+@import './responsive.css';
+@import './style.css';

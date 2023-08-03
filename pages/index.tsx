@@ -1,16 +1,27 @@
-// import About from '../components/About';
 import SectionDivider from '../components/Common/SectionDivider';
-// import Competencies from '../components/Competencies';
-// import Contact from '../components/Contact';
-// import JoinUs from '../components/JoinUs/JoinUs';
-// import MainBanner from '../components/MainBanner';
-// import Philosophy from '../components/Philosophy';
-// import References from '../components/References';
-// import Team from '../components/Team';
-// import WorkProcess from '../components/WorkProcess';
+
+import axios from 'axios';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
+import Layout from '../components/Layouts/Layout';
+import { References } from '../components/References';
 
 const section = 'Lade Abschnitt...';
+
+export const getServerSideProps: GetServerSideProps<{
+  references: References[];
+}> = async () => {
+  try {
+    const { data: references } = await axios<References[]>('/api/admin/projects');
+
+    // TODO: Use redux instead
+    return { props: { references } };
+  } catch (error) {
+    console.log('Error::', error);
+
+    return { props: { references: [] } };
+  }
+};
 
 const Team = dynamic(import('../components/Team'), {
   loading: () => <>{section}</>,
@@ -24,9 +35,9 @@ const JoinUs = dynamic(import('../components/JoinUs/JoinUs'), { loading: () => <
 const Contact = dynamic(import('../components/Contact'), { loading: () => <>{section}</> });
 const WorkProcess = dynamic(import('../components/WorkProcess'), { loading: () => <>{section}</> });
 
-export const MainPage = () => {
+export const MainPage = ({ references }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
-    <>
+    <Layout>
       <section id="home">
         <MainBanner />
         <About />
@@ -38,9 +49,9 @@ export const MainPage = () => {
       <WorkProcess />
       <JoinUs />
       <Competencies />
-      <References />
+      <References references={references} />
       <Contact />
-    </>
+    </Layout>
   );
 };
 

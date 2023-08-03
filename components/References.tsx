@@ -4,24 +4,28 @@ import { Autoplay, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SectionDivider from './Common/SectionDivider';
 
-interface References {
+export interface References {
+  id: string;
   img: string;
-  name: string;
-  location: string;
-  tasks: string[];
+  projectName: string;
+  city: string;
+  description?: string;
+  tasks?: string[];
 }
 
-const references: References[] = [
+const referencesStatic: References[] = [
   {
+    id: '0',
     img: '/images/references/ref1.jpg',
-    name: 'Panalpina AG',
-    location: 'Basel',
+    projectName: 'Panalpina AG',
+    city: 'Basel',
     tasks: ['Erstellung Softwarelösung in Exchange'],
   },
   {
+    id: '1',
     img: '/images/references/ref5.jpg',
-    name: 'Diehl AirCabin GmbH',
-    location: 'Laupheim',
+    projectName: 'Diehl AirCabin GmbH',
+    city: 'Laupheim',
     tasks: [
       'Projektleitung IT-Rollout',
       'Projektleitung Erstellung Engineering Cloud',
@@ -29,74 +33,85 @@ const references: References[] = [
     ],
   },
   {
+    id: '2',
     img: '/images/references/ref3.jpg',
-    name: 'Diehl Aerospace',
-    location: 'Frankfurt Main',
+    projectName: 'Diehl Aerospace',
+    city: 'Frankfurt Main',
     tasks: ['Update SAP Change Management'],
   },
   {
+    id: '3',
     img: '/images/references/ref15.jpg',
-    name: 'Union Investment',
-    location: 'Frankfurt Main',
+    projectName: 'Union Investment',
+    city: 'Frankfurt Main',
     tasks: ['Strategische Beratung IT-Update'],
   },
   {
+    id: '4',
     img: '/images/references/ref2.jpg',
-    name: 'QSCA AG',
-    location: 'Hamburg',
+    projectName: 'QSCA AG',
+    city: 'Hamburg',
     tasks: ['Transition Management für namhafte Kunden (Spiegel, Otto-Gruppe, ...)'],
   },
   {
+    id: '5',
     img: '/images/references/ref6.jpg',
-    name: 'WEH Verbindungstechnik GmbH',
-    location: 'Illertissen',
+    projectName: 'WEH Verbindungstechnik GmbH',
+    city: 'Illertissen',
     tasks: ['Projektleitung Outsourcing', 'Projektleitung Industrie 4.0 Bereich Digitalisierung'],
   },
   {
+    id: '6',
     img: '/images/references/ref7.jpg',
-    name: 'Toyota Kreditbank',
-    location: 'Köln',
+    projectName: 'Toyota Kreditbank',
+    city: 'Köln',
     tasks: ['Softwareentwicklung Bugfixing'],
   },
   {
+    id: '7',
     img: '/images/references/ref8.jpg',
-    name: '1&1 Internet AG',
-    location: 'Flensburg',
+    projectName: '1&1 Internet AG',
+    city: 'Flensburg',
     tasks: ['Softwareentwicklung e-Commerce Plattform'],
   },
   {
+    id: '8',
     img: '/images/references/ref10.jpg',
-    name: 'DNVGL SE',
-    location: 'Hamburg',
+    projectName: 'DNVGL SE',
+    city: 'Hamburg',
     tasks: ['Softwareentwicklung Modulprogrammierung', 'Kalkulationsplattform'],
   },
   {
+    id: '9',
     img: '/images/references/ref11.jpg',
-    name: 'Ingenico',
-    location: 'Hamburg',
+    projectName: 'Ingenico',
+    city: 'Hamburg',
     tasks: ['Softwareentwicklung Widgets zur Zahlungsabwicklung'],
   },
   {
+    id: '10',
     img: '/images/references/ref4.jpg',
-    name: 'Healex GmbH',
-    location: 'Berlin',
+    projectName: 'Healex GmbH',
+    city: 'Berlin',
     tasks: ['Softwareentwicklung Corona Tracking App'],
   },
   {
+    id: '11',
     img: '/images/references/ref13.jpg',
-    name: 'Hannover RE',
-    location: 'Hannover',
+    projectName: 'Hannover RE',
+    city: 'Hannover',
     tasks: ['Softwareentwicklung Migration Tools'],
   },
   {
+    id: '12',
     img: '/images/references/ref14.jpg',
-    name: 'Siemens Energy AG ',
-    location: 'Berlin',
+    projectName: 'Siemens Energy AG ',
+    city: 'Berlin',
     tasks: ['Projektleitung IT-Rollout ', 'Projektleitung Softwareentwicklung'],
   },
 ];
 
-const OurWorks = () => {
+const OurWorks = ({ references }: { references: References[] }) => {
   return (
     <section id="references" className="case-studies-area pt-100">
       <div className="container-fluid">
@@ -138,7 +153,7 @@ const OurWorks = () => {
           modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
           className="work-slides"
         >
-          {references.map((ref, idx) => {
+          {references?.map((ref, idx) => {
             const refProps =
               idx % 2
                 ? {
@@ -148,11 +163,11 @@ const OurWorks = () => {
                   }
                 : {};
             return (
-              <SwiperSlide key={idx}>
+              <SwiperSlide key={ref.id}>
                 <div className="work-card shadow" {...refProps}>
                   <Image
                     src={ref.img}
-                    alt={`Referenzbild zu ${ref.name}`}
+                    alt={`Referenzbild zu ${ref.projectName}`}
                     width={510}
                     height={700}
                     sizes="(max-width: 576px) 95vw, (max-width: 768px) 45vw, (max-width: 992px) 30vw, (max-width: 1200px) 24vw, 20vw"
@@ -162,11 +177,11 @@ const OurWorks = () => {
                   <div className="content text-center">
                     <span>
                       <div>
-                        <Link href="/">{ref.name}</Link>
+                        <Link href="/">{ref.projectName}</Link>
                       </div>
                       <div>
                         <Link href="/" className="ref-location">
-                          ({ref.location})
+                          ({ref.city})
                         </Link>
                       </div>
                     </span>
