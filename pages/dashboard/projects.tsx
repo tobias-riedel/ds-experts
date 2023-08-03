@@ -55,7 +55,7 @@ export default function Page() {
           <p>Access Denied</p>
 
           <>
-            <button onClick={() => signIn()} className="btn btn-primary">
+            <button onClick={() => signIn('azure-ad')} className="btn btn-primary">
               Login
             </button>
           </>
@@ -114,7 +114,7 @@ export default function Page() {
                   <Form className="needs-validation">
                     <div className="container">
                       <div className="row">
-                        <div className="form-group">
+                        <div className="form-group col-lg-6">
                           <Field
                             type="text"
                             name="projectName"
@@ -125,26 +125,22 @@ export default function Page() {
                           {errors.projectName && <div className="form-feedback">{errors.projectName}</div>}
                         </div>
 
-                        <div className="col-lg-6">
-                          <div className="form-group">
-                            <Field
-                              type="text"
-                              name="partnerName"
-                              className={ctrlClassName('partnerName')}
-                              placeholder="Partnername*"
-                            />
-                            {errors.partnerName && <div className="form-feedback">{errors.partnerName}</div>}
-                          </div>
+                        <div className="form-group col-lg-6">
+                          <Field
+                            type="text"
+                            name="partnerName"
+                            className={ctrlClassName('partnerName')}
+                            placeholder="Partnername*"
+                          />
+                          {errors.partnerName && <div className="form-feedback">{errors.partnerName}</div>}
                         </div>
 
-                        <div className="col-lg-6">
-                          <div className="form-group">
-                            <Field type="text" name="city" className={ctrlClassName('city')} placeholder="Stadtname*" />
-                            {errors.city && <div className="form-feedback">{errors.city}</div>}
-                          </div>
+                        <div className="form-group col-lg-6">
+                          <Field type="text" name="city" className={ctrlClassName('city')} placeholder="Stadtname*" />
+                          {errors.city && <div className="form-feedback">{errors.city}</div>}
                         </div>
 
-                        <div className="form-group">
+                        <div className="form-group col-lg-6">
                           <Field type="text" name="img" className={ctrlClassName('img')} placeholder="Bilderpfad*" />
                           {errors.img && <div className="form-feedback">{errors.img}</div>}
                         </div>
@@ -155,7 +151,7 @@ export default function Page() {
                             name="description"
                             cols={30}
                             rows={6}
-                            placeholder="Schreib Deine Projektbeschreibung...*"
+                            placeholder="Projektbeschreibung*"
                             className={ctrlClassName('description')}
                             required
                           />

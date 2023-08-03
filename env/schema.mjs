@@ -19,9 +19,6 @@ export const serverSchema = z.object({
   AZURE_AD_CLIENT_ID: z.string(),
   AZURE_AD_CLIENT_SECRET: z.string(),
   AZURE_AD_TENANT_ID: z.string(),
-
-  GOOGLE_CLIENT_ID: z.string(),
-  GOOGLE_CLIENT_SECRET: z.string(),
 });
 
 /**
