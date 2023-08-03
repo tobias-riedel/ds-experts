@@ -4,6 +4,8 @@ import { Autoplay, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SectionDivider from './Common/SectionDivider';
 
+const DEFAULT_REFERENCE_IMG = '/images/references/ref1.jpg';
+
 export interface Reference {
   id: string;
   img?: string;
@@ -166,7 +168,7 @@ const OurWorks = ({ references }: { references: Reference[] }) => {
               <SwiperSlide key={ref.id}>
                 <div className="work-card shadow" {...refProps}>
                   <Image
-                    src={ref.img}
+                    src={ref.img ?? DEFAULT_REFERENCE_IMG}
                     alt={`Referenzbild zu ${ref.projectName}`}
                     width={510}
                     height={700}
