@@ -19,6 +19,12 @@ export const serverSchema = z.object({
   AZURE_AD_CLIENT_ID: z.string(),
   AZURE_AD_CLIENT_SECRET: z.string(),
   AZURE_AD_TENANT_ID: z.string(),
+
+  SENDGRID_API_KEY: z.string({ required_error: 'Mail API key is required' }),
+  CONTACTS_MAIL_ADDRESS_FROM: z.string({ required_error: 'Contacts FROM mail address is required' }).email(),
+  CONTACTS_MAIL_ADDRESS_TO: z.string({ required_error: 'Contacts TO mail address is required' }).email(),
+  JOIN_US_MAIL_ADDRESS_FROM: z.string({ required_error: 'Join Us FROM mail address is required' }).email(),
+  JOIN_US_MAIL_ADDRESS_TO: z.string({ required_error: 'Join Us TO mail address is required' }).email(),
 });
 
 /**
@@ -28,6 +34,7 @@ export const serverSchema = z.object({
  */
 export const clientSchema = z.object({
   // NEXT_PUBLIC_CLIENTVAR: z.string(),
+  NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE: z.number(),
 });
 
 /**
@@ -38,4 +45,5 @@ export const clientSchema = z.object({
  */
 export const clientEnv = {
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+  NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE: +(process.env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE ?? '8'),
 };

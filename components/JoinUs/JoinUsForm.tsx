@@ -5,6 +5,7 @@ import { ChangeEvent, useState } from 'react';
 import { ProgressBar, Spinner } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { env } from '../../env/client.mjs';
 
 const MySwal = withReactContent(Swal);
 const alertContent = () => {
@@ -50,7 +51,7 @@ const JoinUsForm = () => {
   const handleFileChange = (
     event: ChangeEvent<HTMLInputElement>,
     setFieldValue: (field: string, value: unknown, shouldValidate?: boolean) => void,
-    maxFileSizeInMb = '8'
+    maxFileSizeInMb = 8
   ) => {
     const file = event.currentTarget?.files?.[0];
     if (!file) {
@@ -210,7 +211,7 @@ const JoinUsForm = () => {
                     <div className="form-group">
                       <label htmlFor="file">
                         Bewerbungsunterlagen hochladen{' '}
-                        <small>(Optional) | PDF | max. {process.env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE} MB</small>
+                        <small>(Optional) | PDF | max. {env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE} MB</small>
                       </label>
                       <input
                         type="file"
@@ -219,9 +220,7 @@ const JoinUsForm = () => {
                         accept="application/pdf"
                         value={fileMeta as unknown as string}
                         className={`form-control ${fileCtrlClassName}`}
-                        onChange={(evt) =>
-                          handleFileChange(evt, setFieldValue, process.env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE)
-                        }
+                        onChange={(evt) => handleFileChange(evt, setFieldValue, env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE)}
                       />
                       {fileSizeError && <div className="form-feedback">{fileSizeError}</div>}
                     </div>

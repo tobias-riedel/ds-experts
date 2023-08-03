@@ -1,15 +1,16 @@
 import sgMail from '@sendgrid/mail';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { InferType, object, string, ValidationError } from 'yup';
+import { env } from '../../env/server.mjs';
 import { sanitizeHtml } from '../../utils/mail';
 
 const allowedMethods = ['POST'];
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgMail.setApiKey(env.SENDGRID_API_KEY);
 
 const HONEYPOT_MSG = 'Honeypot triggered';
-const to = process.env.CONTACTS_MAIL_ADDRESS_FROM;
-const from = process.env.CONTACTS_MAIL_ADDRESS_TO;
+const to = env.CONTACTS_MAIL_ADDRESS_FROM;
+const from = env.CONTACTS_MAIL_ADDRESS_TO;
 
 const formSchema = object({
   firstName: string().max(0, HONEYPOT_MSG),
@@ -25,7 +26,7 @@ const formSchema = object({
 type FormValue = InferType<typeof formSchema>;
 
 export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?: string | object; msg?: string }>) => {
-  if (!allowedMethods.includes(req?.method) || req.method == 'OPTIONS') {
+  if (!allowedMethods.includes(req.method ?? '') || req.method == 'OPTIONS') {
     return res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
   }
 

@@ -8,7 +8,7 @@ import { SCROLL_LINKS_PROPS } from '../../shared/constants';
 
 interface NavLinks {
   to: string;
-  scrollTo?: string;
+  scrollTo: string;
   name: string;
 }
 
