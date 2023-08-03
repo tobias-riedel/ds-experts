@@ -4,15 +4,15 @@ import axios from 'axios';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
 import Layout from '../components/Layouts/Layout';
-import { References } from '../components/References';
+import { Reference } from '../components/References';
 
 const section = 'Lade Abschnitt...';
 
 export const getServerSideProps: GetServerSideProps<{
-  references: References[];
+  references: Reference[];
 }> = async () => {
   try {
-    const { data: references } = await axios<References[]>('/api/admin/projects');
+    const { data: references } = await axios<Reference[]>('/api/admin/projects');
 
     // TODO: Use redux instead
     return { props: { references } };

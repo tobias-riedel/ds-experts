@@ -4,16 +4,16 @@ import { Autoplay, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SectionDivider from './Common/SectionDivider';
 
-export interface References {
+export interface Reference {
   id: string;
-  img: string;
+  img?: string;
   projectName: string;
   city: string;
   description?: string;
   tasks?: string[];
 }
 
-const referencesStatic: References[] = [
+const referencesStatic: Reference[] = [
   {
     id: '0',
     img: '/images/references/ref1.jpg',
@@ -111,7 +111,7 @@ const referencesStatic: References[] = [
   },
 ];
 
-const OurWorks = ({ references }: { references: References[] }) => {
+const OurWorks = ({ references }: { references: Reference[] }) => {
   return (
     <section id="references" className="case-studies-area pt-100">
       <div className="container-fluid">

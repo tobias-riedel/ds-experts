@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { InferType, object, string, ValidationError } from 'yup';
+import { Reference } from '../../../components/References';
 import { prisma } from '../../../server/db/client';
 
 const allowedMethods = ['POST', 'GET'];
@@ -14,8 +15,11 @@ const formSchema = object({
 
 type FormValue = InferType<typeof formSchema>;
 
-export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?: string | object; msg?: string }>) => {
-  if (!allowedMethods.includes(req?.method) || req.method == 'OPTIONS') {
+export const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse<{ error?: string | object; msg?: string } | Reference[]>
+) => {
+  if (!allowedMethods.includes(req.method ?? '') || req.method == 'OPTIONS') {
     return res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
   }
 
