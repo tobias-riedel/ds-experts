@@ -10,9 +10,14 @@ export interface Reference {
   id: string;
   img?: string;
   projectName: string;
+  partnerName?: string;
   city: string;
   description?: string;
   tasks?: string[];
+  orderId?: number;
+  startedAt?: string;
+  endedAt?: string;
+  isPublic?: boolean;
 }
 
 const referencesStatic: Reference[] = [
@@ -113,13 +118,15 @@ const referencesStatic: Reference[] = [
   },
 ];
 
-const OurWorks = ({ references }: { references: Reference[] }) => {
+const Projects = ({ references }: { references: Reference[] }) => {
   return (
     <section id="references" className="case-studies-area pt-100">
       <div className="container-fluid">
         <div className="section-title">
           <h2>Referenzen</h2>
         </div>
+
+        {references?.length === 0 && <h3 className="text-center">Keine Projekte gefunden!</h3>}
 
         <Swiper
           cssMode={true}
@@ -200,4 +207,4 @@ const OurWorks = ({ references }: { references: Reference[] }) => {
   );
 };
 
-export default OurWorks;
+export default Projects;

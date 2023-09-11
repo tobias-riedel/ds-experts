@@ -21,21 +21,24 @@ model Expert {
   firstName  String
   middleName String?
   lastName   String
+  orderId    Int?
   projects   Project[]
 }
 
 model Project {
-  id           String    @id @default(cuid())
+  id           String   @id @default(cuid())
   partnerName  String
   city         String
   projectName  String?
   slug         String?
-  locationLat  String?
-  locationLong String?
+  locationLat  Float?
+  locationLong Float?
   description  String?
-  startedAt    DateTime?
-  endedAt      DateTime?
+  startedAt    String?
+  endedAt      String?
   img          String?
+  orderId      Int?
+  isPublic     Boolean  @default(false)
   experts      Expert[]
 }
 
