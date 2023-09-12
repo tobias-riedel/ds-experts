@@ -520,6 +520,12 @@ Shared CSS
   }
 }
 
+@media only screen and (max-width: 767px) {
+  .ds-hidden-sm {
+    display: none !important;
+  }
+}
+
 a[target='_blank']:after {
   font-family: 'Font Awesome 6 Free';
   content: '\f08e';
@@ -1249,6 +1255,10 @@ Main Banner CSS
 .projects-list thead tr th,
 .projects-list tbody tr td {
   padding: 0.75rem 1rem;
+}
+
+.projects-list .actions {
+  min-width: 6rem;
 }
 
 .projects-list .actions button {
@@ -5861,6 +5871,27 @@ Footer CSS
 .footer-dark .copyright-area {
   background-color: #040404;
   border-top: 1px solid #12141a;
+}
+
+.add-item {
+  position: fixed;
+  cursor: pointer;
+  bottom: 70px;
+  right: 20px;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.add-item i {
+  z-index: 4;
+  width: 40px;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+}
+
+.add-item::before {
+  border-radius: 50%;
 }
 
 /*================================================

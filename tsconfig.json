@@ -21,6 +21,9 @@
       "@api/*": ["./pages/api/*"],
       "@pages/*": ["./pages/*"],
       "@shared/*": ["./shared/*"],
+      "@consts/*": ["./src/modules/consts/*"],
+      "@models/*": ["./src/modules/models/*"],
+      "@db/*": ["./server/db/*"],
       "@utils/*": ["./utils/*"]
     }
   },

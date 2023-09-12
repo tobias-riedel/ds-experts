@@ -29,7 +29,7 @@ model Project {
   id           String   @id @default(cuid())
   partnerName  String
   city         String
-  projectName  String?
+  projectName  String
   slug         String?
   locationLat  Float?
   locationLong Float?
