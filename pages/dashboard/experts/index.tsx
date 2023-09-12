@@ -1,6 +1,6 @@
-import { Reference } from '@components/References';
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
 import DasboardLayout from '@layouts/DashboardLayout';
+import { ExpertFormItem } from '@models/forms.model';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
@@ -11,11 +11,13 @@ import withReactContent from 'sweetalert2-react-content';
 
 const MySwal = withReactContent(Swal);
 
-const API_URL = '/api/admin/projects';
-const fetchItems = () => axios<Reference[]>(API_URL);
+type Item = ExpertFormItem;
+
+const API_URL = '/api/admin/experts';
+const fetchItems = () => axios<Item[]>(API_URL);
 
 export const getServerSideProps: GetServerSideProps<{
-  items: Reference[];
+  items: Item[];
 }> = async () => {
   try {
     const { data: items } = await fetchItems();
@@ -27,10 +29,10 @@ export const getServerSideProps: GetServerSideProps<{
   }
 };
 
-export default function Page({ items }: { items: Reference[] }) {
+export default function Page({ items }: { items: Item[] }) {
   const router = useRouter();
 
-  const [entries, setEntries] = useState(items as Reference[]);
+  const [entries, setEntries] = useState(items as Item[]);
 
   const updateOverview = async () => {
     const { data: updatedItems } = await fetchItems();
@@ -54,7 +56,7 @@ export default function Page({ items }: { items: Reference[] }) {
   const confirmDeleteItem = async (itemId: string, itemName: string) => {
     const result = await MySwal.fire({
       title: 'Eintrag löschen?',
-      text: `Soll das Projekt "${itemName}" wirklich gelöscht werden?`,
+      text: `Soll die Person "${itemName}" wirklich gelöscht werden?`,
       icon: 'warning',
       confirmButtonColor: 'red',
       showCancelButton: true,
@@ -71,16 +73,15 @@ export default function Page({ items }: { items: Reference[] }) {
 
   return (
     <DasboardLayout>
-      <h1 className="text-center">Projekt-Übersicht</h1>
+      <h1 className="text-center">Experten-Übersicht</h1>
 
       {entries?.length ? (
         <div className="item-list m-4">
           <table>
             <thead>
               <tr>
-                <th> Projektname</th>
-                <th className="ds-hidden-sm"> Partnername</th>
-                <th className="ds-hidden-sm"> Stadt </th>
+                <th> Name</th>
+                <th className="ds-hidden-sm"> Rolle</th>
                 <th> Start </th>
                 <th className="ds-hidden-md ds-hidden-sm"> Ende </th>
                 <th className="ds-hidden-md ds-hidden-sm"> Öffentlich </th>
@@ -91,30 +92,32 @@ export default function Page({ items }: { items: Reference[] }) {
               </tr>
             </thead>
             <tbody>
-              {entries?.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.projectName}</td>
-                  <td className="ds-hidden-sm">{item.partnerName}</td>
-                  <td className="ds-hidden-sm">{item.city}</td>
-                  <td className="text-center">{item.startedAt ?? 'n/a'}</td>
-                  <td className="text-center ds-hidden-md ds-hidden-sm">{item.endedAt ?? 'n/a'}</td>
-                  <td className="text-center ds-hidden-md ds-hidden-sm">
-                    <i
-                      className={`fas ${item.isPublic ? 'fa-check' : 'fa-close'}`}
-                      style={{ color: item.isPublic ? 'green' : 'red' }}
-                    ></i>
-                  </td>
-                  <td className="text-right ds-hidden-md ds-hidden-sm">{item.orderId || 0}</td>
-                  <td className="text-center actions">
-                    <button onClick={() => editItem(item.id)} className="btn btn-link">
-                      <i className="fas fa-edit" title="Bearbeiten"></i>
-                    </button>
-                    <button onClick={() => confirmDeleteItem(item.id, item.projectName)} className="btn btn-link">
-                      <i className="fas fa-trash" title="Löschen"></i>
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {entries?.map((item) => {
+                const fullName = `${item.firstName} ${item.lastName}`;
+                return (
+                  <tr key={item.id}>
+                    <td>{fullName}</td>
+                    <td className="ds-hidden-sm">{item.jobTitle}</td>
+                    <td className="text-center">{item.startedAt}</td>
+                    <td className="text-center ds-hidden-md ds-hidden-sm">{item.endedAt ?? 'n/a'}</td>
+                    <td className="text-center ds-hidden-md ds-hidden-sm">
+                      <i
+                        className={`fas ${item.isPublic ? 'fa-check' : 'fa-close'}`}
+                        style={{ color: item.isPublic ? 'green' : 'red' }}
+                      ></i>
+                    </td>
+                    <td className="text-right ds-hidden-md ds-hidden-sm">{item.orderId || 0}</td>
+                    <td className="text-center actions">
+                      <button onClick={() => editItem(item.id)} className="btn btn-link">
+                        <i className="fas fa-edit" title="Bearbeiten"></i>
+                      </button>
+                      <button onClick={() => confirmDeleteItem(item.id, fullName)} className="btn btn-link">
+                        <i className="fas fa-trash" title="Löschen"></i>
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

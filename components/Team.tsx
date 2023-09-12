@@ -1,3 +1,4 @@
+import { ExpertFormItem } from '@models/forms.model';
 import Image from 'next/image';
 import SectionDivider from './Common/SectionDivider';
 
@@ -7,7 +8,8 @@ interface Experts {
   role: string;
 }
 
-const experts: Experts[] = [
+// TODO: Remove
+const expertsStatic: Experts[] = [
   {
     img: 'Daniel-Schenk.png',
     name: 'Daniel Schenk',
@@ -35,7 +37,7 @@ const experts: Experts[] = [
   },
 ];
 
-const Team = () => {
+const Team = ({ experts }: { experts: ExpertFormItem[] }) => {
   return (
     <section id="team" className="pt-100">
       <div className="container">
@@ -44,25 +46,28 @@ const Team = () => {
         </div>
 
         <div className="row justify-content-between">
-          {experts.map((expert, idx) => (
-            <div className="col-lg-2 col-md-4 col-6" key={idx}>
-              <div className="team-card text-center" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
-                <Image
-                  src={`/images/team/${expert.img}`}
-                  alt={`Porträt von ${expert.name}`}
-                  title={expert.name}
-                  className="rounded-circle shadow optimized-image"
-                  width={263}
-                  height={261}
-                />
+          {experts.map((expert, idx) => {
+            const fullName = `${expert.firstName} ${expert.lastName}`;
+            return (
+              <div className="col-lg-2 col-md-4 col-6" key={idx}>
+                <div className="team-card text-center" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+                  <Image
+                    src={expert.img}
+                    alt={`Porträt von ${fullName}`}
+                    title={fullName}
+                    className="rounded-circle shadow optimized-image"
+                    width={263}
+                    height={261}
+                  />
 
-                <div className="team-caption">
-                  <h3>{expert.name}</h3>
-                  <p>{expert.role}</p>
+                  <div className="team-caption">
+                    <h3>{fullName}</h3>
+                    <p>{expert.jobTitle}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

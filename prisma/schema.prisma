@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.Text annotations in model Account below
   // Further reading:
   // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
@@ -15,22 +15,37 @@ datasource db {
 }
 
 model Expert {
-  id         String    @id @default(cuid())
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  firstName  String
-  middleName String?
-  lastName   String
-  orderId    Int?
-  projects   Project[]
+  id        String   @id @default(cuid())
+  firstName String
+  lastName  String
+  img       String?
+  jobTitle  String
+  orderId   Int?
+  slug      String?
+  isPublic  Boolean  @default(false)
+  startedAt String
+  endedAt   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  // projects   Project[]
+  // profile    Profile?
 }
 
+// model Profile {
+//   id       Int     @id @default(autoincrement())
+//   email    String? @unique
+//   phone    String? @unique
+//   bio      String
+//   isPublic Boolean @default(false)
+//   expert   Expert  @relation(fields: [expertId], references: [id])
+//   expertId String  @unique
+// }
+
 model Project {
-  id           String   @id @default(cuid())
+  id           String  @id @default(cuid())
   partnerName  String
   city         String
   projectName  String
-  slug         String?
   locationLat  Float?
   locationLong Float?
   description  String?
@@ -38,8 +53,9 @@ model Project {
   endedAt      String?
   img          String?
   orderId      Int?
-  isPublic     Boolean  @default(false)
-  experts      Expert[]
+  slug         String?
+  isPublic     Boolean @default(false)
+  // experts      Expert[]
 }
 
 // Necessary for Next auth

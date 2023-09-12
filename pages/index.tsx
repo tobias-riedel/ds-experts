@@ -5,21 +5,26 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
 import Layout from '../components/Layouts/Layout';
 import { Reference } from '../components/References';
+import { ExpertFormItem } from '@models/forms.model';
 
 const section = 'Lade Abschnitt...';
 
 export const getServerSideProps: GetServerSideProps<{
   references: Reference[];
+  experts: ExpertFormItem[];
 }> = async () => {
   try {
-    const { data: references } = await axios<Reference[]>('/api/admin/projects');
+    const [{ data: references }, { data: experts }] = await Promise.all([
+      axios<Reference[]>('/api/admin/projects'),
+      axios<ExpertFormItem[]>('/api/admin/experts'),
+    ]);
 
     // TODO: Use redux instead
-    return { props: { references } };
+    return { props: { references, experts } };
   } catch (error) {
     console.log('Error::', error);
 
-    return { props: { references: [] } };
+    return { props: { references: [], experts: [] } };
   }
 };
 
@@ -35,7 +40,7 @@ const JoinUs = dynamic(import('../components/JoinUs/JoinUs'), { loading: () => <
 const Contact = dynamic(import('../components/Contact'), { loading: () => <>{section}</> });
 const WorkProcess = dynamic(import('../components/WorkProcess'), { loading: () => <>{section}</> });
 
-export const MainPage = ({ references }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+export const MainPage = ({ references, experts }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <Layout>
       <section id="home">
@@ -44,7 +49,7 @@ export const MainPage = ({ references }: InferGetServerSidePropsType<typeof getS
         <SectionDivider />
       </section>
 
-      <Team />
+      <Team experts={experts} />
       <Philosophy />
       <WorkProcess />
       <JoinUs />

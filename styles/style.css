@@ -1206,69 +1206,70 @@ Main Banner CSS
 }
 
 /* Project list table */
-.projects-list table {
+.item-list table {
   border-collapse: separate;
   border-spacing: 0 1.25rem;
   border: none;
   width: 100%;
 }
 
-.projects-list tr {
+.item-list tr {
   border-radius: var(--table-card-border-radius);
 }
 
-.projects-list tr th {
+.item-list tr th {
   text-align: center;
 }
 
-.projects-list tr th:first-child,
-.projects-list tr td:first-child {
+.item-list tr th:first-child,
+.item-list tr td:first-child {
   border-top-left-radius: var(--table-card-border-radius);
   border-bottom-left-radius: var(--table-card-border-radius);
 }
 
-.projects-list tr th:last-child,
-.projects-list tr td:last-child {
+.item-list tr th:last-child,
+.item-list tr td:last-child {
   border-top-right-radius: var(--table-card-border-radius);
   border-bottom-right-radius: var(--table-card-border-radius);
 }
 
-.projects-list tbody tr:nth-child(even) {
+.item-list tbody tr:nth-child(even) {
   background-color: #ececec;
 }
 
-.projects-list tbody tr:hover {
+.item-list tbody tr:hover {
   background-color: var(--brand-light-blue);
 }
 
-.projects-list tr,
-.projects-list tr {
+.item-list tr,
+.item-list tr {
   -webkit-box-shadow: var(--box-shadow) !important;
   box-shadow: var(--box-shadow) !important;
 }
 
-.projects-list thead tr th {
+.item-list thead tr th {
   background-color: var(--brand-blue-gradient-3);
   color: var(--brand-white);
 }
 
-.projects-list thead tr th,
-.projects-list tbody tr td {
+.item-list thead tr th,
+.item-list tbody tr td {
   padding: 0.75rem 1rem;
 }
 
-.projects-list .actions {
-  min-width: 6rem;
+.item-list .actions {
+  min-width: 7rem;
 }
 
-.projects-list .actions button {
-  padding: 0.25rem 0.5rem;
+.item-list .actions button {
+  padding: 0 0.5rem;
+  font-size: 1.5rem;
 }
 
-.projects-list .actions button i {
+.item-list .actions button i {
   color: var(--brand-blue-gradient-4);
 }
-.projects-list .actions button i[class~='fa-trash'] {
+.item-list .actions button i[class~='fa-trash'] {
   color: red;
 }
 /* /Project list table */
