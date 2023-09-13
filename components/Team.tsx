@@ -37,8 +37,7 @@ const expertsStatic: Experts[] = [
   },
 ];
 
-// FIXME: Get anonymous picture
-const DEFAULT_EXPERT_IMG = '/images/team/team5.jpg';
+const DEFAULT_EXPERT_IMG = '/images/team/default.png';
 
 const Team = ({ experts }: { experts: Expert[] }) => {
   return (
