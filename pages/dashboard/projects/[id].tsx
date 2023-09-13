@@ -3,12 +3,14 @@ import { DASHBOARD_PROJECTS_URL } from '@consts/routes';
 import DasboardLayout from '@layouts/DashboardLayout';
 import { Project as FormItem } from '@prisma/client';
 import axios from 'axios';
-import { Field, Form, Formik, FormikErrors, FormikTouched } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { z } from 'zod';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 const MySwal = withReactContent(Swal);
 const showAddedItemToast = () => {
@@ -37,6 +39,12 @@ const showErrorToast = (msg: string) => {
     icon: 'error',
   });
 };
+
+const formSchema = z.object({
+  partnerName: z.string({ required_error: 'Pflichtfeld' }),
+  projectName: z.string({ required_error: 'Pflichtfeld' }),
+  city: z.string({ required_error: 'Pflichtfeld' }),
+});
 
 const INITIAL_STATE: Partial<FormItem> = {
   projectName: '',
@@ -83,18 +91,6 @@ export const getServerSideProps: GetServerSideProps<{ item?: FormItem; images: s
   }
 };
 
-function FormFieldError({
-  field,
-  errors,
-  touched,
-}: {
-  field: FormItemKeys;
-  errors: FormikErrors<FormItem>;
-  touched: FormikTouched<FormItem>;
-}): JSX.Element {
-  return <>{errors[field] && touched[field] && <div className="form-feedback">{errors[field]}</div>}</>;
-}
-
 export default function Page({
   item,
   images,
@@ -140,22 +136,9 @@ export default function Page({
     <DasboardLayout>
       <h1 className="text-center">{isNew ? 'Neues Projekt anlegen' : 'Projekt bearbeiten'}</h1>
       <div className="contact-form">
-        <Formik
+        <Formik<FormItem>
           initialValues={{ ...INITIAL_STATE, ...item }}
-          validate={(values: FormItem): FormikErrors<FormItem> => {
-            const errors: FormikErrors<FormItem> = {};
-            if (!values.partnerName.trim()) {
-              errors.partnerName = 'Pflichtfeld';
-            }
-            if (!values.projectName.trim()) {
-              errors.projectName = 'Pflichtfeld';
-            }
-            if (!values.city.trim()) {
-              errors.city = 'Pflichtfeld';
-            }
-
-            return errors;
-          }}
+          validationSchema={toFormikValidationSchema(formSchema)}
           onSubmit={(values, { setSubmitting }) => {
             handleSubmit(values);
             setSubmitting(false);
@@ -179,7 +162,7 @@ export default function Page({
                         className={ctrlClassName('projectName')}
                         autoFocus={true}
                       />
-                      <FormFieldError field="projectName" errors={errors} touched={touched} />
+                      <ErrorMessage name="projectName" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group col-lg-6">
@@ -191,13 +174,13 @@ export default function Page({
                         className={ctrlClassName('partnerName')}
                         placeholder="Partnername*"
                       />
-                      <FormFieldError field="partnerName" errors={errors} touched={touched} />
+                      <ErrorMessage name="partnerName" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group col-lg-6">
                       <label htmlFor="city">Stadt*</label>
                       <Field type="text" id="city" name="city" className={ctrlClassName('city')} placeholder="Stadt*" />
-                      <FormFieldError field="city" errors={errors} touched={touched} />
+                      <ErrorMessage name="city" component="div" className="form-feedback" />
                     </div>
                     <div className="form-group col-lg-3 col-md-6">
                       <label htmlFor="locationLat">Breitengrad der Stadt</label>
@@ -208,7 +191,7 @@ export default function Page({
                         className={ctrlClassName('locationLat')}
                         placeholder="Breitengrad"
                       />
-                      <FormFieldError field="locationLat" errors={errors} touched={touched} />
+                      <ErrorMessage name="locationLat" component="div" className="form-feedback" />
                     </div>
                     <div className="form-group col-lg-3 col-md-6">
                       <label htmlFor="locationLong">Längengrad der Stadt</label>
@@ -219,7 +202,7 @@ export default function Page({
                         className={ctrlClassName('locationLong')}
                         placeholder="Längengrad"
                       />
-                      <FormFieldError field="locationLong" errors={errors} touched={touched} />
+                      <ErrorMessage name="locationLong" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group col-md-6">
@@ -231,7 +214,7 @@ export default function Page({
                         className={ctrlClassName('startedAt')}
                         placeholder="Start"
                       />
-                      <FormFieldError field="startedAt" errors={errors} touched={touched} />
+                      <ErrorMessage name="startedAt" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group col-md-6">
@@ -243,7 +226,7 @@ export default function Page({
                         className={ctrlClassName('endedAt')}
                         placeholder="Ende"
                       />
-                      <FormFieldError field="endedAt" errors={errors} touched={touched} />
+                      <ErrorMessage name="endedAt" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group col-lg-3 col-md-6">
@@ -264,7 +247,7 @@ export default function Page({
                         className={ctrlClassName('orderId')}
                         placeholder="Reihenfolge"
                       />
-                      <FormFieldError field="orderId" errors={errors} touched={touched} />
+                      <ErrorMessage name="orderId" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group col-lg-6">
@@ -283,12 +266,13 @@ export default function Page({
                           </option>
                         ))}
                       </Field>
-                      <FormFieldError field="img" errors={errors} touched={touched} />
+                      <ErrorMessage name="img" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group">
                       <label htmlFor="description">Projektbeschreibung</label>
                       <Field
+                        type="text"
                         as="textarea"
                         id="description"
                         name="description"
@@ -297,7 +281,7 @@ export default function Page({
                         placeholder="Beschreibung von Tätigkeiten, verwendeten Technologien und Systemen im Projekt"
                         className={ctrlClassName('description')}
                       />
-                      <FormFieldError field="description" errors={errors} touched={touched} />
+                      <ErrorMessage name="description" component="div" className="form-feedback" />
                     </div>
                   </div>
                 </div>

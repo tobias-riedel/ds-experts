@@ -3,12 +3,14 @@ import { DASHBOARD_EXPERTS_URL } from '@consts/routes';
 import DasboardLayout from '@layouts/DashboardLayout';
 import { Expert as FormItem } from '@prisma/client';
 import axios from 'axios';
-import { Field, Form, Formik, FormikErrors, FormikTouched } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { z } from 'zod';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 const MySwal = withReactContent(Swal);
 const showAddedItemToast = () => {
@@ -37,6 +39,15 @@ const showErrorToast = (msg: string) => {
     icon: 'error',
   });
 };
+
+// TODO: implement zod-prisma-generator: https://github.com/CarterGrimmeisen/zod-prisma or
+// https://www.npmjs.com/package/prisma-zod-generator
+const formSchema = z.object({
+  firstName: z.string({ required_error: 'Pflichtfeld' }),
+  lastName: z.string({ required_error: 'Pflichtfeld' }),
+  role: z.string({ required_error: 'Pflichtfeld' }),
+  startedAt: z.string({ required_error: 'Pflichtfeld' }),
+});
 
 const INITIAL_STATE: Partial<FormItem> = {
   firstName: '',
@@ -79,22 +90,6 @@ export const getServerSideProps: GetServerSideProps<{ item?: FormItem; images: s
     return { props: { item: null, images, isNew: false } };
   }
 };
-
-function FormFieldError({
-  field,
-  errors,
-  touched,
-}: {
-  field: FormItemKeys;
-  errors: FormikErrors<FormItem>;
-  touched: FormikTouched<FormItem>;
-}): JSX.Element {
-  if (typeof field === 'string') {
-    return <>{errors[field] && touched[field] && <div className="form-feedback">{errors[field] as string}</div>}</>;
-  }
-
-  return <></>;
-}
 
 export default function Page({
   item,
@@ -142,25 +137,9 @@ export default function Page({
       <h1 className="text-center">{isNew ? 'Neuen Experten anlegen' : 'Experten bearbeiten'}</h1>
 
       <div className="contact-form">
-        <Formik
+        <Formik<FormItem>
           initialValues={{ ...INITIAL_STATE, ...item }}
-          validate={(values: FormItem): FormikErrors<FormItem> => {
-            const errors: FormikErrors<FormItem> = {};
-            if (!values.firstName.trim()) {
-              errors.firstName = 'Pflichtfeld';
-            }
-            if (!values.lastName.trim()) {
-              errors.lastName = 'Pflichtfeld';
-            }
-            if (!values.role.trim()) {
-              errors.role = 'Pflichtfeld';
-            }
-            if (!values.startedAt.trim()) {
-              errors.startedAt = 'Pflichtfeld';
-            }
-
-            return errors;
-          }}
+          validationSchema={toFormikValidationSchema(formSchema)}
           onSubmit={(values, { setSubmitting }) => {
             handleSubmit(values);
             setSubmitting(false);
@@ -184,7 +163,7 @@ export default function Page({
                         className={ctrlClassName('firstName')}
                         autoFocus={true}
                       />
-                      <FormFieldError field="firstName" errors={errors} touched={touched} />
+                      <ErrorMessage component="div" className="form-feedback" name="firstName" />
                     </div>
 
                     <div className="form-group col-lg-6">
@@ -196,17 +175,18 @@ export default function Page({
                         placeholder="Nachname*"
                         className={ctrlClassName('lastName')}
                       />
-                      <FormFieldError field="lastName" errors={errors} touched={touched} />
+                      <ErrorMessage name="lastName" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group col-lg-6">
                       <label htmlFor="role">Rolle*</label>
                       <Field type="text" id="role" name="role" className={ctrlClassName('role')} placeholder="Rolle*" />
-                      <FormFieldError field="role" errors={errors} touched={touched} />
+                      <ErrorMessage name="role" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group col-lg-6">
                       <label htmlFor="img">Bilderpfad</label>
+                      {/* TODO: Allow external urls */}
                       {/* <Field
                         type="text"
                         id="img"
@@ -228,7 +208,7 @@ export default function Page({
                           </option>
                         ))}
                       </Field>
-                      <FormFieldError field="img" errors={errors} touched={touched} />
+                      <ErrorMessage name="img" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group col-lg-3 col-md-6">
@@ -240,7 +220,7 @@ export default function Page({
                         className={ctrlClassName('startedAt')}
                         placeholder="Firmenbeitritt*"
                       />
-                      <FormFieldError field="startedAt" errors={errors} touched={touched} />
+                      <ErrorMessage name="startedAt" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group col-lg-3 col-md-6">
@@ -252,7 +232,7 @@ export default function Page({
                         className={ctrlClassName('endedAt')}
                         placeholder="Ende"
                       />
-                      <FormFieldError field="endedAt" errors={errors} touched={touched} />
+                      <ErrorMessage name="endedAt" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group col-lg-3 col-md-6">
@@ -273,7 +253,7 @@ export default function Page({
                         className={ctrlClassName('orderId')}
                         placeholder="Reihenfolge"
                       />
-                      <FormFieldError field="orderId" errors={errors} touched={touched} />
+                      <ErrorMessage name="orderId" component="div" className="form-feedback" />
                     </div>
                   </div>
                 </div>

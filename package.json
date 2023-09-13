@@ -47,7 +47,8 @@
     "sweetalert2-react-content": "^5.0.0",
     "swiper": "^8.2.2",
     "yup": "^1.0.0",
-    "zod": "^3.21.4"
+    "zod": "^3.21.4",
+    "zod-formik-adapter": "^1.2.0"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",
