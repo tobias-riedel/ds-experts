@@ -10,7 +10,7 @@ const formSchema = object({
   firstName: string().required(),
   lastName: string().required(),
   img: string(),
-  jobTitle: string().required(),
+  role: string().required(),
   orderId: number(),
   isPublic: boolean().default(false),
   startedAt: string(),
@@ -32,14 +32,14 @@ const validatePayload = async (body: any): Promise<FormValue> => {
 
   const payload: FormValue = await formSchema.validate(normalizedBody);
 
-  const { id, firstName, lastName, img, jobTitle, orderId, isPublic, startedAt, endedAt } = payload;
+  const { id, firstName, lastName, img, role, orderId, isPublic, startedAt, endedAt } = payload;
 
   const newItem = {
     id: id ?? undefined,
     firstName,
     lastName,
     img,
-    jobTitle,
+    role,
     orderId,
     isPublic,
     startedAt,

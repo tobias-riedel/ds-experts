@@ -19,7 +19,7 @@ model Expert {
   firstName String
   lastName  String
   img       String?
-  jobTitle  String
+  role      String
   orderId   Int?
   slug      String?
   isPublic  Boolean  @default(false)

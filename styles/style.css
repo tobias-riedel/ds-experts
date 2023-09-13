@@ -1205,7 +1205,13 @@ Main Banner CSS
   text-align: right;
 }
 
-/* Project list table */
+/* Dashboard */
+.dashboard-navbar.navbar-area.is-sticky {
+  -webkit-animation: none !important;
+  animation: none !important;
+}
+
+/* dashboard list table */
 .item-list table {
   border-collapse: separate;
   border-spacing: 0 1.25rem;

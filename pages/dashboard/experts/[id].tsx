@@ -42,7 +42,7 @@ const showErrorToast = (msg: string) => {
 const INITIAL_STATE: Partial<FormItem> = {
   firstName: '',
   lastName: '',
-  jobTitle: '',
+  role: '',
   img: '',
   orderId: 0,
   startedAt: '',
@@ -146,8 +146,8 @@ export default function Page({ item, isNew }: ServerSideProps): JSX.Element {
             if (!values.lastName.trim()) {
               errors.lastName = 'Pflichtfeld';
             }
-            if (!values.jobTitle.trim()) {
-              errors.jobTitle = 'Pflichtfeld';
+            if (!values.role.trim()) {
+              errors.role = 'Pflichtfeld';
             }
 
             return errors;
@@ -195,15 +195,9 @@ export default function Page({ item, isNew }: ServerSideProps): JSX.Element {
                     </div>
 
                     <div className="form-group col-lg-6">
-                      <label htmlFor="jobTitle">Rolle*</label>
-                      <Field
-                        type="text"
-                        id="jobTitle"
-                        name="jobTitle"
-                        className={ctrlClassName('jobTitle')}
-                        placeholder="Rolle*"
-                      />
-                      <FormFieldError field="jobTitle" errors={errors} touched={touched} />
+                      <label htmlFor="role">Rolle*</label>
+                      <Field type="text" id="role" name="role" className={ctrlClassName('role')} placeholder="Rolle*" />
+                      <FormFieldError field="role" errors={errors} touched={touched} />
                     </div>
 
                     <div className="form-group col-lg-6">

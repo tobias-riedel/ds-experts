@@ -100,9 +100,8 @@ const DasboardLayout = (props: React.PropsWithChildren) => {
 
       {status === 'authenticated' && (
         <>
-          {/* <header className={`scroll-up ${menu ? 'collapse-menu--visible' : ''}`}> */}
           <header className={`scroll-${scrollDirection || 'up'} ${menu ? 'collapse-menu--visible' : ''}`}>
-            <div id="navbar" className={`navbar-area navbar-style-2 is-sticky  ${navbarSticky}`}>
+            <div id="navbar" className={`dashboard-navbar navbar-area navbar-style-2 is-sticky  ${navbarSticky}`}>
               <nav role="navigation" className="navbar navbar-expand-md navbar-light">
                 <div className="container">
                   <Link href="/" className="navbar-brand">

@@ -98,7 +98,7 @@ export default function Page({ items }: { items: Item[] }) {
                   return (
                     <tr key={item.id}>
                       <td>{fullName}</td>
-                      <td className="ds-hidden-sm">{item.jobTitle}</td>
+                      <td className="ds-hidden-sm">{item.role}</td>
                       <td className="text-center">{item.startedAt}</td>
                       <td className="text-center ds-hidden-md ds-hidden-sm">{item.endedAt ?? 'n/a'}</td>
                       <td className="text-center ds-hidden-md ds-hidden-sm">
