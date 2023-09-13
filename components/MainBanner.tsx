@@ -1,7 +1,7 @@
+import { SCROLL_LINKS_PROPS } from '@consts/misc';
 import Image from 'next/image';
 import { Link as ScrollLink } from 'react-scroll';
 import callToActionImg from '../public/images/call_to_action.jpg';
-import { SCROLL_LINKS_PROPS } from '../shared/constants';
 
 const MainBanner = () => {
   return (

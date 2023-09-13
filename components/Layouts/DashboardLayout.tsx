@@ -1,7 +1,10 @@
+import { COMPANY_FULL_NAME } from '@consts/company';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import logoImg from '../../public/images/logo-ds-experts.png';
 import GoTop from './GoTop';
 
 interface NavLinks {
@@ -12,7 +15,6 @@ interface NavLinks {
 const DASHBOARD_URL = '/dashboard';
 
 const navLinks: NavLinks[] = [
-  { to: '/', name: 'Home' },
   { to: DASHBOARD_URL, name: 'Dashboard' },
   { to: DASHBOARD_URL + '/experts', name: 'Experten' },
   { to: DASHBOARD_URL + '/projects', name: 'Projekte' },
@@ -103,6 +105,23 @@ const DasboardLayout = (props: React.PropsWithChildren) => {
             <div id="navbar" className={`navbar-area navbar-style-2 is-sticky  ${navbarSticky}`}>
               <nav role="navigation" className="navbar navbar-expand-md navbar-light">
                 <div className="container">
+                  <Link href="/" className="navbar-brand">
+                    <Image
+                      src={logoImg}
+                      className="black-logo logo-ds-experts"
+                      title={COMPANY_FULL_NAME}
+                      alt="Firmen-Logo"
+                      style={{ height: 'auto' }}
+                    />
+                    <Image
+                      src={logoImg}
+                      className="white-logo logo-ds-experts"
+                      title={COMPANY_FULL_NAME}
+                      alt="Firmen-Logo"
+                      style={{ height: 'auto' }}
+                    />
+                  </Link>
+
                   {/* Toggle navigation */}
                   <button
                     onClick={toggleNavbar}
@@ -129,24 +148,25 @@ const DasboardLayout = (props: React.PropsWithChildren) => {
                         </li>
                       ))}
                     </ul>
-                  </div>
-                  <span>
-                    <span className="m-4 small" title={session?.user?.email}>
-                      {session?.user?.name}
+
+                    <span>
+                      <span className="m-4 small" title={session?.user?.email}>
+                        {session?.user?.name}
+                      </span>
+                      <button
+                        onClick={() => signOut()}
+                        className="btn px-2 py-0"
+                        onMouseEnter={() => setHoverLogoutBtn(true)}
+                        onMouseLeave={() => setHoverLogoutBtn(false)}
+                        title="Log out"
+                      >
+                        <i
+                          className={`fas ${isHoverLogoutBtn ? LOGOUT_IMG_HOVER : LOGOUT_IMG_DEFAULT}`}
+                          style={{ fontSize: '2rem', width: '2rem', height: '2rem' }}
+                        ></i>
+                      </button>
                     </span>
-                    <button
-                      onClick={() => signOut()}
-                      className="btn px-2 py-0"
-                      onMouseEnter={() => setHoverLogoutBtn(true)}
-                      onMouseLeave={() => setHoverLogoutBtn(false)}
-                      title="Log out"
-                    >
-                      <i
-                        className={`fas ${isHoverLogoutBtn ? LOGOUT_IMG_HOVER : LOGOUT_IMG_DEFAULT}`}
-                        style={{ fontSize: '2rem', width: '2rem', height: '2rem' }}
-                      ></i>
-                    </button>
-                  </span>
+                  </div>
                 </div>
               </nav>
             </div>

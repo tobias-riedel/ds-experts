@@ -1,5 +1,5 @@
-import { Reference } from '@components/References';
 import { prisma } from '@db/client';
+import { Expert } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { boolean, InferType, number, object, string, ValidationError } from 'yup';
 
@@ -53,7 +53,7 @@ export const handler = async (
   req: NextApiRequest,
   // FIXME: Types
   // res: NextApiResponse<{ error?: string | object; msg?: string } | Partial<Reference>[] | Partial<Reference>>
-  res: NextApiResponse<{ error?: string | object; msg?: string } | Partial<Reference>[] | Partial<Reference> | any>
+  res: NextApiResponse<{ error?: string | object; msg?: string } | Expert[] | Expert>
 ) => {
   if (!allowedMethods.includes(req.method ?? '') || req.method == 'OPTIONS') {
     return res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
@@ -126,7 +126,7 @@ export const handler = async (
       const id = req.body?.id;
       const expert = await prisma.expert.delete({ where: { id } });
 
-      res.status(200).json({ expert });
+      res.status(200).json(expert);
     } catch (error) {
       console.error(error);
       if (error?.response) {

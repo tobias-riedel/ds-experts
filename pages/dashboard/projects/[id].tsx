@@ -2,7 +2,7 @@ import { Reference } from '@components/References';
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
 import { DASHBOARD_PROJECTS_URL } from '@consts/routes';
 import DasboardLayout from '@layouts/DashboardLayout';
-import { ProjectFormItem as FormItem } from '@models/forms.model';
+import { Project as FormItem } from '@prisma/client';
 import axios from 'axios';
 import { Field, Form, Formik, FormikErrors, FormikTouched } from 'formik';
 import { GetServerSideProps } from 'next';
@@ -39,18 +39,18 @@ const showErrorToast = (msg: string) => {
   });
 };
 
-const INITIAL_STATE: FormItem = {
+const INITIAL_STATE: Partial<FormItem> = {
   projectName: '',
   partnerName: '',
   city: '',
   img: '',
-  orderId: '',
+  orderId: 0,
   description: '',
   isPublic: false,
   startedAt: '',
   endedAt: '',
-  locationLat: '',
-  locationLong: '',
+  locationLat: 0,
+  locationLong: 0,
   slug: '',
 };
 
@@ -59,9 +59,9 @@ type FormItemKeys = keyof FormItem;
 const DASHBOARD_OVERVIEW_URL = DASHBOARD_PROJECTS_URL;
 
 const API_URL = '/api/admin/projects';
-const fetchItem = (id: string) => axios<Reference>(`${API_URL}/${id}`);
+const fetchItem = (id: string) => axios<FormItem>(`${API_URL}/${id}`);
 
-type ServerSideProps = { item?: Reference; isNew: boolean };
+type ServerSideProps = { item?: FormItem; isNew: boolean };
 
 export const getServerSideProps: GetServerSideProps<ServerSideProps> = async ({
   params: { id },

@@ -1,10 +1,11 @@
+import { COMPANY_FULL_NAME } from '@consts/company';
+import { SCROLL_LINKS_PROPS } from '@consts/misc';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import logoImg from '../../public/images/logo-ds-experts.png';
-import { SCROLL_LINKS_PROPS } from '../../shared/constants';
 
 interface NavLinks {
   to: string;
@@ -80,8 +81,6 @@ const Navbar = () => {
   const classOne = menu ? 'collapse navbar-collapse mean-menu' : 'collapse navbar-collapse show';
   const classTwo = menu ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';
 
-  const logoAltText = 'ds-experts IT-Consulting GmbH';
-
   return (
     <header className={`scroll-${scrollDirection || 'up'} ${menu ? 'collapse-menu--visible' : ''}`}>
       <div id="navbar" className={`navbar-area navbar-style-2 ${navbarSticky}`}>
@@ -91,14 +90,14 @@ const Navbar = () => {
               <Image
                 src={logoImg}
                 className="black-logo logo-ds-experts"
-                title={logoAltText}
+                title={COMPANY_FULL_NAME}
                 alt="Firmen-Logo"
                 style={{ height: 'auto' }}
               />
               <Image
                 src={logoImg}
                 className="white-logo logo-ds-experts"
-                title={logoAltText}
+                title={COMPANY_FULL_NAME}
                 alt="Firmen-Logo"
                 style={{ height: 'auto' }}
               />

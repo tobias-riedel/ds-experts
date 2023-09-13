@@ -1,6 +1,6 @@
+import { COMPANY_ADDRESS } from '@consts/company';
 import { Map, Marker, Overlay, ZoomControl } from 'pigeon-maps';
 import { useEffect, useState } from 'react';
-import { COMPANY_ADDRESS } from '../../shared/constants';
 import styles from './Map.module.css';
 
 const CompanyMap = ({ height: mapHeight }) => {

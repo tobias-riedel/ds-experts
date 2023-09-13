@@ -1,4 +1,4 @@
-import { ExpertFormItem } from '@models/forms.model';
+import { Expert } from '@prisma/client';
 import Image from 'next/image';
 import SectionDivider from './Common/SectionDivider';
 
@@ -37,7 +37,7 @@ const expertsStatic: Experts[] = [
   },
 ];
 
-const Team = ({ experts }: { experts: ExpertFormItem[] }) => {
+const Team = ({ experts }: { experts: Expert[] }) => {
   return (
     <section id="team" className="pt-100">
       <div className="container">

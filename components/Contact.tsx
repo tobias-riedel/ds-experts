@@ -1,6 +1,6 @@
+import { COMPANY_ADDRESS } from '@consts/company';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { COMPANY_ADDRESS } from '../shared/constants';
 import styles from './Contact.module.css';
 import ContactForm from './Contact/ContactForm';
 import CompanyMap from './Map/CompanyMap';

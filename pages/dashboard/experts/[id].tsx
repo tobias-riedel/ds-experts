@@ -1,8 +1,8 @@
-import { Reference } from '@components/References';
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
 import { DASHBOARD_EXPERTS_URL } from '@consts/routes';
 import DasboardLayout from '@layouts/DashboardLayout';
-import { ExpertFormItem as FormItem } from '@models/forms.model';
+// import { ExpertFormItem as FormItem } from '@models/forms.model';
+import { Expert as FormItem } from '@prisma/client';
 import axios from 'axios';
 import { Field, Form, Formik, FormikErrors, FormikTouched } from 'formik';
 import { GetServerSideProps } from 'next';
@@ -39,12 +39,12 @@ const showErrorToast = (msg: string) => {
   });
 };
 
-const INITIAL_STATE: FormItem = {
+const INITIAL_STATE: Partial<FormItem> = {
   firstName: '',
   lastName: '',
   jobTitle: '',
   img: '',
-  orderId: '',
+  orderId: 0,
   startedAt: '',
   endedAt: '',
   isPublic: false,
@@ -56,9 +56,9 @@ type FormItemKeys = keyof FormItem;
 const DASHBOARD_OVERVIEW_URL = DASHBOARD_EXPERTS_URL;
 
 const API_URL = '/api/admin/experts';
-const fetchItem = (id: string) => axios<Reference>(`${API_URL}/${id}`);
+const fetchItem = (id: string) => axios<FormItem>(`${API_URL}/${id}`);
 
-type ServerSideProps = { item?: Reference; isNew: boolean };
+type ServerSideProps = { item?: FormItem; isNew: boolean };
 
 export const getServerSideProps: GetServerSideProps<ServerSideProps> = async ({
   params: { id },

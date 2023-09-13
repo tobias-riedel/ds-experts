@@ -1,22 +1,20 @@
 import SectionDivider from '../components/Common/SectionDivider';
-
+import Layout from '@layouts/Layout';
+import { Expert, Project } from '@prisma/client';
 import axios from 'axios';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
-import Layout from '../components/Layouts/Layout';
-import { Reference } from '../components/References';
-import { ExpertFormItem } from '@models/forms.model';
 
 const section = 'Lade Abschnitt...';
 
 export const getServerSideProps: GetServerSideProps<{
-  references: Reference[];
-  experts: ExpertFormItem[];
+  references: Project[];
+  experts: Expert[];
 }> = async () => {
   try {
     const [{ data: references }, { data: experts }] = await Promise.all([
-      axios<Reference[]>('/api/admin/projects'),
-      axios<ExpertFormItem[]>('/api/admin/experts'),
+      axios<Project[]>('/api/projects'),
+      axios<Expert[]>('/api/experts'),
     ]);
 
     // TODO: Use redux instead
