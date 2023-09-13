@@ -57,25 +57,32 @@ const DASHBOARD_OVERVIEW_URL = DASHBOARD_EXPERTS_URL;
 
 const API_URL = '/api/admin/experts';
 const fetchItem = (id: string) => axios<FormItem>(`${API_URL}/${id}`);
+const fetchImages = () => axios<any>(`/api/admin/images/teams`);
 
-type ServerSideProps = { item?: FormItem; isNew: boolean };
+type ServerSideProps = { item?: FormItem; images: string[]; isNew: boolean };
 
 export const getServerSideProps: GetServerSideProps<ServerSideProps> = async ({
   params: { id },
 }): Promise<{ props: ServerSideProps }> => {
-  const emptyProps = { props: { item: null, isNew: true } };
+  let images: string[] = [];
+  try {
+    images = (await fetchImages()).data;
+  } catch (error) {
+    console.log('Error loading project background images::', error);
+  }
 
   if (id === ADD_ITEM_URL_PREFIX) {
-    return emptyProps;
+    return { props: { item: null, images, isNew: true } };
   }
 
   try {
     const { data: item } = await fetchItem(id as string);
-    return { props: { item, isNew: false } };
+
+    return { props: { item, images, isNew: false } };
   } catch (error) {
     console.log('Error::', error);
 
-    return { props: { item: null, isNew: false } };
+    return { props: { item: null, images, isNew: false } };
   }
 };
 
@@ -95,7 +102,7 @@ function FormFieldError({
   return <></>;
 }
 
-export default function Page({ item, isNew }: ServerSideProps): JSX.Element {
+export default function Page({ item, images, isNew }: ServerSideProps): JSX.Element {
   const router = useRouter();
 
   const handleSubmit = async (payload: FormItem) => {
@@ -201,14 +208,28 @@ export default function Page({ item, isNew }: ServerSideProps): JSX.Element {
                     </div>
 
                     <div className="form-group col-lg-6">
-                      <label htmlFor="img">Bilderpfad*</label>
-                      <Field
+                      <label htmlFor="img">Bilderpfad</label>
+                      {/* <Field
                         type="text"
                         id="img"
                         name="img"
                         className={ctrlClassName('img')}
-                        placeholder="Pfad zum Hintergrundbild in der Übersichtsanzeige*"
-                      />
+                        placeholder="Dateipfad zum Porträt"
+                      /> */}
+                      <Field
+                        as="select"
+                        id="img"
+                        name="img"
+                        className={ctrlClassName('img')}
+                        placeholder="Dateipfad zum Porträt"
+                      >
+                        <option value={null}>(Keines)</option>
+                        {images.map((image, idx) => (
+                          <option key={idx} value={image}>
+                            {image}
+                          </option>
+                        ))}
+                      </Field>
                       <FormFieldError field="img" errors={errors} touched={touched} />
                     </div>
 

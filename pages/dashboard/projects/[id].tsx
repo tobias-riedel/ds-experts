@@ -60,25 +60,29 @@ const DASHBOARD_OVERVIEW_URL = DASHBOARD_PROJECTS_URL;
 
 const API_URL = '/api/admin/projects';
 const fetchItem = (id: string) => axios<FormItem>(`${API_URL}/${id}`);
+const fetchImages = () => axios<string[]>(`/api/admin/images/references`);
 
-type ServerSideProps = { item?: FormItem; isNew: boolean };
+type ServerSideProps = { item?: FormItem; images: string[]; isNew: boolean };
 
 export const getServerSideProps: GetServerSideProps<ServerSideProps> = async ({
   params: { id },
 }): Promise<{ props: ServerSideProps }> => {
-  const emptyProps = { props: { item: null, isNew: true } };
+  let images: string[] = [];
+  try {
+    images = (await fetchImages()).data;
+  } catch (error) {
+    console.log('Error loading project background images::', error);
+  }
 
   if (id === ADD_ITEM_URL_PREFIX) {
-    return emptyProps;
+    return { props: { item: null, images, isNew: true } };
   }
 
   try {
     const { data: item } = await fetchItem(id as string);
-    return { props: { item, isNew: false } };
-  } catch (error) {
-    console.log('Error::', error);
-
-    return { props: { item: null, isNew: false } };
+    return { props: { item, images, isNew: false } };
+  } catch {
+    return { props: { item: null, images, isNew: false } };
   }
 };
 
@@ -94,7 +98,7 @@ function FormFieldError({
   return <>{errors[field] && touched[field] && <div className="form-feedback">{errors[field]}</div>}</>;
 }
 
-export default function Page({ item, isNew }: ServerSideProps): JSX.Element {
+export default function Page({ item, images, isNew }: ServerSideProps): JSX.Element {
   const router = useRouter();
 
   const handleSubmit = async (payload: FormItem) => {
@@ -145,9 +149,6 @@ export default function Page({ item, isNew }: ServerSideProps): JSX.Element {
             if (!values.city.trim()) {
               errors.city = 'Pflichtfeld';
             }
-            if (!values.img.trim()) {
-              errors.img = 'Pflichtfeld';
-            }
             if (!values.projectName.trim()) {
               errors.projectName = 'Pflichtfeld';
             }
@@ -157,12 +158,12 @@ export default function Page({ item, isNew }: ServerSideProps): JSX.Element {
             return errors;
           }}
           onSubmit={(values, { setSubmitting, resetForm }) => {
-            setTimeout(() => {
-              handleSubmit(values);
-              setSubmitting(false);
+            // setTimeout(() => {
+            handleSubmit(values);
+            setSubmitting(false);
 
-              resetForm();
-            }, 400);
+            resetForm();
+            // }, 400);
           }}
         >
           {({ errors, touched, isSubmitting, dirty, isValid }) => {
@@ -272,14 +273,21 @@ export default function Page({ item, isNew }: ServerSideProps): JSX.Element {
                     </div>
 
                     <div className="form-group col-lg-6">
-                      <label htmlFor="img">Bilderpfad*</label>
+                      <label htmlFor="img">Bilderpfad</label>
                       <Field
-                        type="text"
+                        as="select"
                         id="img"
                         name="img"
                         className={ctrlClassName('img')}
-                        placeholder="Pfad zum Hintergrundbild in der Übersichtsanzeige*"
-                      />
+                        placeholder="Dateipfad zum Hintergrundbild"
+                      >
+                        <option value={null}>(Keines)</option>
+                        {images.map((image, idx) => (
+                          <option key={idx} value={image}>
+                            {image}
+                          </option>
+                        ))}
+                      </Field>
                       <FormFieldError field="img" errors={errors} touched={touched} />
                     </div>
 
