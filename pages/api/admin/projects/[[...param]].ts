@@ -8,16 +8,16 @@ const allowedMethods = ['POST', 'GET', 'PUT', 'DELETE'];
 const formSchema = object({
   id: string(),
   partnerName: string().required(),
-  city: string().required(),
-  img: string().required(),
   projectName: string().required(),
-  description: string().required(),
-  orderId: number(),
-  isPublic: boolean().default(false),
-  startedAt: string(),
-  endedAt: string(),
+  city: string().required(),
   locationLat: number(),
   locationLong: number(),
+  startedAt: string(),
+  endedAt: string(),
+  img: string(),
+  description: string(),
+  orderId: number(),
+  isPublic: boolean().default(false),
   slug: string().nullable(),
 });
 

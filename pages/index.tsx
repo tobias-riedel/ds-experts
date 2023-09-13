@@ -52,7 +52,7 @@ export const MainPage = ({ references, experts }: InferGetServerSidePropsType<ty
       <WorkProcess />
       <JoinUs />
       <Competencies />
-      <References references={references} />
+      <References projects={references} />
       <Contact />
     </Layout>
   );

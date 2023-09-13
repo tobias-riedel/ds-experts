@@ -1,7 +1,6 @@
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
 import { DASHBOARD_EXPERTS_URL } from '@consts/routes';
 import DasboardLayout from '@layouts/DashboardLayout';
-// import { ExpertFormItem as FormItem } from '@models/forms.model';
 import { Expert as FormItem } from '@prisma/client';
 import axios from 'axios';
 import { Field, Form, Formik, FormikErrors, FormikTouched } from 'formik';
@@ -44,10 +43,10 @@ const INITIAL_STATE: Partial<FormItem> = {
   lastName: '',
   role: '',
   img: '',
-  orderId: 0,
   startedAt: '',
   endedAt: '',
   isPublic: false,
+  orderId: 0,
   slug: '',
 };
 
@@ -141,6 +140,7 @@ export default function Page({
   return (
     <DasboardLayout>
       <h1 className="text-center">{isNew ? 'Neuen Experten anlegen' : 'Experten bearbeiten'}</h1>
+
       <div className="contact-form">
         <Formik
           initialValues={{ ...INITIAL_STATE, ...item }}
@@ -155,16 +155,15 @@ export default function Page({
             if (!values.role.trim()) {
               errors.role = 'Pflichtfeld';
             }
+            if (!values.startedAt.trim()) {
+              errors.startedAt = 'Pflichtfeld';
+            }
 
             return errors;
           }}
-          onSubmit={(values, { setSubmitting, resetForm }) => {
-            setTimeout(() => {
-              handleSubmit(values);
-              setSubmitting(false);
-
-              resetForm();
-            }, 400);
+          onSubmit={(values, { setSubmitting }) => {
+            handleSubmit(values);
+            setSubmitting(false);
           }}
         >
           {({ errors, touched, isSubmitting, dirty, isValid }) => {
@@ -222,7 +221,7 @@ export default function Page({
                         className={ctrlClassName('img')}
                         placeholder="Dateipfad zum Porträt"
                       >
-                        <option value={null}>(Keines)</option>
+                        <option value="">(Keines)</option>
                         {images.map((image, idx) => (
                           <option key={idx} value={image}>
                             {image}
@@ -257,6 +256,15 @@ export default function Page({
                     </div>
 
                     <div className="form-group col-lg-3 col-md-6">
+                      <div>
+                        <label>Sichtbarkeit</label>
+                      </div>
+                      <label>
+                        <Field type="checkbox" name="isPublic" /> Öffentlich
+                      </label>
+                    </div>
+
+                    <div className="form-group col-lg-3 col-md-6">
                       <label htmlFor="orderId">Reihenfolge</label>
                       <Field
                         type="number"
@@ -266,15 +274,6 @@ export default function Page({
                         placeholder="Reihenfolge"
                       />
                       <FormFieldError field="orderId" errors={errors} touched={touched} />
-                    </div>
-
-                    <div className="form-group col-lg-3 col-md-6">
-                      <div>
-                        <label>Sichtbarkeit</label>
-                      </div>
-                      <label>
-                        <Field type="checkbox" name="isPublic" /> Öffentlich
-                      </label>
                     </div>
                   </div>
                 </div>

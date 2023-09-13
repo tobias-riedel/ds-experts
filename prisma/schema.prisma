@@ -18,13 +18,13 @@ model Expert {
   id        String   @id @default(cuid())
   firstName String
   lastName  String
-  img       String?
   role      String
-  orderId   Int?
-  slug      String?
-  isPublic  Boolean  @default(false)
+  img       String?
   startedAt String
   endedAt   String?
+  isPublic  Boolean  @default(false)
+  orderId   Int?
+  slug      String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   // projects   Project[]
@@ -44,17 +44,17 @@ model Expert {
 model Project {
   id           String  @id @default(cuid())
   partnerName  String
-  city         String
   projectName  String
+  city         String
   locationLat  Float?
   locationLong Float?
-  description  String?
   startedAt    String?
   endedAt      String?
   img          String?
+  description  String? @db.Text
+  isPublic     Boolean @default(false)
   orderId      Int?
   slug         String?
-  isPublic     Boolean @default(false)
   // experts      Expert[]
 }
 

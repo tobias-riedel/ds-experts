@@ -9,12 +9,12 @@ const formSchema = object({
   id: string(),
   firstName: string().required(),
   lastName: string().required(),
-  img: string(),
   role: string().required(),
-  orderId: number(),
-  isPublic: boolean().default(false),
-  startedAt: string(),
+  img: string(),
+  startedAt: string().required(),
   endedAt: string(),
+  isPublic: boolean().default(false),
+  orderId: number(),
   slug: string().nullable(),
 });
 

@@ -42,14 +42,14 @@ const INITIAL_STATE: Partial<FormItem> = {
   projectName: '',
   partnerName: '',
   city: '',
-  img: '',
-  orderId: 0,
-  description: '',
-  isPublic: false,
-  startedAt: '',
-  endedAt: '',
   locationLat: 0,
   locationLong: 0,
+  startedAt: '',
+  endedAt: '',
+  img: '',
+  description: '',
+  isPublic: false,
+  orderId: 0,
   slug: '',
 };
 
@@ -147,24 +147,18 @@ export default function Page({
             if (!values.partnerName.trim()) {
               errors.partnerName = 'Pflichtfeld';
             }
-            if (!values.city.trim()) {
-              errors.city = 'Pflichtfeld';
-            }
             if (!values.projectName.trim()) {
               errors.projectName = 'Pflichtfeld';
             }
-            if (!values.description.trim()) {
-              errors.description = 'Pflichtfeld';
+            if (!values.city.trim()) {
+              errors.city = 'Pflichtfeld';
             }
+
             return errors;
           }}
-          onSubmit={(values, { setSubmitting, resetForm }) => {
-            // setTimeout(() => {
+          onSubmit={(values, { setSubmitting }) => {
             handleSubmit(values);
             setSubmitting(false);
-
-            resetForm();
-            // }, 400);
           }}
         >
           {({ errors, touched, isSubmitting, dirty, isValid }) => {
@@ -282,7 +276,7 @@ export default function Page({
                         className={ctrlClassName('img')}
                         placeholder="Dateipfad zum Hintergrundbild"
                       >
-                        <option value={null}>(Keines)</option>
+                        <option value="">(Keines)</option>
                         {images.map((image, idx) => (
                           <option key={idx} value={image}>
                             {image}
@@ -293,14 +287,14 @@ export default function Page({
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="description">Projektbeschreibung*</label>
+                      <label htmlFor="description">Projektbeschreibung</label>
                       <Field
                         as="textarea"
                         id="description"
                         name="description"
                         cols={30}
                         rows={6}
-                        placeholder="Beschreibung von Tätigkeiten, verwendeten Technologien und Systemen im Projekt*"
+                        placeholder="Beschreibung von Tätigkeiten, verwendeten Technologien und Systemen im Projekt"
                         className={ctrlClassName('description')}
                       />
                       <FormFieldError field="description" errors={errors} touched={touched} />

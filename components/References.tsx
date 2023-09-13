@@ -1,124 +1,112 @@
+import { Project } from '@prisma/client';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Autoplay, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SectionDivider from './Common/SectionDivider';
 
-const DEFAULT_REFERENCE_IMG = '/images/references/ref1.jpg';
+const DEFAULT_REFERENCE_IMG = '/images/references/default.jpg';
 
-export interface Reference {
-  id: string;
-  img?: string;
-  projectName: string;
-  partnerName?: string;
-  city: string;
-  description?: string;
-  tasks?: string[];
-  orderId?: number;
-  startedAt?: string;
-  endedAt?: string;
-  isPublic?: boolean;
-}
-
-const referencesStatic: Reference[] = [
+// TODO: Remove
+const referencesStatic: Partial<Project>[] = [
   {
     id: '0',
     img: '/images/references/ref1.jpg',
     projectName: 'Panalpina AG',
     city: 'Basel',
-    tasks: ['Erstellung Softwarelösung in Exchange'],
+    description: ['Erstellung Softwarelösung in Exchange'].join('- '),
   },
   {
     id: '1',
     img: '/images/references/ref5.jpg',
     projectName: 'Diehl AirCabin GmbH',
     city: 'Laupheim',
-    tasks: [
+    description: [
       'Projektleitung IT-Rollout',
       'Projektleitung Erstellung Engineering Cloud',
       'Aufbau Gültigkeitsmanagement in Teamcenter',
-    ],
+    ].join('- '),
   },
   {
     id: '2',
     img: '/images/references/ref3.jpg',
     projectName: 'Diehl Aerospace',
     city: 'Frankfurt Main',
-    tasks: ['Update SAP Change Management'],
+    description: ['Update SAP Change Management'].join('- '),
   },
   {
     id: '3',
     img: '/images/references/ref15.jpg',
     projectName: 'Union Investment',
     city: 'Frankfurt Main',
-    tasks: ['Strategische Beratung IT-Update'],
+    description: ['Strategische Beratung IT-Update'].join('- '),
   },
   {
     id: '4',
     img: '/images/references/ref2.jpg',
     projectName: 'QSCA AG',
     city: 'Hamburg',
-    tasks: ['Transition Management für namhafte Kunden (Spiegel, Otto-Gruppe, ...)'],
+    description: ['Transition Management für namhafte Kunden (Spiegel, Otto-Gruppe, ...)'].join('- '),
   },
   {
     id: '5',
     img: '/images/references/ref6.jpg',
     projectName: 'WEH Verbindungstechnik GmbH',
     city: 'Illertissen',
-    tasks: ['Projektleitung Outsourcing', 'Projektleitung Industrie 4.0 Bereich Digitalisierung'],
+    description: ['Projektleitung Outsourcing', 'Projektleitung Industrie 4.0 Bereich Digitalisierung'].join('- '),
   },
   {
     id: '6',
     img: '/images/references/ref7.jpg',
     projectName: 'Toyota Kreditbank',
     city: 'Köln',
-    tasks: ['Softwareentwicklung Bugfixing'],
+    description: ['Softwareentwicklung Bugfixing'].join('- '),
   },
   {
     id: '7',
     img: '/images/references/ref8.jpg',
     projectName: '1&1 Internet AG',
     city: 'Flensburg',
-    tasks: ['Softwareentwicklung e-Commerce Plattform'],
+    description: ['Softwareentwicklung e-Commerce Plattform'].join('- '),
   },
   {
     id: '8',
     img: '/images/references/ref10.jpg',
     projectName: 'DNVGL SE',
     city: 'Hamburg',
-    tasks: ['Softwareentwicklung Modulprogrammierung', 'Kalkulationsplattform'],
+    description: ['Softwareentwicklung Modulprogrammierung', 'Kalkulationsplattform'].join('- '),
   },
   {
     id: '9',
     img: '/images/references/ref11.jpg',
     projectName: 'Ingenico',
     city: 'Hamburg',
-    tasks: ['Softwareentwicklung Widgets zur Zahlungsabwicklung'],
+    description: ['Softwareentwicklung Widgets zur Zahlungsabwicklung'].join('- '),
   },
   {
     id: '10',
     img: '/images/references/ref4.jpg',
     projectName: 'Healex GmbH',
     city: 'Berlin',
-    tasks: ['Softwareentwicklung Corona Tracking App'],
+    description: ['Softwareentwicklung Corona Tracking App'].join('- '),
   },
   {
     id: '11',
     img: '/images/references/ref13.jpg',
     projectName: 'Hannover RE',
     city: 'Hannover',
-    tasks: ['Softwareentwicklung Migration Tools'],
+    description: ['Softwareentwicklung Migration Tools'].join('- '),
   },
   {
     id: '12',
     img: '/images/references/ref14.jpg',
     projectName: 'Siemens Energy AG ',
     city: 'Berlin',
-    tasks: ['Projektleitung IT-Rollout ', 'Projektleitung Softwareentwicklung'],
+    description: ['Projektleitung IT-Rollout ', 'Projektleitung Softwareentwicklung'].join('- '),
   },
 ];
 
-const Projects = ({ references }: { references: Reference[] }) => {
+const Projects = ({ projects }: { projects: Project[] }) => {
   return (
     <section id="references" className="case-studies-area pt-100">
       <div className="container-fluid">
@@ -126,7 +114,7 @@ const Projects = ({ references }: { references: Reference[] }) => {
           <h2>Referenzen</h2>
         </div>
 
-        {references?.length === 0 ? (
+        {projects?.length === 0 ? (
           <h3 className="text-center">Keine Referenzen eingetragen!</h3>
         ) : (
           <Swiper
@@ -163,7 +151,7 @@ const Projects = ({ references }: { references: Reference[] }) => {
             modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
             className="work-slides"
           >
-            {references?.map((ref, idx) => {
+            {projects?.map((project, idx) => {
               const refProps =
                 idx % 2
                   ? {
@@ -173,11 +161,11 @@ const Projects = ({ references }: { references: Reference[] }) => {
                     }
                   : {};
               return (
-                <SwiperSlide key={ref.id}>
+                <SwiperSlide key={project.id}>
                   <div className="work-card shadow" {...refProps}>
                     <Image
-                      src={ref.img ?? DEFAULT_REFERENCE_IMG}
-                      alt={`Referenzbild zu ${ref.projectName}`}
+                      src={project.img || DEFAULT_REFERENCE_IMG}
+                      alt={`Referenzbild zu ${project.projectName}`}
                       width={510}
                       height={700}
                       sizes="(max-width: 576px) 95vw, (max-width: 768px) 45vw, (max-width: 992px) 30vw, (max-width: 1200px) 24vw, 20vw"
@@ -187,11 +175,11 @@ const Projects = ({ references }: { references: Reference[] }) => {
                     <div className="content text-center">
                       <span>
                         <div>
-                          <Link href="/">{ref.projectName}</Link>
+                          <Link href="/">{project.projectName}</Link>
                         </div>
                         <div>
                           <Link href="/" className="ref-location">
-                            ({ref.city})
+                            ({project.city})
                           </Link>
                         </div>
                       </span>
