@@ -18,7 +18,7 @@
     padding-top: 50px;
   }
   .pb-60 {
-    padding-bottom: 20px;
+    padding-bottom: 20px !important;
   }
   .pb-70 {
     padding-bottom: 20px;
@@ -922,7 +922,7 @@
     padding-top: 70px;
   }
   .pb-60 {
-    padding-bottom: 30px;
+    padding-bottom: 30px !important;
   }
   .pb-70 {
     padding-bottom: 40px;
