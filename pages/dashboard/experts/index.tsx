@@ -1,8 +1,8 @@
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
 import DasboardLayout from '@layouts/DashboardLayout';
-import { Expert } from '@prisma/client';
+import { Expert as Item } from '@prisma/client';
 import axios from 'axios';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -10,8 +10,6 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 const MySwal = withReactContent(Swal);
-
-type Item = Expert;
 
 const API_URL = '/api/admin/experts';
 const fetchItems = () => axios<Item[]>(API_URL);
@@ -23,13 +21,13 @@ export const getServerSideProps: GetServerSideProps<{
     const { data: items } = await fetchItems();
     return { props: { items } };
   } catch (error) {
-    console.log('Error::', error);
+    console.log('Error loading experts', error);
 
     return { props: { items: [] } };
   }
 };
 
-export default function Page({ items }: { items: Item[] }) {
+export default function Page({ items }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
 
   const [entries, setEntries] = useState(items as Item[]);
@@ -47,7 +45,7 @@ export default function Page({ items }: { items: Item[] }) {
     try {
       await axios.delete(API_URL, { data: { id: itemId } });
     } catch (error) {
-      console.log('Error::', error);
+      console.log(`Error deleting expert with ID "${itemId}":`, error);
     }
 
     await updateOverview();
@@ -93,7 +91,7 @@ export default function Page({ items }: { items: Item[] }) {
                 </tr>
               </thead>
               <tbody>
-                {entries?.map((item) => {
+                {entries?.map(item => {
                   const fullName = `${item.firstName} ${item.lastName}`;
                   return (
                     <tr key={item.id}>

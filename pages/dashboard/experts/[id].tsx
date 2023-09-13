@@ -5,7 +5,7 @@ import DasboardLayout from '@layouts/DashboardLayout';
 import { Expert as FormItem } from '@prisma/client';
 import axios from 'axios';
 import { Field, Form, Formik, FormikErrors, FormikTouched } from 'formik';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
@@ -57,13 +57,11 @@ const DASHBOARD_OVERVIEW_URL = DASHBOARD_EXPERTS_URL;
 
 const API_URL = '/api/admin/experts';
 const fetchItem = (id: string) => axios<FormItem>(`${API_URL}/${id}`);
-const fetchImages = () => axios<any>(`/api/admin/images/teams`);
+const fetchImages = () => axios<string[]>(`/api/admin/images/teams`);
 
-type ServerSideProps = { item?: FormItem; images: string[]; isNew: boolean };
-
-export const getServerSideProps: GetServerSideProps<ServerSideProps> = async ({
+export const getServerSideProps: GetServerSideProps<{ item?: FormItem; images: string[]; isNew: boolean }> = async ({
   params: { id },
-}): Promise<{ props: ServerSideProps }> => {
+}) => {
   let images: string[] = [];
   try {
     images = (await fetchImages()).data;
@@ -77,11 +75,8 @@ export const getServerSideProps: GetServerSideProps<ServerSideProps> = async ({
 
   try {
     const { data: item } = await fetchItem(id as string);
-
     return { props: { item, images, isNew: false } };
-  } catch (error) {
-    console.log('Error::', error);
-
+  } catch {
     return { props: { item: null, images, isNew: false } };
   }
 };
@@ -102,7 +97,11 @@ function FormFieldError({
   return <></>;
 }
 
-export default function Page({ item, images, isNew }: ServerSideProps): JSX.Element {
+export default function Page({
+  item,
+  images,
+  isNew,
+}: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   const router = useRouter();
 
   const handleSubmit = async (payload: FormItem) => {

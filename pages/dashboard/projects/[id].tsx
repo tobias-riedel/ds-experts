@@ -1,11 +1,10 @@
-import { Reference } from '@components/References';
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
 import { DASHBOARD_PROJECTS_URL } from '@consts/routes';
 import DasboardLayout from '@layouts/DashboardLayout';
 import { Project as FormItem } from '@prisma/client';
 import axios from 'axios';
 import { Field, Form, Formik, FormikErrors, FormikTouched } from 'formik';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
@@ -62,11 +61,9 @@ const API_URL = '/api/admin/projects';
 const fetchItem = (id: string) => axios<FormItem>(`${API_URL}/${id}`);
 const fetchImages = () => axios<string[]>(`/api/admin/images/references`);
 
-type ServerSideProps = { item?: FormItem; images: string[]; isNew: boolean };
-
-export const getServerSideProps: GetServerSideProps<ServerSideProps> = async ({
+export const getServerSideProps: GetServerSideProps<{ item?: FormItem; images: string[]; isNew: boolean }> = async ({
   params: { id },
-}): Promise<{ props: ServerSideProps }> => {
+}) => {
   let images: string[] = [];
   try {
     images = (await fetchImages()).data;
@@ -98,7 +95,11 @@ function FormFieldError({
   return <>{errors[field] && touched[field] && <div className="form-feedback">{errors[field]}</div>}</>;
 }
 
-export default function Page({ item, images, isNew }: ServerSideProps): JSX.Element {
+export default function Page({
+  item,
+  images,
+  isNew,
+}: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   const router = useRouter();
 
   const handleSubmit = async (payload: FormItem) => {

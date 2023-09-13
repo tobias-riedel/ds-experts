@@ -1,8 +1,8 @@
-import { Reference } from '@components/References';
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
 import DasboardLayout from '@layouts/DashboardLayout';
+import { Project as Item } from '@prisma/client';
 import axios from 'axios';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -12,10 +12,10 @@ import withReactContent from 'sweetalert2-react-content';
 const MySwal = withReactContent(Swal);
 
 const API_URL = '/api/admin/projects';
-const fetchItems = () => axios<Reference[]>(API_URL);
+const fetchItems = () => axios<Item[]>(API_URL);
 
 export const getServerSideProps: GetServerSideProps<{
-  items: Reference[];
+  items: Item[];
 }> = async () => {
   try {
     const { data: items } = await fetchItems();
@@ -27,10 +27,10 @@ export const getServerSideProps: GetServerSideProps<{
   }
 };
 
-export default function Page({ items }: { items: Reference[] }) {
+export default function Page({ items }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
 
-  const [entries, setEntries] = useState(items as Reference[]);
+  const [entries, setEntries] = useState(items as Item[]);
 
   const updateOverview = async () => {
     const { data: updatedItems } = await fetchItems();
@@ -45,7 +45,7 @@ export default function Page({ items }: { items: Reference[] }) {
     try {
       await axios.delete(API_URL, { data: { id: itemId } });
     } catch (error) {
-      console.log('Error::', error);
+      console.log(`Error deleting project with ID "${itemId}":`, error);
     }
 
     await updateOverview();
@@ -92,7 +92,7 @@ export default function Page({ items }: { items: Reference[] }) {
                 </tr>
               </thead>
               <tbody>
-                {entries?.map((item) => (
+                {entries?.map(item => (
                   <tr key={item.id}>
                     <td>{item.projectName}</td>
                     <td className="ds-hidden-sm">{item.partnerName}</td>

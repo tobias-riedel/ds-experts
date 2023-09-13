@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps<{
     // TODO: Use redux instead
     return { props: { references, experts } };
   } catch (error) {
-    console.log('Error::', error);
+    console.log('Error loading projects/experts:', error);
 
     return { props: { references: [], experts: [] } };
   }
