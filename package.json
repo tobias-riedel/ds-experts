@@ -33,7 +33,7 @@
     "fslightbox-react": "^1.6.2-2",
     "multer": "^1.4.5-lts.1",
     "next": "^13.2.1",
-    "next-auth": "^4.22.3",
+    "next-auth": "^4.23.1",
     "pigeon-maps": "^0.21.3",
     "react": "^18.2.0",
     "react-accessible-accordion": "^5.0.0",

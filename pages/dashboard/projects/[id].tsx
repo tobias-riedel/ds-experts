@@ -46,7 +46,8 @@ const formSchema = z.object({
   city: z.string({ required_error: 'Pflichtfeld' }),
 });
 
-const INITIAL_STATE: Partial<FormItem> = {
+const INITIAL_STATE: FormItem = {
+  id: '',
   projectName: '',
   partnerName: '',
   city: '',
@@ -69,9 +70,11 @@ const API_URL = '/api/admin/projects';
 const fetchItem = (id: string) => axios<FormItem>(`${API_URL}/${id}`);
 const fetchImages = () => axios<string[]>(`/api/admin/images/references`);
 
-export const getServerSideProps: GetServerSideProps<{ item?: FormItem; images: string[]; isNew: boolean }> = async ({
-  params: { id },
-}) => {
+export const getServerSideProps: GetServerSideProps<{
+  item: FormItem | null;
+  images: string[];
+  isNew: boolean;
+}> = async ({ params }) => {
   let images: string[] = [];
   try {
     images = (await fetchImages()).data;
@@ -79,12 +82,12 @@ export const getServerSideProps: GetServerSideProps<{ item?: FormItem; images: s
     console.log('Error loading project background images::', error);
   }
 
-  if (id === ADD_ITEM_URL_PREFIX) {
+  if (params?.id === ADD_ITEM_URL_PREFIX) {
     return { props: { item: null, images, isNew: true } };
   }
 
   try {
-    const { data: item } = await fetchItem(id as string);
+    const { data: item } = await fetchItem(params?.id as string);
     return { props: { item, images, isNew: false } };
   } catch {
     return { props: { item: null, images, isNew: false } };
@@ -120,7 +123,7 @@ export default function Page({
 
     async function updateItem() {
       try {
-        const response = await axios.put(`${API_URL}/${item.id}`, payload);
+        const response = await axios.put(`${API_URL}/${item?.id}`, payload);
         console.log(response);
         showUpdatedItemToast();
 

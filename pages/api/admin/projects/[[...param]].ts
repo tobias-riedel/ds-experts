@@ -1,6 +1,8 @@
+import { authOptions } from '@api/auth/[...nextauth]';
 import { prisma } from '@db/client';
 import { Project } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { getServerSession } from 'next-auth';
 import { boolean, InferType, number, object, string, ValidationError } from 'yup';
 
 const allowedMethods = ['POST', 'GET', 'PUT', 'DELETE'];
@@ -25,15 +27,8 @@ type FormValue = InferType<typeof formSchema>;
 
 const parseBody = (req: NextApiRequest) => (typeof req.body === 'object' ? req.body : JSON.parse(req.body));
 
-const validatePayload = async (body: any): Promise<FormValue> => {
-  const normalizedBody = {
-    ...body,
-    orderId: !isNaN(body.orderId) ? +body.orderId : 0,
-    locationLat: !isNaN(body.locationLat) ? +body.locationLat : 0,
-    locationLong: !isNaN(body.locationLong) ? +body.locationLong : 0,
-  };
-
-  const payload: FormValue = await formSchema.validate(normalizedBody);
+const validatePayload = async (body: FormValue): Promise<FormValue> => {
+  const payload: FormValue = await formSchema.validate(body);
 
   const {
     id,
@@ -72,6 +67,9 @@ export const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<{ error?: string | object; msg?: string } | Project[] | Project>
 ) => {
+  const session = await getServerSession(req, res, authOptions);
+  console.log('serverProjects::', JSON.stringify(session, null, 2));
+
   if (!allowedMethods.includes(req.method ?? '') || req.method == 'OPTIONS') {
     return res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
   }
@@ -86,7 +84,7 @@ export const handler = async (
         const project = await prisma.project.findUnique({ where: { id: itemId } });
         console.log('Loaded project:', project?.id);
 
-        res.status(200).json(project);
+        res.status(200).json(project ?? {});
       } catch (error) {
         console.error(error);
         if (error?.response) {

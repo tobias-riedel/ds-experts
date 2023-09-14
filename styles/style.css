@@ -1241,14 +1241,14 @@ Main Banner CSS
 }
 
 .item-list tbody tr:nth-child(odd) {
-  background-color: #dbebff;
+  background-color: var(--brand-light-blue);
 }
 .item-list tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #bdd9ff;
 }
 
 .item-list tbody tr:hover {
-  background-color: #bdd9ff;
+  background-color: #a3c9ff;
 }
 
 .item-list tr,
@@ -2124,6 +2124,17 @@ About CSS
     -webkit-transform: scale(2);
     transform: scale(2);
     opacity: 0;
+  }
+}
+
+@keyframes rotateMe {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 

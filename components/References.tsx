@@ -8,6 +8,8 @@ import SectionDivider from './Common/SectionDivider';
 const DEFAULT_REFERENCE_IMG = '/images/references/default.jpg';
 
 // TODO: Remove
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const referencesStatic: Partial<Project>[] = [
   {
     id: '0',

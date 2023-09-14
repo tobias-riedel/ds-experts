@@ -18,7 +18,7 @@ export const handler = async (
 
   if (isSoloItemRequest) {
     try {
-      const expert = await prisma.expert.findUnique({ where: { id: itemId, isPublic: true } });
+      const expert = await prisma.expert.findUniqueOrThrow({ where: { id: itemId, isPublic: true } });
       console.log('Loaded expert:', expert?.id);
 
       res.status(200).json(expert);

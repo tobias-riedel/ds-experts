@@ -25,11 +25,10 @@ export const handler = async (
   const isSoloItemRequest = !!apiUrl;
 
   if (!isSoloItemRequest || !allowedApiToImageDirMap.has(apiUrl)) {
-    res.status(404).json({ msg: 'Image API not found' });
-    return;
+    return res.status(404).json({ msg: 'Image API not found' });
   }
 
-  const dirRelativeToPublicFolder = allowedApiToImageDirMap.get(apiUrl);
+  const dirRelativeToPublicFolder = allowedApiToImageDirMap.get(apiUrl) ?? '.';
   const dir = path.resolve('./public', dirRelativeToPublicFolder);
 
   try {
@@ -48,7 +47,7 @@ export const handler = async (
       console.error(error.response.body);
     }
 
-    res.status(500).json({ msg: 'Error loading images' });
+    res.status(500).json({ error, msg: 'Error loading images' });
   }
 };
 

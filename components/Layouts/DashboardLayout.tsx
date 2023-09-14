@@ -60,7 +60,6 @@ const DasboardLayout = (props: React.PropsWithChildren) => {
   const useScrollDirection = () => {
     const [scrollDirection, setScrollDirection] = useState('');
     const [prevOffset, setPrevOffset] = useState(0);
-    const [logoutImg, setLogoutImg] = useState('fa-');
 
     const toggleScrollDirection = () => {
       const scrollY = window.scrollY;
@@ -149,7 +148,7 @@ const DasboardLayout = (props: React.PropsWithChildren) => {
                     </ul>
 
                     <span>
-                      <span className="m-4 small" title={session?.user?.email}>
+                      <span className="m-4 small" title={session?.user?.email ?? ''}>
                         {session?.user?.name}
                       </span>
                       <button

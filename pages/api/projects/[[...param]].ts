@@ -18,7 +18,7 @@ export const handler = async (
 
   if (isSoloItemRequest) {
     try {
-      const project = await prisma.project.findUnique({ where: { id: itemId, isPublic: true } });
+      const project = await prisma.project.findUniqueOrThrow({ where: { id: itemId, isPublic: true } });
       console.log('Loaded project:', project?.id);
 
       res.status(200).json(project);

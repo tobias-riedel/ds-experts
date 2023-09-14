@@ -22,15 +22,8 @@ type FormValue = InferType<typeof formSchema>;
 
 const parseBody = (req: NextApiRequest) => (typeof req.body === 'object' ? req.body : JSON.parse(req.body));
 
-const validatePayload = async (body: any): Promise<FormValue> => {
-  const normalizedBody = {
-    ...body,
-    orderId: !isNaN(body.orderId) ? +body.orderId : 0,
-    locationLat: !isNaN(body.locationLat) ? +body.locationLat : 0,
-    locationLong: !isNaN(body.locationLong) ? +body.locationLong : 0,
-  };
-
-  const payload: FormValue = await formSchema.validate(normalizedBody);
+const validatePayload = async (body: FormValue): Promise<FormValue> => {
+  const payload: FormValue = await formSchema.validate(body);
 
   const { id, firstName, lastName, img, role, orderId, isPublic, startedAt, endedAt } = payload;
 
@@ -51,8 +44,6 @@ const validatePayload = async (body: any): Promise<FormValue> => {
 
 export const handler = async (
   req: NextApiRequest,
-  // FIXME: Types
-  // res: NextApiResponse<{ error?: string | object; msg?: string } | Partial<Reference>[] | Partial<Reference>>
   res: NextApiResponse<{ error?: string | object; msg?: string } | Expert[] | Expert>
 ) => {
   if (!allowedMethods.includes(req.method ?? '') || req.method == 'OPTIONS') {
@@ -66,7 +57,7 @@ export const handler = async (
   if (req.method === 'GET') {
     if (isSoloItemRequest) {
       try {
-        const expert = await prisma.expert.findUnique({ where: { id: itemId } });
+        const expert = await prisma.expert.findUniqueOrThrow({ where: { id: itemId } });
         console.log('Loaded expert:', expert?.id);
 
         res.status(200).json(expert);
@@ -76,7 +67,7 @@ export const handler = async (
           console.error(error.response.body);
         }
 
-        res.status(500).json({ msg: 'Error loading expert' + JSON.stringify(req.query) });
+        res.status(500).json({ error, msg: 'Error loading expert' + JSON.stringify(req.query) });
       }
       return;
     }
@@ -92,7 +83,7 @@ export const handler = async (
         console.error(error.response.body);
       }
 
-      res.status(500).json({ msg: 'Error loading experts' });
+      res.status(500).json({ error, msg: 'Error loading experts' });
     }
   } else if (req.method === 'PUT') {
     const body = parseBody(req);
@@ -119,7 +110,7 @@ export const handler = async (
         console.error(error.response.body);
       }
 
-      res.status(500).json({ msg: 'Error processing payload' });
+      res.status(500).json({ error, msg: 'Error processing payload' });
     }
   } else if (req.method === 'DELETE') {
     try {
@@ -133,7 +124,7 @@ export const handler = async (
         console.error(error.response.body);
       }
 
-      res.status(500).json({ msg: `Error deleting expert with ID: ${req.body?.id}` });
+      res.status(500).json({ error, msg: `Error deleting expert with ID: ${req.body?.id}` });
     }
   } else if (req.method === 'POST') {
     const body = parseBody(req);
@@ -160,7 +151,7 @@ export const handler = async (
         console.error(error.response.body);
       }
 
-      res.status(500).json({ msg: 'Error processing payload' });
+      res.status(500).json({ error, msg: 'Error processing payload' });
     }
   }
 };

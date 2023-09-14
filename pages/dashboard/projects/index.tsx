@@ -1,11 +1,13 @@
+import { authOptions } from '@api/auth/[...nextauth]';
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
 import DasboardLayout from '@layouts/DashboardLayout';
 import { Project as Item } from '@prisma/client';
 import axios from 'axios';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -16,12 +18,15 @@ const fetchItems = () => axios<Item[]>(API_URL);
 
 export const getServerSideProps: GetServerSideProps<{
   items: Item[];
-}> = async () => {
+}> = async context => {
+  const session = await getServerSession(context.req, context.res, authOptions);
+  console.log('serversidePropsProjects::', JSON.stringify(session, null, 2));
+
   try {
     const { data: items } = await fetchItems();
     return { props: { items } };
   } catch (error) {
-    console.log('Error::', error);
+    console.log('Error loading dashboard projects:', error);
 
     return { props: { items: [] } };
   }
@@ -68,6 +73,16 @@ export default function Page({ items }: InferGetServerSidePropsType<typeof getSe
 
     await deleteItem(itemId);
   };
+
+  useEffect(() => {
+    fetchItems().then(clientProjects => {
+      console.log('cleiontProejcts::', clientProjects);
+    });
+
+    return () => {
+      console.log('useEffect tear down');
+    };
+  }, []);
 
   return (
     <DasboardLayout>

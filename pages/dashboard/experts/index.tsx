@@ -21,7 +21,7 @@ export const getServerSideProps: GetServerSideProps<{
     const { data: items } = await fetchItems();
     return { props: { items } };
   } catch (error) {
-    console.log('Error loading experts', error);
+    console.log('Error loading dashboard experts:', error);
 
     return { props: { items: [] } };
   }
