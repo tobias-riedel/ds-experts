@@ -73,6 +73,7 @@ This files table contents are outlined below >>>>>
   --brand-blue-gradient-5: #4b5eb4; */
 
   --box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  --box-shadow-sm: 5px 5px 5px 0px rgba(0, 0, 0, 0.5);
 
   --section-separator-display: block;
   /* --section-separator-display: none; */
@@ -1214,7 +1215,7 @@ Main Banner CSS
 /* dashboard list table */
 .item-list table {
   border-collapse: separate;
-  border-spacing: 0 1.25rem;
+  border-spacing: 0 0.75rem;
   border: none;
   width: 100%;
 }
@@ -1239,18 +1240,21 @@ Main Banner CSS
   border-bottom-right-radius: var(--table-card-border-radius);
 }
 
+.item-list tbody tr:nth-child(odd) {
+  background-color: #dbebff;
+}
 .item-list tbody tr:nth-child(even) {
-  background-color: #ececec;
+  background-color: #f2f2f2;
 }
 
 .item-list tbody tr:hover {
-  background-color: var(--brand-light-blue);
+  background-color: #bdd9ff;
 }
 
 .item-list tr,
 .item-list tr {
-  -webkit-box-shadow: var(--box-shadow) !important;
-  box-shadow: var(--box-shadow) !important;
+  -webkit-box-shadow: var(--box-shadow-sm) !important;
+  box-shadow: var(--box-shadow-sm) !important;
 }
 
 .item-list thead tr th {
