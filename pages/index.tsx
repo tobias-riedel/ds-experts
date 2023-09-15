@@ -5,7 +5,7 @@ import axios from 'axios';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
 
-const section = 'Lade Abschnitt...';
+const SECTION = 'Lade Abschnitt...';
 
 export const getServerSideProps: GetServerSideProps<{
   references: Project[];
@@ -27,16 +27,16 @@ export const getServerSideProps: GetServerSideProps<{
 };
 
 const Team = dynamic(import('@components/Team'), {
-  loading: () => <>{section}</>,
+  loading: () => <>{SECTION}</>,
 });
-const Philosophy = dynamic(import('@components/Philosophy'), { loading: () => <>{section}</> });
-const References = dynamic(import('@components/References'), { loading: () => <>{section}</> });
-const MainBanner = dynamic(import('@components/MainBanner'), { loading: () => <>{section}</> });
-const About = dynamic(import('@components/About'), { loading: () => <>{section}</> });
-const Competencies = dynamic(import('@components/Competencies'), { loading: () => <>{section}</> });
-const JoinUs = dynamic(import('@components/JoinUs/JoinUs'), { loading: () => <>{section}</> });
-const Contact = dynamic(import('@components/Contact'), { loading: () => <>{section}</> });
-const WorkProcess = dynamic(import('@components/WorkProcess'), { loading: () => <>{section}</> });
+const Philosophy = dynamic(import('@components/Philosophy'), { loading: () => <>{SECTION}</> });
+const References = dynamic(import('@components/References'), { loading: () => <>{SECTION}</> });
+const MainBanner = dynamic(import('@components/MainBanner'), { loading: () => <>{SECTION}</> });
+const About = dynamic(import('@components/About'), { loading: () => <>{SECTION}</> });
+const Competencies = dynamic(import('@components/Competencies'), { loading: () => <>{SECTION}</> });
+const JoinUs = dynamic(import('@components/JoinUs/JoinUs'), { loading: () => <>{SECTION}</> });
+const Contact = dynamic(import('@components/Contact'), { loading: () => <>{SECTION}</> });
+const WorkProcess = dynamic(import('@components/WorkProcess'), { loading: () => <>{SECTION}</> });
 
 export const MainPage = ({ references, experts }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
