@@ -1,4 +1,4 @@
-import { ctrlFieldClassName } from '@utils/forms';
+import { ctrlFieldClassName } from '@utils/form';
 import axios from 'axios';
 import { Field, Form, Formik } from 'formik';
 import Link from 'next/link';

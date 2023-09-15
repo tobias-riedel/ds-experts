@@ -3,7 +3,7 @@ import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
 import { DASHBOARD_PROJECTS_URL } from '@consts/routes';
 import DasboardLayout from '@layouts/DashboardLayout';
 import { Project as FormItem } from '@prisma/client';
-import { ctrlFieldClassName } from '@utils/forms';
+import { ctrlFieldClassName } from '@utils/form';
 import axios from 'axios';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
