@@ -1,11 +1,12 @@
 import Loading from '@components/Common/Loading';
+import ExpertCard from '@components/Team/ExpertCard';
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
 import { DASHBOARD_EXPERTS_URL } from '@consts/routes';
 import DasboardLayout from '@layouts/DashboardLayout';
 import { Expert as FormItem } from '@prisma/client';
 import { ctrlFieldClassName } from '@utils/form';
 import axios from 'axios';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik, useFormikContext } from 'formik';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -82,7 +83,17 @@ export default function Page({ itemId }: InferGetServerSidePropsType<typeof getS
 
   const [images, setImages] = useState<string[]>([]);
   const [item, setItem] = useState<FormItem | null>();
+  const [previewItem, setPreviewItem] = useState<FormItem | null>();
   const [isLoading, setLoading] = useState(true);
+
+  const BusinessLogic = () => {
+    const { values } = useFormikContext<FormItem>();
+    useEffect(() => {
+      setPreviewItem(values);
+    }, [values]);
+
+    return <></>;
+  };
 
   const isNew = itemId === ADD_ITEM_URL_PREFIX;
 
@@ -155,6 +166,8 @@ export default function Page({ itemId }: InferGetServerSidePropsType<typeof getS
 
               return (
                 <Form className="needs-validation">
+                  <BusinessLogic />
+
                   <div className="container">
                     <div className="row">
                       <div className="form-group col-lg-6">
@@ -268,13 +281,21 @@ export default function Page({ itemId }: InferGetServerSidePropsType<typeof getS
                     </div>
                   </div>
 
-                  <div className="text-center">
+                  <div className="text-center pb-70">
                     <button type="submit" disabled={isSubmitting || !dirty || !isValid} className="btn btn-primary m-2">
                       Speichern
-                    </button>{' '}
+                    </button>
                     <Link href={DASHBOARD_OVERVIEW_URL} className="btn btn-secondary m-2">
                       Abbrechen
                     </Link>
+                  </div>
+
+                  <div className="container">
+                    <h2 className="text-center">Vorschau</h2>
+
+                    <div className="col-md-4 offset-md-4 col-6 offset-3">
+                      <ExpertCard expert={previewItem} />
+                    </div>
                   </div>
                 </Form>
               );

@@ -1,43 +1,41 @@
 import { Expert } from '@prisma/client';
-import Image from 'next/image';
 import SectionDivider from './Common/SectionDivider';
-
-interface Experts {
-  img: string;
-  name: string;
-  role: string;
-}
+import ExpertCard from './Team/ExpertCard';
 
 // TODO: Remove
-const expertsStatic: Experts[] = [
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const expertsStatic: Partial<Expert>[] = [
   {
     img: 'Daniel-Schenk.png',
-    name: 'Daniel Schenk',
+    firstName: 'Daniel',
+    lastName: 'Schenk',
     role: 'Senior Projektleiter',
   },
   {
     img: 'Madelaine-Fröhlich.png',
-    name: 'Madelaine Fröhlich',
+    firstName: 'Madelaine',
+    lastName: 'Fröhlich',
     role: 'Backoffice',
   },
   {
     img: 'Michael-Heit.png',
-    name: 'Michael Heit',
+    firstName: 'Michael',
+    lastName: 'Heit',
     role: 'Projektleiter',
   },
   {
     img: 'Marco-Marquardt.png',
-    name: 'Marco Marquardt',
+    firstName: 'Marco',
+    lastName: 'Marquardt',
     role: 'Projektleiter',
   },
   {
     img: 'Tobias-Riedel.png',
-    name: 'Tobias Riedel',
+    firstName: 'Tobias',
+    lastName: 'Riedel',
     role: 'Software Developer',
   },
 ];
-
-const DEFAULT_EXPERT_IMG = '/images/team/default.png';
 
 const Team = ({ experts }: { experts: Expert[] }) => {
   return (
@@ -51,33 +49,11 @@ const Team = ({ experts }: { experts: Expert[] }) => {
           <h3 className="text-center">Keine Experten eingetragen!</h3>
         ) : (
           <div className="row justify-content-between">
-            {experts.map((expert, idx) => {
-              const fullName = `${expert.firstName} ${expert.lastName}`;
-              return (
-                <div className="col-lg-2 col-md-4 col-6" key={idx}>
-                  <div
-                    className="team-card text-center"
-                    data-aos="fade-up"
-                    data-aos-duration="1200"
-                    data-aos-delay="100"
-                  >
-                    <Image
-                      src={expert.img || DEFAULT_EXPERT_IMG}
-                      alt={`Porträt von ${fullName}`}
-                      title={fullName}
-                      className="rounded-circle shadow optimized-image"
-                      width={263}
-                      height={261}
-                    />
-
-                    <div className="team-caption">
-                      <h3>{fullName}</h3>
-                      <p>{expert.role}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+            {experts.map((expert, idx) => (
+              <div className="col-lg-2 col-md-4 col-6" key={idx}>
+                <ExpertCard expert={expert} />
+              </div>
+            ))}
           </div>
         )}
       </div>

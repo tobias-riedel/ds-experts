@@ -298,7 +298,7 @@ export default function Page({ itemId }: InferGetServerSidePropsType<typeof getS
                   <div className="text-center">
                     <button type="submit" disabled={isSubmitting || !dirty || !isValid} className="btn btn-primary m-2">
                       Speichern
-                    </button>{' '}
+                    </button>
                     <Link href={DASHBOARD_OVERVIEW_URL} className="btn btn-secondary m-2">
                       Abbrechen
                     </Link>
