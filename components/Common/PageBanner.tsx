@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PageBanner = ({ pageTitle, BGImage }) => {
+const PageBanner = ({ pageTitle, BGImage }: { pageTitle: string; BGImage: string }): JSX.Element => {
   return (
     <>
       <div className="page-title-area" style={{ backgroundImage: `url(${BGImage})` }}>

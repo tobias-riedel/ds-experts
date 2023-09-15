@@ -65,11 +65,7 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?
     res.status(200).json({ msg: 'Email sent successfully' });
   } catch (error) {
     console.error(error);
-    if (error.response) {
-      console.error(error.response.body);
-    }
-
-    res.status(500).json({ msg: 'Error processing payload' });
+    res.status(500).json({ error: JSON.stringify(error), msg: 'Error processing payload' });
   }
 };
 

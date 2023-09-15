@@ -2,6 +2,7 @@ import { prisma } from '@db/client';
 import { Expert } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { boolean, InferType, number, object, string, ValidationError } from 'yup';
+import { getServerAuthSession } from '@server/common/get-server-auth-session';
 
 const allowedMethods = ['POST', 'GET', 'PUT', 'DELETE'];
 
@@ -46,6 +47,12 @@ export const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<{ error?: string | object; msg?: string } | Expert[] | Expert>
 ) => {
+  // TODO: Use API router for restricted APIs
+  const session = await getServerAuthSession({ req, res });
+  if (!session?.user) {
+    return res.status(401).json({ error: `401 Unauthorized` });
+  }
+
   if (!allowedMethods.includes(req.method ?? '') || req.method == 'OPTIONS') {
     return res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
   }
@@ -63,11 +70,8 @@ export const handler = async (
         res.status(200).json(expert);
       } catch (error) {
         console.error(error);
-        if (error?.response) {
-          console.error(error.response.body);
-        }
 
-        res.status(500).json({ error, msg: 'Error loading expert' + JSON.stringify(req.query) });
+        res.status(500).json({ error: JSON.stringify(error), msg: 'Error loading expert' + JSON.stringify(req.query) });
       }
       return;
     }
@@ -79,11 +83,8 @@ export const handler = async (
       res.status(200).json(experts);
     } catch (error) {
       console.error(error);
-      if (error?.response) {
-        console.error(error.response.body);
-      }
 
-      res.status(500).json({ error, msg: 'Error loading experts' });
+      res.status(500).json({ error: JSON.stringify(error), msg: 'Error loading experts' });
     }
   } else if (req.method === 'PUT') {
     const body = parseBody(req);
@@ -106,11 +107,7 @@ export const handler = async (
       res.status(200).json({ msg: 'Expert updated successfully' });
     } catch (error) {
       console.error(error);
-      if (error?.response) {
-        console.error(error.response.body);
-      }
-
-      res.status(500).json({ error, msg: 'Error processing payload' });
+      res.status(500).json({ error: JSON.stringify(error), msg: 'Error processing payload' });
     }
   } else if (req.method === 'DELETE') {
     try {
@@ -120,17 +117,12 @@ export const handler = async (
       res.status(200).json(expert);
     } catch (error) {
       console.error(error);
-      if (error?.response) {
-        console.error(error.response.body);
-      }
-
-      res.status(500).json({ error, msg: `Error deleting expert with ID: ${req.body?.id}` });
+      res.status(500).json({ error: JSON.stringify(error), msg: `Error deleting expert with ID: ${req.body?.id}` });
     }
   } else if (req.method === 'POST') {
     const body = parseBody(req);
 
-    // FIXME: typing (FormValue)
-    let newItem;
+    let newItem: FormValue;
     try {
       newItem = await validatePayload(body);
     } catch (validationError: unknown) {
@@ -147,11 +139,7 @@ export const handler = async (
       res.status(200).json({ msg: 'Expert added successfully' });
     } catch (error) {
       console.error(error);
-      if (error?.response) {
-        console.error(error.response.body);
-      }
-
-      res.status(500).json({ error, msg: 'Error processing payload' });
+      res.status(500).json({ error: JSON.stringify(error), msg: 'Error processing payload' });
     }
   }
 };

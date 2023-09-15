@@ -1,7 +1,7 @@
-import PageBanner from '../components/Common/PageBanner';
-import Gdpr from '../components/Gdpr';
-import Imprint from '../components/Imprint';
-import Layout from '../components/Layouts/Layout';
+import PageBanner from '@components/Common/PageBanner';
+import Gdpr from '@components/Gdpr';
+import Imprint from '@components/Imprint';
+import Layout from '@components/Layouts/Layout';
 
 const Legal = () => {
   return (

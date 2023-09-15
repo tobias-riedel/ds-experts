@@ -1,6 +1,5 @@
-import multer from 'multer';
-
 import sgMail from '@sendgrid/mail';
+import multer from 'multer';
 import type { NextApiRequest, NextApiResponse, PageConfig } from 'next';
 import { InferType, object, string, ValidationError } from 'yup';
 import { env } from '../../env/server.mjs';
@@ -31,7 +30,7 @@ const formSchema = object({
 
 type FormValue = InferType<typeof formSchema>;
 
-const uploadFilter = function (_, file: Express.Multer.File, cb: multer.FileFilterCallback): void {
+const uploadFilter = function (_: unknown, file: Express.Multer.File, cb: multer.FileFilterCallback): void {
   const acceptFile = allowedUploadFileMimeTypes.includes(file.mimetype);
 
   if (acceptFile) {
@@ -46,9 +45,10 @@ const upload = multer({
   fileFilter: uploadFilter,
 });
 
-function runMiddleware(req, res, fn) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function runMiddleware(req: NextApiRequest, res: NextApiResponse, fn: any) {
   return new Promise((resolve, reject) => {
-    fn(req, res, (result) => {
+    fn(req, res, (result: Error | unknown) => {
       if (result instanceof Error) {
         return reject(result);
       }
@@ -75,7 +75,7 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?
     body = typeof req.body === 'object' ? req.body : JSON.parse(req.body);
   } catch (parseErr) {
     console.log('Body parse error:', parseErr);
-    return res.status(500).json({ error: parseErr });
+    return res.status(500).json({ error: JSON.stringify(parseErr) });
   }
 
   let payload: FormValue;
@@ -132,11 +132,7 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?
     return res.status(200).json({ msg: 'Email sent successfully' });
   } catch (error) {
     console.error(error);
-    if (error.response) {
-      console.error(error.response.body);
-    }
-
-    return res.status(500).json({ msg: 'Error processing payload' });
+    return res.status(500).json({ error: JSON.stringify(error), msg: 'Error processing payload' });
   }
 };
 

@@ -1,9 +1,9 @@
-import React from 'react';
+import { PropsWithChildren } from 'react';
 import Footer from './Footer';
 import GoTop from './GoTop';
 import Header from './Header';
 
-const Layout = (props: React.PropsWithChildren) => {
+const Layout = (props: PropsWithChildren) => {
   return (
     <>
       <Header />

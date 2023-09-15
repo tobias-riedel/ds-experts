@@ -1,9 +1,8 @@
-import { authOptions } from '@api/auth/[...nextauth]';
 import { prisma } from '@db/client';
 import { Project } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getServerSession } from 'next-auth';
 import { boolean, InferType, number, object, string, ValidationError } from 'yup';
+import { getServerAuthSession } from '@server/common/get-server-auth-session';
 
 const allowedMethods = ['POST', 'GET', 'PUT', 'DELETE'];
 
@@ -67,8 +66,11 @@ export const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<{ error?: string | object; msg?: string } | Project[] | Project>
 ) => {
-  const session = await getServerSession(req, res, authOptions);
-  console.log('serverProjects::', JSON.stringify(session, null, 2));
+  // TODO: Use API router for restricted APIs
+  const session = await getServerAuthSession({ req, res });
+  if (!session?.user) {
+    return res.status(401).json({ error: `401 Unauthorized` });
+  }
 
   if (!allowedMethods.includes(req.method ?? '') || req.method == 'OPTIONS') {
     return res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
@@ -87,11 +89,9 @@ export const handler = async (
         res.status(200).json(project ?? {});
       } catch (error) {
         console.error(error);
-        if (error?.response) {
-          console.error(error.response.body);
-        }
-
-        res.status(500).json({ msg: 'Error loading project' + JSON.stringify(req.query) });
+        res
+          .status(500)
+          .json({ error: JSON.stringify(error), msg: 'Error loading project' + JSON.stringify(req.query) });
       }
       return;
     }
@@ -103,17 +103,12 @@ export const handler = async (
       res.status(200).json(projects);
     } catch (error) {
       console.error(error);
-      if (error?.response) {
-        console.error(error.response.body);
-      }
-
-      res.status(500).json({ msg: 'Error loading projects' });
+      res.status(500).json({ error: JSON.stringify(error), msg: 'Error loading projects' });
     }
   } else if (req.method === 'PUT') {
     const body = parseBody(req);
 
-    // FIXME: typing (FormValue)
-    let newItem;
+    let newItem: FormValue;
     try {
       newItem = await validatePayload(body);
     } catch (validationError: unknown) {
@@ -130,11 +125,7 @@ export const handler = async (
       res.status(200).json({ msg: 'Project updated successfully' });
     } catch (error) {
       console.error(error);
-      if (error?.response) {
-        console.error(error.response.body);
-      }
-
-      res.status(500).json({ msg: 'Error processing payload' });
+      res.status(500).json({ error: JSON.stringify(error), msg: 'Error processing payload' });
     }
   } else if (req.method === 'DELETE') {
     try {
@@ -144,17 +135,12 @@ export const handler = async (
       res.status(200).json(project);
     } catch (error) {
       console.error(error);
-      if (error?.response) {
-        console.error(error.response.body);
-      }
-
-      res.status(500).json({ msg: `Error deleting project with ID: ${req.body?.id}` });
+      res.status(500).json({ error: JSON.stringify(error), msg: `Error deleting project with ID: ${req.body?.id}` });
     }
   } else if (req.method === 'POST') {
     const body = parseBody(req);
 
-    // FIXME: typing (FormValue)
-    let newItem;
+    let newItem: FormValue;
     try {
       newItem = await validatePayload(body);
     } catch (validationError: unknown) {
@@ -171,11 +157,7 @@ export const handler = async (
       res.status(200).json({ msg: 'Project added successfully' });
     } catch (error) {
       console.error(error);
-      if (error?.response) {
-        console.error(error.response.body);
-      }
-
-      res.status(500).json({ msg: 'Error processing payload' });
+      res.status(500).json({ error: JSON.stringify(error), msg: 'Error processing payload' });
     }
   }
 };

@@ -1,3 +1,4 @@
+import { getServerAuthSession } from '@server/common/get-server-auth-session';
 import fs from 'fs';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import path from 'path';
@@ -16,6 +17,12 @@ export const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<{ error?: string | object; msg?: string } | string[]>
 ) => {
+  // TODO: Use API router for restricted APIs
+  const session = await getServerAuthSession({ req, res });
+  if (!session?.user) {
+    return res.status(401).json({ error: `401 Unauthorized` });
+  }
+
   if (!allowedMethods.includes(req.method ?? '') || req.method == 'OPTIONS') {
     return res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
   }
@@ -43,11 +50,7 @@ export const handler = async (
     res.status(200).json(images);
   } catch (error) {
     console.error(error);
-    if (error?.response) {
-      console.error(error.response.body);
-    }
-
-    res.status(500).json({ error, msg: 'Error loading images' });
+    res.status(500).json({ error: JSON.stringify(error), msg: 'Error loading images' });
   }
 };
 

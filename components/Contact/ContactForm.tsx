@@ -1,3 +1,4 @@
+import { ctrlFieldClassName } from '@utils/forms';
 import axios from 'axios';
 import { Field, Form, Formik } from 'formik';
 import Link from 'next/link';
@@ -81,18 +82,15 @@ const ContactForm = () => {
             return errors;
           }}
           onSubmit={(values, { setSubmitting, resetForm }) => {
-            setTimeout(() => {
-              handleSubmit(values);
-              setSubmitting(false);
+            handleSubmit(values);
+            setSubmitting(false);
 
-              resetForm();
-              setAgreedToGdpr(false);
-            }, 400);
+            resetForm();
+            setAgreedToGdpr(false);
           }}
         >
           {({ errors, touched, isSubmitting, dirty, isValid }) => {
-            const ctrlClassName = (fieldName: keyof FormItem): string =>
-              `form-control ${errors?.[fieldName] ? 'is-invalid' : touched?.[fieldName] ? 'is-valid' : ''}`;
+            const ctrlClassName = ctrlFieldClassName<FormItem>(errors, touched);
 
             return (
               <Form className="needs-validation">

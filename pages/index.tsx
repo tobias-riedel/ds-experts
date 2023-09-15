@@ -1,4 +1,4 @@
-import SectionDivider from '../components/Common/SectionDivider';
+import SectionDivider from '@components/Common/SectionDivider';
 import Layout from '@layouts/Layout';
 import { Expert, Project } from '@prisma/client';
 import axios from 'axios';
@@ -26,17 +26,17 @@ export const getServerSideProps: GetServerSideProps<{
   }
 };
 
-const Team = dynamic(import('../components/Team'), {
+const Team = dynamic(import('@components/Team'), {
   loading: () => <>{section}</>,
 });
-const Philosophy = dynamic(import('../components/Philosophy'), { loading: () => <>{section}</> });
-const References = dynamic(import('../components/References'), { loading: () => <>{section}</> });
-const MainBanner = dynamic(import('../components/MainBanner'), { loading: () => <>{section}</> });
-const About = dynamic(import('../components/About'), { loading: () => <>{section}</> });
-const Competencies = dynamic(import('../components/Competencies'), { loading: () => <>{section}</> });
-const JoinUs = dynamic(import('../components/JoinUs/JoinUs'), { loading: () => <>{section}</> });
-const Contact = dynamic(import('../components/Contact'), { loading: () => <>{section}</> });
-const WorkProcess = dynamic(import('../components/WorkProcess'), { loading: () => <>{section}</> });
+const Philosophy = dynamic(import('@components/Philosophy'), { loading: () => <>{section}</> });
+const References = dynamic(import('@components/References'), { loading: () => <>{section}</> });
+const MainBanner = dynamic(import('@components/MainBanner'), { loading: () => <>{section}</> });
+const About = dynamic(import('@components/About'), { loading: () => <>{section}</> });
+const Competencies = dynamic(import('@components/Competencies'), { loading: () => <>{section}</> });
+const JoinUs = dynamic(import('@components/JoinUs/JoinUs'), { loading: () => <>{section}</> });
+const Contact = dynamic(import('@components/Contact'), { loading: () => <>{section}</> });
+const WorkProcess = dynamic(import('@components/WorkProcess'), { loading: () => <>{section}</> });
 
 export const MainPage = ({ references, experts }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (

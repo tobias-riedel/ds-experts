@@ -16,7 +16,6 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),
   providers: [
     AzureADProvider({
@@ -24,8 +23,10 @@ export const authOptions: NextAuthOptions = {
       clientSecret: env.AZURE_AD_CLIENT_SECRET,
       tenantId: env.AZURE_AD_TENANT_ID,
     }),
-    // ...add more providers here
   ],
 };
+
+export const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST };
 
 export default NextAuth(authOptions);

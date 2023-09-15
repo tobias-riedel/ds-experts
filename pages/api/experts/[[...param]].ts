@@ -24,11 +24,7 @@ export const handler = async (
       res.status(200).json(expert);
     } catch (error) {
       console.error(error);
-      if (error?.response) {
-        console.error(error.response.body);
-      }
-
-      res.status(500).json({ msg: 'Error loading expert' + JSON.stringify(req.query) });
+      res.status(500).json({ error: JSON.stringify(error), msg: 'Error loading expert' + JSON.stringify(req.query) });
     }
     return;
   }
@@ -40,11 +36,7 @@ export const handler = async (
     res.status(200).json(experts);
   } catch (error) {
     console.error(error);
-    if (error?.response) {
-      console.error(error.response.body);
-    }
-
-    res.status(500).json({ msg: 'Error loading experts' });
+    res.status(500).json({ error: JSON.stringify(error), msg: 'Error loading experts' });
   }
 };
 

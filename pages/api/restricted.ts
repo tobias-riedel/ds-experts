@@ -1,6 +1,6 @@
 import { type NextApiRequest, type NextApiResponse } from 'next';
 
-import { getServerAuthSession } from '../../server/common/get-server-auth-session';
+import { getServerAuthSession } from '@server/common/get-server-auth-session';
 
 // TODO: Remove after tRPC integration
 

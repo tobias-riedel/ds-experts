@@ -1,6 +1,6 @@
-import PageBanner from '../components/Common/PageBanner';
-import ErrorContent from '../components/Error/ErrorContent';
-import Layout from '../components/Layouts/Layout';
+import PageBanner from '@components/Common/PageBanner';
+import ErrorContent from '@components/Error/ErrorContent';
+import Layout from '@components/Layouts/Layout';
 
 const Error = () => {
   return (
