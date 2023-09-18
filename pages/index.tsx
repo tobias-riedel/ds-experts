@@ -1,6 +1,5 @@
 import SectionDivider from '@components/Common/SectionDivider';
 import Layout from '@layouts/Layout';
-import { InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
 
 const SECTION = 'Lade Abschnitt...';
@@ -17,7 +16,7 @@ const JoinUs = dynamic(import('@components/JoinUs/JoinUs'), { loading: () => <>{
 const Contact = dynamic(import('@components/Contact'), { loading: () => <>{SECTION}</> });
 const WorkProcess = dynamic(import('@components/WorkProcess'), { loading: () => <>{SECTION}</> });
 
-export const MainPage = ({ references }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+export const MainPage = (): JSX.Element => {
   return (
     <Layout>
       <section id="home">
