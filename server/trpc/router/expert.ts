@@ -1,6 +1,6 @@
 import { Expert } from '@prisma/client';
 import { z } from 'zod';
-import { expertSchema } from '../../../types/expert.schema';
+import { expertSchema } from '@schema/expert.schema';
 import { protectedProcedure, publicProcedure, router } from '../trpc';
 
 export const expertsRouter = router({

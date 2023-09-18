@@ -24,6 +24,8 @@
       "@models/*": ["./src/modules/models/*"],
       "@db/*": ["./server/db/*"],
       "@server/*": ["./server/*"],
+      "@schema/*": ["./types/*"],
+      "@env/*": ["./env/*"],
       "@utils/*": ["./utils/*"]
     }
   },

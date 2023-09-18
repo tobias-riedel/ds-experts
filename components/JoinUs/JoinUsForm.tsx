@@ -5,7 +5,7 @@ import { Field, Form, Formik } from 'formik';
 import Link from 'next/link';
 import { ChangeEvent, useState } from 'react';
 import { ProgressBar, Spinner } from 'react-bootstrap';
-import { env } from '../../env/client.mjs';
+import { env } from '@env/client.mjs';
 
 const alertContent = () => {
   MySwal.fire({

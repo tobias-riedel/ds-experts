@@ -14,7 +14,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { projectSchema as formSchema } from '../../../types/project.schema';
+import { projectSchema as formSchema } from '@schema/project.schema';
 
 const showAddedItemToast = () => {
   MySwal.fire({

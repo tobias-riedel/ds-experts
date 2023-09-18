@@ -1,6 +1,6 @@
 import { Project } from '@prisma/client';
 import { z } from 'zod';
-import { projectSchema } from '../../../types/project.schema';
+import { projectSchema } from '@schema/project.schema';
 import { protectedProcedure, publicProcedure, router } from '../trpc';
 
 export const projectsRouter = router({

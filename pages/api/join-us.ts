@@ -1,8 +1,8 @@
+import { env } from '@env/server.mjs';
 import sgMail from '@sendgrid/mail';
 import multer from 'multer';
 import type { NextApiRequest, NextApiResponse, PageConfig } from 'next';
 import { InferType, object, string, ValidationError } from 'yup';
-import { env } from '../../env/server.mjs';
 import { sanitizeHtml } from '../../utils/mail';
 
 const allowedMethods = ['POST'];
