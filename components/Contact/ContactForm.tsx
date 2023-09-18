@@ -1,12 +1,10 @@
+import { MySwal } from '@consts/misc';
 import { ctrlFieldClassName } from '@utils/form';
 import axios from 'axios';
 import { Field, Form, Formik } from 'formik';
 import Link from 'next/link';
 import { useState } from 'react';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
 
-const MySwal = withReactContent(Swal);
 const alertContent = () => {
   MySwal.fire({
     title: 'Glückwunsch!',

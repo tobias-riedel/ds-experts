@@ -1,14 +1,11 @@
 import { Project } from '@prisma/client';
-import Image from 'next/image';
-import Link from 'next/link';
+import { trpc } from '@utils/trpc';
 import { Autoplay, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SectionDivider from './Common/SectionDivider';
-
-const DEFAULT_REFERENCE_IMG = '/images/references/default.jpg';
+import SectionDivider from '../Common/SectionDivider';
+import ProjectCard from './ReferenceCard';
 
 // TODO: Remove
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const referencesStatic: Partial<Project>[] = [
   {
@@ -108,7 +105,9 @@ const referencesStatic: Partial<Project>[] = [
   },
 ];
 
-const Projects = ({ projects }: { projects: Project[] }) => {
+const Projects = (): JSX.Element => {
+  const getProjects = trpc.projects.list.useQuery();
+
   return (
     <section id="references" className="case-studies-area pt-100">
       <div className="container-fluid">
@@ -116,9 +115,13 @@ const Projects = ({ projects }: { projects: Project[] }) => {
           <h2>Referenzen</h2>
         </div>
 
-        {projects?.length === 0 ? (
-          <h3 className="text-center">Keine Referenzen eingetragen!</h3>
-        ) : (
+        {getProjects.isLoading && <h3 className="text-center">Lade Einträge...</h3>}
+
+        {(getProjects.isError || getProjects?.data?.length === 0) && (
+          <h3 className="text-center">Keine Experten eingetragen!</h3>
+        )}
+
+        {getProjects.isSuccess && getProjects?.data?.length > 0 && (
           <Swiper
             cssMode={true}
             spaceBetween={20}
@@ -153,7 +156,7 @@ const Projects = ({ projects }: { projects: Project[] }) => {
             modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
             className="work-slides"
           >
-            {projects?.map((project, idx) => {
+            {getProjects.data.map((project, idx) => {
               const refProps =
                 idx % 2
                   ? {
@@ -165,27 +168,7 @@ const Projects = ({ projects }: { projects: Project[] }) => {
               return (
                 <SwiperSlide key={project.id}>
                   <div className="work-card shadow" {...refProps}>
-                    <Image
-                      src={project.img || DEFAULT_REFERENCE_IMG}
-                      alt={`Referenzbild zu ${project.projectName}`}
-                      width={510}
-                      height={700}
-                      sizes="(max-width: 576px) 95vw, (max-width: 768px) 45vw, (max-width: 992px) 30vw, (max-width: 1200px) 24vw, 20vw"
-                      className="optimized-image"
-                    />
-
-                    <div className="content text-center">
-                      <span>
-                        <div>
-                          <Link href="/">{project.projectName}</Link>
-                        </div>
-                        <div>
-                          <Link href="/" className="ref-location">
-                            ({project.city})
-                          </Link>
-                        </div>
-                      </span>
-                    </div>
+                    <ProjectCard data={project} />
                   </div>
                 </SwiperSlide>
               );

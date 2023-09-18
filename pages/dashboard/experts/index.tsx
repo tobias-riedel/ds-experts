@@ -1,50 +1,46 @@
 import Loading from '@components/Common/Loading';
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
+import { MySwal } from '@consts/misc';
 import DasboardLayout from '@layouts/DashboardLayout';
-import { Expert as Item } from '@prisma/client';
-import axios, { AxiosError } from 'axios';
+import { trpc } from '@utils/trpc';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-
-const MySwal = withReactContent(Swal);
-
-const API_URL = '/api/admin/experts';
-const fetchItems = () => axios<Item[]>(API_URL);
 
 export default function Page() {
   const router = useRouter();
 
-  const [entries, setEntries] = useState([] as Item[]);
-  const [isLoading, setLoading] = useState(true);
+  const itemRoute = trpc.useContext().experts;
 
-  const updateOverview = async () => {
-    setLoading(true);
+  const getItems = trpc.experts.listDashboard.useQuery();
 
-    try {
-      const { data: updatedItems } = await fetchItems();
-      setEntries(updatedItems);
-    } catch (error) {
-      console.warn('Error fetching data:', (error as AxiosError)?.response?.data);
-    }
+  const deleteItem = trpc.experts.delete.useMutation({
+    onSuccess: () => {
+      itemRoute.invalidate();
 
-    setLoading(false);
-  };
+      MySwal.fire({
+        position: 'top-end',
+        title: 'Eintrag gelöscht.',
+        icon: 'success',
+        timer: 1500,
+        showConfirmButton: false,
+      });
+    },
+    onError: error => {
+      console.warn('Error deleting item:', error);
+
+      MySwal.fire({
+        position: 'top-end',
+        title: 'Fehler!',
+        text: 'Es ist ein Fehler beim Löschen vom Eintrag aufgetreten.',
+        icon: 'error',
+        timer: 1500,
+        showConfirmButton: false,
+      });
+    },
+  });
 
   const editItem = (itemId: string) => {
     router.push(`${router.pathname}/${itemId}`);
-  };
-
-  const deleteItem = async (itemId: string) => {
-    try {
-      await axios.delete(API_URL, { data: { id: itemId } });
-    } catch (error) {
-      console.warn(`Error deleting expert with ID "${itemId}":`, error);
-    }
-
-    await updateOverview();
   };
 
   const confirmDeleteItem = async (itemId: string, itemName: string) => {
@@ -62,20 +58,16 @@ export default function Page() {
       return;
     }
 
-    await deleteItem(itemId);
+    deleteItem.mutate({ id: itemId });
   };
-
-  useEffect(() => {
-    updateOverview();
-  }, []);
 
   return (
     <DasboardLayout>
       <section>
         <h1 className="text-center">Experten-Übersicht</h1>
 
-        <Loading isLoading={isLoading}>
-          {entries?.length > 0 ? (
+        <Loading isLoading={getItems.isLoading}>
+          {getItems.data?.length ?? 0 > 0 ? (
             <div className="item-list m-2">
               <table>
                 <thead>
@@ -92,7 +84,7 @@ export default function Page() {
                   </tr>
                 </thead>
                 <tbody>
-                  {entries?.map(item => {
+                  {getItems.data?.map(item => {
                     const fullName = `${item.firstName} ${item.lastName}`;
                     return (
                       <tr key={item.id}>

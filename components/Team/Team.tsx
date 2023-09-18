@@ -1,6 +1,7 @@
 import { Expert } from '@prisma/client';
-import SectionDivider from './Common/SectionDivider';
-import ExpertCard from './Team/ExpertCard';
+import { trpc } from '@utils/trpc';
+import SectionDivider from '../Common/SectionDivider';
+import ExpertCard from './ExpertCard';
 
 // TODO: Remove
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -37,7 +38,9 @@ const expertsStatic: Partial<Expert>[] = [
   },
 ];
 
-const Team = ({ experts }: { experts: Expert[] }) => {
+const Team = () => {
+  const getExperts = trpc.experts.list.useQuery();
+
   return (
     <section id="team" className="pt-100">
       <div className="container">
@@ -45,13 +48,17 @@ const Team = ({ experts }: { experts: Expert[] }) => {
           <h2>Unsere Experts</h2>
         </div>
 
-        {experts?.length === 0 ? (
+        {getExperts.isLoading && <h3 className="text-center">Lade Einträge...</h3>}
+
+        {(getExperts.isError || getExperts?.data?.length === 0) && (
           <h3 className="text-center">Keine Experten eingetragen!</h3>
-        ) : (
+        )}
+
+        {getExperts.isSuccess && getExperts?.data?.length > 0 && (
           <div className="row justify-content-between">
-            {experts.map((expert, idx) => (
+            {getExperts.data.map((expert, idx) => (
               <div className="col-lg-2 col-md-4 col-6" key={idx}>
-                <ExpertCard expert={expert} />
+                <ExpertCard data={expert} />
               </div>
             ))}
           </div>

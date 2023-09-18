@@ -2,11 +2,11 @@ import AOS from 'aos';
 import axios from 'axios';
 import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
-import { AppProps } from 'next/app';
+import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useEffect } from 'react';
 import '../styles/global.css';
-import { getBaseUrl } from '../utils/trpc';
+import { getBaseUrl, trpc } from '../utils/trpc';
 
 axios.defaults.baseURL = getBaseUrl();
 
@@ -44,4 +44,4 @@ function MyApp({ Component, pageProps }: AppProps<{ session?: Session }>) {
   );
 }
 
-export default MyApp;
+export default trpc.withTRPC(MyApp);

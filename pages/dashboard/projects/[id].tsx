@@ -1,21 +1,21 @@
 import Loading from '@components/Common/Loading';
+import ProjectCard from '@components/References/ReferenceCard';
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
+import { TRPC_FORMIK_CACHE_OPTS } from '@consts/db';
+import { MySwal } from '@consts/misc';
 import { DASHBOARD_PROJECTS_URL } from '@consts/routes';
 import DasboardLayout from '@layouts/DashboardLayout';
 import { Project as FormItem } from '@prisma/client';
 import { ctrlFieldClassName } from '@utils/form';
-import axios from 'axios';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { trpc } from '@utils/trpc';
+import { ErrorMessage, Field, Form, Formik, useFormikContext } from 'formik';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
+import { projectSchema as formSchema } from '../../../types/project.schema';
 
-const MySwal = withReactContent(Swal);
 const showAddedItemToast = () => {
   MySwal.fire({
     position: 'top-end',
@@ -43,12 +43,6 @@ const showErrorToast = (msg: string) => {
   });
 };
 
-const formSchema = z.object({
-  partnerName: z.string({ required_error: 'Pflichtfeld' }),
-  projectName: z.string({ required_error: 'Pflichtfeld' }),
-  city: z.string({ required_error: 'Pflichtfeld' }),
-});
-
 const INITIAL_STATE: FormItem = {
   id: '',
   projectName: '',
@@ -67,10 +61,6 @@ const INITIAL_STATE: FormItem = {
 
 const DASHBOARD_OVERVIEW_URL = DASHBOARD_PROJECTS_URL;
 
-const API_URL = '/api/admin/projects';
-const fetchItem = (id: string) => axios<FormItem>(`${API_URL}/${id}`);
-const fetchImages = () => axios<string[]>(`/api/admin/images/references`);
-
 export const getServerSideProps: GetServerSideProps<{ itemId: string }> = async ({ params }) => {
   return { props: { itemId: params?.id as string } };
 };
@@ -78,70 +68,63 @@ export const getServerSideProps: GetServerSideProps<{ itemId: string }> = async 
 export default function Page({ itemId }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   const router = useRouter();
 
-  const [images, setImages] = useState<string[]>([]);
-  const [item, setItem] = useState<FormItem | null>();
-  const [isLoading, setLoading] = useState(true);
+  const [previewItem, setPreviewItem] = useState<FormItem | null>();
+
+  const BusinessLogic = () => {
+    const { values } = useFormikContext<FormItem>();
+    useEffect(() => {
+      setPreviewItem(values);
+    }, [values]);
+
+    return <></>;
+  };
 
   const isNew = itemId === ADD_ITEM_URL_PREFIX;
 
+  const images = trpc.images.listReferences.useQuery(undefined, TRPC_FORMIK_CACHE_OPTS);
+
+  const item = isNew
+    ? { data: {}, isSuccess: true, isLoading: false }
+    : trpc.projects.byIdDashboard.useQuery({ id: itemId }, TRPC_FORMIK_CACHE_OPTS);
+
+  const addItem = trpc.projects.create.useMutation({
+    onSuccess: () => {
+      showAddedItemToast();
+      router.push(DASHBOARD_OVERVIEW_URL);
+    },
+    onError: error => {
+      console.warn('Error adding new project:', error);
+      showErrorToast('Es ist ein Fehler beim Hinzuf+gen des Eintrags aufgetreten.');
+    },
+  });
+
+  const updateItem = trpc.projects.update.useMutation({
+    onSuccess: () => {
+      showUpdatedItemToast();
+      router.push(DASHBOARD_OVERVIEW_URL);
+    },
+    onError: (error, data) => {
+      console.warn(`Error updating project with ID ${data.id}:`, error.message);
+      showErrorToast('Es ist ein Fehler beim Abspeichern der Änderungen aufgetreten.');
+    },
+  });
+
   const handleSubmit = async (payload: FormItem) => {
     if (isNew) {
-      await addItem();
+      addItem.mutate(payload);
     } else {
-      await updateItem();
-    }
-
-    async function addItem() {
-      try {
-        const response = await axios.post(API_URL, payload);
-        console.log(response);
-        showAddedItemToast();
-
-        router.push(DASHBOARD_OVERVIEW_URL);
-      } catch (error) {
-        console.warn('Error adding new project:', error);
-        showErrorToast('Es ist ein Fehler beim Hinzuf+gen des Eintrags aufgetreten.');
-      }
-    }
-
-    async function updateItem() {
-      try {
-        const response = await axios.put(`${API_URL}/${item?.id}`, payload);
-        console.log(response);
-        showUpdatedItemToast();
-
-        router.push(DASHBOARD_OVERVIEW_URL);
-      } catch (error) {
-        console.warn(`Error updating project with ID ${item?.id}:`, error);
-        showErrorToast('Es ist ein Fehler beim Abspeichern der Änderungen aufgetreten.');
-      }
+      updateItem.mutate(payload);
     }
   };
-
-  useEffect(() => {
-    setLoading(true);
-
-    Promise.all([
-      fetchImages()
-        .then(({ data }) => setImages(data))
-        .catch(error => console.warn('Error loading project background images:', error)),
-
-      !isNew &&
-        itemId &&
-        fetchItem(itemId)
-          .then(({ data }) => setItem(data))
-          .catch(error => console.warn('Error loading item:', error)),
-    ]).finally(() => setLoading(false));
-  }, [isNew, itemId]);
 
   return (
     <DasboardLayout>
       <h1 className="text-center">{isNew ? 'Neues Projekt anlegen' : 'Projekt bearbeiten'}</h1>
 
-      <Loading isLoading={isLoading}>
+      <Loading isLoading={images.isLoading || item.isLoading}>
         <div className="contact-form">
           <Formik<FormItem>
-            initialValues={{ ...INITIAL_STATE, ...item }}
+            initialValues={{ ...INITIAL_STATE, ...item?.data }}
             validationSchema={toFormikValidationSchema(formSchema)}
             onSubmit={(values, { setSubmitting }) => {
               handleSubmit(values);
@@ -153,6 +136,8 @@ export default function Page({ itemId }: InferGetServerSidePropsType<typeof getS
 
               return (
                 <Form className="needs-validation">
+                  <BusinessLogic />
+
                   <div className="container">
                     <div className="row">
                       <div className="form-group col-lg-6">
@@ -269,7 +254,7 @@ export default function Page({ itemId }: InferGetServerSidePropsType<typeof getS
                           placeholder="Dateipfad zum Hintergrundbild"
                         >
                           <option value="">(Keines)</option>
-                          {images.map((image, idx) => (
+                          {images.data?.map((image, idx) => (
                             <option key={idx} value={image}>
                               {image}
                             </option>
@@ -295,13 +280,23 @@ export default function Page({ itemId }: InferGetServerSidePropsType<typeof getS
                     </div>
                   </div>
 
-                  <div className="text-center">
+                  <div className="text-center pb-70">
                     <button type="submit" disabled={isSubmitting || !dirty || !isValid} className="btn btn-primary m-2">
                       Speichern
                     </button>
                     <Link href={DASHBOARD_OVERVIEW_URL} className="btn btn-secondary m-2">
                       Abbrechen
                     </Link>
+                  </div>
+
+                  <div className="container">
+                    <h2 className="text-center">Vorschau</h2>
+
+                    <div className="col-md-4 offset-md-4 col-6 offset-3">
+                      <div className="work-card shadow">
+                        <ProjectCard data={previewItem} />
+                      </div>
+                    </div>
                   </div>
                 </Form>
               );
