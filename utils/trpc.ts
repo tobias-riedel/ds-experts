@@ -29,7 +29,7 @@ export const trpc = createTRPCNext<AppRouter>({
       transformer: superjson, // optional - adds superjson serialization
       links: [
         loggerLink({
-          enabled: opts =>
+          enabled: (opts) =>
             process.env.NODE_ENV === 'development' || (opts.direction === 'down' && opts.result instanceof Error),
         }),
         httpBatchLink({

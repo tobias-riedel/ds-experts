@@ -81,7 +81,7 @@ const JoinUsForm = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-        onUploadProgress: data => setProgress(Math.round((100 * data.loaded) / (data.total ?? 1))),
+        onUploadProgress: (data) => setProgress(Math.round((100 * data.loaded) / (data.total ?? 1))),
       });
       alertContent();
     } catch (error) {
@@ -218,7 +218,7 @@ const JoinUsForm = () => {
                         accept="application/pdf"
                         value={fileMeta as unknown as string}
                         className={`form-control ${fileCtrlClassName}`}
-                        onChange={evt => handleFileChange(evt, setFieldValue, env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE)}
+                        onChange={(evt) => handleFileChange(evt, setFieldValue, env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE)}
                       />
                       {fileSizeError && <div className="form-feedback">{fileSizeError}</div>}
                     </div>

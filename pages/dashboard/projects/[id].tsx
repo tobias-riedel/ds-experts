@@ -92,7 +92,7 @@ export default function Page({ itemId }: InferGetServerSidePropsType<typeof getS
       showAddedItemToast();
       router.push(DASHBOARD_OVERVIEW_URL);
     },
-    onError: error => {
+    onError: (error) => {
       console.warn('Error adding new project:', error);
       showErrorToast('Es ist ein Fehler beim Hinzuf+gen des Eintrags aufgetreten.');
     },

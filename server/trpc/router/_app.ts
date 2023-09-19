@@ -6,6 +6,7 @@ import { imagesRouter } from './images';
 import { projectsRouter } from './project';
 
 // TODO: refactor paths to single names (From "experts" to "expert")
+// see https://trpc.io/docs/quickstart
 export const appRouter = router({
   auth: authRouter,
   contact: contactRouter,

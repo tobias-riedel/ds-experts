@@ -1,8 +1,9 @@
 import { env } from '@env/server.mjs';
+import { joinUsSchema as formSchema } from '@schema/joinUs.schema';
 import sgMail from '@sendgrid/mail';
 import multer from 'multer';
 import type { NextApiRequest, NextApiResponse, PageConfig } from 'next';
-import { InferType, object, string, ValidationError } from 'yup';
+import { z } from 'zod';
 import { sanitizeHtml } from '../../utils/mail';
 
 const allowedMethods = ['POST'];
@@ -13,22 +14,10 @@ sgMail.setApiKey(env.SENDGRID_API_KEY);
 const JoinUsMaxFileSize = env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE ?? 8;
 const maxUploadedFileSize = JoinUsMaxFileSize * 1024 * 1024;
 
-const HONEYPOT_MSG = 'Honeypot triggered';
 const to = env.JOIN_US_MAIL_ADDRESS_FROM;
 const from = env.JOIN_US_MAIL_ADDRESS_TO;
 
-const formSchema = object({
-  firstName: string().max(0, HONEYPOT_MSG),
-  name: string().max(0, HONEYPOT_MSG),
-  email: string().max(0, HONEYPOT_MSG),
-  firstName6g234: string().required(),
-  name90ad0f: string().required(),
-  emailfd80e: string().email().required(),
-  subject: string().required(),
-  text: string().required(),
-});
-
-type FormValue = InferType<typeof formSchema>;
+type FormValue = z.infer<typeof formSchema>;
 
 const uploadFilter = function (_: unknown, file: Express.Multer.File, cb: multer.FileFilterCallback): void {
   const acceptFile = allowedUploadFileMimeTypes.includes(file.mimetype);
@@ -80,12 +69,14 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?
 
   let payload: FormValue;
   try {
-    payload = await formSchema.validate(body);
+    // payload = await formSchema.validate(body);
+    payload = formSchema.parse(body);
   } catch (validationError: unknown) {
     console.log('Validation failed:', validationError);
 
     return res.status(400).json({
-      error: (validationError as ValidationError).errors,
+      // error: (validationError as ValidationError).errors,
+      error: JSON.stringify(validationError, null, 2),
     });
   }
 

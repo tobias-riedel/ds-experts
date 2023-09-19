@@ -23,8 +23,8 @@ const getImages = (folder: AllowedImageDirs): string[] => {
   const filenames = fs.readdirSync(dir);
 
   const images = filenames
-    .map(name => path.join('/', dirRelativeToPublicFolder, name).replaceAll('\\', '/'))
-    .filter(path => path.match(allowedFileExtensionsRegex));
+    .map((name) => path.join('/', dirRelativeToPublicFolder, name).replaceAll('\\', '/'))
+    .filter((path) => path.match(allowedFileExtensionsRegex));
 
   console.log('Loaded images:', images?.length);
 

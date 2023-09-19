@@ -25,7 +25,7 @@ export default function Page() {
         showConfirmButton: false,
       });
     },
-    onError: error => {
+    onError: (error) => {
       console.warn('Error deleting item:', error);
 
       MySwal.fire({
@@ -84,7 +84,7 @@ export default function Page() {
                   </tr>
                 </thead>
                 <tbody>
-                  {getItems.data?.map(item => (
+                  {getItems.data?.map((item) => (
                     <tr key={item.id}>
                       <td>{item.projectName}</td>
                       <td className="ds-hidden-sm">{item.partnerName}</td>

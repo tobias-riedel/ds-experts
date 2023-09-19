@@ -47,7 +47,7 @@ const ContactForm = () => {
       console.log('Contact eMail sent usccessfully.');
       alertContent();
     },
-    onError: error => {
+    onError: (error) => {
       console.error('Error sending mail:', error);
       showErrorToast('Beim Versenden der E-Mail ist ein Fehler aufgetreten.');
     },
