@@ -7,6 +7,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import Link from 'next/link';
 import { ChangeEvent, useState } from 'react';
 import { ProgressBar, Spinner } from 'react-bootstrap';
+import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 const alertContent = () => {
@@ -20,16 +21,7 @@ const alertContent = () => {
   });
 };
 
-interface FormItem {
-  firstName: string;
-  name: string;
-  email: string;
-  firstName6g234: string;
-  name90ad0f: string;
-  emailfd80e: string;
-  subject: string;
-  text: string;
-}
+type FormItem = z.infer<typeof formSchema>;
 
 const INITIAL_STATE: FormItem = {
   firstName: '',
@@ -93,8 +85,8 @@ const JoinUsForm = () => {
 
   return (
     <>
-      <div className="join-us-form">
-        <Formik
+      <div className="contact-form">
+        <Formik<FormItem>
           initialValues={{ ...INITIAL_STATE }}
           validationSchema={toFormikValidationSchema(formSchema)}
           onSubmit={async (values, { setSubmitting, resetForm, setFieldValue }) => {
