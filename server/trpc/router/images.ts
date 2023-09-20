@@ -7,13 +7,6 @@ enum AllowedImageDirs {
   REFERENCES = 'images/references',
 }
 
-const allowedApiToImageDirMap = new Map([
-  ['teams', 'images/team'],
-  ['references', 'images/references'],
-]);
-
-allowedApiToImageDirMap.keys();
-
 const allowedFileExtensionsRegex = /\.(png|jpg|jpeg|webp)$/i;
 
 const getImages = (folder: AllowedImageDirs): string[] => {

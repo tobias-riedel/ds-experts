@@ -18,6 +18,7 @@ const navLinks: NavLinks[] = [
   { to: DASHBOARD_URL, name: 'Dashboard' },
   { to: DASHBOARD_URL + '/experts', name: 'Experten' },
   { to: DASHBOARD_URL + '/projects', name: 'Projekte' },
+  { to: DASHBOARD_URL + '/uploads', name: 'Uploads' },
 ];
 
 const DYNAMIC_PATH_REGEX = /\/\[(\.\.\.)?\w+\]$/gi;

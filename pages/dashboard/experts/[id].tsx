@@ -60,6 +60,7 @@ const INITIAL_STATE: FormItem = {
 
 const DASHBOARD_OVERVIEW_URL = DASHBOARD_EXPERTS_URL;
 
+// TODO: get param without serverSideProps
 export const getServerSideProps: GetServerSideProps<{ itemId: string }> = async ({ params }) => {
   return { props: { itemId: params?.id as string } };
 };
