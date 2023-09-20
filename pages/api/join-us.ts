@@ -34,16 +34,11 @@ const upload = multer({
   fileFilter: uploadFilter,
 });
 
+// FIXME: use util.promisify instead
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function runMiddleware(req: NextApiRequest, res: NextApiResponse, fn: any) {
   return new Promise((resolve, reject) => {
-    fn(req, res, (result: Error | unknown) => {
-      if (result instanceof Error) {
-        return reject(result);
-      }
-
-      return resolve(result);
-    });
+    fn(req, res, (result: Error | unknown) => (result instanceof Error ? reject(result) : resolve(result)));
   });
 }
 

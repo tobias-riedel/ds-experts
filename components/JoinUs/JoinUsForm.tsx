@@ -1,11 +1,13 @@
 import { MySwal } from '@consts/misc';
+import { env } from '@env/client.mjs';
+import { joinUsSchema as formSchema } from '@schema/joinUs.schema';
 import { ctrlFieldClassName } from '@utils/form';
 import axios from 'axios';
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import Link from 'next/link';
 import { ChangeEvent, useState } from 'react';
 import { ProgressBar, Spinner } from 'react-bootstrap';
-import { env } from '@env/client.mjs';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 const alertContent = () => {
   MySwal.fire({
@@ -94,28 +96,7 @@ const JoinUsForm = () => {
       <div className="join-us-form">
         <Formik
           initialValues={{ ...INITIAL_STATE }}
-          validate={(values: FormItem): Partial<FormItem> => {
-            // TODO: Replace validation with Zod schema
-            const errors: Partial<FormItem> = {};
-            if (!values.firstName6g234.trim()) {
-              errors.firstName6g234 = 'Pflichtfeld';
-            }
-            if (!values.name90ad0f.trim()) {
-              errors.name90ad0f = 'Pflichtfeld';
-            }
-            if (!values.emailfd80e.trim()) {
-              errors.emailfd80e = 'Pflichtfeld';
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.emailfd80e)) {
-              errors.emailfd80e = 'Ungültige E-Mail-Adresse';
-            }
-            if (!values.subject.trim()) {
-              errors.subject = 'Pflichtfeld';
-            }
-            if (!values.text.trim()) {
-              errors.text = 'Pflichtfeld';
-            }
-            return errors;
-          }}
+          validationSchema={toFormikValidationSchema(formSchema)}
           onSubmit={async (values, { setSubmitting, resetForm, setFieldValue }) => {
             await handleSubmit(values);
             setSubmitting(false);
@@ -157,7 +138,7 @@ const JoinUsForm = () => {
                           className={ctrlClassName('firstName6g234')}
                           placeholder="Vorname*"
                         />
-                        {errors.firstName6g234 && <div className="form-feedback">{errors.firstName6g234}</div>}
+                        <ErrorMessage name="firstName6g234" component="div" className="form-feedback" />
                       </div>
                     </div>
                     <div className="col-lg-6">
@@ -168,7 +149,7 @@ const JoinUsForm = () => {
                           className={ctrlClassName('name90ad0f')}
                           placeholder="Nachname*"
                         />
-                        {errors.name90ad0f && <div className="form-feedback">{errors.name90ad0f}</div>}
+                        <ErrorMessage name="name90ad0f" component="div" className="form-feedback" />
                       </div>
                     </div>
                     <div className="form-group">
@@ -178,18 +159,12 @@ const JoinUsForm = () => {
                         className={ctrlClassName('emailfd80e')}
                         placeholder="E-Mail*"
                       />
-                      {errors.emailfd80e && <div className="form-feedback">{errors.emailfd80e}</div>}
+                      <ErrorMessage name="emailfd80e" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group">
-                      <Field
-                        type="text"
-                        name="subject"
-                        placeholder="Betreff*"
-                        className={ctrlClassName('subject')}
-                        required
-                      />
-                      {errors.subject && <div className="form-feedback">{errors.subject}</div>}
+                      <Field type="text" name="subject" placeholder="Betreff*" className={ctrlClassName('subject')} />
+                      <ErrorMessage name="subject" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group">
@@ -200,9 +175,8 @@ const JoinUsForm = () => {
                         rows={6}
                         placeholder="Schreib Deine Anfrage...*"
                         className={ctrlClassName('text')}
-                        required
                       />
-                      {errors.text && <div className="form-feedback">{errors.text}</div>}
+                      <ErrorMessage name="text" component="div" className="form-feedback" />
                     </div>
                   </div>
                   <div className="col-lg-12 col-md-12">
