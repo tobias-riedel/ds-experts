@@ -1,5 +1,8 @@
 import SectionDivider from '@components/Common/SectionDivider';
+import { prisma } from '@db/client';
 import Layout from '@layouts/Layout';
+import { Expert, PrismaPromise, Project } from '@prisma/client';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
 
 const SECTION = 'Lade Abschnitt...';
@@ -16,7 +19,34 @@ const JoinUs = dynamic(import('@components/JoinUs/JoinUs'), { loading: () => <>{
 const Contact = dynamic(import('@components/Contact'), { loading: () => <>{SECTION}</> });
 const WorkProcess = dynamic(import('@components/WorkProcess'), { loading: () => <>{SECTION}</> });
 
-export const MainPage = (): JSX.Element => {
+export const getServerSideProps: GetServerSideProps<{ experts: Expert[]; projects: Project[] }> = async () => {
+  const expertsQuery: PrismaPromise<Expert[]> = prisma.expert.findMany({
+    where: { isPublic: true },
+    orderBy: { orderId: 'asc' },
+  });
+
+  const projectsQuery: PrismaPromise<Project[]> = prisma.project.findMany({
+    where: { isPublic: true },
+    orderBy: { orderId: 'asc' },
+  });
+
+  const [rawExperts, projects]: [Expert[], Project[]] = await Promise.all([expertsQuery, projectsQuery]);
+  const experts = rawExperts.map((expert) => ({
+    ...expert,
+    // Remove date objects as they cannot easily be stringified.
+    createdAt: null,
+    updatedAt: null,
+  }));
+
+  return {
+    props: { experts, projects },
+  };
+};
+
+export const MainPage = ({
+  experts,
+  projects,
+}: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element => {
   return (
     <Layout>
       <section id="home">
@@ -25,12 +55,12 @@ export const MainPage = (): JSX.Element => {
         <SectionDivider />
       </section>
 
-      <Team />
+      <Team data={experts} />
       <Philosophy />
       <WorkProcess />
       <JoinUs />
       <Competencies />
-      <References />
+      <References data={projects} />
       <Contact />
     </Layout>
   );

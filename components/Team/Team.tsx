@@ -38,9 +38,7 @@ const expertsStatic: Partial<Expert>[] = [
   },
 ];
 
-const Team = () => {
-  const getExperts = trpc.experts.list.useQuery();
-
+const Team = ({ data: experts }: { data: Expert[] }): JSX.Element => {
   return (
     <section id="team" className="pt-100">
       <div className="container">
@@ -48,15 +46,11 @@ const Team = () => {
           <h2>Unsere Experts</h2>
         </div>
 
-        {getExperts.isLoading && <h3 className="text-center">Lade Einträge...</h3>}
-
-        {(getExperts.isError || getExperts?.data?.length === 0) && (
+        {experts?.length === 0 ? (
           <h3 className="text-center">Keine Experten eingetragen!</h3>
-        )}
-
-        {getExperts.isSuccess && getExperts?.data?.length > 0 && (
+        ) : (
           <div className="row justify-content-between">
-            {getExperts.data.map((expert, idx) => (
+            {experts?.map((expert, idx) => (
               <div className="col-lg-2 col-md-4 col-6" key={idx}>
                 <ExpertCard data={expert} />
               </div>

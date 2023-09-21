@@ -18,6 +18,9 @@ const allowedApiToImageDirMap = new Map([
 type FormValue = z.infer<typeof formSchema>;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // FIXME: Filter by file type
+  // FIXME: Filter by file size
+
   const multerUpload = promisify(upload.single('file'));
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   await multerUpload(req as any, res as any);

@@ -105,9 +105,7 @@ const referencesStatic: Partial<Project>[] = [
   },
 ];
 
-const Projects = (): JSX.Element => {
-  const getProjects = trpc.projects.list.useQuery();
-
+const Projects = ({ data: projects }: { data: Project[] }): JSX.Element => {
   return (
     <section id="references" className="case-studies-area pt-100">
       <div className="container-fluid">
@@ -115,13 +113,9 @@ const Projects = (): JSX.Element => {
           <h2>Referenzen</h2>
         </div>
 
-        {getProjects.isLoading && <h3 className="text-center">Lade Einträge...</h3>}
-
-        {(getProjects.isError || getProjects?.data?.length === 0) && (
+        {projects?.length === 0 ? (
           <h3 className="text-center">Keine Experten eingetragen!</h3>
-        )}
-
-        {getProjects.isSuccess && getProjects?.data?.length > 0 && (
+        ) : (
           <Swiper
             cssMode={true}
             spaceBetween={20}
@@ -156,7 +150,7 @@ const Projects = (): JSX.Element => {
             modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
             className="work-slides"
           >
-            {getProjects.data.map((project, idx) => {
+            {projects?.map((project, idx) => {
               const refProps =
                 idx % 2
                   ? {
