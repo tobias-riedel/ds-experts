@@ -15,7 +15,6 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import 'react-quill/dist/quill.snow.css';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
@@ -271,16 +270,6 @@ export default function Page({ itemId }: InferGetServerSidePropsType<typeof getS
 
                       <div className="form-group">
                         <label htmlFor="description">Projektbeschreibung</label>
-                        {/* <Field
-                          type="text"
-                          as="textarea"
-                          id="description"
-                          name="description"
-                          cols={30}
-                          rows={6}
-                          placeholder="Beschreibung von Tätigkeiten, verwendeten Technologien und Systemen im Projekt"
-                          className={ctrlClassName('description')}
-                        /> */}
                         <Field
                           id="description"
                           name="description"

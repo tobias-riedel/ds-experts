@@ -1,4 +1,4 @@
-import { COMPANY_ADDRESS } from '@consts/company';
+import { COMPANY_ADDRESS, COMPANY_COORDINATES } from '@consts/company';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from './Contact.module.css';
@@ -73,7 +73,15 @@ const Contact = () => {
                   </li>
                 </ul>
 
-                <CompanyMap height={320} />
+                <CompanyMap
+                  height={320}
+                  lattitude={COMPANY_COORDINATES[0]}
+                  longitude={COMPANY_COORDINATES[1]}
+                  offsetX={138}
+                  offsetY={128}
+                  tooltipText={`${COMPANY_ADDRESS.street} ${COMPANY_ADDRESS.streetNo},`}
+                  tooltipSubtext={`${COMPANY_ADDRESS.zipCode} ${COMPANY_ADDRESS.city}`}
+                />
 
                 {!showContactForm && (
                   <div className="text-center pt-100" onClick={() => setShowContactForm(true)}>

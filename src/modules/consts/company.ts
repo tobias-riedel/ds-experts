@@ -8,3 +8,5 @@ export const COMPANY_ADDRESS = {
   telephone: '+49 33 054904 404',
   email: 'info@ds-experts.de',
 };
+
+export const COMPANY_COORDINATES: [number, number] = [52.87365, 13.3835];

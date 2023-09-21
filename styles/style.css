@@ -620,6 +620,10 @@ section:nth-child(2n + 2) .div-arrow-down:after {
   height: 100%;
 }
 
+.pigeon-map > div {
+  height: 100% !important;
+}
+
 /*================================================
 Cookie Consent CSS
 =================================================*/

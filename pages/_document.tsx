@@ -1,3 +1,4 @@
+import { Theme } from '@radix-ui/themes';
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
@@ -12,8 +13,10 @@ class MyDocument extends Document {
           <link rel="icon" type="image/png" href="/favicon.png"></link>
         </Head>
         <body>
-          <Main />
-          <NextScript />
+          <Theme>
+            <Main />
+            <NextScript />
+          </Theme>
         </body>
       </Html>
     );

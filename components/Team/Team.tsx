@@ -1,5 +1,4 @@
 import { Expert } from '@prisma/client';
-import { trpc } from '@utils/trpc';
 import SectionDivider from '../Common/SectionDivider';
 import ExpertCard from './ExpertCard';
 

@@ -3,8 +3,26 @@ import { Map, Marker, Overlay, ZoomControl } from 'pigeon-maps';
 import { useEffect, useState } from 'react';
 import styles from './Map.module.css';
 
-const CompanyMap = ({ height: mapHeight }) => {
-  const address = [52.87365, 13.3835];
+const CompanyMap = ({
+  height: mapHeight,
+  lattitude = 0,
+  longitude = 0,
+  offsetX = 0,
+  offsetY = 0,
+  tooltipText = '',
+  tooltipSubtext = '',
+}: {
+  height: number;
+  lattitude?: number;
+  longitude?: number;
+  offsetX?: number;
+  offsetY?: number;
+  tooltipText?: string;
+  tooltipSubtext?: string;
+}) => {
+  const address: [number, number] = [lattitude, longitude];
+  const offset: [number, number] = [offsetX, offsetY];
+
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [isMarkerVisible, setIsMarkerVisible] = useState(false);
 
@@ -13,22 +31,18 @@ const CompanyMap = ({ height: mapHeight }) => {
   }, []);
 
   return (
-    <div className="shadow" style={{ height: mapHeight }}>
+    <div className="shadow pigeon-map" style={{ height: mapHeight }}>
       <Map height={mapHeight} defaultCenter={address} defaultZoom={10}>
         <ZoomControl />
 
         {isPopupVisible && (
-          <Overlay anchor={address} offset={[138, 128]}>
+          <Overlay anchor={address} offset={offset}>
             <div className={styles.markerPopup}>
               <div className={styles.markerPopupContentWrapper}>
                 <div className={styles.markerPopupContent}>
                   <div className={styles.markerTooltip}>
-                    <div>
-                      {COMPANY_ADDRESS.street} {COMPANY_ADDRESS.streetNo},
-                    </div>
-                    <div>
-                      {COMPANY_ADDRESS.zipCode} {COMPANY_ADDRESS.city}
-                    </div>
+                    <div>{tooltipText}</div>
+                    <div>{tooltipSubtext}</div>
                   </div>
                 </div>
               </div>

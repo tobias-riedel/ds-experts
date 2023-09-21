@@ -1,5 +1,4 @@
 import { Project } from '@prisma/client';
-import { trpc } from '@utils/trpc';
 import { Autoplay, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SectionDivider from '../Common/SectionDivider';

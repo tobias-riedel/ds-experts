@@ -5,6 +5,9 @@ import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useEffect } from 'react';
+
+import '@radix-ui/themes/styles.css';
+import 'react-quill/dist/quill.snow.css';
 import '../styles/global.css';
 import { getBaseUrl, trpc } from '../utils/trpc';
 
