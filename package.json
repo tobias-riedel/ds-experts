@@ -39,6 +39,7 @@
     "react-accessible-accordion": "^5.0.0",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
+    "react-quill": "^2.0.0",
     "react-scroll": "^1.8.9",
     "react-visibility-sensor": "^5.1.1",
     "sanitize-html": "^2.8.1",

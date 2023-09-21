@@ -6,15 +6,19 @@ import { MySwal } from '@consts/misc';
 import { DASHBOARD_PROJECTS_URL } from '@consts/routes';
 import DasboardLayout from '@layouts/DashboardLayout';
 import { Project as FormItem } from '@prisma/client';
+import { projectSchema as formSchema } from '@schema/project.schema';
 import { ctrlFieldClassName } from '@utils/form';
 import { trpc } from '@utils/trpc';
-import { ErrorMessage, Field, Form, Formik, useFormikContext } from 'formik';
+import { ErrorMessage, Field, Form, Formik, FormikValues, useFormikContext } from 'formik';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import 'react-quill/dist/quill.snow.css';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { projectSchema as formSchema } from '@schema/project.schema';
+
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const showAddedItemToast = () => {
   MySwal.fire({
@@ -110,6 +114,8 @@ export default function Page({ itemId }: InferGetServerSidePropsType<typeof getS
   });
 
   const handleSubmit = async (payload: FormItem) => {
+    // const  descriptionMd  = md.render(payload.description ?? '');
+
     if (isNew) {
       addItem.mutate(payload);
     } else {
@@ -265,7 +271,7 @@ export default function Page({ itemId }: InferGetServerSidePropsType<typeof getS
 
                       <div className="form-group">
                         <label htmlFor="description">Projektbeschreibung</label>
-                        <Field
+                        {/* <Field
                           type="text"
                           as="textarea"
                           id="description"
@@ -274,7 +280,17 @@ export default function Page({ itemId }: InferGetServerSidePropsType<typeof getS
                           rows={6}
                           placeholder="Beschreibung von Tätigkeiten, verwendeten Technologien und Systemen im Projekt"
                           className={ctrlClassName('description')}
-                        />
+                        /> */}
+                        <Field
+                          id="description"
+                          name="description"
+                          placeholder="Beschreibung von Tätigkeiten, verwendeten Technologien und Systemen im Projekt"
+                          className={ctrlClassName('description')}
+                        >
+                          {({ field }: { field: FormikValues }) => (
+                            <ReactQuill theme={'snow'} value={field.value} onChange={field.onChange(field.name)} />
+                          )}
+                        </Field>
                         <ErrorMessage name="description" component="div" className="form-feedback" />
                       </div>
                     </div>
