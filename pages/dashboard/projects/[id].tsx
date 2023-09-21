@@ -1,13 +1,13 @@
-import Loading from '@components/Common/Loading';
 import ProjectCard from '@components/References/ReferenceCard';
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
-import { TRPC_FORMIK_CACHE_OPTS } from '@consts/db';
 import { MySwal } from '@consts/misc';
 import { DASHBOARD_PROJECTS_URL } from '@consts/routes';
+import { prisma } from '@db/client';
 import DasboardLayout from '@layouts/DashboardLayout';
-import { Project as FormItem } from '@prisma/client';
+import { Project as FormItem, Project } from '@prisma/client';
 import { projectSchema as formSchema } from '@schema/project.schema';
 import { ctrlFieldClassName } from '@utils/form';
+import { AllowedImageDirs, getImages } from '@utils/images';
 import { trpc } from '@utils/trpc';
 import { ErrorMessage, Field, Form, Formik, FormikValues, useFormikContext } from 'formik';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
@@ -64,11 +64,23 @@ const INITIAL_STATE: FormItem = {
 
 const DASHBOARD_OVERVIEW_URL = DASHBOARD_PROJECTS_URL;
 
-export const getServerSideProps: GetServerSideProps<{ itemId: string }> = async ({ params }) => {
-  return { props: { itemId: params?.id as string } };
+export const getServerSideProps: GetServerSideProps<{
+  itemId: string;
+  project?: Project | null;
+  images: string[];
+}> = async ({ params }) => {
+  const itemId = params?.id as string;
+  const project = await prisma.project.findUniqueOrThrow({ where: { id: itemId } });
+  const images = getImages(AllowedImageDirs.REFERENCES);
+
+  return { props: { itemId, project, images } };
 };
 
-export default function Page({ itemId }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+export default function Page({
+  itemId,
+  project,
+  images,
+}: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   const router = useRouter();
 
   const [previewItem, setPreviewItem] = useState<FormItem | null>();
@@ -84,11 +96,7 @@ export default function Page({ itemId }: InferGetServerSidePropsType<typeof getS
 
   const isNew = itemId === ADD_ITEM_URL_PREFIX;
 
-  const images = trpc.images.listReferences.useQuery(undefined, TRPC_FORMIK_CACHE_OPTS);
-
-  const item = isNew
-    ? { data: {}, isSuccess: true, isLoading: false }
-    : trpc.projects.byIdDashboard.useQuery({ id: itemId }, TRPC_FORMIK_CACHE_OPTS);
+  const item = isNew ? { data: {}, isSuccess: true, isLoading: false } : project;
 
   const addItem = trpc.projects.create.useMutation({
     onSuccess: () => {
@@ -126,189 +134,197 @@ export default function Page({ itemId }: InferGetServerSidePropsType<typeof getS
     <DasboardLayout>
       <h1 className="text-center">{isNew ? 'Neues Projekt anlegen' : 'Projekt bearbeiten'}</h1>
 
-      <Loading isLoading={images.isLoading || item.isLoading}>
-        <div className="contact-form">
-          <Formik<FormItem>
-            initialValues={{ ...INITIAL_STATE, ...item?.data }}
-            validationSchema={toFormikValidationSchema(formSchema)}
-            onSubmit={(values, { setSubmitting }) => {
-              handleSubmit(values);
-              setSubmitting(false);
-            }}
-          >
-            {({ errors, touched, isSubmitting, dirty, isValid }) => {
-              const ctrlClassName = ctrlFieldClassName<FormItem>(errors, touched);
+      <div className="contact-form">
+        <Formik<FormItem>
+          initialValues={{ ...INITIAL_STATE, ...item }}
+          validationSchema={toFormikValidationSchema(formSchema)}
+          onSubmit={(values, { setSubmitting }) => {
+            handleSubmit(values);
+            setSubmitting(false);
+          }}
+        >
+          {({ errors, touched, isSubmitting, dirty, isValid }) => {
+            const ctrlClassName = ctrlFieldClassName<FormItem>(errors, touched);
 
-              return (
-                <Form className="needs-validation">
-                  <BusinessLogic />
+            return (
+              <Form className="needs-validation">
+                <BusinessLogic />
 
-                  <div className="container">
-                    <div className="row">
-                      <div className="form-group col-lg-6">
-                        <label htmlFor="projectName">Projektname*</label>
-                        <Field
-                          type="text"
-                          id="projectName"
-                          name="projectName"
-                          placeholder="Projektname*"
-                          className={ctrlClassName('projectName')}
-                          autoFocus={true}
-                        />
-                        <ErrorMessage name="projectName" component="div" className="form-feedback" />
-                      </div>
-
-                      <div className="form-group col-lg-6">
-                        <label htmlFor="partnerName">Partnername*</label>
-                        <Field
-                          type="text"
-                          id="partnerName"
-                          name="partnerName"
-                          className={ctrlClassName('partnerName')}
-                          placeholder="Partnername*"
-                        />
-                        <ErrorMessage name="partnerName" component="div" className="form-feedback" />
-                      </div>
-
-                      <div className="form-group col-lg-6">
-                        <label htmlFor="city">Stadt*</label>
-                        <Field
-                          type="text"
-                          id="city"
-                          name="city"
-                          className={ctrlClassName('city')}
-                          placeholder="Stadt*"
-                        />
-                        <ErrorMessage name="city" component="div" className="form-feedback" />
-                      </div>
-                      <div className="form-group col-lg-3 col-md-6">
-                        <label htmlFor="locationLat">Breitengrad der Stadt</label>
-                        <Field
-                          type="number"
-                          id="locationLat"
-                          name="locationLat"
-                          className={ctrlClassName('locationLat')}
-                          placeholder="Breitengrad"
-                        />
-                        <ErrorMessage name="locationLat" component="div" className="form-feedback" />
-                      </div>
-                      <div className="form-group col-lg-3 col-md-6">
-                        <label htmlFor="locationLong">Längengrad der Stadt</label>
-                        <Field
-                          type="number"
-                          id="locationLong"
-                          name="locationLong"
-                          className={ctrlClassName('locationLong')}
-                          placeholder="Längengrad"
-                        />
-                        <ErrorMessage name="locationLong" component="div" className="form-feedback" />
-                      </div>
-
-                      <div className="form-group col-md-6">
-                        <label htmlFor="startedAt">Start des Projekts</label>
-                        <Field
-                          type="date"
-                          id="startedAt"
-                          name="startedAt"
-                          className={ctrlClassName('startedAt')}
-                          placeholder="Start"
-                        />
-                        <ErrorMessage name="startedAt" component="div" className="form-feedback" />
-                      </div>
-
-                      <div className="form-group col-md-6">
-                        <label htmlFor="endedAt">Ende des Projekts</label>
-                        <Field
-                          type="date"
-                          id="endedAt"
-                          name="endedAt"
-                          className={ctrlClassName('endedAt')}
-                          placeholder="Ende"
-                        />
-                        <ErrorMessage name="endedAt" component="div" className="form-feedback" />
-                      </div>
-
-                      <div className="form-group col-lg-3 col-md-6">
-                        <div>
-                          <label>Sichtbarkeit</label>
+                <div className="container">
+                  <div className="row">
+                    <div className="col-lg-9">
+                      <div className="row">
+                        <div className="form-group col-lg-6">
+                          <label htmlFor="projectName">Projektname*</label>
+                          <Field
+                            type="text"
+                            id="projectName"
+                            name="projectName"
+                            placeholder="Projektname*"
+                            className={ctrlClassName('projectName')}
+                            autoFocus={true}
+                          />
+                          <ErrorMessage name="projectName" component="div" className="form-feedback" />
                         </div>
-                        <label>
-                          <Field type="checkbox" name="isPublic" /> Öffentlich
-                        </label>
+
+                        <div className="form-group col-lg-6">
+                          <label htmlFor="partnerName">Partnername*</label>
+                          <Field
+                            type="text"
+                            id="partnerName"
+                            name="partnerName"
+                            className={ctrlClassName('partnerName')}
+                            placeholder="Partnername*"
+                          />
+                          <ErrorMessage name="partnerName" component="div" className="form-feedback" />
+                        </div>
+
+                        <div className="form-group col-lg-6">
+                          <label htmlFor="city">Stadt*</label>
+                          <Field
+                            type="text"
+                            id="city"
+                            name="city"
+                            className={ctrlClassName('city')}
+                            placeholder="Stadt*"
+                          />
+                          <ErrorMessage name="city" component="div" className="form-feedback" />
+                        </div>
+                        <div className="form-group col-lg-3 col-md-6">
+                          <label htmlFor="locationLat">Breitengrad der Stadt</label>
+                          <Field
+                            type="number"
+                            id="locationLat"
+                            name="locationLat"
+                            className={ctrlClassName('locationLat')}
+                            placeholder="Breitengrad"
+                          />
+                          <ErrorMessage name="locationLat" component="div" className="form-feedback" />
+                        </div>
+                        <div className="form-group col-lg-3 col-md-6">
+                          <label htmlFor="locationLong">Längengrad der Stadt</label>
+                          <Field
+                            type="number"
+                            id="locationLong"
+                            name="locationLong"
+                            className={ctrlClassName('locationLong')}
+                            placeholder="Längengrad"
+                          />
+                          <ErrorMessage name="locationLong" component="div" className="form-feedback" />
+                        </div>
+
+                        <div className="form-group col-md-6">
+                          <label htmlFor="startedAt">Start des Projekts</label>
+                          <Field
+                            type="date"
+                            id="startedAt"
+                            name="startedAt"
+                            className={ctrlClassName('startedAt')}
+                            placeholder="Start"
+                          />
+                          <ErrorMessage name="startedAt" component="div" className="form-feedback" />
+                        </div>
+
+                        <div className="form-group col-md-6">
+                          <label htmlFor="endedAt">Ende des Projekts</label>
+                          <Field
+                            type="date"
+                            id="endedAt"
+                            name="endedAt"
+                            className={ctrlClassName('endedAt')}
+                            placeholder="Ende"
+                          />
+                          <ErrorMessage name="endedAt" component="div" className="form-feedback" />
+                        </div>
+
+                        <div className="form-group col-lg-3 col-md-6">
+                          <div>
+                            <label>Sichtbarkeit</label>
+                          </div>
+                          <label>
+                            <Field type="checkbox" name="isPublic" /> Öffentlich
+                          </label>
+                        </div>
+
+                        <div className="form-group col-lg-3 col-md-6">
+                          <label htmlFor="orderId">Reihenfolge</label>
+                          <Field
+                            type="number"
+                            id="orderId"
+                            name="orderId"
+                            className={ctrlClassName('orderId')}
+                            placeholder="Reihenfolge"
+                          />
+                          <ErrorMessage name="orderId" component="div" className="form-feedback" />
+                        </div>
+
+                        <div className="form-group col-lg-6">
+                          <label htmlFor="img">Bilderpfad</label>
+                          <Field
+                            as="select"
+                            id="img"
+                            name="img"
+                            className={ctrlClassName('img')}
+                            placeholder="Dateipfad zum Hintergrundbild"
+                          >
+                            <option value="">(Keines)</option>
+                            {images?.map((image, idx) => (
+                              <option key={idx} value={image}>
+                                {image}
+                              </option>
+                            ))}
+                          </Field>
+                          <ErrorMessage name="img" component="div" className="form-feedback" />
+                        </div>
+
+                        <div className="form-group">
+                          <label htmlFor="description">Projektbeschreibung</label>
+                          <Field id="description" name="description" className={ctrlClassName('description')}>
+                            {({ field }: { field: FormikValues }) => (
+                              <ReactQuill
+                                theme={'snow'}
+                                value={field.value}
+                                onChange={field.onChange(field.name)}
+                                placeholder="Beschreibung von Tätigkeiten, verwendeten Technologien und Systemen im Projekt"
+                              />
+                            )}
+                          </Field>
+                          <ErrorMessage name="description" component="div" className="form-feedback" />
+                        </div>
                       </div>
 
-                      <div className="form-group col-lg-3 col-md-6">
-                        <label htmlFor="orderId">Reihenfolge</label>
-                        <Field
-                          type="number"
-                          id="orderId"
-                          name="orderId"
-                          className={ctrlClassName('orderId')}
-                          placeholder="Reihenfolge"
-                        />
-                        <ErrorMessage name="orderId" component="div" className="form-feedback" />
-                      </div>
-
-                      <div className="form-group col-lg-6">
-                        <label htmlFor="img">Bilderpfad</label>
-                        <Field
-                          as="select"
-                          id="img"
-                          name="img"
-                          className={ctrlClassName('img')}
-                          placeholder="Dateipfad zum Hintergrundbild"
+                      <div className="text-center pb-70">
+                        <button
+                          type="submit"
+                          disabled={isSubmitting || !dirty || !isValid}
+                          className="btn btn-primary m-2"
                         >
-                          <option value="">(Keines)</option>
-                          {images.data?.map((image, idx) => (
-                            <option key={idx} value={image}>
-                              {image}
-                            </option>
-                          ))}
-                        </Field>
-                        <ErrorMessage name="img" component="div" className="form-feedback" />
+                          Speichern
+                        </button>
+                        <Link href={DASHBOARD_OVERVIEW_URL} className="btn btn-secondary m-2">
+                          Abbrechen
+                        </Link>
                       </div>
+                    </div>
 
-                      <div className="form-group">
-                        <label htmlFor="description">Projektbeschreibung</label>
-                        <Field
-                          id="description"
-                          name="description"
-                          placeholder="Beschreibung von Tätigkeiten, verwendeten Technologien und Systemen im Projekt"
-                          className={ctrlClassName('description')}
-                        >
-                          {({ field }: { field: FormikValues }) => (
-                            <ReactQuill theme={'snow'} value={field.value} onChange={field.onChange(field.name)} />
-                          )}
-                        </Field>
-                        <ErrorMessage name="description" component="div" className="form-feedback" />
+                    <div className="col-lg-3">
+                      <h3 className="text-center">Vorschau</h3>
+
+                      <div className="row">
+                        <div className="col-lg-12 offset-lg-0 col-md-6 offset-md-3">
+                          <div className="work-card shadow">
+                            <ProjectCard data={previewItem} />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-
-                  <div className="text-center pb-70">
-                    <button type="submit" disabled={isSubmitting || !dirty || !isValid} className="btn btn-primary m-2">
-                      Speichern
-                    </button>
-                    <Link href={DASHBOARD_OVERVIEW_URL} className="btn btn-secondary m-2">
-                      Abbrechen
-                    </Link>
-                  </div>
-
-                  <div className="container">
-                    <h2 className="text-center">Vorschau</h2>
-
-                    <div className="col-md-4 offset-md-4 col-6 offset-3">
-                      <div className="work-card shadow">
-                        <ProjectCard data={previewItem} />
-                      </div>
-                    </div>
-                  </div>
-                </Form>
-              );
-            }}
-          </Formik>
-        </div>
-      </Loading>
+                </div>
+              </Form>
+            );
+          }}
+        </Formik>
+      </div>
     </DasboardLayout>
   );
 }

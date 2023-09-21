@@ -15,29 +15,29 @@ export const projectsRouter = router({
   byIdDashboard: protectedProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx: { prisma }, input: { id } }) => {
-      const expert: Project = await prisma.project.findUniqueOrThrow({ where: { id } });
-      return expert;
+      const project: Project = await prisma.project.findUniqueOrThrow({ where: { id } });
+      return project;
     }),
 
   listDashboard: protectedProcedure.query(async ({ ctx: { prisma } }) => {
-    const experts: Project[] = await prisma.project.findMany({ orderBy: { orderId: 'asc' } });
-    return experts;
+    const projects: Project[] = await prisma.project.findMany({ orderBy: { orderId: 'asc' } });
+    return projects;
   }),
 
   create: protectedProcedure.input(projectSchema).mutation(async ({ ctx: { prisma }, input: item }) => {
-    const expert: Project = await prisma.project.create({ data: { ...item, id: item.id || undefined } });
-    return expert;
+    const project: Project = await prisma.project.create({ data: { ...item, id: item.id || undefined } });
+    return project;
   }),
 
   update: protectedProcedure.input(projectSchema).mutation(async ({ ctx: { prisma }, input: item }) => {
-    const expert: Project = await prisma.project.update({ where: { id: item.id }, data: item });
-    return expert;
+    const project: Project = await prisma.project.update({ where: { id: item.id }, data: item });
+    return project;
   }),
 
   delete: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx: { prisma }, input: { id } }) => {
-      const expert: Project = await prisma.project.delete({ where: { id } });
-      return expert;
+      const project: Project = await prisma.project.delete({ where: { id } });
+      return project;
     }),
 });
