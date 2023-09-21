@@ -9,3 +9,5 @@ export const SCROLL_LINKS_PROPS = {
 export const MySwal = withReactContent(Swal);
 
 export const HONEYPOT_MSG = 'Honeypot triggered';
+
+export const CENTER_OF_GERMANY_COORDINATES: [number, number] = [50.974419, 10.32545];

@@ -1,24 +1,31 @@
-import { COMPANY_ADDRESS } from '@consts/company';
 import { Map, Marker, Overlay, ZoomControl } from 'pigeon-maps';
 import { useEffect, useState } from 'react';
 import styles from './Map.module.css';
 
 const CompanyMap = ({
   height: mapHeight,
+  zoom = 10,
   lattitude = 0,
   longitude = 0,
+  anchorLattitude = lattitude,
+  anchorLongitude = longitude,
   offsetX = 0,
   offsetY = 0,
   tooltipText = '',
   tooltipSubtext = '',
+  disableMarkerTooltip = false,
 }: {
   height: number;
+  zoom?: number;
   lattitude?: number;
   longitude?: number;
+  anchorLattitude?: number;
+  anchorLongitude?: number;
   offsetX?: number;
   offsetY?: number;
   tooltipText?: string;
   tooltipSubtext?: string;
+  disableMarkerTooltip?: boolean;
 }) => {
   const address: [number, number] = [lattitude, longitude];
   const offset: [number, number] = [offsetX, offsetY];
@@ -32,10 +39,10 @@ const CompanyMap = ({
 
   return (
     <div className="shadow pigeon-map" style={{ height: mapHeight }}>
-      <Map height={mapHeight} defaultCenter={address} defaultZoom={10}>
+      <Map height={mapHeight} defaultCenter={[anchorLattitude, anchorLongitude]} defaultZoom={zoom}>
         <ZoomControl />
 
-        {isPopupVisible && (
+        {isPopupVisible && !disableMarkerTooltip && (
           <Overlay anchor={address} offset={offset}>
             <div className={styles.markerPopup}>
               <div className={styles.markerPopupContentWrapper}>
