@@ -13,6 +13,6 @@ export const expertSchema = z.object({
   isPublic: z.boolean().optional().default(false),
   orderId: z.number().optional().nullish().default(0),
   slug: z.string().optional().nullish(),
-  createdAt: z.date().optional().default(new Date()),
-  updatedAt: z.date().optional().default(new Date()),
+  createdAt: z.date().optional().nullish().default(new Date()),
+  updatedAt: z.date().optional().nullish().default(new Date()),
 });
