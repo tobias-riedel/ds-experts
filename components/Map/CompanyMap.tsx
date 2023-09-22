@@ -17,17 +17,17 @@ const CompanyMap = ({
 }: {
   height: number;
   zoom?: number;
-  lattitude?: number;
-  longitude?: number;
-  anchorLattitude?: number;
-  anchorLongitude?: number;
+  lattitude?: number | null;
+  longitude?: number | null;
+  anchorLattitude?: number | null;
+  anchorLongitude?: number | null;
   offsetX?: number;
   offsetY?: number;
   tooltipText?: string;
   tooltipSubtext?: string;
   disableMarkerTooltip?: boolean;
 }) => {
-  const address: [number, number] = [lattitude, longitude];
+  const address: [number, number] = [lattitude ?? 0, longitude ?? 0];
   const offset: [number, number] = [offsetX, offsetY];
 
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -39,7 +39,7 @@ const CompanyMap = ({
 
   return (
     <div className="shadow pigeon-map" style={{ height: mapHeight }}>
-      <Map height={mapHeight} defaultCenter={[anchorLattitude, anchorLongitude]} defaultZoom={zoom}>
+      <Map height={mapHeight} defaultCenter={[anchorLattitude ?? 0, anchorLongitude ?? 0]} defaultZoom={zoom}>
         <ZoomControl />
 
         {isPopupVisible && !disableMarkerTooltip && (

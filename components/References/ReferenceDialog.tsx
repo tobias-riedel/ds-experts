@@ -68,23 +68,21 @@ const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: Project 
             </div>
 
             <div className="col-md-6">
-              {!!data?.city && !!data?.locationLat && !!data?.locationLong && (
-                <div className="pb-4">
-                  <CompanyMap
-                    height={320}
-                    zoom={5}
-                    lattitude={data?.locationLat}
-                    longitude={data?.locationLong}
-                    anchorLattitude={CENTER_OF_GERMANY_COORDINATES[0]}
-                    anchorLongitude={CENTER_OF_GERMANY_COORDINATES[1]}
-                    offsetX={138}
-                    offsetY={128}
-                    tooltipText={data.city}
-                    tooltipSubtext={data.partnerName || ''}
-                    disableMarkerTooltip={true}
-                  />
-                </div>
-              )}
+              <div className="pb-4">
+                <CompanyMap
+                  height={320}
+                  zoom={5}
+                  lattitude={data?.locationLat}
+                  longitude={data?.locationLong}
+                  anchorLattitude={CENTER_OF_GERMANY_COORDINATES[0]}
+                  anchorLongitude={CENTER_OF_GERMANY_COORDINATES[1]}
+                  offsetX={138}
+                  offsetY={128}
+                  tooltipText={data?.city}
+                  tooltipSubtext={data?.partnerName || ''}
+                  disableMarkerTooltip={true}
+                />
+              </div>
             </div>
           </div>
         </Flex>

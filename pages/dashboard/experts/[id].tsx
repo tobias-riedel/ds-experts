@@ -1,12 +1,13 @@
-import Loading from '@components/Common/Loading';
+import { prisma } from '@db/client';
 import ExpertCard from '@components/Team/ExpertCard';
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
-import { TRPC_FORMIK_CACHE_OPTS } from '@consts/db';
 import { MySwal } from '@consts/misc';
 import { DASHBOARD_EXPERTS_URL } from '@consts/routes';
 import DasboardLayout from '@layouts/DashboardLayout';
 import { Expert as FormItem } from '@prisma/client';
+import { expertSchema as formSchema } from '@schema/expert.schema';
 import { ctrlFieldClassName } from '@utils/form';
+import { AllowedImageDirs, getImages } from '@utils/images';
 import { trpc } from '@utils/trpc';
 import { ErrorMessage, Field, Form, Formik, useFormikContext } from 'formik';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
@@ -14,7 +15,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { expertSchema as formSchema } from '@schema/expert.schema';
 
 const showAddedItemToast = () => {
   MySwal.fire({
@@ -60,12 +60,25 @@ const INITIAL_STATE: FormItem = {
 
 const DASHBOARD_OVERVIEW_URL = DASHBOARD_EXPERTS_URL;
 
-// TODO: get param without serverSideProps
-export const getServerSideProps: GetServerSideProps<{ itemId: string }> = async ({ params }) => {
-  return { props: { itemId: params?.id as string } };
+export const getServerSideProps: GetServerSideProps<{
+  itemId: string;
+  item?: string;
+  images: string[];
+}> = async ({ params }) => {
+  const itemId = params?.id as string;
+  const isNew = itemId === ADD_ITEM_URL_PREFIX;
+
+  const item = isNew ? null : await prisma.expert.findUniqueOrThrow({ where: { id: itemId } });
+  const images = getImages(AllowedImageDirs.TEAM);
+
+  return { props: { itemId, item: JSON.stringify(item), images } };
 };
 
-export default function Page({ itemId }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+export default function Page({
+  itemId,
+  item,
+  images,
+}: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   const router = useRouter();
 
   const [previewItem, setPreviewItem] = useState<FormItem | null>();
@@ -81,11 +94,7 @@ export default function Page({ itemId }: InferGetServerSidePropsType<typeof getS
 
   const isNew = itemId === ADD_ITEM_URL_PREFIX;
 
-  const images = trpc.images.listTeam.useQuery(undefined, TRPC_FORMIK_CACHE_OPTS);
-
-  const item = isNew
-    ? { data: {}, isSuccess: true, isLoading: false }
-    : trpc.experts.byIdDashboard.useQuery({ id: itemId }, TRPC_FORMIK_CACHE_OPTS);
+  const loadedItem: FormItem | null = JSON.parse(item || 'null');
 
   const addItem = trpc.experts.create.useMutation({
     onSuccess: () => {
@@ -121,158 +130,156 @@ export default function Page({ itemId }: InferGetServerSidePropsType<typeof getS
     <DasboardLayout>
       <h1 className="text-center">{isNew ? 'Neuen Experten anlegen' : 'Experten bearbeiten'}</h1>
 
-      <Loading isLoading={images.isLoading || item.isLoading}>
-        <div className="contact-form">
-          <Formik<FormItem>
-            initialValues={{ ...INITIAL_STATE, ...item?.data }}
-            validationSchema={toFormikValidationSchema(formSchema)}
-            onSubmit={(values, { setSubmitting }) => {
-              handleSubmit(values);
-              setSubmitting(false);
-            }}
-          >
-            {({ errors, touched, isSubmitting, dirty, isValid }) => {
-              const ctrlClassName = ctrlFieldClassName<FormItem>(errors, touched);
+      <div className="contact-form">
+        <Formik<FormItem>
+          initialValues={{ ...INITIAL_STATE, ...loadedItem }}
+          validationSchema={toFormikValidationSchema(formSchema)}
+          onSubmit={(values, { setSubmitting }) => {
+            handleSubmit(values);
+            setSubmitting(false);
+          }}
+        >
+          {({ errors, touched, isSubmitting, dirty, isValid }) => {
+            const ctrlClassName = ctrlFieldClassName<FormItem>(errors, touched);
 
-              return (
-                <Form className="needs-validation">
-                  <BusinessLogic />
+            return (
+              <Form className="needs-validation">
+                <BusinessLogic />
 
-                  <div className="container">
-                    <div className="row">
-                      <div className="form-group col-lg-6">
-                        <label htmlFor="firstName">Vorname*</label>
-                        <Field
-                          type="text"
-                          id="firstName"
-                          name="firstName"
-                          placeholder="Vorname*"
-                          className={ctrlClassName('firstName')}
-                          autoFocus={true}
-                        />
-                        <ErrorMessage component="div" className="form-feedback" name="firstName" />
-                      </div>
-
-                      <div className="form-group col-lg-6">
-                        <label htmlFor="lastName">Nachname*</label>
-                        <Field
-                          type="text"
-                          id="lastName"
-                          name="lastName"
-                          placeholder="Nachname*"
-                          className={ctrlClassName('lastName')}
-                        />
-                        <ErrorMessage name="lastName" component="div" className="form-feedback" />
-                      </div>
-
-                      <div className="form-group col-lg-6">
-                        <label htmlFor="role">Rolle*</label>
-                        <Field
-                          type="text"
-                          id="role"
-                          name="role"
-                          className={ctrlClassName('role')}
-                          placeholder="Rolle*"
-                        />
-                        <ErrorMessage name="role" component="div" className="form-feedback" />
-                      </div>
-
-                      <div className="form-group col-lg-6">
-                        <label htmlFor="img">Bilderpfad</label>
-                        {/* TODO: Allow external urls */}
-                        {/* <Field
-                          type="text"
-                          id="img"
-                          name="img"
-                          className={ctrlClassName('img')}
-                          placeholder="Dateipfad zum Porträt"
-                        /> */}
-                        <Field
-                          as="select"
-                          id="img"
-                          name="img"
-                          className={ctrlClassName('img')}
-                          placeholder="Dateipfad zum Porträt"
-                        >
-                          <option value="">(Keines)</option>
-                          {images.data?.map((image, idx) => (
-                            <option key={idx} value={image}>
-                              {image}
-                            </option>
-                          ))}
-                        </Field>
-                        <ErrorMessage name="img" component="div" className="form-feedback" />
-                      </div>
-
-                      <div className="form-group col-lg-3 col-md-6">
-                        <label htmlFor="startedAt">Firmenbeitritt*</label>
-                        <Field
-                          type="date"
-                          id="startedAt"
-                          name="startedAt"
-                          className={ctrlClassName('startedAt')}
-                          placeholder="Firmenbeitritt*"
-                        />
-                        <ErrorMessage name="startedAt" component="div" className="form-feedback" />
-                      </div>
-
-                      <div className="form-group col-lg-3 col-md-6">
-                        <label htmlFor="endedAt">Firmenaustritt</label>
-                        <Field
-                          type="date"
-                          id="endedAt"
-                          name="endedAt"
-                          className={ctrlClassName('endedAt')}
-                          placeholder="Ende"
-                        />
-                        <ErrorMessage name="endedAt" component="div" className="form-feedback" />
-                      </div>
-
-                      <div className="form-group col-lg-3 col-md-6">
-                        <div>
-                          <label>Sichtbarkeit</label>
+                <div className="container">
+                  <div className="row">
+                    <div className="col-lg-9">
+                      <div className="row">
+                        <div className="form-group col-lg-6">
+                          <label htmlFor="firstName">Vorname*</label>
+                          <Field
+                            type="text"
+                            id="firstName"
+                            name="firstName"
+                            placeholder="Vorname*"
+                            className={ctrlClassName('firstName')}
+                            autoFocus={true}
+                          />
+                          <ErrorMessage component="div" className="form-feedback" name="firstName" />
                         </div>
-                        <label>
-                          <Field type="checkbox" name="isPublic" /> Öffentlich
-                        </label>
+
+                        <div className="form-group col-lg-6">
+                          <label htmlFor="lastName">Nachname*</label>
+                          <Field
+                            type="text"
+                            id="lastName"
+                            name="lastName"
+                            placeholder="Nachname*"
+                            className={ctrlClassName('lastName')}
+                          />
+                          <ErrorMessage name="lastName" component="div" className="form-feedback" />
+                        </div>
+
+                        <div className="form-group col-lg-6">
+                          <label htmlFor="role">Rolle*</label>
+                          <Field
+                            type="text"
+                            id="role"
+                            name="role"
+                            className={ctrlClassName('role')}
+                            placeholder="Rolle*"
+                          />
+                          <ErrorMessage name="role" component="div" className="form-feedback" />
+                        </div>
+
+                        <div className="form-group col-lg-6">
+                          <label htmlFor="img">Bilderpfad</label>
+                          <Field
+                            as="select"
+                            id="img"
+                            name="img"
+                            className={ctrlClassName('img')}
+                            placeholder="Dateipfad zum Porträt"
+                          >
+                            <option value="">(Keines)</option>
+                            {images?.map((image, idx) => (
+                              <option key={idx} value={image}>
+                                {image}
+                              </option>
+                            ))}
+                          </Field>
+                          <ErrorMessage name="img" component="div" className="form-feedback" />
+                        </div>
+
+                        <div className="form-group col-lg-3 col-md-6">
+                          <label htmlFor="startedAt">Firmenbeitritt*</label>
+                          <Field
+                            type="date"
+                            id="startedAt"
+                            name="startedAt"
+                            className={ctrlClassName('startedAt')}
+                            placeholder="Firmenbeitritt*"
+                          />
+                          <ErrorMessage name="startedAt" component="div" className="form-feedback" />
+                        </div>
+
+                        <div className="form-group col-lg-3 col-md-6">
+                          <label htmlFor="endedAt">Firmenaustritt</label>
+                          <Field
+                            type="date"
+                            id="endedAt"
+                            name="endedAt"
+                            className={ctrlClassName('endedAt')}
+                            placeholder="Ende"
+                          />
+                          <ErrorMessage name="endedAt" component="div" className="form-feedback" />
+                        </div>
+
+                        <div className="form-group col-lg-3 col-md-6">
+                          <div>
+                            <label>Sichtbarkeit</label>
+                          </div>
+                          <label>
+                            <Field type="checkbox" name="isPublic" /> Öffentlich
+                          </label>
+                        </div>
+
+                        <div className="form-group col-lg-3 col-md-6">
+                          <label htmlFor="orderId">Reihenfolge</label>
+                          <Field
+                            type="number"
+                            id="orderId"
+                            name="orderId"
+                            className={ctrlClassName('orderId')}
+                            placeholder="Reihenfolge"
+                          />
+                          <ErrorMessage name="orderId" component="div" className="form-feedback" />
+                        </div>
                       </div>
 
-                      <div className="form-group col-lg-3 col-md-6">
-                        <label htmlFor="orderId">Reihenfolge</label>
-                        <Field
-                          type="number"
-                          id="orderId"
-                          name="orderId"
-                          className={ctrlClassName('orderId')}
-                          placeholder="Reihenfolge"
-                        />
-                        <ErrorMessage name="orderId" component="div" className="form-feedback" />
+                      <div className="text-center pb-70">
+                        <button
+                          type="submit"
+                          disabled={isSubmitting || !dirty || !isValid}
+                          className="btn btn-primary m-2"
+                        >
+                          Speichern
+                        </button>
+                        <Link href={DASHBOARD_OVERVIEW_URL} className="btn btn-secondary m-2">
+                          Abbrechen
+                        </Link>
+                      </div>
+                    </div>
+
+                    <div className="col-lg-3">
+                      <h3 className="text-center">Vorschau</h3>
+
+                      <div className="col-lg-12 offset-lg-0 col-md-6 offset-md-3">
+                        <ExpertCard data={previewItem} />
                       </div>
                     </div>
                   </div>
-
-                  <div className="text-center pb-70">
-                    <button type="submit" disabled={isSubmitting || !dirty || !isValid} className="btn btn-primary m-2">
-                      Speichern
-                    </button>
-                    <Link href={DASHBOARD_OVERVIEW_URL} className="btn btn-secondary m-2">
-                      Abbrechen
-                    </Link>
-                  </div>
-
-                  <div className="container">
-                    <h2 className="text-center">Vorschau</h2>
-
-                    <div className="col-md-4 offset-md-4 col-6 offset-3">
-                      <ExpertCard data={previewItem} />
-                    </div>
-                  </div>
-                </Form>
-              );
-            }}
-          </Formik>
-        </div>
-      </Loading>
+                </div>
+              </Form>
+            );
+          }}
+        </Formik>
+      </div>
     </DasboardLayout>
   );
 }

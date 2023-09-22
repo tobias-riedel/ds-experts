@@ -4,7 +4,7 @@ import { MySwal } from '@consts/misc';
 import { DASHBOARD_PROJECTS_URL } from '@consts/routes';
 import { prisma } from '@db/client';
 import DasboardLayout from '@layouts/DashboardLayout';
-import { Project as FormItem, Project } from '@prisma/client';
+import { Project as FormItem } from '@prisma/client';
 import { projectSchema as formSchema } from '@schema/project.schema';
 import { ctrlFieldClassName } from '@utils/form';
 import { AllowedImageDirs, getImages } from '@utils/images';
@@ -66,19 +66,21 @@ const DASHBOARD_OVERVIEW_URL = DASHBOARD_PROJECTS_URL;
 
 export const getServerSideProps: GetServerSideProps<{
   itemId: string;
-  project?: Project | null;
+  item?: FormItem | null;
   images: string[];
 }> = async ({ params }) => {
   const itemId = params?.id as string;
-  const project = await prisma.project.findUniqueOrThrow({ where: { id: itemId } });
+  const isNew = itemId === ADD_ITEM_URL_PREFIX;
+
+  const item = isNew ? null : await prisma.project.findUniqueOrThrow({ where: { id: itemId } });
   const images = getImages(AllowedImageDirs.REFERENCES);
 
-  return { props: { itemId, project, images } };
+  return { props: { itemId, item, images } };
 };
 
 export default function Page({
   itemId,
-  project,
+  item,
   images,
 }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   const router = useRouter();
@@ -95,8 +97,6 @@ export default function Page({
   };
 
   const isNew = itemId === ADD_ITEM_URL_PREFIX;
-
-  const item = isNew ? { data: {}, isSuccess: true, isLoading: false } : project;
 
   const addItem = trpc.projects.create.useMutation({
     onSuccess: () => {
@@ -310,11 +310,9 @@ export default function Page({
                     <div className="col-lg-3">
                       <h3 className="text-center">Vorschau</h3>
 
-                      <div className="row">
-                        <div className="col-lg-12 offset-lg-0 col-md-6 offset-md-3">
-                          <div className="work-card shadow">
-                            <ProjectCard data={previewItem} />
-                          </div>
+                      <div className="col-lg-12 offset-lg-0 col-md-6 offset-md-3 case-studies-area">
+                        <div className="work-card shadow">
+                          <ProjectCard data={previewItem} />
                         </div>
                       </div>
                     </div>
