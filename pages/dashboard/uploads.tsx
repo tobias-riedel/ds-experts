@@ -5,6 +5,7 @@ import { imgUploadSchema as formSchema } from '@schema/imgUpload.schema';
 import { ctrlFieldClassName } from '@utils/form';
 import axios from 'axios';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+import Image from 'next/image';
 import { ChangeEvent, useState } from 'react';
 import { ProgressBar, Spinner } from 'react-bootstrap';
 import { z } from 'zod';
@@ -38,6 +39,8 @@ const INITIAL_STATE: FormItem = {
 
 const JoinUsForm = () => {
   const [fileMeta, setFileMeta] = useState('');
+  const [previewUrl, setPreviewUrl] = useState<string | ArrayBuffer | null>(null);
+
   const [fileCtrlClassName, setFileCtrlClassName] = useState('');
   const [fileSizeError, setFileSizeError] = useState('');
   const [progress, setProgress] = useState(0);
@@ -52,8 +55,15 @@ const JoinUsForm = () => {
       setFileCtrlClassName('');
       setFileSizeError('');
       setFileMeta('');
+      setPreviewUrl(null);
       return;
     }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setPreviewUrl(reader.result);
+    };
+    reader.readAsDataURL(file);
 
     const filePath = event.currentTarget.value;
     setFileMeta(filePath);
@@ -106,6 +116,7 @@ const JoinUsForm = () => {
               resetForm();
               setFieldValue('file', null);
               setFileMeta('');
+              setPreviewUrl(null);
             }}
           >
             {({ errors, touched, isSubmitting, dirty, isValid, setFieldValue }) => {
@@ -116,98 +127,127 @@ const JoinUsForm = () => {
               return (
                 <Form className="needs-validation">
                   <div className="container">
-                    <div className="col-lg-12 col-md-12">
-                      <div className="form-group">
-                        <label htmlFor="file">
-                          Datei hochladen{' '}
-                          <small>| PNG, JPG, WebP | max. {env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE} MB</small>
-                        </label>
-                        <input
-                          type="file"
-                          id="file"
-                          name="file"
-                          accept="image/*"
-                          value={fileMeta as unknown as string}
-                          className={`form-control ${fileCtrlClassName}`}
-                          onChange={(evt) =>
-                            handleFileChange(evt, setFieldValue, env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE)
-                          }
-                        />
-                        {fileSizeError && <div className="form-feedback">{fileSizeError}</div>}
-                      </div>
-                    </div>
-
                     <div className="row">
-                      <div className="col-lg-6">
-                        <div className="form-group">
-                          <label htmlFor="fileName">Neuer Dateiname*</label>
-                          <Field
-                            type="text"
-                            id="fileName"
-                            name="fileName"
-                            className={ctrlClassName('fileName')}
-                            placeholder="Neuer Dateiname*"
-                          />
-                          <ErrorMessage name="fileName" component="div" className="form-feedback" />
+                      <div className="col-lg-9">
+                        <div className="row">
+                          <div className="col-12">
+                            <div className="form-group">
+                              <label htmlFor="file">
+                                Datei hochladen{' '}
+                                <small>| PNG, JPG, WebP | max. {env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE} MB</small>
+                              </label>
+                              <input
+                                type="file"
+                                id="file"
+                                name="file"
+                                accept="image/*"
+                                value={fileMeta as unknown as string}
+                                className={`form-control ${fileCtrlClassName}`}
+                                onChange={(evt) =>
+                                  handleFileChange(evt, setFieldValue, env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE)
+                                }
+                              />
+                              {fileSizeError && <div className="form-feedback">{fileSizeError}</div>}
+                            </div>
+                          </div>
+
+                          <div className="row">
+                            <div className="col-lg-6">
+                              <div className="form-group">
+                                <label htmlFor="fileName">Neuer Dateiname*</label>
+                                <Field
+                                  type="text"
+                                  id="fileName"
+                                  name="fileName"
+                                  className={ctrlClassName('fileName')}
+                                  placeholder="Neuer Dateiname*"
+                                />
+                                <ErrorMessage name="fileName" component="div" className="form-feedback" />
+                              </div>
+                            </div>
+
+                            <div className="col-lg-6">
+                              <div className="form-group">
+                                <label htmlFor="destination">Art der Datei*</label>
+                                <Field
+                                  as="select"
+                                  name="destination"
+                                  className={ctrlClassName('destination')}
+                                  placeholder="Art der Datei*"
+                                >
+                                  <option value="teams">Mitarbeiterporträt</option>
+                                  <option value="references">Projekthintergrundbild</option>
+                                </Field>
+                                <ErrorMessage name="destination" component="div" className="form-feedback" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="row">
+                          <div className={`text-center ${isSubmitting ? 'col-6' : 'col-12'}`}>
+                            <button type="submit" disabled={isSubmitBtnDisabled} className="btn btn-primary ">
+                              Senden{' '}
+                              {isSubmitting && (
+                                <Spinner
+                                  as="span"
+                                  size="sm"
+                                  role="status"
+                                  animation="border"
+                                  variant="light"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </button>
+                          </div>
+                          {isSubmitting && (
+                            <div className="col-6">
+                              <ProgressBar
+                                striped
+                                animated
+                                variant="success"
+                                now={100}
+                                label="Formular wird verarbeitet..."
+                              />
+
+                              {0 < progress && (
+                                <ProgressBar now={progress} animated label={`Datei-Upload: ${progress}%`} />
+                              )}
+                              {progress === 100 && (
+                                <ProgressBar
+                                  striped
+                                  animated
+                                  variant="success"
+                                  now={100}
+                                  label="Upload wird verifiziert..."
+                                />
+                              )}
+                            </div>
+                          )}
                         </div>
                       </div>
 
-                      <div className="col-lg-6">
-                        <div className="form-group">
-                          <label htmlFor="destination">Art der Datei*</label>
-                          <Field
-                            as="select"
-                            name="destination"
-                            className={ctrlClassName('destination')}
-                            placeholder="Art der Datei*"
-                          >
-                            <option value="teams">Mitarbeiterporträt</option>
-                            <option value="references">Projekthintergrundbild</option>
-                          </Field>
-                          <ErrorMessage name="destination" component="div" className="form-feedback" />
+                      <div className="col-lg-3">
+                        <h3 className="text-center">Vorschau</h3>
+
+                        <div className="col-lg-12 offset-lg-0 col-md-6 offset-md-3">
+                          {!previewUrl ? (
+                            <>
+                              <h4 className="text-center">Kein Bild ausgewählt.</h4>
+                            </>
+                          ) : (
+                            <Image
+                              src={previewUrl as string}
+                              alt={fileMeta || 'Bild'}
+                              title={fileMeta || 'Bild'}
+                              className="optimized-image"
+                              width={263}
+                              height={261}
+                            />
+                          )}
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                  <div className="row">
-                    <div className={`text-center ${isSubmitting ? 'col-6' : 'col-12'}`}>
-                      <button type="submit" disabled={isSubmitBtnDisabled} className="btn btn-primary ">
-                        Senden{' '}
-                        {isSubmitting && (
-                          <Spinner
-                            as="span"
-                            size="sm"
-                            role="status"
-                            animation="border"
-                            variant="light"
-                            aria-hidden="true"
-                          />
-                        )}
-                      </button>
-                    </div>
-                    {isSubmitting && (
-                      <div className="col-6">
-                        <ProgressBar
-                          striped
-                          animated
-                          variant="success"
-                          now={100}
-                          label="Formular wird verarbeitet..."
-                        />
-
-                        {0 < progress && <ProgressBar now={progress} animated label={`Datei-Upload: ${progress}%`} />}
-                        {progress === 100 && (
-                          <ProgressBar
-                            striped
-                            animated
-                            variant="success"
-                            now={100}
-                            label="Upload wird verifiziert..."
-                          />
-                        )}
-                      </div>
-                    )}
                   </div>
                 </Form>
               );
