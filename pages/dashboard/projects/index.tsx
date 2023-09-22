@@ -1,7 +1,7 @@
 import Loading from '@components/Common/Loading';
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
 import { MySwal } from '@consts/misc';
-import DasboardLayout from '@layouts/DashboardLayout';
+import DashboardLayout from '@layouts/DashboardLayout';
 import { trpc } from '@utils/trpc';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -61,7 +61,7 @@ export default function Page() {
   };
 
   return (
-    <DasboardLayout>
+    <DashboardLayout>
       <section>
         <h1 className="text-center">Projekt-Übersicht</h1>
 
@@ -119,6 +119,6 @@ export default function Page() {
       <Link href={`${router.pathname}/${ADD_ITEM_URL_PREFIX}`} className="btn btn-primary add-item">
         <i className="fas fa-add" title="Eintrag hinzufügen"></i>
       </Link>
-    </DasboardLayout>
+    </DashboardLayout>
   );
 }

@@ -1,6 +1,6 @@
 import { MySwal } from '@consts/misc';
 import { env } from '@env/client.mjs';
-import DasboardLayout from '@layouts/DashboardLayout';
+import DashboardLayout from '@layouts/DashboardLayout';
 import { imgUploadSchema as formSchema } from '@schema/imgUpload.schema';
 import { ctrlFieldClassName } from '@utils/form';
 import axios from 'axios';
@@ -92,7 +92,7 @@ const JoinUsForm = () => {
 
   return (
     <>
-      <DasboardLayout>
+      <DashboardLayout>
         <h1 className="text-center">Datei-Upload</h1>
 
         <div className="contact-form">
@@ -214,7 +214,7 @@ const JoinUsForm = () => {
             }}
           </Formik>
         </div>
-      </DasboardLayout>
+      </DashboardLayout>
     </>
   );
 };

@@ -1,11 +1,11 @@
-import DasboardLayout from '@components/Layouts/DashboardLayout';
+import DashboardLayout from '@components/Layouts/DashboardLayout';
 
 export default function Page() {
   return (
-    <DasboardLayout>
+    <DashboardLayout>
       <h1 className="text-center">Dashboard</h1>
 
       <p>Übersicht über Ihre Funktionen...</p>
-    </DasboardLayout>
+    </DashboardLayout>
   );
 }

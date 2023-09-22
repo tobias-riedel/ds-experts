@@ -3,7 +3,7 @@ import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
 import { MySwal } from '@consts/misc';
 import { DASHBOARD_PROJECTS_URL } from '@consts/routes';
 import { prisma } from '@db/client';
-import DasboardLayout from '@layouts/DashboardLayout';
+import DashboardLayout from '@layouts/DashboardLayout';
 import { Project as FormItem } from '@prisma/client';
 import { projectSchema as formSchema } from '@schema/project.schema';
 import { ctrlFieldClassName } from '@utils/form';
@@ -131,7 +131,7 @@ export default function Page({
   };
 
   return (
-    <DasboardLayout>
+    <DashboardLayout>
       <h1 className="text-center">{isNew ? 'Neues Projekt anlegen' : 'Projekt bearbeiten'}</h1>
 
       <div className="contact-form">
@@ -323,6 +323,6 @@ export default function Page({
           }}
         </Formik>
       </div>
-    </DasboardLayout>
+    </DashboardLayout>
   );
 }

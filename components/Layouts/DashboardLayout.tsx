@@ -29,7 +29,7 @@ const scrollThreshold = 50;
 const LOGOUT_IMG_DEFAULT = 'fa-arrow-right-from-bracket';
 const LOGOUT_IMG_HOVER = 'fa-person-through-window';
 
-const DasboardLayout = (props: React.PropsWithChildren) => {
+const DashboardLayout = (props: React.PropsWithChildren) => {
   const { data: session, status } = useSession();
   const [menu, setMenu] = useState(true);
   const [navbarSticky, setNavbarSticky] = useState('');
@@ -181,4 +181,4 @@ const DasboardLayout = (props: React.PropsWithChildren) => {
   );
 };
 
-export default DasboardLayout;
+export default DashboardLayout;

@@ -3,7 +3,7 @@ import ExpertCard from '@components/Team/ExpertCard';
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
 import { MySwal } from '@consts/misc';
 import { DASHBOARD_EXPERTS_URL } from '@consts/routes';
-import DasboardLayout from '@layouts/DashboardLayout';
+import DashboardLayout from '@layouts/DashboardLayout';
 import { Expert as FormItem } from '@prisma/client';
 import { expertSchema as formSchema } from '@schema/expert.schema';
 import { ctrlFieldClassName } from '@utils/form';
@@ -60,6 +60,18 @@ const INITIAL_STATE: FormItem = {
 
 const DASHBOARD_OVERVIEW_URL = DASHBOARD_EXPERTS_URL;
 
+const hydrateItem = (item: string | null | undefined): FormItem | null => {
+  const loadedItem: (FormItem & { createdAt: Date | string | null; updatedAt: Date | string | null }) | null =
+    JSON.parse(item || 'null');
+
+  if (loadedItem != null) {
+    loadedItem.createdAt = new Date(loadedItem.createdAt as string);
+    loadedItem.updatedAt = new Date(loadedItem.updatedAt as string);
+  }
+
+  return loadedItem as FormItem | null;
+};
+
 export const getServerSideProps: GetServerSideProps<{
   itemId: string;
   item?: string;
@@ -85,6 +97,9 @@ export default function Page({
 
   const BusinessLogic = () => {
     const { values } = useFormikContext<FormItem>();
+
+    console.log('business::', values);
+
     useEffect(() => {
       setPreviewItem(values);
     }, [values]);
@@ -94,7 +109,7 @@ export default function Page({
 
   const isNew = itemId === ADD_ITEM_URL_PREFIX;
 
-  const loadedItem: FormItem | null = JSON.parse(item || 'null');
+  const loadedItem = hydrateItem(item);
 
   const addItem = trpc.experts.create.useMutation({
     onSuccess: () => {
@@ -127,8 +142,10 @@ export default function Page({
   };
 
   return (
-    <DasboardLayout>
+    <DashboardLayout>
       <h1 className="text-center">{isNew ? 'Neuen Experten anlegen' : 'Experten bearbeiten'}</h1>
+
+      <pre>{JSON.stringify(loadedItem, null, 2)}</pre>
 
       <div className="contact-form">
         <Formik<FormItem>
@@ -280,6 +297,6 @@ export default function Page({
           }}
         </Formik>
       </div>
-    </DasboardLayout>
+    </DashboardLayout>
   );
 }
