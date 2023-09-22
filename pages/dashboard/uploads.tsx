@@ -150,36 +150,36 @@ const JoinUsForm = () => {
                               {fileSizeError && <div className="form-feedback">{fileSizeError}</div>}
                             </div>
                           </div>
+                        </div>
 
-                          <div className="row">
-                            <div className="col-lg-6">
-                              <div className="form-group">
-                                <label htmlFor="fileName">Neuer Dateiname*</label>
-                                <Field
-                                  type="text"
-                                  id="fileName"
-                                  name="fileName"
-                                  className={ctrlClassName('fileName')}
-                                  placeholder="Neuer Dateiname*"
-                                />
-                                <ErrorMessage name="fileName" component="div" className="form-feedback" />
-                              </div>
+                        <div className="row">
+                          <div className="col-lg-6">
+                            <div className="form-group">
+                              <label htmlFor="fileName">Neuer Dateiname*</label>
+                              <Field
+                                type="text"
+                                id="fileName"
+                                name="fileName"
+                                className={ctrlClassName('fileName')}
+                                placeholder="Neuer Dateiname*"
+                              />
+                              <ErrorMessage name="fileName" component="div" className="form-feedback" />
                             </div>
+                          </div>
 
-                            <div className="col-lg-6">
-                              <div className="form-group">
-                                <label htmlFor="destination">Art der Datei*</label>
-                                <Field
-                                  as="select"
-                                  name="destination"
-                                  className={ctrlClassName('destination')}
-                                  placeholder="Art der Datei*"
-                                >
-                                  <option value="teams">Mitarbeiterporträt</option>
-                                  <option value="references">Projekthintergrundbild</option>
-                                </Field>
-                                <ErrorMessage name="destination" component="div" className="form-feedback" />
-                              </div>
+                          <div className="col-lg-6">
+                            <div className="form-group">
+                              <label htmlFor="destination">Art der Datei*</label>
+                              <Field
+                                as="select"
+                                name="destination"
+                                className={ctrlClassName('destination')}
+                                placeholder="Art der Datei*"
+                              >
+                                <option value="teams">Mitarbeiterporträt</option>
+                                <option value="references">Projekthintergrundbild</option>
+                              </Field>
+                              <ErrorMessage name="destination" component="div" className="form-feedback" />
                             </div>
                           </div>
                         </div>
