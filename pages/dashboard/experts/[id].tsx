@@ -145,8 +145,6 @@ export default function Page({
     <DashboardLayout>
       <h1 className="text-center">{isNew ? 'Neuen Experten anlegen' : 'Experten bearbeiten'}</h1>
 
-      <pre>{JSON.stringify(loadedItem, null, 2)}</pre>
-
       <div className="contact-form">
         <Formik<FormItem>
           initialValues={{ ...INITIAL_STATE, ...loadedItem }}
