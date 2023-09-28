@@ -98,8 +98,6 @@ export default function Page({
   const BusinessLogic = () => {
     const { values } = useFormikContext<FormItem>();
 
-    console.log('business::', values);
-
     useEffect(() => {
       setPreviewItem(values);
     }, [values]);
