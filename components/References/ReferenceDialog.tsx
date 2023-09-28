@@ -6,7 +6,8 @@ import { Button, Dialog, Flex, Text } from '@radix-ui/themes';
 import { PropsWithChildren } from 'react';
 
 const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: Project | null }>): JSX.Element => {
-  const locales = navigator.languages;
+  const locales = ['de', 'en'];
+
   const dateOptions: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: '2-digit',
