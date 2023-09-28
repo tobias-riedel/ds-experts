@@ -35,6 +35,7 @@ export const serverSchema = z.object({
 export const clientSchema = z.object({
   // NEXT_PUBLIC_CLIENTVAR: z.string(),
   NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE: z.number(),
+  NEXT_PUBLIC_SHOW_PROJECT_DATE_DAYS: z.boolean(),
 });
 
 /**
@@ -46,4 +47,5 @@ export const clientSchema = z.object({
 export const clientEnv = {
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE: +(process.env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE ?? '8'),
+  NEXT_PUBLIC_SHOW_PROJECT_DATE_DAYS: process.env.NEXT_PUBLIC_SHOW_PROJECT_DATE_DAYS === 'true',
 };
