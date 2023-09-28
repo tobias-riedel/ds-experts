@@ -6,7 +6,7 @@ const About = () => {
     <section id="philosophy" className="pt-100">
       <div className="container">
         <div className="row align-items-center">
-          <div className="col-lg-5 ds-hidden-md ds-pr-20">
+          <div className="col-lg-5 ds-pr-20">
             <div className="about-image">
               <Image
                 src="/images/about-img6.jpg"

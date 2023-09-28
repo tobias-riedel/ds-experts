@@ -1,7 +1,8 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { Theme } from '@radix-ui/themes';
+import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
     return { ...initialProps };
   }
@@ -12,8 +13,10 @@ class MyDocument extends Document {
           <link rel="icon" type="image/png" href="/favicon.png"></link>
         </Head>
         <body>
-          <Main />
-          <NextScript />
+          <Theme>
+            <Main />
+            <NextScript />
+          </Theme>
         </body>
       </Html>
     );

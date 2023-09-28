@@ -5,6 +5,7 @@
   "singleQuote": true,
   "trailingComma": "es5",
   "quoteProps": "as-needed",
+  "arrowParens": "always",
   "overrides": [
     {
       "files": ["package-lock.json", "package.json", "yarn.lock"],

@@ -1,12 +1,15 @@
+import { MySwal } from '@consts/misc';
+import { env } from '@env/client.mjs';
+import { joinUsSchema as formSchema } from '@schema/joinUs.schema';
+import { ctrlFieldClassName } from '@utils/form';
 import axios from 'axios';
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import Link from 'next/link';
 import { ChangeEvent, useState } from 'react';
 import { ProgressBar, Spinner } from 'react-bootstrap';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import { z } from 'zod';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
 
-const MySwal = withReactContent(Swal);
 const alertContent = () => {
   MySwal.fire({
     title: 'Glückwunsch!',
@@ -18,16 +21,7 @@ const alertContent = () => {
   });
 };
 
-interface FormItem {
-  firstName: string;
-  name: string;
-  email: string;
-  firstName6g234: string;
-  name90ad0f: string;
-  emailfd80e: string;
-  subject: string;
-  text: string;
-}
+type FormItem = z.infer<typeof formSchema>;
 
 const INITIAL_STATE: FormItem = {
   firstName: '',
@@ -50,7 +44,7 @@ const JoinUsForm = () => {
   const handleFileChange = (
     event: ChangeEvent<HTMLInputElement>,
     setFieldValue: (field: string, value: unknown, shouldValidate?: boolean) => void,
-    maxFileSizeInMb = '8'
+    maxFileSizeInMb = 8
   ) => {
     const file = event.currentTarget?.files?.[0];
     if (!file) {
@@ -71,7 +65,7 @@ const JoinUsForm = () => {
 
     setFileCtrlClassName('is-valid');
     setFileSizeError('');
-    setFieldValue('file', event.currentTarget.files[0]);
+    setFieldValue('file', event.currentTarget.files?.[0]);
   };
 
   const handleSubmit = async (payload: FormItem) => {
@@ -81,7 +75,7 @@ const JoinUsForm = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-        onUploadProgress: (data) => setProgress(Math.round((100 * data.loaded) / data.total)),
+        onUploadProgress: (data) => setProgress(Math.round((100 * data.loaded) / (data.total ?? 1))),
       });
       alertContent();
     } catch (error) {
@@ -91,31 +85,10 @@ const JoinUsForm = () => {
 
   return (
     <>
-      <div className="join-us-form">
-        <Formik
+      <div className="contact-form">
+        <Formik<FormItem>
           initialValues={{ ...INITIAL_STATE }}
-          validate={(values: FormItem): Partial<FormItem> => {
-            // TODO: Replace validation with YUP schema
-            const errors: Partial<FormItem> = {};
-            if (!values.firstName6g234.trim()) {
-              errors.firstName6g234 = 'Pflichtfeld';
-            }
-            if (!values.name90ad0f.trim()) {
-              errors.name90ad0f = 'Pflichtfeld';
-            }
-            if (!values.emailfd80e.trim()) {
-              errors.emailfd80e = 'Pflichtfeld';
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.emailfd80e)) {
-              errors.emailfd80e = 'Ungültige E-Mail-Adresse';
-            }
-            if (!values.subject.trim()) {
-              errors.subject = 'Pflichtfeld';
-            }
-            if (!values.text.trim()) {
-              errors.text = 'Pflichtfeld';
-            }
-            return errors;
-          }}
+          validationSchema={toFormikValidationSchema(formSchema)}
           onSubmit={async (values, { setSubmitting, resetForm, setFieldValue }) => {
             await handleSubmit(values);
             setSubmitting(false);
@@ -127,8 +100,7 @@ const JoinUsForm = () => {
           }}
         >
           {({ errors, touched, isSubmitting, dirty, isValid, setFieldValue }) => {
-            const ctrlClassName = (fieldName: keyof FormItem): string =>
-              `form-control ${errors?.[fieldName] ? 'is-invalid' : touched?.[fieldName] ? 'is-valid' : ''}`;
+            const ctrlClassName = ctrlFieldClassName<FormItem>(errors, touched);
 
             const isSubmitBtnDisabled = isSubmitting || !dirty || !isValid || !agreedToGdpr || !!fileSizeError;
 
@@ -158,7 +130,7 @@ const JoinUsForm = () => {
                           className={ctrlClassName('firstName6g234')}
                           placeholder="Vorname*"
                         />
-                        {errors.firstName6g234 && <div className="form-feedback">{errors.firstName6g234}</div>}
+                        <ErrorMessage name="firstName6g234" component="div" className="form-feedback" />
                       </div>
                     </div>
                     <div className="col-lg-6">
@@ -169,7 +141,7 @@ const JoinUsForm = () => {
                           className={ctrlClassName('name90ad0f')}
                           placeholder="Nachname*"
                         />
-                        {errors.name90ad0f && <div className="form-feedback">{errors.name90ad0f}</div>}
+                        <ErrorMessage name="name90ad0f" component="div" className="form-feedback" />
                       </div>
                     </div>
                     <div className="form-group">
@@ -179,18 +151,12 @@ const JoinUsForm = () => {
                         className={ctrlClassName('emailfd80e')}
                         placeholder="E-Mail*"
                       />
-                      {errors.emailfd80e && <div className="form-feedback">{errors.emailfd80e}</div>}
+                      <ErrorMessage name="emailfd80e" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group">
-                      <Field
-                        type="text"
-                        name="subject"
-                        placeholder="Betreff*"
-                        className={ctrlClassName('subject')}
-                        required
-                      />
-                      {errors.subject && <div className="form-feedback">{errors.subject}</div>}
+                      <Field type="text" name="subject" placeholder="Betreff*" className={ctrlClassName('subject')} />
+                      <ErrorMessage name="subject" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group">
@@ -201,16 +167,15 @@ const JoinUsForm = () => {
                         rows={6}
                         placeholder="Schreib Deine Anfrage...*"
                         className={ctrlClassName('text')}
-                        required
                       />
-                      {errors.text && <div className="form-feedback">{errors.text}</div>}
+                      <ErrorMessage name="text" component="div" className="form-feedback" />
                     </div>
                   </div>
                   <div className="col-lg-12 col-md-12">
                     <div className="form-group">
                       <label htmlFor="file">
                         Bewerbungsunterlagen hochladen{' '}
-                        <small>(Optional) | PDF | max. {process.env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE} MB</small>
+                        <small>(Optional) | PDF | max. {env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE} MB</small>
                       </label>
                       <input
                         type="file"
@@ -219,9 +184,7 @@ const JoinUsForm = () => {
                         accept="application/pdf"
                         value={fileMeta as unknown as string}
                         className={`form-control ${fileCtrlClassName}`}
-                        onChange={(evt) =>
-                          handleFileChange(evt, setFieldValue, process.env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE)
-                        }
+                        onChange={(evt) => handleFileChange(evt, setFieldValue, env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE)}
                       />
                       {fileSizeError && <div className="form-feedback">{fileSizeError}</div>}
                     </div>

@@ -1,11 +1,13 @@
-import axios from 'axios';
-import { Field, Form, Formik } from 'formik';
+import { MySwal } from '@consts/misc';
+import { contactSchema as formSchema } from '@schema/contact.schema';
+import { ctrlFieldClassName } from '@utils/form';
+import { trpc } from '@utils/trpc';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import Link from 'next/link';
 import { useState } from 'react';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import { z } from 'zod';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
 
-const MySwal = withReactContent(Swal);
 const alertContent = () => {
   MySwal.fire({
     title: 'Glückwunsch!',
@@ -17,18 +19,15 @@ const alertContent = () => {
   });
 };
 
-// Form initial state
-interface FormItem {
-  firstName: string;
-  name: string;
-  email: string;
-  firstName6g234: string;
-  name90ad0f: string;
-  emailfd80e: string;
-  subject: string;
-  text: string;
-}
+const showErrorToast = (msg: string) => {
+  MySwal.fire({
+    title: 'Fehler!',
+    text: msg,
+    icon: 'error',
+  });
+};
 
+type FormItem = z.infer<typeof formSchema>;
 const INITIAL_STATE: FormItem = {
   firstName: '',
   name: '',
@@ -43,56 +42,37 @@ const INITIAL_STATE: FormItem = {
 const ContactForm = () => {
   const [agreedToGdpr, setAgreedToGdpr] = useState(false);
 
-  const handleSubmit = async (payload: FormItem) => {
-    const url = '/api/contact';
-    try {
-      const response = await axios.post(url, payload);
-      console.log(response);
+  const sendMail = trpc.contact.sendMail.useMutation({
+    onSuccess: () => {
+      console.log('Contact eMail sent usccessfully.');
       alertContent();
-    } catch (error) {
-      console.log(error);
-    }
+    },
+    onError: (error) => {
+      console.error('Error sending mail:', error);
+      showErrorToast('Beim Versenden der E-Mail ist ein Fehler aufgetreten.');
+    },
+  });
+
+  const handleSubmit = async (payload: FormItem) => {
+    sendMail.mutate(payload);
   };
 
   return (
     <>
       <div className="contact-form">
-        <Formik
+        <Formik<FormItem>
           initialValues={{ ...INITIAL_STATE }}
-          validate={(values: FormItem): Partial<FormItem> => {
-            const errors: Partial<FormItem> = {};
-            if (!values.firstName6g234.trim()) {
-              errors.firstName6g234 = 'Pflichtfeld';
-            }
-            if (!values.name90ad0f.trim()) {
-              errors.name90ad0f = 'Pflichtfeld';
-            }
-            if (!values.emailfd80e.trim()) {
-              errors.emailfd80e = 'Pflichtfeld';
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.emailfd80e)) {
-              errors.emailfd80e = 'Ungültige E-Mail-Adresse';
-            }
-            if (!values.subject.trim()) {
-              errors.subject = 'Pflichtfeld';
-            }
-            if (!values.text.trim()) {
-              errors.text = 'Pflichtfeld';
-            }
-            return errors;
-          }}
+          validationSchema={toFormikValidationSchema(formSchema)}
           onSubmit={(values, { setSubmitting, resetForm }) => {
-            setTimeout(() => {
-              handleSubmit(values);
-              setSubmitting(false);
+            handleSubmit(values);
+            setSubmitting(false);
 
-              resetForm();
-              setAgreedToGdpr(false);
-            }, 400);
+            resetForm();
+            setAgreedToGdpr(false);
           }}
         >
           {({ errors, touched, isSubmitting, dirty, isValid }) => {
-            const ctrlClassName = (fieldName: keyof FormItem): string =>
-              `form-control ${errors?.[fieldName] ? 'is-invalid' : touched?.[fieldName] ? 'is-valid' : ''}`;
+            const ctrlClassName = ctrlFieldClassName<FormItem>(errors, touched);
 
             return (
               <Form className="needs-validation">
@@ -120,7 +100,7 @@ const ContactForm = () => {
                           className={ctrlClassName('firstName6g234')}
                           placeholder="Vorname*"
                         />
-                        {errors.firstName6g234 && <div className="form-feedback">{errors.firstName6g234}</div>}
+                        <ErrorMessage name="firstName6g234" component="div" className="form-feedback" />
                       </div>
                     </div>
                     <div className="col-lg-6">
@@ -131,7 +111,7 @@ const ContactForm = () => {
                           className={ctrlClassName('name90ad0f')}
                           placeholder="Nachname*"
                         />
-                        {errors.name90ad0f && <div className="form-feedback">{errors.name90ad0f}</div>}
+                        <ErrorMessage name="name90ad0f" component="div" className="form-feedback" />
                       </div>
                     </div>
                     <div className="form-group">
@@ -141,18 +121,12 @@ const ContactForm = () => {
                         className={ctrlClassName('emailfd80e')}
                         placeholder="E-Mail*"
                       />
-                      {errors.emailfd80e && <div className="form-feedback">{errors.emailfd80e}</div>}
+                      <ErrorMessage name="emailfd80e" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group">
-                      <Field
-                        type="text"
-                        name="subject"
-                        placeholder="Betreff*"
-                        className={ctrlClassName('subject')}
-                        required
-                      />
-                      {errors.subject && <div className="form-feedback">{errors.subject}</div>}
+                      <Field type="text" name="subject" placeholder="Betreff*" className={ctrlClassName('subject')} />
+                      <ErrorMessage name="subject" component="div" className="form-feedback" />
                     </div>
 
                     <div className="form-group">
@@ -163,9 +137,8 @@ const ContactForm = () => {
                         rows={6}
                         placeholder="Schreib Deine Anfrage...*"
                         className={ctrlClassName('text')}
-                        required
                       />
-                      {errors.text && <div className="form-feedback">{errors.text}</div>}
+                      <ErrorMessage name="text" component="div" className="form-feedback" />
                     </div>
                   </div>
                   <div>

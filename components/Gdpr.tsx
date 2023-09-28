@@ -1,6 +1,6 @@
+import { COMPANY_ADDRESS } from '@consts/company';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { COMPANY_ADDRESS } from '../shared/constants';
 
 const Gdpr = () => {
   const [showContacts, setShowContacts] = useState(false);

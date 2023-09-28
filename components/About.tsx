@@ -1,6 +1,6 @@
+import { SCROLL_LINKS_PROPS } from '@consts/misc';
 import Image from 'next/image';
 import { Link as ScrollLink } from 'react-scroll';
-import { SCROLL_LINKS_PROPS } from '../shared/constants';
 
 const About = () => {
   return (

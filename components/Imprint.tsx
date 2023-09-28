@@ -1,7 +1,7 @@
+import { COMPANY_ADDRESS } from '@consts/company';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { COMPANY_ADDRESS } from '../shared/constants';
 import SectionDivider from './Common/SectionDivider';
 
 const Imprint = () => {

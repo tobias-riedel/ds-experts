@@ -1,27 +1,24 @@
-import { useEffect } from 'react';
 import AOS from 'aos';
-import '../node_modules/aos/dist/aos.css';
-import '../styles/bootstrap.min.css';
-import '../styles/animate.min.css';
-import 'animate.css';
-import '../styles/all.min.css';
-import '../styles/pe-icon-7-stroke.css';
-import 'react-accessible-accordion/dist/fancy-example.css';
-import 'swiper/css';
-import 'swiper/css/bundle';
-
-// Global Style order must not be changed
-import '../styles/fonts.css';
-import '../styles/style.css';
-import '../styles/responsive.css';
-
+import axios from 'axios';
+import { Session } from 'next-auth';
+import { SessionProvider } from 'next-auth/react';
+import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import Layout from '../components/Layouts/Layout';
+import { useEffect } from 'react';
 
-function MyApp({ Component, pageProps }) {
+import '@radix-ui/themes/styles.css';
+import 'react-quill/dist/quill.snow.css';
+import '../styles/global.css';
+import { getBaseUrl, trpc } from '../utils/trpc';
+
+axios.defaults.baseURL = getBaseUrl();
+
+function MyApp({ Component, pageProps }: AppProps<{ session?: Session }>) {
   useEffect(() => {
     AOS.init();
   }, []);
+
+  const { session } = pageProps;
 
   return (
     <>
@@ -43,11 +40,11 @@ function MyApp({ Component, pageProps }) {
         <title>ds-experts IT-Consulting GmbH - Professional IT-Consulting</title>
       </Head>
 
-      <Layout>
+      <SessionProvider session={session}>
         <Component {...pageProps} />
-      </Layout>
+      </SessionProvider>
     </>
   );
 }
 
-export default MyApp;
+export default trpc.withTRPC(MyApp);

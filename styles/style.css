@@ -73,9 +73,12 @@ This files table contents are outlined below >>>>>
   --brand-blue-gradient-5: #4b5eb4; */
 
   --box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  --box-shadow-sm: 5px 5px 5px 0px rgba(0, 0, 0, 0.5);
 
   --section-separator-display: block;
   /* --section-separator-display: none; */
+
+  --table-card-border-radius: 15px;
 }
 
 html {
@@ -518,6 +521,12 @@ Shared CSS
   }
 }
 
+@media only screen and (max-width: 767px) {
+  .ds-hidden-sm {
+    display: none !important;
+  }
+}
+
 a[target='_blank']:after {
   font-family: 'Font Awesome 6 Free';
   content: '\f08e';
@@ -609,6 +618,10 @@ section:nth-child(2n + 2) .div-arrow-down:after {
 .optimized-image {
   width: 100%;
   height: 100%;
+}
+
+.pigeon-map > div {
+  height: 100% !important;
 }
 
 /*================================================
@@ -1192,6 +1205,88 @@ Main Banner CSS
   margin-left: auto;
   margin-right: auto;
 }
+
+.text-right {
+  text-align: right;
+}
+
+/* Dashboard */
+.dashboard-navbar.navbar-area.is-sticky {
+  -webkit-animation: none !important;
+  animation: none !important;
+}
+
+/* dashboard list table */
+.item-list table {
+  border-collapse: separate;
+  border-spacing: 0 0.75rem;
+  border: none;
+  width: 100%;
+}
+
+.item-list tr {
+  border-radius: var(--table-card-border-radius);
+}
+
+.item-list tr th {
+  text-align: center;
+}
+
+.item-list tr th:first-child,
+.item-list tr td:first-child {
+  border-top-left-radius: var(--table-card-border-radius);
+  border-bottom-left-radius: var(--table-card-border-radius);
+}
+
+.item-list tr th:last-child,
+.item-list tr td:last-child {
+  border-top-right-radius: var(--table-card-border-radius);
+  border-bottom-right-radius: var(--table-card-border-radius);
+}
+
+.item-list tbody tr:nth-child(odd) {
+  background-color: var(--brand-light-blue);
+}
+.item-list tbody tr:nth-child(even) {
+  background-color: #bdd9ff;
+}
+
+.item-list tbody tr:hover {
+  background-color: #a3c9ff;
+}
+
+.item-list tr,
+.item-list tr {
+  -webkit-box-shadow: var(--box-shadow-sm) !important;
+  box-shadow: var(--box-shadow-sm) !important;
+}
+
+.item-list thead tr th {
+  background-color: var(--brand-blue-gradient-3);
+  color: var(--brand-white);
+}
+
+.item-list thead tr th,
+.item-list tbody tr td {
+  padding: 0.75rem 1rem;
+}
+
+.item-list .actions {
+  min-width: 7rem;
+}
+
+.item-list .actions button {
+  padding: 0 0.5rem;
+  font-size: 1.5rem;
+}
+
+.item-list .actions button i {
+  color: var(--brand-blue-gradient-4);
+}
+.item-list .actions button i[class~='fa-trash'] {
+  color: red;
+}
+/* /Project list table */
 
 .hero-banner .main-banner-content.left {
   max-width: 800px;
@@ -2033,6 +2128,17 @@ About CSS
     -webkit-transform: scale(2);
     transform: scale(2);
     opacity: 0;
+  }
+}
+
+@keyframes rotateMe {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
@@ -5791,6 +5897,27 @@ Footer CSS
 .footer-dark .copyright-area {
   background-color: #040404;
   border-top: 1px solid #12141a;
+}
+
+.add-item {
+  position: fixed;
+  cursor: pointer;
+  bottom: 70px;
+  right: 20px;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.add-item i {
+  z-index: 4;
+  width: 40px;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+}
+
+.add-item::before {
+  border-radius: 50%;
 }
 
 /*================================================

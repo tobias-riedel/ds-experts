@@ -1,46 +1,68 @@
-// import About from '../components/About';
-import SectionDivider from '../components/Common/SectionDivider';
-// import Competencies from '../components/Competencies';
-// import Contact from '../components/Contact';
-// import JoinUs from '../components/JoinUs/JoinUs';
-// import MainBanner from '../components/MainBanner';
-// import Philosophy from '../components/Philosophy';
-// import References from '../components/References';
-// import Team from '../components/Team';
-// import WorkProcess from '../components/WorkProcess';
+import SectionDivider from '@components/Common/SectionDivider';
+import { prisma } from '@db/client';
+import Layout from '@layouts/Layout';
+import { Expert, PrismaPromise, Project } from '@prisma/client';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
 
-const section = 'Lade Abschnitt...';
+const SECTION = 'Lade Abschnitt...';
 
-const Team = dynamic(import('../components/Team'), {
-  loading: () => <>{section}</>,
+const Team = dynamic(import('@components/Team/Team'), {
+  loading: () => <>{SECTION}</>,
 });
-const Philosophy = dynamic(import('../components/Philosophy'), { loading: () => <>{section}</> });
-const References = dynamic(import('../components/References'), { loading: () => <>{section}</> });
-const MainBanner = dynamic(import('../components/MainBanner'), { loading: () => <>{section}</> });
-const About = dynamic(import('../components/About'), { loading: () => <>{section}</> });
-const Competencies = dynamic(import('../components/Competencies'), { loading: () => <>{section}</> });
-const JoinUs = dynamic(import('../components/JoinUs/JoinUs'), { loading: () => <>{section}</> });
-const Contact = dynamic(import('../components/Contact'), { loading: () => <>{section}</> });
-const WorkProcess = dynamic(import('../components/WorkProcess'), { loading: () => <>{section}</> });
+const Philosophy = dynamic(import('@components/Philosophy'), { loading: () => <>{SECTION}</> });
+const References = dynamic(import('@components/References/References'), { loading: () => <>{SECTION}</> });
+const MainBanner = dynamic(import('@components/MainBanner'), { loading: () => <>{SECTION}</> });
+const About = dynamic(import('@components/About'), { loading: () => <>{SECTION}</> });
+const Competencies = dynamic(import('@components/Competencies'), { loading: () => <>{SECTION}</> });
+const JoinUs = dynamic(import('@components/JoinUs/JoinUs'), { loading: () => <>{SECTION}</> });
+const Contact = dynamic(import('@components/Contact'), { loading: () => <>{SECTION}</> });
+const WorkProcess = dynamic(import('@components/WorkProcess'), { loading: () => <>{SECTION}</> });
 
-export const MainPage = () => {
+export const getServerSideProps: GetServerSideProps<{ experts: Expert[]; projects: Project[] }> = async () => {
+  const expertsQuery: PrismaPromise<Expert[]> = prisma.expert.findMany({
+    where: { isPublic: true },
+    orderBy: { orderId: 'asc' },
+  });
+
+  const projectsQuery: PrismaPromise<Project[]> = prisma.project.findMany({
+    where: { isPublic: true },
+    orderBy: { orderId: 'asc' },
+  });
+
+  const [rawExperts, projects]: [Expert[], Project[]] = await Promise.all([expertsQuery, projectsQuery]);
+  const experts = rawExperts.map((expert) => ({
+    ...expert,
+    // Remove date objects as they cannot easily be stringified.
+    createdAt: null,
+    updatedAt: null,
+  }));
+
+  return {
+    props: { experts, projects },
+  };
+};
+
+export const MainPage = ({
+  experts,
+  projects,
+}: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element => {
   return (
-    <>
+    <Layout>
       <section id="home">
         <MainBanner />
         <About />
         <SectionDivider />
       </section>
 
-      <Team />
+      <Team data={experts} />
       <Philosophy />
       <WorkProcess />
       <JoinUs />
       <Competencies />
-      <References />
+      <References data={projects} />
       <Contact />
-    </>
+    </Layout>
   );
 };
 

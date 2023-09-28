@@ -1,36 +1,25 @@
-import multer from 'multer';
-
+import { env } from '@env/server.mjs';
+import { joinUsSchema as formSchema } from '@schema/joinUs.schema';
 import sgMail from '@sendgrid/mail';
+import multer from 'multer';
 import type { NextApiRequest, NextApiResponse, PageConfig } from 'next';
-import { InferType, object, string, ValidationError } from 'yup';
+import { z } from 'zod';
 import { sanitizeHtml } from '../../utils/mail';
 
 const allowedMethods = ['POST'];
 const allowedUploadFileMimeTypes = ['application/pdf'];
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgMail.setApiKey(env.SENDGRID_API_KEY);
 
-const JoinUsMaxFileSize = +(process.env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE ?? '8');
+const JoinUsMaxFileSize = env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE ?? 8;
 const maxUploadedFileSize = JoinUsMaxFileSize * 1024 * 1024;
 
-const HONEYPOT_MSG = 'Honeypot triggered';
-const to = process.env.JOIN_US_MAIL_ADDRESS_FROM;
-const from = process.env.JOIN_US_MAIL_ADDRESS_TO;
+const to = env.JOIN_US_MAIL_ADDRESS_FROM;
+const from = env.JOIN_US_MAIL_ADDRESS_TO;
 
-const formSchema = object({
-  firstName: string().max(0, HONEYPOT_MSG),
-  name: string().max(0, HONEYPOT_MSG),
-  email: string().max(0, HONEYPOT_MSG),
-  firstName6g234: string().required(),
-  name90ad0f: string().required(),
-  emailfd80e: string().email().required(),
-  subject: string().required(),
-  text: string().required(),
-});
+type FormValue = z.infer<typeof formSchema>;
 
-type FormValue = InferType<typeof formSchema>;
-
-const uploadFilter = function (_, file: Express.Multer.File, cb: multer.FileFilterCallback): void {
+const uploadFilter = function (_: unknown, file: Express.Multer.File, cb: multer.FileFilterCallback): void {
   const acceptFile = allowedUploadFileMimeTypes.includes(file.mimetype);
 
   if (acceptFile) {
@@ -45,20 +34,16 @@ const upload = multer({
   fileFilter: uploadFilter,
 });
 
-function runMiddleware(req, res, fn) {
+// FIXME: use util.promisify instead
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function runMiddleware(req: NextApiRequest, res: NextApiResponse, fn: any) {
   return new Promise((resolve, reject) => {
-    fn(req, res, (result) => {
-      if (result instanceof Error) {
-        return reject(result);
-      }
-
-      return resolve(result);
-    });
+    fn(req, res, (result: Error | unknown) => (result instanceof Error ? reject(result) : resolve(result)));
   });
 }
 
 export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?: string | object; msg?: string }>) => {
-  if (!allowedMethods.includes(req?.method) || req.method == 'OPTIONS') {
+  if (!allowedMethods.includes(req.method ?? '') || req.method == 'OPTIONS') {
     return res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
   }
 
@@ -74,17 +59,19 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?
     body = typeof req.body === 'object' ? req.body : JSON.parse(req.body);
   } catch (parseErr) {
     console.log('Body parse error:', parseErr);
-    return res.status(500).json({ error: parseErr });
+    return res.status(500).json({ error: JSON.stringify(parseErr) });
   }
 
   let payload: FormValue;
   try {
-    payload = await formSchema.validate(body);
+    // payload = await formSchema.validate(body);
+    payload = formSchema.parse(body);
   } catch (validationError: unknown) {
     console.log('Validation failed:', validationError);
 
     return res.status(400).json({
-      error: (validationError as ValidationError).errors,
+      // error: (validationError as ValidationError).errors,
+      error: JSON.stringify(validationError, null, 2),
     });
   }
 
@@ -131,11 +118,7 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?
     return res.status(200).json({ msg: 'Email sent successfully' });
   } catch (error) {
     console.error(error);
-    if (error.response) {
-      console.error(error.response.body);
-    }
-
-    return res.status(500).json({ msg: 'Error processing payload' });
+    return res.status(500).json({ error: JSON.stringify(error), msg: 'Error processing payload' });
   }
 };
 
