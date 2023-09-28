@@ -1,10 +1,21 @@
 import CompanyMap from '@components/Map/CompanyMap';
 import { CENTER_OF_GERMANY_COORDINATES, PROJECT_MAP_ZOOM } from '@consts/misc';
+import { env } from '@env/client.mjs';
 import { Project } from '@prisma/client';
 import { Button, Dialog, Flex, Text } from '@radix-ui/themes';
 import { PropsWithChildren } from 'react';
 
 const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: Project | null }>): JSX.Element => {
+  const locales = navigator.languages;
+  const dateOptions: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: '2-digit',
+    day: env.NEXT_PUBLIC_SHOW_PROJECT_DATE_DAYS ? '2-digit' : undefined,
+  };
+
+  const startedAt = data?.startedAt ? new Date(data?.startedAt).toLocaleDateString(locales, dateOptions) : '-';
+  const endedAt = data?.endedAt ? new Date(data?.endedAt).toLocaleDateString(locales, dateOptions) : '-';
+
   return (
     <Dialog.Root>
       <Dialog.Trigger>{children}</Dialog.Trigger>
@@ -44,26 +55,28 @@ const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: Project 
                 </label>
               </div>
 
-              <div className="col-12">
-                <label>
-                  <Text as="div" size="3" mb="1" weight="bold" color="gray">
-                    Start
-                  </Text>
-                  <Text as="div" size="4" mb="1" weight="bold">
-                    {data?.startedAt || '-'}
-                  </Text>
-                </label>
-              </div>
+              <div className="row">
+                <div className="col-6">
+                  <label>
+                    <Text as="div" size="3" mb="1" weight="bold" color="gray">
+                      Start
+                    </Text>
+                    <Text as="div" size="4" mb="1" weight="bold">
+                      {startedAt}
+                    </Text>
+                  </label>
+                </div>
 
-              <div className="col-12">
-                <label>
-                  <Text as="div" size="3" mb="1" weight="bold" color="gray">
-                    Ende
-                  </Text>
-                  <Text as="div" size="4" mb="1" weight="bold">
-                    {data?.endedAt || '-'}
-                  </Text>
-                </label>
+                <div className="col-6">
+                  <label>
+                    <Text as="div" size="3" mb="1" weight="bold" color="gray">
+                      Ende
+                    </Text>
+                    <Text as="div" size="4" mb="1" weight="bold">
+                      {endedAt}
+                    </Text>
+                  </label>
+                </div>
               </div>
             </div>
 

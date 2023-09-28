@@ -67,6 +67,7 @@ build
 # dotenv environment variables file
 .env
 .env.*
+!.env.example
 
 # database
 /prisma/db.sqlite
