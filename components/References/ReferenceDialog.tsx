@@ -1,5 +1,5 @@
 import CompanyMap from '@components/Map/CompanyMap';
-import { CENTER_OF_GERMANY_COORDINATES } from '@consts/misc';
+import { CENTER_OF_GERMANY_COORDINATES, PROJECT_MAP_ZOOM } from '@consts/misc';
 import { Project } from '@prisma/client';
 import { Button, Dialog, Flex, Text } from '@radix-ui/themes';
 import { PropsWithChildren } from 'react';
@@ -71,7 +71,7 @@ const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: Project 
               <div className="pb-4">
                 <CompanyMap
                   height={320}
-                  zoom={5}
+                  zoom={PROJECT_MAP_ZOOM}
                   lattitude={data?.locationLat}
                   longitude={data?.locationLong}
                   anchorLattitude={CENTER_OF_GERMANY_COORDINATES[0]}

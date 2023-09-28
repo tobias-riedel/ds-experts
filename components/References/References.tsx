@@ -85,7 +85,7 @@ const referencesStatic: Partial<Project>[] = [
     id: '10',
     img: '/images/references/ref4.jpg',
     projectName: 'Healex GmbH',
-    city: 'Berlin',
+    city: 'Köln',
     description: ['Softwareentwicklung Corona Tracking App'].join('- '),
   },
   {
@@ -98,9 +98,9 @@ const referencesStatic: Partial<Project>[] = [
   {
     id: '12',
     img: '/images/references/ref14.jpg',
-    projectName: 'Siemens Energy AG ',
+    projectName: 'Siemens Energy AG',
     city: 'Berlin',
-    description: ['Projektleitung IT-Rollout ', 'Projektleitung Softwareentwicklung'].join('- '),
+    description: ['Projektleitung IT-Rollout', 'Projektleitung Softwareentwicklung'].join('- '),
   },
 ];
 
