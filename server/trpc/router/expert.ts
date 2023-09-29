@@ -12,7 +12,7 @@ export const expertsRouter = router({
   byIdDashboard: protectedProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx: { prisma }, input: { id } }) => {
-      const expert: Expert = await prisma.expert.findUnique({ where: { id } });
+      const expert: Expert | null = await prisma.expert.findUnique({ where: { id } });
       return expert;
     }),
 
