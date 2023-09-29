@@ -15,7 +15,7 @@ export const projectsRouter = router({
   byIdDashboard: protectedProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx: { prisma }, input: { id } }) => {
-      const project: Project = await prisma.project.findUnique({ where: { id } });
+      const project: Project | null = await prisma.project.findUnique({ where: { id } });
       return project;
     }),
 
