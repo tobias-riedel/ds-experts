@@ -80,7 +80,7 @@ export const getServerSideProps: GetServerSideProps<{
   const itemId = params?.id as string;
   const isNew = itemId === ADD_ITEM_URL_PREFIX;
 
-  const item = isNew ? null : await prisma.expert.findUniqueOrThrow({ where: { id: itemId } });
+  const item = isNew ? null : await prisma.expert.findUnique({ where: { id: itemId } });
   const images = getImages(AllowedImageDirs.TEAM);
 
   return { props: { itemId, item: JSON.stringify(item), images } };
