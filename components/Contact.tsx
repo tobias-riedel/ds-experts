@@ -33,7 +33,6 @@ const Contact = () => {
                     &nbsp;
                     {showContacts ? (
                       <>
-                        <span>Adresse: </span>
                         <Link
                           href="https://www.google.com/maps/place/Rudolf-Breitscheid-Stra%C3%9Fe+68,+16559+Liebenwalde/@52.874105,13.3796239,16.25z/data=!4m5!3m4!1s0x47a9a72267ac7ba9:0x5e61f97b718143bb!8m2!3d52.8735095!4d13.383309"
                           target="_blank"
@@ -51,10 +50,7 @@ const Contact = () => {
                     <i className={'fas fa-phone-square-alt ' + styles.icon}></i>
                     &nbsp;
                     {showContacts ? (
-                      <>
-                        <span>Telefon: </span>
-                        <Link href="tel: +49 33 054904 404">+49 33 054904 404</Link>
-                      </>
+                      <Link href={`tel: ${COMPANY_ADDRESS.telephone}`}>{COMPANY_ADDRESS.telephone}</Link>
                     ) : (
                       'Lade Telefonnummer...'
                     )}
@@ -63,10 +59,7 @@ const Contact = () => {
                     <i className={'fas fa-envelope-square ' + styles.icon}></i>
                     &nbsp;
                     {showContacts ? (
-                      <>
-                        <span>eMail: </span>
-                        <Link href="mailto:info@ds-experts.de">info@ds-experts.de</Link>
-                      </>
+                      <Link href={`mailto:${COMPANY_ADDRESS.email}`}>{COMPANY_ADDRESS.email}</Link>
                     ) : (
                       'Lade eMail-Adresse...'
                     )}
