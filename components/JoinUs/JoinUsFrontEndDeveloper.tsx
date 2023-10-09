@@ -3,7 +3,7 @@ const JoinUsFrontEndDeveloper = () => {
     <>
       <div data-aos="fade-right" data-aos-duration="1200">
         <h3>Front-End Developer</h3>
-        <h4>Must Have:</h4>
+        <h4>Must-have:</h4>
         <ul>
           <li>Fortgeschrittene Erfahrung in HTML 5 und CSS 3</li>
           <li>Mindestens zwei Jahre praktische Erfahrung mit JavaScript</li>

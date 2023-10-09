@@ -3,7 +3,7 @@ const JoinUsBackEndDeveloper = () => {
     <>
       <div data-aos="fade-right" data-aos-duration="1200">
         <h3>Back-End Developer</h3>
-        <h4>Must Have:</h4>
+        <h4>Must-have:</h4>
         <ul>
           <li>
             Mehrjährige Back-End-Erfahrung in mindestens einer dieser Programmiersprachen:
