@@ -3,7 +3,7 @@ const JoinUsProjectManager = () => {
     <>
       <div data-aos="fade-right" data-aos-duration="1200">
         <h3>Projektleiter</h3>
-        <h4>Must Have:</h4>
+        <h4>Must-have:</h4>
         <ul>
           <li>Erste Erfahrungen als Projektleiter</li>
           <li>Entweder agile oder klassische Vorgehensmodelle verinnerlicht</li>
