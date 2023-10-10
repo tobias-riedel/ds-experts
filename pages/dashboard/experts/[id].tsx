@@ -1,10 +1,10 @@
-import { prisma } from '@db/client';
 import ExpertCard from '@components/Team/ExpertCard';
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
 import { MySwal } from '@consts/misc';
 import { DASHBOARD_EXPERTS_URL } from '@consts/routes';
+import { prisma } from '@db/client';
 import DashboardLayout from '@layouts/DashboardLayout';
-import { Expert as FormItem } from '@prisma/client';
+import { $Enums, Expert as FormItem } from '@prisma/client';
 import { expertSchema as formSchema } from '@schema/expert.schema';
 import { ctrlFieldClassName } from '@utils/form';
 import { AllowedImageDirs, getImages } from '@utils/images';
@@ -52,6 +52,7 @@ const INITIAL_STATE: FormItem = {
   startedAt: '',
   endedAt: '',
   isPublic: false,
+  visibility: $Enums.Visibility.ADMIN,
   orderId: 0,
   slug: '',
   createdAt: new Date(),
