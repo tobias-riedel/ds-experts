@@ -4,7 +4,7 @@ import { MySwal } from '@consts/misc';
 import { DASHBOARD_PROJECTS_URL } from '@consts/routes';
 import { prisma } from '@db/client';
 import DashboardLayout from '@layouts/DashboardLayout';
-import { Project as FormItem } from '@prisma/client';
+import { $Enums, Project as FormItem } from '@prisma/client';
 import { projectSchema as formSchema } from '@schema/project.schema';
 import { ctrlFieldClassName } from '@utils/form';
 import { AllowedImageDirs, getImages } from '@utils/images';
@@ -58,6 +58,7 @@ const INITIAL_STATE: FormItem = {
   img: '',
   description: '',
   isPublic: false,
+  visibility: $Enums.Visibility.ADMIN,
   orderId: 0,
   slug: '',
 };
