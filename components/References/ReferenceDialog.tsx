@@ -1,21 +1,37 @@
 import CompanyMap from '@components/Map/CompanyMap';
 import { CENTER_OF_GERMANY_COORDINATES, PROJECT_MAP_ZOOM } from '@consts/misc';
-import { env } from '@env/client.mjs';
 import { Project } from '@prisma/client';
 import { Button, Dialog, Flex, Text } from '@radix-ui/themes';
 import { PropsWithChildren } from 'react';
 
+const monthsDiff = (date1: Date, date2: Date): number => {
+  const months = (date2.getFullYear() - date1.getFullYear()) * 12 + date2.getMonth() - date1.getMonth();
+  return months + 1;
+};
+
+const getProjectDuration = (startedAt?: string, endedAt?: string): string => {
+  if (!startedAt) {
+    return '';
+  }
+
+  const start = new Date(startedAt);
+  const end = endedAt ? new Date(endedAt) : new Date();
+
+  const months = monthsDiff(start, end);
+  const years = Math.floor(months / 12);
+
+  const diffMonths = months % 12;
+
+  const duration =
+    (years > 0 ? `${years} Jahr${years === 1 ? '' : 'e'}` : '') +
+    (years > 0 && diffMonths > 0 ? ', ' : '') +
+    (diffMonths > 0 ? `${diffMonths} Monat${months === 1 ? '' : 'e'}` : '');
+
+  return duration;
+};
+
 const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: Project | null }>): JSX.Element => {
-  const locales = ['de', 'en'];
-
-  const dateOptions: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: '2-digit',
-    day: env.NEXT_PUBLIC_SHOW_PROJECT_DATE_DAYS ? '2-digit' : undefined,
-  };
-
-  const startedAt = data?.startedAt ? new Date(data?.startedAt).toLocaleDateString(locales, dateOptions) : '-';
-  const endedAt = data?.endedAt ? new Date(data?.endedAt).toLocaleDateString(locales, dateOptions) : '-';
+  const duration = getProjectDuration(data?.startedAt ?? '', data?.endedAt ?? '');
 
   return (
     <Dialog.Root>
@@ -56,28 +72,15 @@ const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: Project 
                 </label>
               </div>
 
-              <div className="row">
-                <div className="col-6">
-                  <label>
-                    <Text as="div" size="3" mb="1" weight="bold" color="gray">
-                      Start
-                    </Text>
-                    <Text as="div" size="4" mb="1" weight="bold">
-                      {startedAt}
-                    </Text>
-                  </label>
-                </div>
-
-                <div className="col-6">
-                  <label>
-                    <Text as="div" size="3" mb="1" weight="bold" color="gray">
-                      Ende
-                    </Text>
-                    <Text as="div" size="4" mb="1" weight="bold">
-                      {endedAt}
-                    </Text>
-                  </label>
-                </div>
+              <div className="col-12">
+                <label>
+                  <Text as="div" size="3" mb="1" weight="bold" color="gray">
+                    Dauer
+                  </Text>
+                  <Text as="div" size="4" mb="1" weight="bold">
+                    {duration || '-'}
+                  </Text>
+                </label>
               </div>
             </div>
 
