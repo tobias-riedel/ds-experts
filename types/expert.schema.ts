@@ -1,3 +1,4 @@
+import { $Enums } from '@prisma/client';
 import { z } from 'zod';
 
 // TODO: implement zod-prisma-generator: https://github.com/CarterGrimmeisen/zod-prisma or
@@ -10,7 +11,7 @@ export const expertSchema = z.object({
   img: z.string().optional().nullish(),
   startedAt: z.string(),
   endedAt: z.string().optional().nullish(),
-  isPublic: z.boolean().optional().default(false),
+  visibility: z.nativeEnum($Enums.Visibility),
   orderId: z.number().optional().nullish().default(0),
   slug: z.string().optional().nullish(),
   createdAt: z.date().optional().nullish().default(new Date()),

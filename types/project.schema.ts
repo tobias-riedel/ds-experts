@@ -1,3 +1,4 @@
+import { $Enums } from '@prisma/client';
 import { z } from 'zod';
 
 // TODO: implement zod-prisma-generator: https://github.com/CarterGrimmeisen/zod-prisma or
@@ -13,7 +14,7 @@ export const projectSchema = z.object({
   endedAt: z.string().optional().nullish(),
   img: z.string().optional().nullish(),
   description: z.string().optional().nullish(),
-  isPublic: z.boolean().optional().default(false),
+  visibility: z.nativeEnum($Enums.Visibility),
   orderId: z.number().optional().nullish().default(0),
   slug: z.string().optional().nullish(),
 });

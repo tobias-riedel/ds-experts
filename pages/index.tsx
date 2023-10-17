@@ -1,7 +1,7 @@
 import SectionDivider from '@components/Common/SectionDivider';
 import { prisma } from '@db/client';
 import Layout from '@layouts/Layout';
-import { Expert, PrismaPromise, Project } from '@prisma/client';
+import { $Enums, Expert, PrismaPromise, Project } from '@prisma/client';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
 
@@ -20,13 +20,14 @@ const Contact = dynamic(import('@components/Contact'), { loading: () => <>{SECTI
 const WorkProcess = dynamic(import('@components/WorkProcess'), { loading: () => <>{SECTION}</> });
 
 export const getServerSideProps: GetServerSideProps<{ experts: Expert[]; projects: Project[] }> = async () => {
+  // TODO: Replace with API call or SSG
   const expertsQuery: PrismaPromise<Expert[]> = prisma.expert.findMany({
-    where: { isPublic: true },
+    where: { visibility: $Enums.Visibility.PUBLIC },
     orderBy: { orderId: 'asc' },
   });
 
   const projectsQuery: PrismaPromise<Project[]> = prisma.project.findMany({
-    where: { isPublic: true },
+    where: { visibility: $Enums.Visibility.PUBLIC },
     orderBy: { orderId: 'asc' },
   });
 
