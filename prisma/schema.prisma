@@ -23,19 +23,18 @@ enum Visibility {
 }
 
 model Expert {
-  id         String      @id @default(cuid())
+  id         String     @id @default(cuid())
   firstName  String
   lastName   String
   role       String
   img        String?
   startedAt  String
   endedAt    String?
-  isPublic   Boolean     @default(false)
-  visibility Visibility? @default(ADMIN)
-  orderId    Int?        @default(0)
+  visibility Visibility @default(ADMIN)
+  orderId    Int?       @default(0)
   slug       String?
-  createdAt  DateTime?   @default(now())
-  updatedAt  DateTime?   @default(now()) @updatedAt
+  createdAt  DateTime?  @default(now())
+  updatedAt  DateTime?  @default(now()) @updatedAt
   // projects   Project[]
   // profile    Profile?
 }
@@ -51,7 +50,7 @@ model Expert {
 // }
 
 model Project {
-  id           String      @id @default(cuid())
+  id           String     @id @default(cuid())
   partnerName  String
   projectName  String
   city         String
@@ -60,10 +59,9 @@ model Project {
   startedAt    String?
   endedAt      String?
   img          String?
-  description  String?     @db.Text
-  isPublic     Boolean     @default(false)
-  visibility   Visibility? @default(ADMIN)
-  orderId      Int?        @default(0)
+  description  String?    @db.Text
+  visibility   Visibility @default(ADMIN)
+  orderId      Int?       @default(0)
   slug         String?
   // experts      Expert[]
 }

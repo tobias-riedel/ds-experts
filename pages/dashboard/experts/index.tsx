@@ -76,7 +76,7 @@ export default function Page() {
                     <th className="ds-hidden-sm"> Rolle</th>
                     <th> Start </th>
                     <th className="ds-hidden-md ds-hidden-sm"> Ende </th>
-                    <th className="ds-hidden-md ds-hidden-sm"> Öffentlich </th>
+                    <th className="ds-hidden-md ds-hidden-sm"> Sichtbarkeit </th>
                     <th className="ds-hidden-md ds-hidden-sm"> Reihenfolge </th>
                     <th>
                       <i className="fas fa-edit"></i>
@@ -92,12 +92,7 @@ export default function Page() {
                         <td className="ds-hidden-sm">{item.role}</td>
                         <td className="text-center">{item.startedAt}</td>
                         <td className="text-center ds-hidden-md ds-hidden-sm">{item.endedAt ?? 'n/a'}</td>
-                        <td className="text-center ds-hidden-md ds-hidden-sm">
-                          <i
-                            className={`fas ${item.isPublic ? 'fa-check' : 'fa-close'}`}
-                            style={{ color: item.isPublic ? 'green' : 'red' }}
-                          ></i>
-                        </td>
+                        <td className="text-center ds-hidden-md ds-hidden-sm">{item.visibility}</td>
                         <td className="text-right ds-hidden-md ds-hidden-sm">{item.orderId || 0}</td>
                         <td className="text-center actions">
                           <button onClick={() => editItem(item.id)} className="btn btn-link">

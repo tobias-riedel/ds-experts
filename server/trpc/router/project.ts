@@ -1,4 +1,4 @@
-import { Project } from '@prisma/client';
+import { $Enums, Project } from '@prisma/client';
 import { z } from 'zod';
 import { projectSchema } from '@schema/project.schema';
 import { protectedProcedure, publicProcedure, router } from '../trpc';
@@ -6,7 +6,7 @@ import { protectedProcedure, publicProcedure, router } from '../trpc';
 export const projectsRouter = router({
   list: publicProcedure.query(async ({ ctx: { prisma } }) => {
     const projects: Project[] = await prisma.project.findMany({
-      where: { isPublic: true },
+      where: { visibility: $Enums.Visibility.PUBLIC },
       orderBy: { orderId: 'asc' },
     });
     return projects;

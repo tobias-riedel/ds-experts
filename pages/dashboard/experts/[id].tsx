@@ -51,13 +51,14 @@ const INITIAL_STATE: FormItem = {
   img: '',
   startedAt: '',
   endedAt: '',
-  isPublic: false,
   visibility: $Enums.Visibility.ADMIN,
   orderId: 0,
   slug: '',
   createdAt: new Date(),
   updatedAt: new Date(),
 };
+
+const visibilities = Object.keys($Enums.Visibility);
 
 const DASHBOARD_OVERVIEW_URL = DASHBOARD_EXPERTS_URL;
 
@@ -245,12 +246,21 @@ export default function Page({
                         </div>
 
                         <div className="form-group col-lg-3 col-md-6">
-                          <div>
-                            <label>Sichtbarkeit</label>
-                          </div>
-                          <label>
-                            <Field type="checkbox" name="isPublic" /> Öffentlich
-                          </label>
+                          <label htmlFor="visibility">Sichtbarkeit</label>
+                          <Field
+                            as="select"
+                            id="visibility"
+                            name="visibility"
+                            className={ctrlClassName('visibility')}
+                            placeholder="Sichtbarkeit"
+                          >
+                            {visibilities?.map((visibility, idx) => (
+                              <option key={idx} value={visibility}>
+                                {visibility}
+                              </option>
+                            ))}
+                          </Field>
+                          <ErrorMessage name="visibility" component="div" className="form-feedback" />
                         </div>
 
                         <div className="form-group col-lg-3 col-md-6">

@@ -1,11 +1,14 @@
-import { Expert } from '@prisma/client';
+import { $Enums, Expert } from '@prisma/client';
 import { z } from 'zod';
 import { expertSchema } from '@schema/expert.schema';
 import { protectedProcedure, publicProcedure, router } from '../trpc';
 
 export const expertsRouter = router({
   list: publicProcedure.query(async ({ ctx: { prisma } }) => {
-    const experts: Expert[] = await prisma.expert.findMany({ where: { isPublic: true }, orderBy: { orderId: 'asc' } });
+    const experts: Expert[] = await prisma.expert.findMany({
+      where: { visibility: $Enums.Visibility.PUBLIC },
+      orderBy: { orderId: 'asc' },
+    });
     return experts;
   }),
 
