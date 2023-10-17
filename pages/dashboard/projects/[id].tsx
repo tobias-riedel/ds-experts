@@ -240,13 +240,13 @@ export default function Page({
                         </div>
 
                         <div className="form-group col-lg-3 col-md-6">
-                          <label htmlFor="visibility">Sichtbarkeit</label>
+                          <label htmlFor="visibility">Sichtbarkeit*</label>
                           <Field
                             as="select"
                             id="visibility"
                             name="visibility"
                             className={ctrlClassName('visibility')}
-                            placeholder="Sichtbarkeit"
+                            placeholder="Sichtbarkeit*"
                           >
                             {visibilities?.map((visibility, idx) => (
                               <option key={idx} value={visibility}>
