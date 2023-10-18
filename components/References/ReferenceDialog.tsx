@@ -25,7 +25,7 @@ const getProjectDuration = (startedAt?: string, endedAt?: string): string => {
   const duration =
     (years > 0 ? `${years} Jahr${years === 1 ? '' : 'e'}` : '') +
     (years > 0 && diffMonths > 0 ? ', ' : '') +
-    (diffMonths > 0 ? `${diffMonths} Monat${months === 1 ? '' : 'e'}` : '');
+    (diffMonths > 0 ? `${diffMonths} Monat${diffMonths === 1 ? '' : 'e'}` : '');
 
   return duration;
 };
