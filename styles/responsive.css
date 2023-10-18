@@ -594,10 +594,15 @@
     font-size: 12px;
   }
   blockquote {
-    padding: 20px 20px 20px 55px !important;
+    padding: 20px 55px 20px 55px !important;
   }
   blockquote::before {
     left: 20px;
+    top: 35px;
+    font-size: 20px;
+  }
+  blockquote::after {
+    right: 20px;
     top: 35px;
     font-size: 20px;
   }
