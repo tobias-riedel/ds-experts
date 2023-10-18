@@ -3310,7 +3310,9 @@ Our Work Process CSS
 }
 
 .work-process-list .single-work-process .icon {
-  transition: scale 0.5s ease-in-out, rotate 0.5s ease-in-out;
+  transition:
+    scale 0.5s ease-in-out,
+    rotate 0.5s ease-in-out;
 }
 
 .work-process-list .single-work-process:hover .icon {
@@ -4394,7 +4396,7 @@ Blog Details CSS
 
 blockquote {
   background-color: var(--brand-light-blue);
-  padding: 30px 30px 30px 70px !important;
+  padding: 30px 70px 30px 70px !important;
   line-height: 25px;
   font-weight: 500;
   position: relative;
@@ -4408,6 +4410,17 @@ blockquote::before {
   content: '\f10d';
   position: absolute;
   left: 30px;
+  top: 35px;
+  color: var(--brand-accent-1);
+  font-size: 30px;
+  font-weight: 900;
+}
+
+blockquote::after {
+  font-family: 'Font Awesome 6 Free';
+  content: '\f10e';
+  position: absolute;
+  right: 30px;
   top: 35px;
   color: var(--brand-accent-1);
   font-size: 30px;
