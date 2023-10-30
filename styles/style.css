@@ -527,6 +527,12 @@ Shared CSS
   }
 }
 
+@media only screen and (max-height: 739px) {
+  .ds-hidden-v-md {
+    display: none !important;
+  }
+}
+
 a[target='_blank']:after {
   font-family: 'Font Awesome 6 Free';
   content: '\f08e';
