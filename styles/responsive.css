@@ -29,16 +29,16 @@
   .section-title h2 {
     font-size: 26px;
   }
-  .navbar-area {
+  .navbar-area.navbar-style-2 {
     -webkit-box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.06);
     box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.06);
     background-color: #ffffff;
     padding: 0;
   }
-  .navbar-area nav .navbar-brand {
+  .navbar-area.navbar-style-2 nav .navbar-brand {
     font-size: 25px;
   }
-  .navbar-area nav .navbar-brand img {
+  .navbar-area.navbar-style-2 nav .navbar-brand img {
     max-width: 32px;
   }
 
@@ -46,33 +46,34 @@
     width: 100%;
   }
 
-  .navbar-area nav .navbar-nav {
+  .navbar-area.navbar-style-2 nav .navbar-nav {
     overflow-y: auto;
     max-height: 70vh;
     padding-right: 15px;
   }
-  .navbar-area nav .navbar-nav::-webkit-scrollbar {
+
+  .navbar-area.navbar-style-2 nav .navbar-nav::-webkit-scrollbar {
     width: 10px;
   }
-  .navbar-area nav .navbar-nav::-webkit-scrollbar-track {
+  .navbar-area.navbar-style-2 nav .navbar-nav::-webkit-scrollbar-track {
     background: #f1f1f1;
   }
-  .navbar-area nav .navbar-nav::-webkit-scrollbar-thumb {
+  .navbar-area.navbar-style-2 nav .navbar-nav::-webkit-scrollbar-thumb {
     background: #888;
   }
-  .navbar-area nav .navbar-nav::-webkit-scrollbar-thumb:hover {
+  .navbar-area.navbar-style-2 nav .navbar-nav::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
-  .navbar-area nav .navbar-nav .nav-item {
+  .navbar-area.navbar-style-2 nav .navbar-nav .nav-item {
     padding-left: 5px;
     padding-right: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
   }
-  .navbar-area nav .navbar-nav .nav-item a i {
+  .navbar-area.navbar-style-2 nav .navbar-nav .nav-item a i {
     display: none;
   }
-  .navbar-area nav .navbar-nav .nav-item .dropdown-menu {
+  .navbar-area.navbar-style-2 nav .navbar-nav .nav-item .dropdown-menu {
     position: relative;
     top: 0 !important;
     width: 100%;
@@ -82,33 +83,33 @@
     margin-top: 8px;
     margin-bottom: 10px;
   }
-  .navbar-area nav .navbar-nav .nav-item .dropdown-menu.mega-dropdown-menu .nav-item {
+  .navbar-area.navbar-style-2 nav .navbar-nav .nav-item .dropdown-menu.mega-dropdown-menu .nav-item {
     width: 100%;
     float: initial;
     padding: 0px 15px;
   }
-  .navbar-area nav .navbar-nav .nav-item .dropdown-menu.mega-dropdown-menu .nav-item a:last-child {
+  .navbar-area.navbar-style-2 nav .navbar-nav .nav-item .dropdown-menu.mega-dropdown-menu .nav-item a:last-child {
     border-bottom: 1px solid #e5e5e5 !important;
   }
-  .navbar-area nav .navbar-nav .nav-item .dropdown-menu li {
+  .navbar-area.navbar-style-2 nav .navbar-nav .nav-item .dropdown-menu li {
     padding: 5px 15px;
   }
-  .navbar-area nav .others-options {
+  .navbar-area.navbar-style-2 nav .others-options {
     margin: 10px 0 15px 10px;
   }
-  .navbar-area.is-sticky {
+  .navbar-area.navbar-style-2.is-sticky {
     padding: 0;
   }
-  .navbar-area.navbar-style-2 nav .navbar-brand {
+  .navbar-area.navbar-style-2.navbar-style-2 nav .navbar-brand {
     color: #000000;
   }
-  .navbar-area.navbar-style-2 nav .navbar-brand .black-logo {
+  .navbar-area.navbar-style-2.navbar-style-2 nav .navbar-brand .black-logo {
     display: block;
   }
-  .navbar-area.navbar-style-2 nav .navbar-brand .white-logo {
+  .navbar-area.navbar-style-2.navbar-style-2 nav .navbar-brand .white-logo {
     display: none;
   }
-  .navbar-area.navbar-style-2 nav .navbar-nav .nav-item a {
+  .navbar-area.navbar-style-2.navbar-style-2 nav .navbar-nav .nav-item a {
     color: #000000;
   }
   .main-banner {
@@ -681,7 +682,7 @@
   }
   .hero-banner {
     height: 100%;
-    padding-top: 140px;
+    padding-top: 48px;
     padding-bottom: 100px;
   }
   .hero-slider .swiper-button-prev,
@@ -689,7 +690,7 @@
     display: none;
   }
   .hero-banner .main-banner-content p span {
-    font-size: 19px;
+    font-size: 2.375rem;
   }
   .hero-slider .main-banner-content p {
     font-size: 15px;

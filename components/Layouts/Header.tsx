@@ -7,11 +7,11 @@ import { useEffect, useState } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import logoImg from '../../public/images/logo-ds-experts.png';
 
-interface NavLinks {
+type NavLinks = {
   to: string;
   scrollTo: string;
   name: string;
-}
+};
 
 const navLinks: NavLinks[] = [
   { to: '/', scrollTo: 'home', name: 'Home' },
@@ -144,7 +144,7 @@ const Navbar = () => {
                 ))}
               </ul>
 
-              <div>
+              <div className="ds-hidden-md">
                 {isHomeRoute ? (
                   <ScrollLink href="/#join-us" className="btn btn-primary" to="join-us" {...SCROLL_LINKS_PROPS}>
                     Jetzt bewerben

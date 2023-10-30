@@ -7,7 +7,7 @@ const MainBanner = () => {
   return (
     <>
       <div
-        className="hero-banner it-banner overlay bg-fixed"
+        className="hero-banner overlay bg-fixed"
         style={{
           backgroundImage: `url(/images/hero-banner14.webp)`,
         }}
@@ -18,8 +18,6 @@ const MainBanner = () => {
               <div className="row align-items-center">
                 <div className="col-lg-6">
                   <div className="main-banner-content">
-                    {/* <h1>ds-experts</h1> */}
-
                     <p>
                       Dein <span>Traumjob</span> ist nur ein paar Klicks entfernt
                     </p>
@@ -30,7 +28,7 @@ const MainBanner = () => {
                   </div>
                 </div>
 
-                <div className="col-lg-6">
+                <div className="col-lg-6 ds-hidden-v-md">
                   <div className="animate-banner-image" data-aos="zoom-in" data-aos-duration="1200">
                     <Image
                       src={callToActionImg}
