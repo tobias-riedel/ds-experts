@@ -113,7 +113,7 @@ const Projects = ({ data: projects }: { data: Project[] }): JSX.Element => {
         </div>
 
         {projects?.length === 0 ? (
-          <h3 className="text-center">Keine Experten eingetragen!</h3>
+          <h3 className="text-center">Keine Referenzen eingetragen!</h3>
         ) : (
           <Swiper
             cssMode={true}
