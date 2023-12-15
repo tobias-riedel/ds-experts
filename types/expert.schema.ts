@@ -1,6 +1,11 @@
 import { $Enums } from '@prisma/client';
 import { z } from 'zod';
 
+export const expertsInProjectsSchema = z.object({
+  expertId: z.string(),
+  projectId: z.string(),
+});
+
 // TODO: implement zod-prisma-generator: https://github.com/CarterGrimmeisen/zod-prisma or
 // https://www.npmjs.com/package/prisma-zod-generator
 export const expertSchema = z.object({
@@ -16,4 +21,5 @@ export const expertSchema = z.object({
   slug: z.string().optional().nullish(),
   createdAt: z.date().optional().nullish().default(new Date()),
   updatedAt: z.date().optional().nullish().default(new Date()),
+  projects: z.array(expertsInProjectsSchema).optional().nullish().default([]),
 });

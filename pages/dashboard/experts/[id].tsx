@@ -4,12 +4,13 @@ import { MySwal } from '@consts/misc';
 import { DASHBOARD_EXPERTS_URL } from '@consts/routes';
 import { prisma } from '@db/client';
 import DashboardLayout from '@layouts/DashboardLayout';
-import { $Enums, Expert as FormItem } from '@prisma/client';
+import { $Enums, Expert, ExpertsInProjects, Project } from '@prisma/client';
 import { expertSchema as formSchema } from '@schema/expert.schema';
+import { listAllProjects } from '@server/trpc/shared/project';
 import { ctrlFieldClassName } from '@utils/form';
 import { AllowedImageDirs, getImages } from '@utils/images';
 import { trpc } from '@utils/trpc';
-import { ErrorMessage, Field, Form, Formik, useFormikContext } from 'formik';
+import { ErrorMessage, Field, FieldArray, FieldArrayRenderProps, Form, Formik, useFormikContext } from 'formik';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -43,7 +44,23 @@ const showErrorToast = (msg: string) => {
   });
 };
 
-const INITIAL_STATE: FormItem = {
+const projectLabel = (project: Project): string =>
+  `${project.projectName} ${project.startedAt || project.endedAt ? `(${project.startedAt} - ${project.endedAt})` : ''}`;
+
+const sortProjects = (a: Project, b: Project): 1 | 0 | -1 =>
+  (a.startedAt ?? 0) < (b.startedAt ?? 0)
+    ? -1
+    : (a.startedAt ?? 0) > (b.startedAt ?? 0)
+    ? 1
+    : (a.endedAt ?? 0) < (b.endedAt ?? 0)
+    ? -1
+    : (a.endedAt ?? 0) > (b.endedAt ?? 0)
+    ? 1
+    : 0;
+
+type FormItem = Expert & { projects: ExpertsInProjects[] };
+
+const INITIAL_STATE: FormItem & { projects: string[] } = {
   id: '',
   firstName: '',
   lastName: '',
@@ -56,42 +73,61 @@ const INITIAL_STATE: FormItem = {
   slug: '',
   createdAt: new Date(),
   updatedAt: new Date(),
+  projects: [],
 };
+
+const NEW_EXPERT_ID = 'newExpertId';
 
 const visibilities = Object.keys($Enums.Visibility);
 
 const DASHBOARD_OVERVIEW_URL = DASHBOARD_EXPERTS_URL;
 
 const hydrateItem = (item: string | null | undefined): FormItem | null => {
-  const loadedItem: (FormItem & { createdAt: Date | string | null; updatedAt: Date | string | null }) | null =
-    JSON.parse(item || 'null');
+  const loadedItem:
+    | (FormItem & {
+        createdAt: Date | string | null;
+        updatedAt: Date | string | null;
+        endedAt: Date | string | null;
+      })
+    | null = JSON.parse(item || 'null');
 
-  if (loadedItem != null) {
-    loadedItem.createdAt = new Date(loadedItem.createdAt as string);
-    loadedItem.updatedAt = new Date(loadedItem.updatedAt as string);
+  if (loadedItem == null) {
+    return null;
   }
 
-  return loadedItem as FormItem | null;
+  const processedItem = {
+    ...loadedItem,
+    createdAt: new Date(loadedItem.createdAt as string),
+    updatedAt: new Date(loadedItem.updatedAt as string),
+    endedAt: loadedItem.endedAt ?? '',
+  };
+
+  return processedItem as FormItem;
 };
 
 export const getServerSideProps: GetServerSideProps<{
   itemId: string;
   item?: string;
   images: string[];
+  projects: string;
 }> = async ({ params }) => {
   const itemId = params?.id as string;
   const isNew = itemId === ADD_ITEM_URL_PREFIX;
 
-  const item = isNew ? null : await prisma.expert.findUnique({ where: { id: itemId } });
+  const item = isNew
+    ? null
+    : await prisma.expert.findUnique({ where: { id: itemId }, include: { projects: { where: { expertId: itemId } } } });
   const images = getImages(AllowedImageDirs.TEAM);
+  const projects = await listAllProjects();
 
-  return { props: { itemId, item: JSON.stringify(item), images } };
+  return { props: { itemId, item: JSON.stringify(item), images, projects: JSON.stringify(projects) } };
 };
 
 export default function Page({
   itemId,
   item,
   images,
+  projects,
 }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   const router = useRouter();
 
@@ -110,6 +146,7 @@ export default function Page({
   const isNew = itemId === ADD_ITEM_URL_PREFIX;
 
   const loadedItem = hydrateItem(item);
+  const loadedProjects: Project[] = JSON.parse(projects || '[]');
 
   const addItem = trpc.experts.create.useMutation({
     onSuccess: () => {
@@ -141,6 +178,44 @@ export default function Page({
     }
   };
 
+  // Handle project selection per expert
+  const isUsedProject = (project: Project): boolean | undefined =>
+    loadedItem?.projects.some((loadedItemProject) => project.id === loadedItemProject.projectId);
+
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [addedProjects, setAddedProjects] = useState<Project[]>(
+    [...loadedProjects].filter(isUsedProject).sort(sortProjects)
+  );
+  const [availableProjects, setAvailableProjects] = useState<Project[]>(
+    [...loadedProjects].filter((project) => !isUsedProject(project)).sort(sortProjects)
+  );
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const projectId = e.target.value;
+    const selectedProject = availableProjects.find((project) => project.id === projectId) || null;
+    setSelectedProject(selectedProject);
+  };
+
+  const handleAddClick = (arrayHelpers: FieldArrayRenderProps): void => {
+    if (!selectedProject) {
+      return;
+    }
+
+    arrayHelpers.push({
+      expertId: loadedItem?.id ?? NEW_EXPERT_ID,
+      projectId: selectedProject.id,
+    } as ExpertsInProjects);
+    setAddedProjects([...addedProjects, selectedProject].sort(sortProjects));
+    setAvailableProjects((prevProjects) => prevProjects.filter((project) => project.id !== selectedProject.id));
+    setSelectedProject(null);
+  };
+
+  const handleDeleteClick = (selectedProject: Project, arrayHelpers: FieldArrayRenderProps, index: number) => {
+    arrayHelpers.remove(index);
+    setAddedProjects((prevProjects) => prevProjects.filter((project) => project.id !== selectedProject.id));
+    setAvailableProjects([...availableProjects, selectedProject].sort(sortProjects));
+  };
+
   return (
     <DashboardLayout>
       <h1 className="text-center">{isNew ? 'Neuen Experten anlegen' : 'Experten bearbeiten'}</h1>
@@ -154,7 +229,7 @@ export default function Page({
             setSubmitting(false);
           }}
         >
-          {({ errors, touched, isSubmitting, dirty, isValid }) => {
+          {({ errors, touched, isSubmitting, dirty, isValid, values }) => {
             const ctrlClassName = ctrlFieldClassName<FormItem>(errors, touched);
 
             return (
@@ -275,6 +350,71 @@ export default function Page({
                           <ErrorMessage name="orderId" component="div" className="form-feedback" />
                         </div>
                       </div>
+
+                      <FieldArray
+                        name="projects"
+                        render={(arrayHelpers) => (
+                          <>
+                            {availableProjects.length > 0 && (
+                              <div className="row">
+                                <div className="form-group">
+                                  <label htmlFor="projectId" className="w-100">
+                                    Projekte:
+                                  </label>
+
+                                  <Field
+                                    as="select"
+                                    id="projectId"
+                                    name="projectId"
+                                    placeholder="Projekt"
+                                    value={selectedProject?.id ?? ''}
+                                    onChange={handleSelectChange}
+                                  >
+                                    <option value="" disabled={true}>
+                                      (Projekt wählen...)
+                                    </option>
+                                    {availableProjects.map((project) => (
+                                      <option key={project.id} value={project.id}>
+                                        {projectLabel(project)}
+                                      </option>
+                                    ))}
+                                  </Field>
+
+                                  <button
+                                    type="button"
+                                    className="btn btn-link px-2 py-0"
+                                    onClick={() => handleAddClick(arrayHelpers)}
+                                    disabled={selectedProject == null}
+                                  >
+                                    <i className="fas fa-add" title="Hinzufügen"></i>
+                                  </button>
+                                </div>
+                              </div>
+                            )}
+
+                            {addedProjects.length > 0 && (
+                              <div className="row">
+                                <div>
+                                  <ul style={{ listStyle: 'none' }}>
+                                    {addedProjects.map((project, index) => (
+                                      <li key={index}>
+                                        <button
+                                          type="button"
+                                          className="btn btn-link px-2 py-0"
+                                          onClick={() => handleDeleteClick(project, arrayHelpers, index)}
+                                        >
+                                          <i className="fas fa-trash" title="Löschen"></i>
+                                        </button>
+                                        {projectLabel(project)}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              </div>
+                            )}
+                          </>
+                        )}
+                      />
 
                       <div className="text-center pb-70">
                         <button
