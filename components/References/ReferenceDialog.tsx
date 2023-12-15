@@ -95,7 +95,7 @@ const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: ProjectW
                     </Text>
 
                     <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
-                      {data?.experts.map((item, idx) => (
+                      {data?.experts?.map((item, idx) => (
                         <li key={idx}>
                           <Image
                             src={item.expert.img || DEFAULT_EXPERT_IMG}

@@ -2,7 +2,7 @@ import { prisma as clientPrisma } from '@db/client';
 import { $Enums, Expert, Prisma, PrismaClient, PrismaPromise, Project } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 
-export type ProjectWithExperts = Project & { experts: { expert: Partial<Expert> }[] };
+export type ProjectWithExperts = Project & { experts?: { expert: Partial<Expert> }[] };
 
 export const listProjects = (
   prisma: PrismaClient<Prisma.PrismaClientOptions, never, DefaultArgs> = clientPrisma
