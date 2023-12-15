@@ -1,14 +1,12 @@
-import { $Enums, Project } from '@prisma/client';
-import { z } from 'zod';
+import { Project } from '@prisma/client';
 import { projectSchema } from '@schema/project.schema';
+import { z } from 'zod';
+import { listAllProjects, listProjects } from '../shared/project';
 import { protectedProcedure, publicProcedure, router } from '../trpc';
 
 export const projectsRouter = router({
   list: publicProcedure.query(async ({ ctx: { prisma } }) => {
-    const projects: Project[] = await prisma.project.findMany({
-      where: { visibility: $Enums.Visibility.PUBLIC },
-      orderBy: { orderId: 'asc' },
-    });
+    const projects: Project[] = await listProjects(prisma);
     return projects;
   }),
 
@@ -20,7 +18,7 @@ export const projectsRouter = router({
     }),
 
   listDashboard: protectedProcedure.query(async ({ ctx: { prisma } }) => {
-    const projects: Project[] = await prisma.project.findMany({ orderBy: { orderId: 'asc' } });
+    const projects: Project[] = await listAllProjects(prisma);
     return projects;
   }),
 

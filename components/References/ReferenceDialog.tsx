@@ -1,8 +1,12 @@
 import CompanyMap from '@components/Map/CompanyMap';
-import { CENTER_OF_GERMANY_COORDINATES, PROJECT_MAP_ZOOM } from '@consts/misc';
-import { Project } from '@prisma/client';
+import { CENTER_OF_GERMANY_COORDINATES, DEFAULT_EXPERT_IMG, PROJECT_MAP_ZOOM } from '@consts/misc';
 import { Button, Dialog, Flex, Text } from '@radix-ui/themes';
+import { ProjectWithExperts } from '@server/trpc/shared/project';
+import Image from 'next/image';
 import { PropsWithChildren } from 'react';
+
+const EXPERT_IMG_WIDTH = 32;
+const EXPERT_IMG_HEIGHT = 32;
 
 const monthsDiff = (date1: Date, date2: Date): number => {
   const months = (date2.getFullYear() - date1.getFullYear()) * 12 + date2.getMonth() - date1.getMonth();
@@ -30,7 +34,7 @@ const getProjectDuration = (startedAt?: string, endedAt?: string): string => {
   return duration;
 };
 
-const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: Project | null }>): JSX.Element => {
+const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: ProjectWithExperts | null }>): JSX.Element => {
   const duration = getProjectDuration(data?.startedAt ?? '', data?.endedAt ?? '');
 
   return (
@@ -82,6 +86,38 @@ const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: Project 
                   </Text>
                 </label>
               </div>
+
+              {(data?.experts?.length ?? 0) > 0 && (
+                <div className="col-12">
+                  <label>
+                    <Text as="div" size="3" mb="1" weight="bold" color="gray">
+                      Experten
+                    </Text>
+
+                    <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
+                      {data?.experts?.map((item, idx) => (
+                        <li key={idx}>
+                          <Image
+                            src={item.expert.img || DEFAULT_EXPERT_IMG}
+                            alt={`Porträt von ${item.expert.firstName} ${item.expert.lastName}`}
+                            title={`${item.expert.firstName} ${item.expert.lastName}`}
+                            className="rounded-circle optimized-image"
+                            width={EXPERT_IMG_WIDTH}
+                            height={EXPERT_IMG_HEIGHT}
+                            style={{
+                              width: EXPERT_IMG_WIDTH,
+                              height: EXPERT_IMG_HEIGHT,
+                              marginRight: '1rem',
+                              marginBottom: '.25rem',
+                            }}
+                          />
+                          {item.expert.firstName} {item.expert.lastName}
+                        </li>
+                      ))}
+                    </ul>
+                  </label>
+                </div>
+              )}
             </div>
 
             <div className="col-md-6">

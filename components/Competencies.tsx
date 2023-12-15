@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import SectionDivider from './Common/SectionDivider';
 
-interface Competence {
+type Competence = {
   name: string;
   description: string;
   icon: string;
   link: string;
   className?: string;
-}
+};
 
 const competencies: Competence[] = [
   {

@@ -1,7 +1,8 @@
 import SectionDivider from '@components/Common/SectionDivider';
-import { prisma } from '@db/client';
 import Layout from '@layouts/Layout';
-import { $Enums, Expert, PrismaPromise, Project } from '@prisma/client';
+import { Expert, PrismaPromise } from '@prisma/client';
+import { listExperts } from '@server/trpc/shared/expert';
+import { ProjectWithExperts, listProjectsWithExperts } from '@server/trpc/shared/project';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import dynamic from 'next/dynamic';
 
@@ -19,18 +20,11 @@ const JoinUs = dynamic(import('@components/JoinUs/JoinUs'), { loading: () => <>{
 const Contact = dynamic(import('@components/Contact'), { loading: () => <>{SECTION}</> });
 const WorkProcess = dynamic(import('@components/WorkProcess'), { loading: () => <>{SECTION}</> });
 
-export const getStaticProps: GetStaticProps<{ experts: Expert[]; projects: Project[] }> = async () => {
-  const expertsQuery: PrismaPromise<Expert[]> = prisma.expert.findMany({
-    where: { visibility: $Enums.Visibility.PUBLIC },
-    orderBy: { orderId: 'asc' },
-  });
+export const getStaticProps: GetStaticProps<{ experts: Expert[]; projects: ProjectWithExperts[] }> = async () => {
+  const expertsQuery: PrismaPromise<Expert[]> = listExperts();
+  const projectsQuery: PrismaPromise<ProjectWithExperts[]> = listProjectsWithExperts();
 
-  const projectsQuery: PrismaPromise<Project[]> = prisma.project.findMany({
-    where: { visibility: $Enums.Visibility.PUBLIC },
-    orderBy: { orderId: 'asc' },
-  });
-
-  const [rawExperts, projects]: [Expert[], Project[]] = await Promise.all([expertsQuery, projectsQuery]);
+  const [rawExperts, projects]: [Expert[], ProjectWithExperts[]] = await Promise.all([expertsQuery, projectsQuery]);
   const experts = rawExperts.map((expert) => ({
     ...expert,
     createdAt: null,

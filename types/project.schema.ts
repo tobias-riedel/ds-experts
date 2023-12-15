@@ -3,6 +3,7 @@ import { z } from 'zod';
 
 // TODO: implement zod-prisma-generator: https://github.com/CarterGrimmeisen/zod-prisma or
 // https://www.npmjs.com/package/prisma-zod-generator
+
 export const projectSchema = z.object({
   id: z.string().optional(),
   partnerName: z.string(),

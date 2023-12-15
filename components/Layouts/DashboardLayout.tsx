@@ -7,10 +7,10 @@ import React, { useEffect, useState } from 'react';
 import logoImg from '../../public/images/logo-ds-experts.png';
 import GoTop from './GoTop';
 
-interface NavLinks {
+type NavLinks = {
   to: string;
   name: string;
-}
+};
 
 const DASHBOARD_URL = '/dashboard';
 
