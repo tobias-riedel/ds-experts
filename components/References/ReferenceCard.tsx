@@ -1,11 +1,11 @@
-import { Project } from '@prisma/client';
+import { ProjectWithExperts } from '@server/trpc/shared/project';
 import Image from 'next/image';
 import Link from 'next/link';
 import ReferenceDialog from './ReferenceDialog';
 
 const DEFAULT_IMG = '/images/references/default.jpg';
 
-const ProjectCard = ({ data }: { data?: Project | null }): JSX.Element => {
+const ProjectCard = ({ data }: { data?: ProjectWithExperts | null }): JSX.Element => {
   return (
     <>
       <ReferenceDialog data={data}>
