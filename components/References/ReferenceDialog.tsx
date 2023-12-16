@@ -5,8 +5,8 @@ import { ProjectWithExperts } from '@server/trpc/shared/project';
 import Image from 'next/image';
 import { PropsWithChildren } from 'react';
 
-const EXPERT_IMG_WIDTH = 32;
-const EXPERT_IMG_HEIGHT = 32;
+const EXPERT_IMG_WIDTH = 40;
+const EXPERT_IMG_HEIGHT = 40;
 
 const monthsDiff = (date1: Date, date2: Date): number => {
   const months = (date2.getFullYear() - date1.getFullYear()) * 12 + date2.getMonth() - date1.getMonth();
@@ -107,7 +107,7 @@ const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: ProjectW
                             style={{
                               width: EXPERT_IMG_WIDTH,
                               height: EXPERT_IMG_HEIGHT,
-                              marginRight: '1rem',
+                              marginRight: '.5rem',
                               marginBottom: '.25rem',
                             }}
                           />
