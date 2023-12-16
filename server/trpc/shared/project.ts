@@ -22,6 +22,7 @@ export const listProjectsWithExperts = (
     include: {
       experts: {
         include: { expert: { select: { firstName: true, lastName: true, img: true, orderId: true } } },
+        where: { expert: { visibility: $Enums.Visibility.PUBLIC } },
         orderBy: { expert: { orderId: 'asc' } },
       },
     },
