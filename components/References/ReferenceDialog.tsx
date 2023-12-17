@@ -41,7 +41,7 @@ const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: ProjectW
     <Dialog.Root>
       <Dialog.Trigger>{children}</Dialog.Trigger>
 
-      <Dialog.Content style={{ maxWidth: 700, minWidth: 320 }}>
+      <Dialog.Content style={{ maxWidth: 'min(700px, 94vw)', minWidth: 320 }}>
         <Flex gap="3" justify="between" align="start">
           <Dialog.Title>{data?.projectName}</Dialog.Title>
           <Dialog.Close>
