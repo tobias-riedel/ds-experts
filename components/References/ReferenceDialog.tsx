@@ -95,25 +95,28 @@ const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: ProjectW
                     </Text>
 
                     <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
-                      {data?.experts?.map((item, idx) => (
-                        <li key={idx}>
-                          <Image
-                            src={item.expert.img || DEFAULT_EXPERT_IMG}
-                            alt={`Porträt von ${item.expert.firstName} ${item.expert.lastName}`}
-                            title={`${item.expert.firstName} ${item.expert.lastName}`}
-                            className="rounded-circle optimized-image"
-                            width={EXPERT_IMG_WIDTH}
-                            height={EXPERT_IMG_HEIGHT}
-                            style={{
-                              width: EXPERT_IMG_WIDTH,
-                              height: EXPERT_IMG_HEIGHT,
-                              marginRight: '.5rem',
-                              marginBottom: '.25rem',
-                            }}
-                          />
-                          {item.expert.firstName} {item.expert.lastName}
-                        </li>
-                      ))}
+                      {data?.experts
+                        ?.map((item) => item.expert)
+                        .filter((expert) => expert != null)
+                        .map((expert, idx) => (
+                          <li key={idx}>
+                            <Image
+                              src={expert.img || DEFAULT_EXPERT_IMG}
+                              alt={`Porträt von ${expert.firstName} ${expert.lastName}`}
+                              title={`${expert.firstName} ${expert.lastName}`}
+                              className="rounded-circle optimized-image"
+                              width={EXPERT_IMG_WIDTH}
+                              height={EXPERT_IMG_HEIGHT}
+                              style={{
+                                width: EXPERT_IMG_WIDTH,
+                                height: EXPERT_IMG_HEIGHT,
+                                marginRight: '.5rem',
+                                marginBottom: '.25rem',
+                              }}
+                            />
+                            {expert.firstName} {expert.lastName}
+                          </li>
+                        ))}
                     </ul>
                   </label>
                 </div>

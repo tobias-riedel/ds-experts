@@ -229,7 +229,7 @@ export default function Page({
             setSubmitting(false);
           }}
         >
-          {({ errors, touched, isSubmitting, dirty, isValid, values }) => {
+          {({ errors, touched, isSubmitting, dirty, isValid }) => {
             const ctrlClassName = ctrlFieldClassName<FormItem>(errors, touched);
 
             return (
@@ -359,7 +359,7 @@ export default function Page({
                               <div className="row">
                                 <div className="form-group">
                                   <label htmlFor="projectId" className="w-100">
-                                    Projekte:
+                                    Projekte
                                   </label>
 
                                   <Field

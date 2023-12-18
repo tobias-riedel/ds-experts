@@ -1,7 +1,7 @@
 import { Expert } from '@prisma/client';
 import { expertSchema } from '@schema/expert.schema';
 import { z } from 'zod';
-import { listExperts } from '../shared/expert';
+import { listAllExperts, listExperts } from '../shared/expert';
 import { protectedProcedure, publicProcedure, router } from '../trpc';
 
 export const expertsRouter = router({
@@ -18,7 +18,7 @@ export const expertsRouter = router({
     }),
 
   listDashboard: protectedProcedure.query(async ({ ctx: { prisma } }) => {
-    const experts: Expert[] = await prisma.expert.findMany({ orderBy: { orderId: 'asc' } });
+    const experts: Expert[] = await listAllExperts(prisma);
     return experts;
   }),
 

@@ -4,12 +4,22 @@ import { MySwal } from '@consts/misc';
 import { DASHBOARD_PROJECTS_URL } from '@consts/routes';
 import { prisma } from '@db/client';
 import DashboardLayout from '@layouts/DashboardLayout';
-import { $Enums, Project as FormItem } from '@prisma/client';
+import { $Enums, Expert, ExpertsInProjects, Project } from '@prisma/client';
 import { projectSchema as formSchema } from '@schema/project.schema';
+import { listAllExperts } from '@server/trpc/shared/expert';
 import { ctrlFieldClassName } from '@utils/form';
 import { AllowedImageDirs, getImages } from '@utils/images';
 import { trpc } from '@utils/trpc';
-import { ErrorMessage, Field, Form, Formik, FormikValues, useFormikContext } from 'formik';
+import {
+  ErrorMessage,
+  Field,
+  FieldArray,
+  FieldArrayRenderProps,
+  Form,
+  Formik,
+  FormikValues,
+  useFormikContext,
+} from 'formik';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -46,6 +56,13 @@ const showErrorToast = (msg: string) => {
   });
 };
 
+const expertLabel = (project: Expert): string => `${project.firstName} ${project.lastName}`;
+
+const sortExperts = (a: Expert, b: Expert): 1 | 0 | -1 =>
+  (a.orderId ?? 0) < (b.orderId ?? 0) ? -1 : (a.orderId ?? 0) > (b.orderId ?? 0) ? 1 : 0;
+
+type FormItem = Project & { experts: ExpertsInProjects[] };
+
 const INITIAL_STATE: FormItem = {
   id: '',
   projectName: '',
@@ -60,34 +77,69 @@ const INITIAL_STATE: FormItem = {
   visibility: $Enums.Visibility.ADMIN,
   orderId: 0,
   slug: '',
+  experts: [],
 };
+
+const NEW_PROJECT_ID = 'newProjectId';
 
 const visibilities = Object.keys($Enums.Visibility);
 
 const DASHBOARD_OVERVIEW_URL = DASHBOARD_PROJECTS_URL;
 
+const hydrateItem = (item: string | null | undefined): FormItem | null => {
+  const loadedItem:
+    | (FormItem & {
+        endedAt: Date | string | null;
+      })
+    | null = JSON.parse(item || 'null');
+
+  if (loadedItem == null) {
+    return null;
+  }
+
+  const processedItem = {
+    ...loadedItem,
+    endedAt: loadedItem.endedAt ?? '',
+  };
+
+  return processedItem as FormItem;
+};
+
 export const getServerSideProps: GetServerSideProps<{
   itemId: string;
-  item?: FormItem | null;
+  item?: string;
   images: string[];
+  experts: string;
 }> = async ({ params }) => {
   const itemId = params?.id as string;
   const isNew = itemId === ADD_ITEM_URL_PREFIX;
 
-  const item = isNew ? null : await prisma.project.findUnique({ where: { id: itemId } });
+  const item = isNew
+    ? null
+    : await prisma.project.findUnique({
+        where: { id: itemId },
+        include: {
+          experts: {
+            include: { expert: { select: { firstName: true, lastName: true, img: true, orderId: true } } },
+            where: { projectId: itemId },
+          },
+        },
+      });
   const images = getImages(AllowedImageDirs.REFERENCES);
+  const experts = await listAllExperts();
 
-  return { props: { itemId, item, images } };
+  return { props: { itemId, item: JSON.stringify(item), images, experts: JSON.stringify(experts) } };
 };
 
 export default function Page({
   itemId,
   item,
   images,
+  experts,
 }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
   const router = useRouter();
 
-  const [previewItem, setPreviewItem] = useState<FormItem | null>();
+  const [previewItem, setPreviewItem] = useState<Project | null>();
 
   const BusinessLogic = () => {
     const { values } = useFormikContext<FormItem>();
@@ -99,6 +151,9 @@ export default function Page({
   };
 
   const isNew = itemId === ADD_ITEM_URL_PREFIX;
+
+  const loadedItem = hydrateItem(item);
+  const loadedExperts: Expert[] = JSON.parse(experts || '[]');
 
   const addItem = trpc.projects.create.useMutation({
     onSuccess: () => {
@@ -132,13 +187,49 @@ export default function Page({
     }
   };
 
+  // Handle project selection per expert
+  const isUsedExpert = (expert: Expert): boolean | undefined =>
+    loadedItem?.experts.some((loadedItemExpert) => expert.id === loadedItemExpert.expertId);
+
+  const [selectedExpert, setSelectedExpert] = useState<Expert | null>(null);
+  const [addedExperts, setAddedExperts] = useState<Expert[]>([...loadedExperts].filter(isUsedExpert).sort(sortExperts));
+  const [availableExperts, setAvailableExperts] = useState<Expert[]>(
+    [...loadedExperts].filter((project) => !isUsedExpert(project)).sort(sortExperts)
+  );
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const projectId = e.target.value;
+    const selectedProject = availableExperts.find((project) => project.id === projectId) || null;
+    setSelectedExpert(selectedProject);
+  };
+
+  const handleAddClick = (arrayHelpers: FieldArrayRenderProps): void => {
+    if (!selectedExpert) {
+      return;
+    }
+
+    arrayHelpers.push({
+      expertId: selectedExpert.id,
+      projectId: loadedItem?.id ?? NEW_PROJECT_ID,
+    } as ExpertsInProjects);
+    setAddedExperts([...addedExperts, selectedExpert].sort(sortExperts));
+    setAvailableExperts((prevExperts) => prevExperts.filter((expert) => expert.id !== selectedExpert.id));
+    setSelectedExpert(null);
+  };
+
+  const handleDeleteClick = (selectedExpert: Expert, arrayHelpers: FieldArrayRenderProps, index: number) => {
+    arrayHelpers.remove(index);
+    setAddedExperts((prevExperts) => prevExperts.filter((expert) => expert.id !== selectedExpert.id));
+    setAvailableExperts([...availableExperts, selectedExpert].sort(sortExperts));
+  };
+
   return (
     <DashboardLayout>
       <h1 className="text-center">{isNew ? 'Neues Projekt anlegen' : 'Projekt bearbeiten'}</h1>
 
       <div className="contact-form">
         <Formik<FormItem>
-          initialValues={{ ...INITIAL_STATE, ...item }}
+          initialValues={{ ...INITIAL_STATE, ...loadedItem }}
           validationSchema={toFormikValidationSchema(formSchema)}
           onSubmit={(values, { setSubmitting }) => {
             handleSubmit(values);
@@ -303,6 +394,71 @@ export default function Page({
                           <ErrorMessage name="description" component="div" className="form-feedback" />
                         </div>
                       </div>
+
+                      <FieldArray
+                        name="experts"
+                        render={(arrayHelpers) => (
+                          <>
+                            {availableExperts.length > 0 && (
+                              <div className="row">
+                                <div className="form-group">
+                                  <label htmlFor="expertId" className="w-100">
+                                    Experten
+                                  </label>
+
+                                  <Field
+                                    as="select"
+                                    id="expertId"
+                                    name="expertId"
+                                    placeholder="Experte"
+                                    value={selectedExpert?.id ?? ''}
+                                    onChange={handleSelectChange}
+                                  >
+                                    <option value="" disabled={true}>
+                                      (Experten wählen...)
+                                    </option>
+                                    {availableExperts.map((expert) => (
+                                      <option key={expert.id} value={expert.id}>
+                                        {expertLabel(expert)}
+                                      </option>
+                                    ))}
+                                  </Field>
+
+                                  <button
+                                    type="button"
+                                    className="btn btn-link px-2 py-0"
+                                    onClick={() => handleAddClick(arrayHelpers)}
+                                    disabled={selectedExpert == null}
+                                  >
+                                    <i className="fas fa-add" title="Hinzufügen"></i>
+                                  </button>
+                                </div>
+                              </div>
+                            )}
+
+                            {addedExperts.length > 0 && (
+                              <div className="row">
+                                <div>
+                                  <ul style={{ listStyle: 'none' }}>
+                                    {addedExperts.map((expert, index) => (
+                                      <li key={index}>
+                                        <button
+                                          type="button"
+                                          className="btn btn-link px-2 py-0"
+                                          onClick={() => handleDeleteClick(expert, arrayHelpers, index)}
+                                        >
+                                          <i className="fas fa-trash" title="Löschen"></i>
+                                        </button>
+                                        {expertLabel(expert)}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              </div>
+                            )}
+                          </>
+                        )}
+                      />
 
                       <div className="text-center pb-70">
                         <button

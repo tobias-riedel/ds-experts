@@ -23,12 +23,25 @@ export const projectsRouter = router({
   }),
 
   create: protectedProcedure.input(projectSchema).mutation(async ({ ctx: { prisma }, input: item }) => {
-    const project: Project = await prisma.project.create({ data: { ...item, id: item.id || undefined } });
+    const { experts, ...payload } = item;
+
+    const project: Project = await prisma.project.create({ data: { ...payload, id: item.id || undefined } });
+
+    await prisma.expertsInProjects.createMany({
+      data: experts?.map((expert) => ({ ...expert, projectId: project.id })) ?? [],
+    });
+
     return project;
   }),
 
   update: protectedProcedure.input(projectSchema).mutation(async ({ ctx: { prisma }, input: item }) => {
-    const project: Project = await prisma.project.update({ where: { id: item.id }, data: item });
+    const { experts, ...payload } = item;
+
+    const project: Project = await prisma.project.update({ where: { id: payload.id }, data: payload });
+
+    await prisma.expertsInProjects.deleteMany({ where: { projectId: payload.id } });
+    await prisma.expertsInProjects.createMany({ data: experts ?? [] });
+
     return project;
   }),
 
