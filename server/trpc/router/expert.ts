@@ -25,35 +25,39 @@ export const expertsRouter = router({
   create: protectedProcedure.input(expertSchema).mutation(async ({ ctx: { prisma }, input: item }) => {
     const { projects, ...payload } = item;
 
-    const expert: Expert = await prisma.expert.create({
-      data: {
-        ...payload,
-        id: payload.id || undefined,
-      },
-    });
+    return prisma.$transaction(async (tx) => {
+      const expert: Expert = await tx.expert.create({
+        data: {
+          ...payload,
+          id: payload.id || undefined,
+        },
+      });
 
-    await prisma.expertsInProjects.createMany({
-      data: projects?.map((project) => ({ ...project, expertId: expert.id })) ?? [],
-    });
+      await tx.expertsInProjects.createMany({
+        data: projects?.map((project) => ({ ...project, expertId: expert.id })) ?? [],
+      });
 
-    return expert;
+      return expert;
+    });
   }),
 
   update: protectedProcedure.input(expertSchema).mutation(async ({ ctx: { prisma }, input: item }) => {
     const { projects, ...payload } = item;
 
-    const expert: Expert = await prisma.expert.update({
-      where: { id: payload.id },
-      data: {
-        ...payload,
-        updatedAt: undefined,
-      },
+    return prisma.$transaction(async (tx) => {
+      const expert: Expert = await tx.expert.update({
+        where: { id: payload.id },
+        data: {
+          ...payload,
+          updatedAt: undefined,
+        },
+      });
+
+      await tx.expertsInProjects.deleteMany({ where: { expertId: payload.id } });
+      await tx.expertsInProjects.createMany({ data: projects ?? [] });
+
+      return expert;
     });
-
-    await prisma.expertsInProjects.deleteMany({ where: { expertId: payload.id } });
-    await prisma.expertsInProjects.createMany({ data: projects ?? [] });
-
-    return expert;
   }),
 
   delete: protectedProcedure
