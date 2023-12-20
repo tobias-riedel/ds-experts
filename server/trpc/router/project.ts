@@ -27,7 +27,7 @@ export const projectsRouter = router({
 
     return await prisma.$transaction(async (tx) => {
       const project: Project = await tx.project.create({
-        data: { ...payload, id: item.id || undefined },
+        data: { ...payload, id: undefined },
       });
 
       await tx.expertsInProjects.createMany({
@@ -45,7 +45,7 @@ export const projectsRouter = router({
       const project: Project = await tx.project.update({ where: { id: payload.id }, data: payload });
 
       await tx.expertsInProjects.deleteMany({ where: { projectId: payload.id } });
-      await tx.expertsInProjects.createMany({ data: experts ?? [] });
+      experts?.length && (await tx.expertsInProjects.createMany({ data: experts ?? [] }));
 
       return project;
     });
