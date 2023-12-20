@@ -26,7 +26,7 @@ const ProjectCard = ({ data }: { data?: ProjectWithExperts | null }): JSX.Elemen
               </div>
               <div>
                 <Link href="/" className="ref-location">
-                  ({data?.city || 'Stadt'} )
+                  ({data?.city || 'Stadt'})
                 </Link>
               </div>
             </span>
