@@ -29,7 +29,7 @@ export const expertsRouter = router({
       const expert: Expert = await tx.expert.create({
         data: {
           ...payload,
-          id: payload.id || undefined,
+          id: undefined,
         },
       });
 
@@ -54,7 +54,7 @@ export const expertsRouter = router({
       });
 
       await tx.expertsInProjects.deleteMany({ where: { expertId: payload.id } });
-      await tx.expertsInProjects.createMany({ data: projects ?? [] });
+      projects?.length && (await tx.expertsInProjects.createMany({ data: projects ?? [] }));
 
       return expert;
     });
