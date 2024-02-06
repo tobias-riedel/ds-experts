@@ -149,18 +149,10 @@ const Projects = ({ data: projects }: { data: Project[] }): JSX.Element => {
             modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
             className="work-slides"
           >
-            {projects?.map((project, idx) => {
-              const refProps =
-                idx % 2
-                  ? {
-                      'data-aos': 'fade-up',
-                      'data-aos-duration': 1200,
-                      'data-aos-delay': 100,
-                    }
-                  : {};
+            {projects?.map((project) => {
               return (
                 <SwiperSlide key={project.id}>
-                  <div className="work-card shadow" {...refProps}>
+                  <div className="work-card shadow">
                     <ProjectCard data={project} />
                   </div>
                 </SwiperSlide>
