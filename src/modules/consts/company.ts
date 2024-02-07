@@ -5,7 +5,7 @@ export const COMPANY_ADDRESS = {
   streetNo: '12',
   zipCode: '16559',
   city: 'Liebenwalde',
-  telephone: '+49 33054 904 404',
+  telephone: '+49 33054 143900',
   email: 'info@ds-experts.de',
 };
 
