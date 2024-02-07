@@ -40,7 +40,7 @@ const WorkProcess = () => {
               <div className="icon">
                 <i className="pe-7s-study"></i>
               </div>
-              <h3>Ausbildung</h3>
+              <h3>Weiterbildung</h3>
             </div>
 
             <div className="single-work-process">

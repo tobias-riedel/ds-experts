@@ -26,7 +26,7 @@ const About = () => {
 
             <div className="about-text">
               <p>
-                Wir haben uns als Ziel gesetzt, jeden Mitarbeiter nur entsprechend seiner Qualifikation einzusetzen. Wir
+                Wir haben uns als Ziel gesetzt, jeden Mitarbeiter entsprechend seiner Qualifikation einzusetzen. Wir
                 qualifizieren unsere Mitarbeiter regelmäßig weiter. Dies bedeutet, dass im Rahmen der jährlich
                 stattfindenden Ziel-; Gehalts- und Mitarbeitergespräche Weiterbildungsmaßnahmen für das Folgejahr
                 definiert werden.

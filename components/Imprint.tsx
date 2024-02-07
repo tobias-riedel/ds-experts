@@ -44,7 +44,7 @@ const Imprint = () => {
                     {COMPANY_ADDRESS.zipCode} {COMPANY_ADDRESS.city}
                   </div>
                   <span>Telefon: </span>
-                  <Link href={`tel: ${COMPANY_ADDRESS.telephone}`}>+49 33 054904 404</Link>
+                  <Link href={`tel: ${COMPANY_ADDRESS.telephone}`}>{COMPANY_ADDRESS.telephone}</Link>
                 </>
               ) : (
                 <>
