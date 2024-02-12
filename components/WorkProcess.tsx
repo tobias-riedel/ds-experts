@@ -7,32 +7,32 @@ const data = [
   {
     iconName: 'pe-7s-display1',
     title: 'Know-How',
-    text: 'Kenntnisse, Erfahrungen, Wettbewerbsvorteil und umfangreiches Fachwissen',
+    text: 'Kenntnisse, Erfahrungen & Fachwissen',
   },
   {
     iconName: 'pe-7s-display2',
     title: 'Resilienz',
-    text: 'Widerstandsfähig, Lösungsorientiert, Akzeptanz und Optimismus',
+    text: 'Widerstandsfähigkeit, Lösungsorientierung & Optimismus',
   },
   {
     iconName: 'pe-7s-study',
     title: 'Fortbildung',
-    text: 'Lehrgänge, Meisterkurse und gefestigte Qualifikation',
+    text: 'Lehrgänge, Meisterkurse & Qualifikation',
   },
   {
     iconName: 'pe-7s-id',
     title: 'Professionalität',
-    text: 'hochwertige Arbeitsleistung, gekonntes Verhalten und souveränes Handeln',
+    text: 'Arbeitsleistung, Integrität & Souveränität',
   },
   {
     iconName: 'pe-7s-diamond',
     title: 'Entschlossenheit',
-    text: 'fester Wille oder Willenskraft, Antrieb, definierte Ziele und Ergebnisorientiert',
+    text: 'Willenskraft, Antrieb & Ergebnisorientierung',
   },
   {
     iconName: 'pe-7s-gift',
     title: 'Qualität',
-    text: 'unser Merkmal, Güte unserer Eigenschaft und zufriedenstellende Ausführungen',
+    text: 'Kapazität, Variaton & Exzellenz',
   },
 ];
 
@@ -41,7 +41,7 @@ const WorkProcess = () => {
     <section className="pt-100">
       <div className="container work-process-area">
         <div className="section-title">
-          <h2>Unser Erfolg kommt von...</h2>
+          <h2>Unser Erfolg kommt durch ...</h2>
         </div>
 
         <div className="work-process">

@@ -28,7 +28,7 @@ const About = () => {
               <p>
                 Wir haben uns als Ziel gesetzt, jeden Mitarbeiter entsprechend seiner Qualifikation einzusetzen. Wir
                 qualifizieren unsere Mitarbeiter regelmäßig weiter. Dies bedeutet, dass im Rahmen der jährlich
-                stattfindenden Ziel-; Gehalts- und Mitarbeitergespräche Weiterbildungsmaßnahmen für das Folgejahr
+                stattfindenden Ziel-; Gehalts- und Mitarbeitergespräche Fortbildungsmaßnahmen für das Folgejahr
                 definiert werden.
               </p>
 
