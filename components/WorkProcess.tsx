@@ -7,7 +7,7 @@ const data = [
   {
     iconName: 'pe-7s-display1',
     title: 'Know-How',
-    text: 'Kenntnisse, Erfahrungen & Fachwissen',
+    text: 'Kenntnis, Erfahrung & Fachwissen',
   },
   {
     iconName: 'pe-7s-display2',
