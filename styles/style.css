@@ -3448,6 +3448,9 @@ Our Work Process CSS
   display: block;
   color: #646464;
   font-size: 14px;
+  max-width: 24ch;
+  hyphens: auto;
+  padding: 0 0.25rem;
 }
 
 .rotateme {

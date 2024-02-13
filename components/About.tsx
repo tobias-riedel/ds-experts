@@ -30,7 +30,7 @@ const About = () => {
 
                   <p>
                     Unser Know-How bringen wir erfolgreich bei unseren Kunden ein, damit Projekte erfolgreich umgesetzt
-                    werden können. Unsere sehr hohe Weiterbildungsquote sorgt dafür, dass dieses Wissen nie versiegt.
+                    werden können. Unsere sehr hohe Fortbildungsquote sorgt dafür, dass dieses Wissen nie versiegt.
                   </p>
 
                   <h3>Struktur</h3>

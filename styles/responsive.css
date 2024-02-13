@@ -336,6 +336,7 @@
   }
   .work-process-list .single-work-process span {
     font-size: 12px;
+    display: none;
   }
   .funfact {
     margin-bottom: 30px;
@@ -1067,19 +1068,20 @@
   .work-process-list .single-work-process:nth-child(2) {
     right: 7%;
   }
-  .single-work-process .icon {
+  .work-process-list .single-work-process .icon {
     width: 80px;
     height: 80px;
     line-height: 86px;
     font-size: 32px;
   }
-  .single-work-process h3 {
+  .work-process-list .single-work-process h3 {
     font-size: 16px;
     margin-top: 20px;
     margin-bottom: 5px;
   }
-  .single-work-process span {
+  .work-process-list .single-work-process span {
     font-size: 13px;
+    max-width: 20ch;
   }
   .funfact h3 {
     font-size: 30px;

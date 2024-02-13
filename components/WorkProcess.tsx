@@ -3,12 +3,45 @@ import mobileImg from '../public/images/man-with-mobile.png';
 import circleImg from '../public/images/circle.png';
 import SectionDivider from './Common/SectionDivider';
 
+const data = [
+  {
+    iconName: 'pe-7s-display1',
+    title: 'Know-How',
+    text: 'Erfahrung & Fachwissen',
+  },
+  {
+    iconName: 'pe-7s-display2',
+    title: 'Resilienz',
+    text: 'Belastbarkeit & Stressresistenz',
+  },
+  {
+    iconName: 'pe-7s-study',
+    title: 'Fortbildung',
+    text: 'Lehrgänge & Qualifikation',
+  },
+  {
+    iconName: 'pe-7s-id',
+    title: 'Professionalität',
+    text: 'Arbeitsleistung & Integrität',
+  },
+  {
+    iconName: 'pe-7s-diamond',
+    title: 'Entschlossenheit',
+    text: 'Willenskraft & Antrieb',
+  },
+  {
+    iconName: 'pe-7s-gift',
+    title: 'Qualität',
+    text: 'Lösungsorientierung & Souveränität',
+  },
+];
+
 const WorkProcess = () => {
   return (
     <section className="pt-100">
       <div className="container work-process-area">
         <div className="section-title">
-          <h2>Unser Erfolg kommt von...</h2>
+          <h2>Unser Erfolg kommt durch ...</h2>
         </div>
 
         <div className="work-process">
@@ -22,47 +55,15 @@ const WorkProcess = () => {
           />
 
           <div className="work-process-list">
-            <div className="single-work-process">
-              <div className="icon">
-                <i className="pe-7s-display1"></i>
+            {data.map((value, idx) => (
+              <div className="single-work-process" key={idx}>
+                <div className="icon">
+                  <i className={value.iconName}></i>
+                </div>
+                <h3>{value.title}</h3>
+                <span>{value.text}</span>
               </div>
-              <h3>Know-How</h3>
-            </div>
-
-            <div className="single-work-process">
-              <div className="icon">
-                <i className="pe-7s-display2"></i>
-              </div>
-              <h3>Resilienz</h3>
-            </div>
-
-            <div className="single-work-process">
-              <div className="icon">
-                <i className="pe-7s-study"></i>
-              </div>
-              <h3>Weiterbildung</h3>
-            </div>
-
-            <div className="single-work-process">
-              <div className="icon">
-                <i className="pe-7s-id"></i>
-              </div>
-              <h3>Professionalität</h3>
-            </div>
-
-            <div className="single-work-process">
-              <div className="icon">
-                <i className="pe-7s-diamond"></i>
-              </div>
-              <h3>Entschlossenheit</h3>
-            </div>
-
-            <div className="single-work-process">
-              <div className="icon">
-                <i className="pe-7s-gift"></i>
-              </div>
-              <h3>Qualität</h3>
-            </div>
+            ))}
           </div>
 
           <Image
