@@ -7,32 +7,32 @@ const data = [
   {
     iconName: 'pe-7s-display1',
     title: 'Know-How',
-    text: 'Kenntnis, Erfahrung & Fachwissen',
+    text: 'Erfahrung & Fachwissen',
   },
   {
     iconName: 'pe-7s-display2',
     title: 'Resilienz',
-    text: 'Widerstandsfähigkeit, Lösungsorientierung & Optimismus',
+    text: 'Belastbarkeit & Stressresistenz',
   },
   {
     iconName: 'pe-7s-study',
     title: 'Fortbildung',
-    text: 'Lehrgänge, Meisterkurse & Qualifikation',
+    text: 'Lehrgänge & Qualifikation',
   },
   {
     iconName: 'pe-7s-id',
     title: 'Professionalität',
-    text: 'Arbeitsleistung, Integrität & Souveränität',
+    text: 'Arbeitsleistung & Integrität',
   },
   {
     iconName: 'pe-7s-diamond',
     title: 'Entschlossenheit',
-    text: 'Willenskraft, Antrieb & Ergebnisorientierung',
+    text: 'Willenskraft & Antrieb',
   },
   {
     iconName: 'pe-7s-gift',
     title: 'Qualität',
-    text: 'Kapazität, Variaton & Exzellenz',
+    text: 'Lösungsorientierung & Souveränität',
   },
 ];
 
