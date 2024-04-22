@@ -14,8 +14,8 @@ sgMail.setApiKey(env.SENDGRID_API_KEY);
 const JoinUsMaxFileSize = env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE ?? 8;
 const maxUploadedFileSize = JoinUsMaxFileSize * 1024 * 1024;
 
-const to = env.JOIN_US_MAIL_ADDRESS_FROM;
-const from = env.JOIN_US_MAIL_ADDRESS_TO;
+const from = env.JOIN_US_MAIL_ADDRESS_FROM;
+const to = env.JOIN_US_MAIL_ADDRESS_TO;
 
 type FormValue = z.infer<typeof formSchema>;
 
