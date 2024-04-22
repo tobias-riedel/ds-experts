@@ -6,8 +6,8 @@ import { publicProcedure, router } from '../trpc';
 
 sgMail.setApiKey(env.SENDGRID_API_KEY);
 
-const to = env.CONTACTS_MAIL_ADDRESS_FROM;
-const from = env.CONTACTS_MAIL_ADDRESS_TO;
+const from = env.CONTACTS_MAIL_ADDRESS_FROM;
+const to = env.CONTACTS_MAIL_ADDRESS_TO;
 
 export const contactRouter = router({
   sendMail: publicProcedure.input(contactSchema).mutation(async ({ input }) => {
