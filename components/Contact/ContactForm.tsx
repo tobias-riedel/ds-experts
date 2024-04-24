@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
-const alertContent = () => {
+const showSuccessToast = () => {
   MySwal.fire({
     title: 'Glückwunsch!',
     html: 'Deine Nachricht wurde erfolgreicht versandt.<br />Wir melden uns bald bei Dir.',
@@ -45,7 +45,7 @@ const ContactForm = () => {
   const sendMail = trpc.contact.sendMail.useMutation({
     onSuccess: () => {
       console.log('Contact eMail sent usccessfully.');
-      alertContent();
+      showSuccessToast();
     },
     onError: (error) => {
       console.error('Error sending mail:', error);
