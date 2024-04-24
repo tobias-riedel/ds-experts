@@ -86,12 +86,13 @@ const JoinUsForm = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        maxContentLength: env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE * 1024 * 1024 + 16,
+        maxBodyLength: env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE * 1024 * 1024 + 16,
         onUploadProgress: (data) => setProgress(Math.round((100 * data.loaded) / (data.total ?? 1))),
       });
       alertContent();
     } catch (error) {
       console.log(error);
-
       alertError();
     }
   };
