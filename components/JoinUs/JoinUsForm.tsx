@@ -13,11 +13,22 @@ import { toFormikValidationSchema } from 'zod-formik-adapter';
 const alertContent = () => {
   MySwal.fire({
     title: 'Glückwunsch!',
-    text: 'Deine Nachricht wurde erfolgreicht versandt. Wir melden uns bald bei Dir.',
+    html: 'Deine Nachricht wurde erfolgreicht versandt.<br />Wir melden uns bald bei Dir.',
     icon: 'success',
     timer: 4000,
     timerProgressBar: true,
     showConfirmButton: false,
+  });
+};
+
+const alertError = () => {
+  MySwal.fire({
+    title: 'Fehler!',
+    icon: 'error',
+    html:
+      'Leider is ein Fehler aufgetreten und Deine Nachricht wurde nicht versandt.<br /><br />' +
+      'Sollte der Fehler erneut auftreten, sende Deine E- Mail bitte an ' +
+      '<a href="mailto:bewerbung@ds-experts.de?subject=Bewerbung">bewerbung@ds-experts.de</a>.',
   });
 };
 
@@ -80,6 +91,8 @@ const JoinUsForm = () => {
       alertContent();
     } catch (error) {
       console.log(error);
+
+      alertError();
     }
   };
 

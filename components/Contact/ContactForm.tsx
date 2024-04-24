@@ -11,7 +11,7 @@ import { toFormikValidationSchema } from 'zod-formik-adapter';
 const alertContent = () => {
   MySwal.fire({
     title: 'Glückwunsch!',
-    text: 'Deine Nachricht wurde erfolgreicht versandt. Wir melden uns bald bei Dir.',
+    html: 'Deine Nachricht wurde erfolgreicht versandt.<br />Wir melden uns bald bei Dir.',
     icon: 'success',
     timer: 4000,
     timerProgressBar: true,
