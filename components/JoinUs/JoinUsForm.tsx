@@ -13,11 +13,22 @@ import { toFormikValidationSchema } from 'zod-formik-adapter';
 const alertContent = () => {
   MySwal.fire({
     title: 'Glückwunsch!',
-    text: 'Deine Nachricht wurde erfolgreicht versandt. Wir melden uns bald bei Dir.',
+    html: 'Deine Nachricht wurde erfolgreicht versandt.<br />Wir melden uns bald bei Dir.',
     icon: 'success',
     timer: 4000,
     timerProgressBar: true,
     showConfirmButton: false,
+  });
+};
+
+const alertError = () => {
+  MySwal.fire({
+    title: 'Fehler!',
+    icon: 'error',
+    html:
+      'Leider is ein Fehler aufgetreten und Deine Nachricht wurde nicht versandt.<br /><br />' +
+      'Sollte der Fehler erneut auftreten, sende Deine E- Mail bitte an ' +
+      '<a href="mailto:bewerbung@ds-experts.de?subject=Bewerbung">bewerbung@ds-experts.de</a>.',
   });
 };
 
@@ -75,11 +86,14 @@ const JoinUsForm = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        maxContentLength: env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE * 1024 * 1024 + 16,
+        maxBodyLength: env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE * 1024 * 1024 + 16,
         onUploadProgress: (data) => setProgress(Math.round((100 * data.loaded) / (data.total ?? 1))),
       });
       alertContent();
     } catch (error) {
       console.log(error);
+      alertError();
     }
   };
 
