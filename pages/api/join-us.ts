@@ -102,9 +102,9 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?
     const mail = {
       to,
       from,
-      subject: `Kontaktformular ${subject}`,
+      subject: `Bewerbungsformular ${subject}`,
       text,
-      html: `<b>Von:</b> Kontaktformular<br /> 
+      html: `<b>Von:</b> Bewerbungsformular<br /> 
 <b>Vorname:</b> ${firstName} <br /> 
 <b>Name:</b> ${name} <br /> 
 <b>eMail:</b> ${email} <br /> 
