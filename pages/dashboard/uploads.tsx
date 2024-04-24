@@ -11,7 +11,7 @@ import { ProgressBar, Spinner } from 'react-bootstrap';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
-const alertContent = () => {
+const showSuccessToast = () => {
   MySwal.fire({
     title: 'Erfolg!',
     text: 'Der Upload war erfolgreich.',
@@ -92,11 +92,14 @@ const JoinUsForm = () => {
         },
         onUploadProgress: (data) => setProgress(Math.round((100 * data.loaded) / (data.total ?? 1))),
       });
-      alertContent();
+      showSuccessToast();
+
+      return true;
     } catch (error) {
       console.log(error);
-
       showErrorToast('Fehler beim Hochladen der Datei.');
+
+      return false;
     }
   };
 
@@ -110,9 +113,12 @@ const JoinUsForm = () => {
             initialValues={{ ...INITIAL_STATE }}
             validationSchema={toFormikValidationSchema(formSchema)}
             onSubmit={async (values, { setSubmitting, resetForm, setFieldValue }) => {
-              await handleSubmit(values);
+              const isSubmitted = await handleSubmit(values);
               setSubmitting(false);
 
+              if (!isSubmitted) {
+                return;
+              }
               resetForm();
               setFieldValue('file', null);
               setFileMeta('');

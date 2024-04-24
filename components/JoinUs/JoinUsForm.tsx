@@ -10,7 +10,7 @@ import { ProgressBar, Spinner } from 'react-bootstrap';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
-const alertContent = () => {
+const showSuccessToast = () => {
   MySwal.fire({
     title: 'Glückwunsch!',
     html: 'Deine Nachricht wurde erfolgreicht versandt.<br />Wir melden uns bald bei Dir.',
@@ -21,7 +21,7 @@ const alertContent = () => {
   });
 };
 
-const alertError = () => {
+const showErrorToast = () => {
   MySwal.fire({
     title: 'Fehler!',
     icon: 'error',
@@ -86,14 +86,16 @@ const JoinUsForm = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-        maxContentLength: env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE * 1024 * 1024 + 16,
-        maxBodyLength: env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE * 1024 * 1024 + 16,
         onUploadProgress: (data) => setProgress(Math.round((100 * data.loaded) / (data.total ?? 1))),
       });
-      alertContent();
+      showSuccessToast();
+
+      return true;
     } catch (error) {
       console.log(error);
-      alertError();
+      showErrorToast();
+
+      return false;
     }
   };
 
@@ -104,9 +106,12 @@ const JoinUsForm = () => {
           initialValues={{ ...INITIAL_STATE }}
           validationSchema={toFormikValidationSchema(formSchema)}
           onSubmit={async (values, { setSubmitting, resetForm, setFieldValue }) => {
-            await handleSubmit(values);
+            const isSubmitted = await handleSubmit(values);
             setSubmitting(false);
 
+            if (!isSubmitted) {
+              return;
+            }
             resetForm();
             setAgreedToGdpr(false);
             setFieldValue('file', null);
