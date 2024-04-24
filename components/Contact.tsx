@@ -33,11 +33,7 @@ const Contact = () => {
                     &nbsp;
                     {showContacts ? (
                       <>
-                        <Link
-                          href="https://www.google.com/maps/place/Rudolf-Breitscheid-Stra%C3%9Fe+68,+16559+Liebenwalde/@52.874105,13.3796239,16.25z/data=!4m5!3m4!1s0x47a9a72267ac7ba9:0x5e61f97b718143bb!8m2!3d52.8735095!4d13.383309"
-                          target="_blank"
-                          rel="noopener"
-                        >
+                        <Link href={COMPANY_ADDRESS.googleMapsUrl} target="_blank" rel="noopener">
                           {COMPANY_ADDRESS.street} {COMPANY_ADDRESS.streetNo}, {COMPANY_ADDRESS.zipCode}{' '}
                           {COMPANY_ADDRESS.city}
                         </Link>
