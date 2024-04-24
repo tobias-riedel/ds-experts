@@ -18,7 +18,7 @@ export const contactRouter = router({
       to,
       from,
       subject: `Kontaktformular ${subject}`,
-      text: text,
+      text,
       html: `<b>Von:</b> Kontaktformular<br /> 
 <b>Vorname:</b> ${firstName} <br /> 
 <b>Name:</b> ${name} <br /> 
