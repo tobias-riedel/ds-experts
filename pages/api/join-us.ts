@@ -64,13 +64,11 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?
 
   let payload: FormValue;
   try {
-    // payload = await formSchema.validate(body);
     payload = formSchema.parse(body);
   } catch (validationError: unknown) {
     console.log('Validation failed:', validationError);
 
     return res.status(400).json({
-      // error: (validationError as ValidationError).errors,
       error: JSON.stringify(validationError, null, 2),
     });
   }
