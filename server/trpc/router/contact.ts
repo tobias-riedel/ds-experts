@@ -11,18 +11,19 @@ const to = env.CONTACTS_MAIL_ADDRESS_TO;
 
 export const contactRouter = router({
   sendMail: publicProcedure.input(contactSchema).mutation(async ({ input }) => {
-    const formattedText = sanitizeHtml(input.text);
+    const { firstName6g234: firstName, name90ad0f: name, emailfd80e: email, subject, text } = input;
+    const formattedText = sanitizeHtml(text);
 
     const mail = {
       to,
       from,
-      subject: `Kontaktformular ${input.subject}`,
-      text: input.text,
+      subject: `Kontaktformular ${subject}`,
+      text,
       html: `<b>Von:</b> Kontaktformular<br /> 
-<b>Vorname:</b> ${input.firstName} <br /> 
-<b>Name:</b> ${input.name} <br /> 
-<b>eMail:</b> ${input.email} <br /> 
-<b>Betreff:</b> ${input.subject} <br /> 
+<b>Vorname:</b> ${firstName} <br /> 
+<b>Name:</b> ${name} <br /> 
+<b>eMail:</b> ${email} <br /> 
+<b>Betreff:</b> ${subject} <br /> 
 <b>Anfrage:</b> ${formattedText} `,
     };
 
