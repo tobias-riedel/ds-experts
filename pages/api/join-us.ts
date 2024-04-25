@@ -11,8 +11,8 @@ const allowedUploadFileMimeTypes = ['application/pdf'];
 
 sgMail.setApiKey(env.SENDGRID_API_KEY);
 
-const JoinUsMaxFileSize = env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE ?? 8;
-const maxUploadedFileSize = JoinUsMaxFileSize * 1024 * 1024;
+const joinUsMaxFileSize = env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE ?? 8;
+const maxUploadedFileSize = joinUsMaxFileSize * 1024 * 1024;
 
 const from = env.JOIN_US_MAIL_ADDRESS_FROM;
 const to = env.JOIN_US_MAIL_ADDRESS_TO;
@@ -75,9 +75,13 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?
 
   const { file: uploadedFile } = req as unknown as { file: Express.Multer.File };
 
+  console.log('filesize::', uploadedFile?.size, ' - max::', maxUploadedFileSize);
+
   if (uploadedFile?.size > maxUploadedFileSize) {
     return res.status(413).json({
-      error: `Uploaded file is too large. Only ${JoinUsMaxFileSize} MB is allowed.`,
+      error: `Uploaded file is too large. Only ${joinUsMaxFileSize} MB is allowed. Your file size ${
+        uploadedFile?.size / 1024 / 1024
+      } > ${maxUploadedFileSize / 1024 / 1024}.`,
     });
   }
 
@@ -111,8 +115,11 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?
       attachments,
     };
 
-    const response = await sgMail.send(mail);
-    console.log(response);
+    // FIXME: Re-enavle mail sending.
+    // const response = await sgMail.send(mail);
+    // console.log(response);
+    console.log('Fake mail sent::');
+
     return res.status(200).json({ msg: 'Email sent successfully' });
   } catch (error) {
     console.error(error);

@@ -109,7 +109,9 @@ const JoinUsForm = () => {
             const isSubmitted = await handleSubmit(values);
             setSubmitting(false);
 
-            if (!isSubmitted) {
+            // FIXME: Repair after debugging.
+            // if (!isSubmitted ) {
+            if (!isSubmitted || isSubmitted) {
               return;
             }
             resetForm();
