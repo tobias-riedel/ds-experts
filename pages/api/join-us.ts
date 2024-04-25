@@ -75,13 +75,9 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?
 
   const { file: uploadedFile } = req as unknown as { file: Express.Multer.File };
 
-  console.log('filesize::', uploadedFile?.size, ' - max::', maxUploadedFileSize);
-
   if (uploadedFile?.size > maxUploadedFileSize) {
     return res.status(413).json({
-      error: `Uploaded file is too large. Only ${joinUsMaxFileSize} MB is allowed. Your file size ${
-        uploadedFile?.size / 1024 / 1024
-      } > ${maxUploadedFileSize / 1024 / 1024}.`,
+      error: `Uploaded file is too large. Only ${joinUsMaxFileSize} MB is allowed.`,
     });
   }
 
@@ -115,11 +111,8 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse<{ error?
       attachments,
     };
 
-    // FIXME: Re-enavle mail sending.
-    // const response = await sgMail.send(mail);
-    // console.log(response);
-    console.log('Fake mail sent::');
-
+    const response = await sgMail.send(mail);
+    console.log(response);
     return res.status(200).json({ msg: 'Email sent successfully' });
   } catch (error) {
     console.error(error);
