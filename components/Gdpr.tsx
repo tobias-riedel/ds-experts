@@ -21,6 +21,8 @@ const Gdpr = () => {
         <p>
           ds-experts IT-Consulting GmbH
           <br />
+          Lutz Schenk
+          <br />
           {COMPANY_ADDRESS.street} {COMPANY_ADDRESS.streetNo}
           <br />
           {COMPANY_ADDRESS.zipCode} {COMPANY_ADDRESS.city}
