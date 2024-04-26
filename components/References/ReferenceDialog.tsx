@@ -144,6 +144,14 @@ const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: ProjectW
         </Flex>
 
         <Dialog.Description size="2" mb="4">
+          {data?.description ? (
+            <label>
+              <Text as="div" size="3" mb="1" weight="bold" color="gray">
+                Projektbeschreibung
+              </Text>
+            </label>
+          ) : null}
+
           <span className="ql-snow">
             <Text dangerouslySetInnerHTML={{ __html: data?.description || '' }} className="ql-editor"></Text>
           </span>
