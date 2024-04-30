@@ -12,10 +12,11 @@ export const getImages = (folder: AllowedImageDirs): string[] => {
   const dirRelativeToPublicFolder = folder ?? '.';
   const dir = path.resolve('./public', dirRelativeToPublicFolder);
 
-  const filenames = fs.readdirSync(dir);
+  const filenames = fs.readdirSync(dir, { recursive: true });
 
   const images = filenames
-    .map((name) => path.join('/', dirRelativeToPublicFolder, name).replaceAll('\\', '/'))
+    .filter((name) => typeof name == 'string')
+    .map((name) => path.join('/', dirRelativeToPublicFolder, name as string).replaceAll('\\', '/'))
     .filter((path) => path.match(allowedFileExtensionsRegex));
 
   console.log('Loaded images:', images?.length);
