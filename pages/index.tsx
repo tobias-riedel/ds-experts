@@ -3,8 +3,37 @@ import Layout from '@layouts/Layout';
 import { Expert, PrismaPromise } from '@prisma/client';
 import { listExperts } from '@server/trpc/shared/expert';
 import { ProjectWithExperts, listProjectsWithExperts } from '@server/trpc/shared/project';
+import { AllowedImageDirs, getImages } from '@utils/images';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import dynamic from 'next/dynamic';
+
+const availableProjectImgs = getImages(AllowedImageDirs.REFERENCES);
+
+const getRandomProjectImage = (projects: ProjectWithExperts[], idx: number, lookAround = 2): string | null => {
+  const start = Math.max(lookAround - idx, 0);
+  const end = Math.min(lookAround + idx, projects.length);
+
+  const neighborImgs: string[] = [];
+  for (let i = start; i < end; i++) {
+    const neighborImg = projects[i].img;
+
+    if (neighborImg != null) {
+      neighborImgs.push(neighborImg);
+    }
+  }
+
+  const availableRandomProjectImgs = availableProjectImgs.filter((img) => !neighborImgs.includes(img));
+  const randomImg = availableRandomProjectImgs[Math.floor(Math.random() * availableRandomProjectImgs.length)];
+
+  return randomImg;
+};
+
+const processProjects = (projects: ProjectWithExperts[]): ProjectWithExperts[] => {
+  return projects.map((project, idx) => ({
+    ...project,
+    img: project.img != '' ? project.img : getRandomProjectImage(projects, idx),
+  }));
+};
 
 const SECTION = 'Lade Abschnitt...';
 
@@ -24,12 +53,14 @@ export const getStaticProps: GetStaticProps<{ experts: Expert[]; projects: Proje
   const expertsQuery: PrismaPromise<Expert[]> = listExperts();
   const projectsQuery: PrismaPromise<ProjectWithExperts[]> = listProjectsWithExperts();
 
-  const [rawExperts, projects]: [Expert[], ProjectWithExperts[]] = await Promise.all([expertsQuery, projectsQuery]);
+  const [rawExperts, rawProjects]: [Expert[], ProjectWithExperts[]] = await Promise.all([expertsQuery, projectsQuery]);
   const experts = rawExperts.map((expert) => ({
     ...expert,
     createdAt: null,
     updatedAt: null,
   }));
+
+  const projects = processProjects(rawProjects);
 
   return {
     props: { experts, projects },

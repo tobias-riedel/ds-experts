@@ -369,7 +369,7 @@ export default function Page({
                             className={ctrlClassName('img')}
                             placeholder="Dateipfad zum Hintergrundbild"
                           >
-                            <option value="">(Keines)</option>
+                            <option value="">(Zufälliges Bild)</option>
                             {images?.map((image, idx) => (
                               <option key={idx} value={image}>
                                 {image}
