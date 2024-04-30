@@ -7,31 +7,30 @@ import { AllowedImageDirs, getImages } from '@utils/images';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import dynamic from 'next/dynamic';
 
-const availableProjectImgs = getImages(AllowedImageDirs.REFERENCES);
+const PROJECT_BG_IMGS = getImages(AllowedImageDirs.REFERENCES);
 
-const getRandomProjectImage = (projects: ProjectWithExperts[], idx: number, lookAround = 2): string | null => {
-  const start = Math.max(lookAround - idx, 0);
-  const end = Math.min(lookAround + idx, projects.length);
-
-  const neighborImgs: string[] = [];
-  for (let i = start; i < end; i++) {
-    const neighborImg = projects[i].img;
-
-    if (neighborImg != null) {
-      neighborImgs.push(neighborImg);
-    }
+const getRandomUnusedProjectImage = (unusedProjectImgs: string[]): string => {
+  // Reset image pool when used up.
+  if (unusedProjectImgs.length === 0) {
+    unusedProjectImgs = [...PROJECT_BG_IMGS];
   }
 
-  const availableRandomProjectImgs = availableProjectImgs.filter((img) => !neighborImgs.includes(img));
-  const randomImg = availableRandomProjectImgs[Math.floor(Math.random() * availableRandomProjectImgs.length)];
+  const randomImgIdx = Math.floor(Math.random() * unusedProjectImgs.length);
+  const randomImg = unusedProjectImgs[randomImgIdx];
+
+  unusedProjectImgs.splice(randomImgIdx, 1);
 
   return randomImg;
 };
 
 const processProjects = (projects: ProjectWithExperts[]): ProjectWithExperts[] => {
-  return projects.map((project, idx) => ({
+  const availableProjectImgs = [...PROJECT_BG_IMGS];
+  const usedProjectImgs = projects.filter((project) => project.img != null).map((project) => project.img as string);
+  const unusedProjectImgs = availableProjectImgs.filter((img) => !usedProjectImgs.includes(img));
+
+  return projects.map((project) => ({
     ...project,
-    img: project.img != '' ? project.img : getRandomProjectImage(projects, idx),
+    img: !project.img ? getRandomUnusedProjectImage(unusedProjectImgs) : project.img,
   }));
 };
 
