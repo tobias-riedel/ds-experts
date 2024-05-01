@@ -1,10 +1,16 @@
 import Loading from '@components/Common/Loading';
+import AdminSearch from '@components/Search/AdminSearch';
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
 import { MySwal } from '@consts/misc';
 import DashboardLayout from '@layouts/DashboardLayout';
+import { Expert } from '@prisma/client';
 import { trpc } from '@utils/trpc';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+
+const SEARCH_FIELDS: Array<keyof Expert> = ['firstName', 'lastName', 'role', 'startedAt', 'endedAt', 'visibility'];
+const SEARCH_FIELD_PLACEHOLDER = ['Vorname', 'Nachname', 'Rolle', 'Start', 'Ende', 'Sichtbarkeit'].join(', ');
 
 export default function Page() {
   const router = useRouter();
@@ -12,6 +18,8 @@ export default function Page() {
   const itemRoute = trpc.useContext().experts;
 
   const getItems = trpc.experts.listDashboard.useQuery();
+
+  const [experts, setExperts] = useState<Expert[]>(getItems.data ?? []);
 
   const deleteItem = trpc.experts.delete.useMutation({
     onSuccess: () => {
@@ -61,13 +69,24 @@ export default function Page() {
     deleteItem.mutate({ id: itemId });
   };
 
+  const searchTermChanged = (filteredItems: Record<string, unknown>[]): void => {
+    setExperts(filteredItems as Expert[]);
+  };
+
   return (
     <DashboardLayout>
-      <section>
+      <section className="pb-100">
         <h1 className="text-center">Experten-Übersicht</h1>
 
+        <AdminSearch
+          items={getItems.data}
+          searchFields={SEARCH_FIELDS}
+          placeholder={SEARCH_FIELD_PLACEHOLDER}
+          onSearchTermChanged={searchTermChanged}
+        />
+
         <Loading isLoading={getItems.isLoading}>
-          {getItems.data?.length ?? 0 > 0 ? (
+          {experts.length > 0 ? (
             <div className="item-list m-2">
               <table>
                 <thead>
@@ -84,7 +103,7 @@ export default function Page() {
                   </tr>
                 </thead>
                 <tbody>
-                  {getItems.data?.map((item) => {
+                  {experts.map((item) => {
                     const fullName = `${item.firstName} ${item.lastName}`;
                     return (
                       <tr key={item.id}>

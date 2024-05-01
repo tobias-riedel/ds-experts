@@ -1,10 +1,23 @@
 import Loading from '@components/Common/Loading';
+import AdminSearch from '@components/Search/AdminSearch';
 import { ADD_ITEM_URL_PREFIX } from '@consts/dashboard';
 import { MySwal } from '@consts/misc';
 import DashboardLayout from '@layouts/DashboardLayout';
+import { Project } from '@prisma/client';
 import { trpc } from '@utils/trpc';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+
+const SEARCH_FIELDS: Array<keyof Project> = [
+  'projectName',
+  'partnerName',
+  'city',
+  'startedAt',
+  'endedAt',
+  'visibility',
+];
+const SEARCH_FIELD_PLACEHOLDER = ['Projektname', 'Partnername', 'Stadt', 'Start', 'Ende', 'Sichtbarkeit'].join(', ');
 
 export default function Page() {
   const router = useRouter();
@@ -12,6 +25,8 @@ export default function Page() {
   const itemRoute = trpc.useContext().projects;
 
   const getItems = trpc.projects.listDashboard.useQuery();
+
+  const [projects, setProjects] = useState<Project[]>(getItems.data ?? []);
 
   const deleteItem = trpc.projects.delete.useMutation({
     onSuccess: () => {
@@ -60,13 +75,24 @@ export default function Page() {
     deleteItem.mutate({ id: itemId });
   };
 
+  const searchTermChanged = (filteredItems: Record<string, unknown>[]): void => {
+    setProjects(filteredItems as Project[]);
+  };
+
   return (
     <DashboardLayout>
-      <section>
+      <section className="pb-100">
         <h1 className="text-center">Projekt-Übersicht</h1>
 
+        <AdminSearch
+          items={getItems.data}
+          searchFields={SEARCH_FIELDS}
+          placeholder={SEARCH_FIELD_PLACEHOLDER}
+          onSearchTermChanged={searchTermChanged}
+        />
+
         <Loading isLoading={getItems.isLoading}>
-          {getItems.data?.length ?? 0 > 0 ? (
+          {projects.length > 0 ? (
             <div className="item-list m-2">
               <table>
                 <thead>
@@ -84,7 +110,7 @@ export default function Page() {
                   </tr>
                 </thead>
                 <tbody>
-                  {getItems.data?.map((item) => (
+                  {projects.map((item) => (
                     <tr key={item.id}>
                       <td>{item.projectName}</td>
                       <td className="ds-hidden-sm">{item.partnerName}</td>
