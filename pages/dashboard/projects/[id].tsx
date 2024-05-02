@@ -24,7 +24,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
@@ -141,6 +141,8 @@ export default function Page({
 
   const [previewItem, setPreviewItem] = useState<Project | null>();
 
+  const fieldRef = useRef<HTMLSelectElement>(null);
+
   const BusinessLogic = () => {
     const { values } = useFormikContext<FormItem>();
     useEffect(() => {
@@ -191,30 +193,41 @@ export default function Page({
   const isUsedExpert = (expert: Expert): boolean | undefined =>
     loadedItem?.experts.some((loadedItemExpert) => expert.id === loadedItemExpert.expertId);
 
-  const [selectedExpert, setSelectedExpert] = useState<Expert | null>(null);
+  const [selectedExperts, setSelectedExperts] = useState<Expert[]>([]);
   const [addedExperts, setAddedExperts] = useState<Expert[]>([...loadedExperts].filter(isUsedExpert).sort(sortExperts));
   const [availableExperts, setAvailableExperts] = useState<Expert[]>(
     [...loadedExperts].filter((project) => !isUsedExpert(project)).sort(sortExperts)
   );
 
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const projectId = e.target.value;
-    const selectedProject = availableExperts.find((project) => project.id === projectId) || null;
-    setSelectedExpert(selectedProject);
+  const findExpertById = (expertId: string): Expert | null =>
+    availableExperts.find((expert) => expert.id === expertId) || null;
+
+  const handleSelectChange = () => {
+    const newlySelectedExperts: Expert[] = [...(fieldRef.current?.options ?? [])]
+      .filter((option) => option.selected)
+      .map((option) => findExpertById(option.value) as Expert)
+      .filter((project) => project != null);
+
+    setSelectedExperts(newlySelectedExperts);
   };
 
   const handleAddClick = (arrayHelpers: FieldArrayRenderProps): void => {
-    if (!selectedExpert) {
+    if (!selectedExperts.length) {
       return;
     }
 
-    arrayHelpers.push({
-      expertId: selectedExpert.id,
-      projectId: loadedItem?.id ?? NEW_PROJECT_ID,
-    } as ExpertsInProjects);
-    setAddedExperts([...addedExperts, selectedExpert].sort(sortExperts));
-    setAvailableExperts((prevExperts) => prevExperts.filter((expert) => expert.id !== selectedExpert.id));
-    setSelectedExpert(null);
+    selectedExperts.forEach((selectedExpert) => {
+      arrayHelpers.push({
+        expertId: selectedExpert.id,
+        projectId: loadedItem?.id ?? NEW_PROJECT_ID,
+      } as ExpertsInProjects);
+    });
+
+    setAddedExperts([...addedExperts, ...selectedExperts].sort(sortExperts));
+    setAvailableExperts((prevExperts) =>
+      prevExperts.filter((expert) => !selectedExperts.some((selectedExpert) => expert.id === selectedExpert.id))
+    );
+    setSelectedExperts([]);
   };
 
   const handleDeleteClick = (selectedExpert: Expert, arrayHelpers: FieldArrayRenderProps, index: number) => {
@@ -404,6 +417,14 @@ export default function Page({
                                 <div className="form-group">
                                   <label htmlFor="expertId" className="w-100">
                                     Experten
+                                    <button
+                                      type="button"
+                                      className="btn btn-link px-2 py-0"
+                                      onClick={() => handleAddClick(arrayHelpers)}
+                                      disabled={!selectedExperts.length}
+                                    >
+                                      <i className="fas fa-add me-2" title="Hinzufügen"></i>hinzufügen
+                                    </button>
                                   </label>
 
                                   <Field
@@ -411,11 +432,15 @@ export default function Page({
                                     id="expertId"
                                     name="expertId"
                                     placeholder="Experte"
-                                    value={selectedExpert?.id ?? ''}
+                                    value={selectedExperts?.map((expert) => expert.id)}
                                     onChange={handleSelectChange}
+                                    multiple
+                                    innerRef={fieldRef}
+                                    size={6}
+                                    className="w-100"
                                   >
                                     <option value="" disabled={true}>
-                                      (Experten wählen...)
+                                      (Mehrfachauswahl: [Strg+Klick] oder [Shift+Klick])
                                     </option>
                                     {availableExperts.map((expert) => (
                                       <option key={expert.id} value={expert.id}>
@@ -423,15 +448,6 @@ export default function Page({
                                       </option>
                                     ))}
                                   </Field>
-
-                                  <button
-                                    type="button"
-                                    className="btn btn-link px-2 py-0"
-                                    onClick={() => handleAddClick(arrayHelpers)}
-                                    disabled={selectedExpert == null}
-                                  >
-                                    <i className="fas fa-add" title="Hinzufügen"></i>
-                                  </button>
                                 </div>
                               </div>
                             )}
