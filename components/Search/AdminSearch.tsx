@@ -1,6 +1,6 @@
 import { DEBOUNCE_INPUT } from '@consts/misc';
 import { hasSearchTerm } from '@utils/search';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 interface SearchProps<T extends Record<string, unknown>> {
@@ -8,6 +8,8 @@ interface SearchProps<T extends Record<string, unknown>> {
   searchFields: Array<keyof T>;
   placeholder: string;
   onSearchTermChanged: (filteredItems: T[]) => void;
+  hideMatchCase?: boolean;
+  hideCrossRowSearch?: boolean;
 }
 
 const AdminSearch: React.FC<SearchProps<Record<string, unknown>>> = ({
@@ -15,17 +17,21 @@ const AdminSearch: React.FC<SearchProps<Record<string, unknown>>> = ({
   searchFields,
   placeholder,
   onSearchTermChanged,
+  hideMatchCase,
+  hideCrossRowSearch,
 }): JSX.Element => {
   const [matchCase, setMatchCase] = useState(false);
-  const [limitedSearch, setLimitedSearch] = useState(true);
+  const [crossRowSearch, setCrossRowSearch] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+
+  const searchRef = useRef<HTMLInputElement>(null);
 
   const searchTermChanged = useDebouncedCallback((needle: string = searchTerm) => {
     setSearchTerm(needle);
     const loadedItems = items ?? [];
 
     const filteredItems = loadedItems.filter((item) =>
-      hasSearchTerm(needle, item, searchFields, { matchCase, limitedSearch })
+      hasSearchTerm(needle, item, searchFields, { matchCase, crossRowSearch })
     );
 
     onSearchTermChanged(filteredItems);
@@ -36,9 +42,18 @@ const AdminSearch: React.FC<SearchProps<Record<string, unknown>>> = ({
     searchTermChanged();
   };
 
-  const toggleLimitedSearch = () => {
-    setLimitedSearch(!limitedSearch);
+  const toggleCrossRowSearch = () => {
+    setCrossRowSearch(!crossRowSearch);
     searchTermChanged();
+  };
+
+  const clearSearchTerm = () => {
+    if (!searchRef.current) {
+      return;
+    }
+
+    searchRef.current.value = '';
+    searchTermChanged('');
   };
 
   useEffect(() => {
@@ -52,31 +67,44 @@ const AdminSearch: React.FC<SearchProps<Record<string, unknown>>> = ({
           <i className="fas fa-search" title="Suche"></i>
         </div>
 
-        <div className="input-group-text">
-          <label className="mb-0" title="Groß-/Kleinschreibung beachten">
-            <input type="checkbox" onChange={toggleMatchCase} className="form-check-input" checked={matchCase} /> aA
-          </label>
-        </div>
+        {!hideMatchCase && (
+          <div className="input-group-text">
+            <label className="mb-0" title="Groß-/Kleinschreibung beachten">
+              <input type="checkbox" onChange={toggleMatchCase} className="form-check-input" checked={matchCase} /> aA
+            </label>
+          </div>
+        )}
 
-        <div className="input-group-text">
-          <label className="mb-0" title="Exklusive Suche">
-            <input
-              id="limited-search"
-              type="checkbox"
-              onChange={toggleLimitedSearch}
-              className="form-check-input"
-              checked={limitedSearch}
-            />{' '}
-            !#
-          </label>
-        </div>
+        {!hideCrossRowSearch && (
+          <div className="input-group-text">
+            <label className="mb-0" title="Zeilenübergreifende Suche">
+              <input
+                type="checkbox"
+                onChange={toggleCrossRowSearch}
+                className="form-check-input"
+                checked={crossRowSearch}
+              />{' '}
+              !#
+            </label>
+          </div>
+        )}
 
         <input
           type="text"
           placeholder={'Suche in den Feldern: ' + placeholder}
-          onChange={(e) => searchTermChanged(e.target.value)}
           className="form-control"
+          style={{ height: '2.75rem' }}
+          onChange={(e) => searchTermChanged(e.target.value)}
+          ref={searchRef}
         />
+
+        {searchTerm.length > 0 && (
+          <div className="input-group-text">
+            <button className="btn btn-link p-0" title="Suchfeld leeren" onClick={clearSearchTerm}>
+              <i className="fas fa-times"></i>
+            </button>
+          </div>
+        )}
       </div>
     </>
   );
