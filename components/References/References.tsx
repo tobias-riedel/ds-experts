@@ -116,33 +116,25 @@ const Projects = ({ data: projects }: { data: Project[] }): JSX.Element => {
           <h3 className="text-center">Keine Referenzen eingetragen!</h3>
         ) : (
           <Swiper
-            cssMode={true}
+            cssMode={false}
             spaceBetween={20}
             navigation={true}
             pagination={{
               clickable: true,
             }}
             breakpoints={{
-              0: {
-                slidesPerView: 1,
-              },
-              576: {
-                slidesPerView: 2,
-              },
-              768: {
-                slidesPerView: 3,
-              },
-              1200: {
-                slidesPerView: 4,
-              },
-              1800: {
-                slidesPerView: 5,
-              },
+              0: { slidesPerView: 1 },
+              576: { slidesPerView: 2 },
+              768: { slidesPerView: 3 },
+              1200: { slidesPerView: 4 },
+              1800: { slidesPerView: 5 },
             }}
+            speed={3_000}
             autoplay={{
-              delay: 5000,
+              delay: 5_000,
               disableOnInteraction: true,
               pauseOnMouseEnter: true,
+              waitForTransition: true,
             }}
             mousewheel={true}
             keyboard={true}
