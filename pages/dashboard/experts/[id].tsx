@@ -14,7 +14,7 @@ import { ErrorMessage, Field, FieldArray, FieldArrayRenderProps, Form, Formik, u
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 const showAddedItemToast = () => {
@@ -133,6 +133,8 @@ export default function Page({
 
   const [previewItem, setPreviewItem] = useState<FormItem | null>();
 
+  const fieldRef = useRef<HTMLSelectElement>(null);
+
   const BusinessLogic = () => {
     const { values } = useFormikContext<FormItem>();
 
@@ -182,7 +184,7 @@ export default function Page({
   const isUsedProject = (project: Project): boolean | undefined =>
     loadedItem?.projects.some((loadedItemProject) => project.id === loadedItemProject.projectId);
 
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedProjects, setSelectedProjects] = useState<Project[]>([]);
   const [addedProjects, setAddedProjects] = useState<Project[]>(
     [...loadedProjects].filter(isUsedProject).sort(sortProjects)
   );
@@ -190,24 +192,35 @@ export default function Page({
     [...loadedProjects].filter((project) => !isUsedProject(project)).sort(sortProjects)
   );
 
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const projectId = e.target.value;
-    const selectedProject = availableProjects.find((project) => project.id === projectId) || null;
-    setSelectedProject(selectedProject);
+  const findProjectById = (projectId: string): Project | null =>
+    availableProjects.find((project) => project.id === projectId) || null;
+
+  const handleSelectChange = () => {
+    const newlySelectedProjects: Project[] = [...(fieldRef.current?.options ?? [])]
+      .filter((option) => option.selected)
+      .map((option) => findProjectById(option.value) as Project)
+      .filter((project) => project != null);
+
+    setSelectedProjects(newlySelectedProjects);
   };
 
   const handleAddClick = (arrayHelpers: FieldArrayRenderProps): void => {
-    if (!selectedProject) {
+    if (!selectedProjects.length) {
       return;
     }
 
-    arrayHelpers.push({
-      expertId: loadedItem?.id ?? NEW_EXPERT_ID,
-      projectId: selectedProject.id,
-    } as ExpertsInProjects);
-    setAddedProjects([...addedProjects, selectedProject].sort(sortProjects));
-    setAvailableProjects((prevProjects) => prevProjects.filter((project) => project.id !== selectedProject.id));
-    setSelectedProject(null);
+    selectedProjects.forEach((selectedProject) => {
+      arrayHelpers.push({
+        expertId: loadedItem?.id ?? NEW_EXPERT_ID,
+        projectId: selectedProject.id,
+      } as ExpertsInProjects);
+    });
+
+    setAddedProjects([...addedProjects, ...selectedProjects].sort(sortProjects));
+    setAvailableProjects((prevProjects) =>
+      prevProjects.filter((project) => !selectedProjects.some((selectedProject) => selectedProject.id === project.id))
+    );
+    setSelectedProjects([]);
   };
 
   const handleDeleteClick = (selectedProject: Project, arrayHelpers: FieldArrayRenderProps, index: number) => {
@@ -360,6 +373,14 @@ export default function Page({
                                 <div className="form-group">
                                   <label htmlFor="projectId" className="w-100">
                                     Projekte
+                                    <button
+                                      type="button"
+                                      className="btn btn-link px-2 py-0"
+                                      onClick={() => handleAddClick(arrayHelpers)}
+                                      disabled={!selectedProjects.length}
+                                    >
+                                      <i className="fas fa-add me-2" title="Hinzufügen"></i>hinzufügen
+                                    </button>
                                   </label>
 
                                   <Field
@@ -367,11 +388,15 @@ export default function Page({
                                     id="projectId"
                                     name="projectId"
                                     placeholder="Projekt"
-                                    value={selectedProject?.id ?? ''}
+                                    value={selectedProjects?.map((project) => project.id)}
                                     onChange={handleSelectChange}
+                                    multiple
+                                    innerRef={fieldRef}
+                                    size={10}
+                                    className="w-100"
                                   >
                                     <option value="" disabled={true}>
-                                      (Projekt wählen...)
+                                      (Mehrfachauswahl: [Strg+Klick] oder [Shift+Klick])
                                     </option>
                                     {availableProjects.map((project) => (
                                       <option key={project.id} value={project.id}>
@@ -379,15 +404,6 @@ export default function Page({
                                       </option>
                                     ))}
                                   </Field>
-
-                                  <button
-                                    type="button"
-                                    className="btn btn-link px-2 py-0"
-                                    onClick={() => handleAddClick(arrayHelpers)}
-                                    disabled={selectedProject == null}
-                                  >
-                                    <i className="fas fa-add" title="Hinzufügen"></i>
-                                  </button>
                                 </div>
                               </div>
                             )}
