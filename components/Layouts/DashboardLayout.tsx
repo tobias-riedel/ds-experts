@@ -104,7 +104,7 @@ const DashboardLayout = (props: React.PropsWithChildren) => {
             <div id="navbar" className={`dashboard-navbar navbar-area navbar-style-2 is-sticky  ${navbarSticky}`}>
               <nav role="navigation" className="navbar navbar-expand-md navbar-light">
                 <div className="container">
-                  <Link href="/" className="navbar-brand">
+                  <Link href="/" className="navbar-brand" target="main">
                     <Image
                       src={logoImg}
                       className="black-logo logo-ds-experts"
