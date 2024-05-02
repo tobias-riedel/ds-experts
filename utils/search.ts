@@ -1,7 +1,7 @@
 export type SearchOptions = {
   matchCase: boolean;
   trim: boolean;
-  limitedSearch: boolean;
+  crossRowSearch: boolean;
   filterFnName: 'some' | 'every';
   searchFnName: 'includes' | 'startsWith' | 'endsWith';
 };
@@ -15,16 +15,16 @@ export const hasSearchTerm = <T extends Record<string, unknown>>(
   const options: SearchOptions = {
     matchCase: false,
     trim: true,
-    limitedSearch: true,
+    crossRowSearch: false,
     filterFnName: 'some',
     searchFnName: 'includes',
     ...opts,
   };
 
   const needleTokens = needle.split(' ');
-  const limitedSearchFnName = options.limitedSearch ? 'every' : 'some';
+  const crossRowSearchFnName = options.crossRowSearch ? 'some' : 'every';
 
-  return needleTokens[limitedSearchFnName]((token) =>
+  return needleTokens[crossRowSearchFnName]((token) =>
     attrs[options.filterFnName]((attr) => {
       const rawVal = haystack[attr];
 
