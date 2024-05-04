@@ -60,7 +60,7 @@ const sortProjects = (a: Project, b: Project): 1 | 0 | -1 =>
 
 type FormItem = Expert & { projects: ExpertsInProjects[] };
 
-const INITIAL_STATE: FormItem & { projects: string[] } = {
+const INITIAL_STATE: FormItem = {
   id: '',
   firstName: '',
   lastName: '',
@@ -133,7 +133,8 @@ export default function Page({
 
   const [previewItem, setPreviewItem] = useState<FormItem | null>();
 
-  const fieldRef = useRef<HTMLSelectElement>(null);
+  const assignProjectsFieldRef = useRef<HTMLSelectElement>(null);
+  const unassignProjectsFieldRef = useRef<HTMLSelectElement>(null);
 
   const BusinessLogic = () => {
     const { values } = useFormikContext<FormItem>();
@@ -157,7 +158,7 @@ export default function Page({
     },
     onError: (error) => {
       console.warn('Error adding new expert:', error);
-      showErrorToast('Es ist ein Fehler beim Hinzuf+gen des Eintrags aufgetreten.');
+      showErrorToast('Es ist ein Fehler beim Hinzufügen des Eintrags aufgetreten.');
     },
   });
 
@@ -180,11 +181,11 @@ export default function Page({
     }
   };
 
-  // Handle project selection per expert
   const isUsedProject = (project: Project): boolean | undefined =>
     loadedItem?.projects.some((loadedItemProject) => project.id === loadedItemProject.projectId);
 
   const [selectedProjects, setSelectedProjects] = useState<Project[]>([]);
+  const [deselectedProjects, setDeselectedProjects] = useState<Project[]>([]);
   const [addedProjects, setAddedProjects] = useState<Project[]>(
     [...loadedProjects].filter(isUsedProject).sort(sortProjects)
   );
@@ -192,16 +193,27 @@ export default function Page({
     [...loadedProjects].filter((project) => !isUsedProject(project)).sort(sortProjects)
   );
 
-  const findProjectById = (projectId: string): Project | null =>
-    availableProjects.find((project) => project.id === projectId) || null;
+  const findProjectById = (projectId: string, useAvailableProjects: boolean): Project | null => {
+    const projects = useAvailableProjects ? availableProjects : addedProjects;
+    return projects.find((project) => project.id === projectId) || null;
+  };
 
   const handleSelectChange = () => {
-    const newlySelectedProjects: Project[] = [...(fieldRef.current?.options ?? [])]
+    const newlySelectedProjects: Project[] = [...(assignProjectsFieldRef.current?.options ?? [])]
       .filter((option) => option.selected)
-      .map((option) => findProjectById(option.value) as Project)
+      .map((option) => findProjectById(option.value, true) as Project)
       .filter((project) => project != null);
 
-    setSelectedProjects(newlySelectedProjects);
+    setSelectedProjects(newlySelectedProjects.sort(sortProjects));
+  };
+
+  const handleUnselectChange = () => {
+    const newlyDeselectedProjects: Project[] = [...(unassignProjectsFieldRef.current?.options ?? [])]
+      .filter((option) => option.selected)
+      .map((option) => findProjectById(option.value, false) as Project)
+      .filter((project) => project != null);
+
+    setDeselectedProjects(newlyDeselectedProjects.sort(sortProjects));
   };
 
   const handleAddClick = (arrayHelpers: FieldArrayRenderProps): void => {
@@ -223,10 +235,17 @@ export default function Page({
     setSelectedProjects([]);
   };
 
-  const handleDeleteClick = (selectedProject: Project, arrayHelpers: FieldArrayRenderProps, index: number) => {
-    arrayHelpers.remove(index);
-    setAddedProjects((prevProjects) => prevProjects.filter((project) => project.id !== selectedProject.id));
-    setAvailableProjects([...availableProjects, selectedProject].sort(sortProjects));
+  const handleDeleteClick = (arrayHelpers: FieldArrayRenderProps) => {
+    deselectedProjects.forEach(() => arrayHelpers.pop());
+
+    setAddedProjects((prevProjects) =>
+      prevProjects.filter(
+        (project) => !deselectedProjects.some((unselectedProject) => unselectedProject.id === project.id)
+      )
+    );
+    setAvailableProjects([...availableProjects, ...deselectedProjects].sort(sortProjects));
+
+    setDeselectedProjects([]);
   };
 
   return (
@@ -237,8 +256,16 @@ export default function Page({
         <Formik<FormItem>
           initialValues={{ ...INITIAL_STATE, ...loadedItem }}
           validationSchema={toFormikValidationSchema(formSchema)}
-          onSubmit={(values, { setSubmitting }) => {
-            handleSubmit(values);
+          onSubmit={(values, { setSubmitting, setFieldValue }) => {
+            // assign the proper values to the expertsToProjects relationship
+            const newProjects = addedProjects.map(
+              (project) => ({ projectId: project.id, expertId: itemId }) as ExpertsInProjects
+            );
+
+            setFieldValue('projects', newProjects);
+            const newValues: FormItem = { ...values, projects: newProjects };
+
+            handleSubmit(newValues);
             setSubmitting(false);
           }}
         >
@@ -367,68 +394,85 @@ export default function Page({
                       <FieldArray
                         name="projects"
                         render={(arrayHelpers) => (
-                          <>
-                            {availableProjects.length > 0 && (
-                              <div className="row">
-                                <div className="form-group">
-                                  <label htmlFor="projectId" className="w-100">
-                                    Projekte
-                                    <button
-                                      type="button"
-                                      className="btn btn-link px-2 py-0"
-                                      onClick={() => handleAddClick(arrayHelpers)}
-                                      disabled={!selectedProjects.length}
-                                    >
-                                      <i className="fas fa-add me-2" title="Hinzufügen"></i>hinzufügen
-                                    </button>
-                                  </label>
+                          <div className="row">
+                            <div className="form-group col-lg-6">
+                              <label htmlFor="projectId">
+                                Verfügbare Projekte
+                                <button
+                                  type="button"
+                                  className="btn btn-link px-2 py-0"
+                                  onClick={() => handleAddClick(arrayHelpers)}
+                                  disabled={!selectedProjects.length}
+                                >
+                                  <i className="fas fa-add me-2" title="Zuweisen"></i>zuweisen
+                                </button>
+                              </label>
 
-                                  <Field
-                                    as="select"
-                                    id="projectId"
-                                    name="projectId"
-                                    placeholder="Projekt"
-                                    value={selectedProjects?.map((project) => project.id)}
-                                    onChange={handleSelectChange}
-                                    multiple
-                                    innerRef={fieldRef}
-                                    size={10}
-                                    className="w-100"
-                                  >
-                                    <option value="" disabled={true}>
-                                      (Mehrfachauswahl: [Strg+Klick] oder [Shift+Klick])
+                              {availableProjects.length > 0 ? (
+                                <Field
+                                  as="select"
+                                  id="projectId"
+                                  name="projectId"
+                                  value={selectedProjects?.map((project) => project.id)}
+                                  onChange={handleSelectChange}
+                                  multiple
+                                  innerRef={assignProjectsFieldRef}
+                                  size={10}
+                                  className="w-100"
+                                >
+                                  <option value="" disabled={true}>
+                                    (Mehrfachauswahl: [Strg+Klick] oder [Shift+Klick])
+                                  </option>
+                                  {availableProjects.map((project) => (
+                                    <option key={project.id} value={project.id}>
+                                      {projectLabel(project)}
                                     </option>
-                                    {availableProjects.map((project) => (
-                                      <option key={project.id} value={project.id}>
-                                        {projectLabel(project)}
-                                      </option>
-                                    ))}
-                                  </Field>
-                                </div>
-                              </div>
-                            )}
+                                  ))}
+                                </Field>
+                              ) : (
+                                <div>Keine verfügbaren Projekte vorhanden.</div>
+                              )}
+                            </div>
 
-                            {addedProjects.length > 0 && (
-                              <div className="row">
-                                <div>
-                                  <ul style={{ listStyle: 'none' }}>
-                                    {addedProjects.map((project, index) => (
-                                      <li key={index}>
-                                        <button
-                                          type="button"
-                                          className="btn btn-link px-2 py-0"
-                                          onClick={() => handleDeleteClick(project, arrayHelpers, index)}
-                                        >
-                                          <i className="fas fa-trash" title="Löschen"></i>
-                                        </button>
-                                        {projectLabel(project)}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              </div>
-                            )}
-                          </>
+                            <div className="formgroup col-lg-6">
+                              <label>
+                                Beteiligte Projekte{' '}
+                                <button
+                                  type="button"
+                                  className="btn btn-link px-2 py-0"
+                                  onClick={() => handleDeleteClick(arrayHelpers)}
+                                  disabled={!deselectedProjects.length}
+                                >
+                                  <i className="fas fa-trash me-2" title="entfernen"></i>entfernen
+                                </button>
+                              </label>
+
+                              {addedProjects.length > 0 ? (
+                                <Field
+                                  as="select"
+                                  id="unselectProjects"
+                                  name="unselectProjects"
+                                  value={deselectedProjects?.map((project) => project.id)}
+                                  onChange={handleUnselectChange}
+                                  multiple
+                                  innerRef={unassignProjectsFieldRef}
+                                  size={10}
+                                  className="w-100"
+                                >
+                                  <option value="" disabled={true}>
+                                    (Mehrfachauswahl: [Strg+Klick] oder [Shift+Klick])
+                                  </option>
+                                  {addedProjects.map((project) => (
+                                    <option key={project.id} value={project.id}>
+                                      {projectLabel(project)}
+                                    </option>
+                                  ))}
+                                </Field>
+                              ) : (
+                                <div>Keine beteiligten Projekte vorhanden.</div>
+                              )}
+                            </div>
+                          </div>
                         )}
                       />
 
