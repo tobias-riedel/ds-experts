@@ -397,7 +397,7 @@ export default function Page({
                           <div className="row">
                             <div className="form-group col-lg-6">
                               <label htmlFor="projectId">
-                                Verfügbare Projekte
+                                Verfügbare Projekte ({availableProjects.length})
                                 <button
                                   type="button"
                                   className="btn btn-link px-2 py-0"
@@ -436,7 +436,7 @@ export default function Page({
 
                             <div className="formgroup col-lg-6">
                               <label>
-                                Beteiligte Projekte{' '}
+                                Beteiligte Projekte ({addedProjects.length})
                                 <button
                                   type="button"
                                   className="btn btn-link px-2 py-0"
