@@ -141,7 +141,8 @@ export default function Page({
 
   const [previewItem, setPreviewItem] = useState<Project | null>();
 
-  const fieldRef = useRef<HTMLSelectElement>(null);
+  const assignExpertFieldRef = useRef<HTMLSelectElement>(null);
+  const unassignExpertFieldRef = useRef<HTMLSelectElement>(null);
 
   const BusinessLogic = () => {
     const { values } = useFormikContext<FormItem>();
@@ -164,7 +165,7 @@ export default function Page({
     },
     onError: (error) => {
       console.warn('Error adding new project:', error);
-      showErrorToast('Es ist ein Fehler beim Hinzuf+gen des Eintrags aufgetreten.');
+      showErrorToast('Es ist ein Fehler beim Hinzufügen des Eintrags aufgetreten.');
     },
   });
 
@@ -180,8 +181,6 @@ export default function Page({
   });
 
   const handleSubmit = async (payload: FormItem) => {
-    // const  descriptionMd  = md.render(payload.description ?? '');
-
     if (isNew) {
       addItem.mutate(payload);
     } else {
@@ -194,21 +193,33 @@ export default function Page({
     loadedItem?.experts.some((loadedItemExpert) => expert.id === loadedItemExpert.expertId);
 
   const [selectedExperts, setSelectedExperts] = useState<Expert[]>([]);
+  const [deselectedExperts, setDeselectedExperts] = useState<Expert[]>([]);
   const [addedExperts, setAddedExperts] = useState<Expert[]>([...loadedExperts].filter(isUsedExpert).sort(sortExperts));
   const [availableExperts, setAvailableExperts] = useState<Expert[]>(
     [...loadedExperts].filter((project) => !isUsedExpert(project)).sort(sortExperts)
   );
 
-  const findExpertById = (expertId: string): Expert | null =>
-    availableExperts.find((expert) => expert.id === expertId) || null;
+  const findExpertById = (expertId: string, useAvailableExperts: boolean): Expert | null => {
+    const experts = useAvailableExperts ? availableExperts : addedExperts;
+    return experts.find((expert) => expert.id === expertId) || null;
+  };
 
   const handleSelectChange = () => {
-    const newlySelectedExperts: Expert[] = [...(fieldRef.current?.options ?? [])]
+    const newlySelectedExperts: Expert[] = [...(assignExpertFieldRef.current?.options ?? [])]
       .filter((option) => option.selected)
-      .map((option) => findExpertById(option.value) as Expert)
+      .map((option) => findExpertById(option.value, true) as Expert)
       .filter((project) => project != null);
 
-    setSelectedExperts(newlySelectedExperts);
+    setSelectedExperts(newlySelectedExperts.sort(sortExperts));
+  };
+
+  const handleUnselectChange = () => {
+    const newlyDeselectedExperts: Expert[] = [...(unassignExpertFieldRef.current?.options ?? [])]
+      .filter((option) => option.selected)
+      .map((option) => findExpertById(option.value, false) as Expert)
+      .filter((expert) => expert != null);
+
+    setDeselectedExperts(newlyDeselectedExperts.sort(sortExperts));
   };
 
   const handleAddClick = (arrayHelpers: FieldArrayRenderProps): void => {
@@ -230,10 +241,15 @@ export default function Page({
     setSelectedExperts([]);
   };
 
-  const handleDeleteClick = (selectedExpert: Expert, arrayHelpers: FieldArrayRenderProps, index: number) => {
-    arrayHelpers.remove(index);
-    setAddedExperts((prevExperts) => prevExperts.filter((expert) => expert.id !== selectedExpert.id));
-    setAvailableExperts([...availableExperts, selectedExpert].sort(sortExperts));
+  const handleDeleteClick = (arrayHelpers: FieldArrayRenderProps) => {
+    deselectedExperts.forEach(() => arrayHelpers.pop());
+
+    setAddedExperts((prevExperts) =>
+      prevExperts.filter((expert) => !deselectedExperts.some((unselectedExpert) => unselectedExpert.id === expert.id))
+    );
+    setAvailableExperts([...availableExperts, ...deselectedExperts].sort(sortExperts));
+
+    setDeselectedExperts([]);
   };
 
   return (
@@ -244,8 +260,16 @@ export default function Page({
         <Formik<FormItem>
           initialValues={{ ...INITIAL_STATE, ...loadedItem }}
           validationSchema={toFormikValidationSchema(formSchema)}
-          onSubmit={(values, { setSubmitting }) => {
-            handleSubmit(values);
+          onSubmit={(values, { setSubmitting, setFieldValue }) => {
+            // assign the proper values to the expertsToProjects relationship
+            const newExperts = addedExperts.map(
+              (expert) => ({ expertId: expert.id, projectId: itemId }) as ExpertsInProjects
+            );
+
+            setFieldValue('experts', newExperts);
+            const newValues: FormItem = { ...values, experts: newExperts };
+
+            handleSubmit(newValues);
             setSubmitting(false);
           }}
         >
@@ -411,68 +435,85 @@ export default function Page({
                       <FieldArray
                         name="experts"
                         render={(arrayHelpers) => (
-                          <>
-                            {availableExperts.length > 0 && (
-                              <div className="row">
-                                <div className="form-group">
-                                  <label htmlFor="expertId" className="w-100">
-                                    Experten
-                                    <button
-                                      type="button"
-                                      className="btn btn-link px-2 py-0"
-                                      onClick={() => handleAddClick(arrayHelpers)}
-                                      disabled={!selectedExperts.length}
-                                    >
-                                      <i className="fas fa-add me-2" title="Hinzufügen"></i>hinzufügen
-                                    </button>
-                                  </label>
+                          <div className="row">
+                            <div className="form-group col-lg-6">
+                              <label htmlFor="expertId" className="w-100">
+                                Verfügbare Experten
+                                <button
+                                  type="button"
+                                  className="btn btn-link px-2 py-0"
+                                  onClick={() => handleAddClick(arrayHelpers)}
+                                  disabled={!selectedExperts.length}
+                                >
+                                  <i className="fas fa-add me-2" title="Hinzufügen"></i>zuweisen
+                                </button>
+                              </label>
 
-                                  <Field
-                                    as="select"
-                                    id="expertId"
-                                    name="expertId"
-                                    placeholder="Experte"
-                                    value={selectedExperts?.map((expert) => expert.id)}
-                                    onChange={handleSelectChange}
-                                    multiple
-                                    innerRef={fieldRef}
-                                    size={6}
-                                    className="w-100"
-                                  >
-                                    <option value="" disabled={true}>
-                                      (Mehrfachauswahl: [Strg+Klick] oder [Shift+Klick])
+                              {availableExperts.length > 0 ? (
+                                <Field
+                                  as="select"
+                                  id="expertId"
+                                  name="expertId"
+                                  value={selectedExperts?.map((expert) => expert.id)}
+                                  onChange={handleSelectChange}
+                                  multiple
+                                  innerRef={assignExpertFieldRef}
+                                  size={6}
+                                  className="w-100"
+                                >
+                                  <option value="" disabled={true}>
+                                    (Mehrfachauswahl: [Strg+Klick] oder [Shift+Klick])
+                                  </option>
+                                  {availableExperts.map((expert) => (
+                                    <option key={expert.id} value={expert.id}>
+                                      {expertLabel(expert)}
                                     </option>
-                                    {availableExperts.map((expert) => (
-                                      <option key={expert.id} value={expert.id}>
-                                        {expertLabel(expert)}
-                                      </option>
-                                    ))}
-                                  </Field>
-                                </div>
-                              </div>
-                            )}
+                                  ))}
+                                </Field>
+                              ) : (
+                                <div>Keine verfügbaren Experten vorhanden.</div>
+                              )}
+                            </div>
 
-                            {addedExperts.length > 0 && (
-                              <div className="row">
-                                <div>
-                                  <ul style={{ listStyle: 'none' }}>
-                                    {addedExperts.map((expert, index) => (
-                                      <li key={index}>
-                                        <button
-                                          type="button"
-                                          className="btn btn-link px-2 py-0"
-                                          onClick={() => handleDeleteClick(expert, arrayHelpers, index)}
-                                        >
-                                          <i className="fas fa-trash" title="Löschen"></i>
-                                        </button>
-                                        {expertLabel(expert)}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              </div>
-                            )}
-                          </>
+                            <div className="formgroup col-lg-6">
+                              <label>
+                                Beteiligte Experten{' '}
+                                <button
+                                  type="button"
+                                  className="btn btn-link px-2 py-0"
+                                  onClick={() => handleDeleteClick(arrayHelpers)}
+                                  disabled={!deselectedExperts.length}
+                                >
+                                  <i className="fas fa-trash me-2" title="entfernen"></i>entfernen
+                                </button>
+                              </label>
+
+                              {addedExperts.length > 0 ? (
+                                <Field
+                                  as="select"
+                                  id="unselectProjects"
+                                  name="unselectProjects"
+                                  value={deselectedExperts?.map((expert) => expert.id)}
+                                  onChange={handleUnselectChange}
+                                  multiple
+                                  innerRef={unassignExpertFieldRef}
+                                  size={6}
+                                  className="w-100"
+                                >
+                                  <option value="" disabled={true}>
+                                    (Mehrfachauswahl: [Strg+Klick] oder [Shift+Klick])
+                                  </option>
+                                  {addedExperts.map((expert) => (
+                                    <option key={expert.id} value={expert.id}>
+                                      {expertLabel(expert)}
+                                    </option>
+                                  ))}
+                                </Field>
+                              ) : (
+                                <div>Keine beteiligten Experten vorhanden.</div>
+                              )}
+                            </div>
+                          </div>
                         )}
                       />
 
