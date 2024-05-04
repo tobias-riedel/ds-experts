@@ -438,7 +438,7 @@ export default function Page({
                           <div className="row">
                             <div className="form-group col-lg-6">
                               <label htmlFor="expertId" className="w-100">
-                                Verfügbare Experten
+                                Verfügbare Experten ({availableExperts.length})
                                 <button
                                   type="button"
                                   className="btn btn-link px-2 py-0"
@@ -477,7 +477,7 @@ export default function Page({
 
                             <div className="formgroup col-lg-6">
                               <label>
-                                Beteiligte Experten{' '}
+                                Beteiligte Experten ({addedExperts.length})
                                 <button
                                   type="button"
                                   className="btn btn-link px-2 py-0"
