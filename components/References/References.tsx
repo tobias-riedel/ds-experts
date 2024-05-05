@@ -121,6 +121,8 @@ const Projects = ({ data: projects }: { data: Project[] }): JSX.Element => {
             navigation={true}
             pagination={{
               clickable: true,
+              dynamicBullets: true,
+              dynamicMainBullets: 1,
             }}
             breakpoints={{
               0: { slidesPerView: 1 },
