@@ -630,6 +630,11 @@ section:nth-child(2n + 2) .div-arrow-down:after {
   height: 100% !important;
 }
 
+.swiper-horizontal > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic,
+.swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+  position: relative;
+}
+
 /*================================================
 Cookie Consent CSS
 =================================================*/
