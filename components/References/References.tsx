@@ -1,5 +1,5 @@
 import { Project } from '@prisma/client';
-import { Autoplay, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SectionDivider from '../Common/SectionDivider';
 import ProjectCard from './ReferenceCard';
@@ -138,7 +138,7 @@ const Projects = ({ data: projects }: { data: Project[] }): JSX.Element => {
             }}
             mousewheel={true}
             keyboard={true}
-            modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
+            modules={[Navigation, Pagination, Keyboard, Autoplay]}
             className="work-slides"
           >
             {projects?.map((project) => {
