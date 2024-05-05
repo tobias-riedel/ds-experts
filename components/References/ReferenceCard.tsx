@@ -4,6 +4,10 @@ import Link from 'next/link';
 import ReferenceDialog from './ReferenceDialog';
 
 const DEFAULT_IMG = '/images/references/default.jpg';
+const SWIPER_CARDS = {
+  width: 510,
+  height: 700,
+};
 
 const ProjectCard = ({ data }: { data?: ProjectWithExperts | null }): JSX.Element => {
   return (
@@ -13,8 +17,8 @@ const ProjectCard = ({ data }: { data?: ProjectWithExperts | null }): JSX.Elemen
           <Image
             src={data?.img || DEFAULT_IMG}
             alt={`Referenzbild zu ${data?.projectName || 'Projektname'}`}
-            width={510}
-            height={700}
+            width={SWIPER_CARDS.width}
+            height={SWIPER_CARDS.height}
             sizes="(max-width: 576px) 95vw, (max-width: 768px) 45vw, (max-width: 992px) 30vw, (max-width: 1200px) 24vw, 20vw"
             className="optimized-image"
           />
