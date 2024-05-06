@@ -1,4 +1,5 @@
 import { COMPANY_FULL_NAME } from '@consts/company';
+import { DASHBOARD_URLS } from '@consts/dashboard';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,19 +8,7 @@ import React, { useEffect, useState } from 'react';
 import logoImg from '../../public/images/logo-ds-experts.png';
 import GoTop from './GoTop';
 
-type NavLinks = {
-  to: string;
-  name: string;
-};
-
-const DASHBOARD_URL = '/dashboard';
-
-const navLinks: NavLinks[] = [
-  { to: DASHBOARD_URL, name: 'Dashboard' },
-  { to: DASHBOARD_URL + '/experts', name: 'Experten' },
-  { to: DASHBOARD_URL + '/projects', name: 'Projekte' },
-  { to: DASHBOARD_URL + '/uploads', name: 'Uploads' },
-];
+const navLinks = Object.values(DASHBOARD_URLS);
 
 const DYNAMIC_PATH_REGEX = /\/\[(\.\.\.)?\w+\]$/gi;
 

@@ -1,4 +1,4 @@
-import { Project } from '@prisma/client';
+import { $Enums, Project } from '@prisma/client';
 import { projectSchema } from '@schema/project.schema';
 import { z } from 'zod';
 import { listAllProjects, listProjects } from '../shared/project';
@@ -9,6 +9,13 @@ export const projectsRouter = router({
     const projects: Project[] = await listProjects(prisma);
     return projects;
   }),
+
+  count: protectedProcedure
+    .input(z.object({ visibility: z.nativeEnum($Enums.Visibility) }))
+    .query(async ({ ctx: { prisma }, input: { visibility } }) => {
+      const count = await prisma.project.count({ where: { visibility } });
+      return count;
+    }),
 
   byIdDashboard: protectedProcedure
     .input(z.object({ id: z.string() }))
