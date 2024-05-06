@@ -1,4 +1,4 @@
-import { Expert } from '@prisma/client';
+import { $Enums, Expert } from '@prisma/client';
 import { expertSchema } from '@schema/expert.schema';
 import { z } from 'zod';
 import { listAllExperts, listExperts } from '../shared/expert';
@@ -9,6 +9,13 @@ export const expertsRouter = router({
     const experts: Expert[] = await listExperts(prisma);
     return experts;
   }),
+
+  count: protectedProcedure
+    .input(z.object({ visibility: z.nativeEnum($Enums.Visibility) }))
+    .query(async ({ ctx: { prisma }, input: { visibility } }) => {
+      const count = await prisma.expert.count({ where: { visibility } });
+      return count;
+    }),
 
   byIdDashboard: protectedProcedure
     .input(z.object({ id: z.string() }))
