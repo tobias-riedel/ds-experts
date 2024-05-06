@@ -41,7 +41,7 @@ const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: ProjectW
     <Dialog.Root>
       <Dialog.Trigger>{children}</Dialog.Trigger>
 
-      <Dialog.Content style={{ maxWidth: 'min(700px, 94vw)', minWidth: 320 }}>
+      <Dialog.Content>
         <Flex gap="3" justify="between" align="start">
           <Dialog.Title>{data?.projectName}</Dialog.Title>
           <Dialog.Close>
@@ -65,26 +65,28 @@ const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: ProjectW
                 </label>
               </div>
 
-              <div className="col-12">
-                <label>
-                  <Text as="div" size="3" mb="1" weight="bold" color="gray">
-                    Stadt
-                  </Text>
-                  <Text as="div" size="4" mb="1" weight="bold">
-                    {data?.city}
-                  </Text>
-                </label>
-              </div>
+              <div className="row">
+                <div className="col-6">
+                  <label>
+                    <Text as="div" size="3" mb="1" weight="bold" color="gray">
+                      Stadt
+                    </Text>
+                    <Text as="div" size="4" mb="1" weight="bold">
+                      {data?.city}
+                    </Text>
+                  </label>
+                </div>
 
-              <div className="col-12">
-                <label>
-                  <Text as="div" size="3" mb="1" weight="bold" color="gray">
-                    Dauer
-                  </Text>
-                  <Text as="div" size="4" mb="1" weight="bold">
-                    {duration || '-'}
-                  </Text>
-                </label>
+                <div className="col-6">
+                  <label>
+                    <Text as="div" size="3" mb="1" weight="bold" color="gray">
+                      Dauer
+                    </Text>
+                    <Text as="div" size="4" mb="1" weight="bold">
+                      {duration || '-'}
+                    </Text>
+                  </label>
+                </div>
               </div>
 
               {(data?.experts?.length ?? 0) > 0 && (
