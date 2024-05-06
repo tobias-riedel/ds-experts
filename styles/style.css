@@ -635,6 +635,13 @@ section:nth-child(2n + 2) .div-arrow-down:after {
   position: relative;
 }
 
+.rt-DialogContent {
+  max-width: min(850px, 94vw);
+  min-width: 320;
+  margin-top: 3dvh;
+  max-height: 90dvh;
+}
+
 /*================================================
 Cookie Consent CSS
 =================================================*/
