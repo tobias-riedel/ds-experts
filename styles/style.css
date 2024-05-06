@@ -5920,6 +5920,10 @@ Footer CSS
   color: var(--brand-white);
 }
 
+footer {
+  padding-bottom: calc(100vh -100dvh);
+}
+
 .footer-dark {
   background-color: #000 !important;
 }
