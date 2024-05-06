@@ -5921,7 +5921,7 @@ Footer CSS
 }
 
 footer {
-  padding-bottom: calc(100vh -100dvh);
+  padding-bottom: calc(100vh - 100dvh);
 }
 
 .footer-dark {
