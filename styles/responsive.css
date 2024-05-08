@@ -229,6 +229,11 @@
     margin-bottom: 30px;
     text-align: center;
   }
+
+  .service-card-one.bg-competencies.shadow {
+    padding: 16px 12px 16px;
+  }
+
   .read-more-btn {
     font-size: 14px;
   }
