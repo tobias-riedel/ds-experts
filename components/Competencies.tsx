@@ -63,11 +63,17 @@ const Competencies = () => {
               {competencies.map((competence, idx) => (
                 <div key={idx} data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
                   <div className={`service-card-one bg-competencies text-center shadow ${competence.className}`}>
-                    <i className={competence.icon}></i>
-                    <h3>
-                      <Link href={competence.link}>{competence.name}</Link>
-                    </h3>
-                    <p>{competence.description}</p>
+                    <div className="rowg">
+                      <div className="col-2 col-md-12">
+                        <i className={competence.icon}></i>
+                      </div>
+                      <div className="col-10 col-md-12">
+                        <h3>
+                          <Link href={competence.link}>{competence.name}</Link>
+                        </h3>
+                        <p>{competence.description}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
