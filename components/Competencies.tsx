@@ -63,7 +63,7 @@ const Competencies = () => {
               {competencies.map((competence, idx) => (
                 <div key={idx} data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
                   <div className={`service-card-one bg-competencies text-center shadow ${competence.className}`}>
-                    <div className="rowg">
+                    <div className="row">
                       <div className="col-2 col-md-12">
                         <i className={competence.icon}></i>
                       </div>
