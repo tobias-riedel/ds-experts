@@ -2563,6 +2563,56 @@ Services CSS
   height: 100%;
 }
 
+.competency-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 70px 1.75rem 1fr;
+  gap: 12px;
+  grid-template-areas:
+    'competency-icon'
+    'competency-title'
+    'competency-description';
+}
+
+.competency-icon {
+  grid-area: competency-icon;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.competency-title {
+  grid-area: competency-title;
+}
+
+.competency-description {
+  grid-area: competency-description;
+}
+
+@media only screen and (max-width: 767px) {
+  .competency-container {
+    grid-template-columns: 70px 1fr;
+    grid-template-rows: 1.75rem 1fr;
+    grid-template-areas:
+      'competency-icon competency-title'
+      'competency-icon competency-description';
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .competency-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.75rem 1fr;
+    grid-template-areas:
+      'competency-title'
+      'competency-description';
+  }
+
+  .competency-icon {
+    display: none;
+  }
+}
+
 .service-card-one.bg-competencies {
   background-color: var(--brand-light-blue);
   padding: 40px 30px;
