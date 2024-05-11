@@ -14,6 +14,7 @@ const CompanyMap = ({
   tooltipText = '',
   tooltipSubtext = '',
   disableMarkerTooltip = false,
+  disableMouseEvents = false,
 }: {
   height: number;
   zoom?: number;
@@ -26,6 +27,7 @@ const CompanyMap = ({
   tooltipText?: string;
   tooltipSubtext?: string;
   disableMarkerTooltip?: boolean;
+  disableMouseEvents?: boolean;
 }) => {
   const address: [number, number] = [lattitude ?? 0, longitude ?? 0];
   const offset: [number, number] = [offsetX, offsetY];
@@ -39,7 +41,12 @@ const CompanyMap = ({
 
   return (
     <div className="shadow pigeon-map" style={{ height: mapHeight }}>
-      <Map height={mapHeight} defaultCenter={[anchorLattitude ?? 0, anchorLongitude ?? 0]} defaultZoom={zoom}>
+      <Map
+        height={mapHeight}
+        defaultCenter={[anchorLattitude ?? 0, anchorLongitude ?? 0]}
+        defaultZoom={zoom}
+        mouseEvents={!disableMouseEvents}
+      >
         <ZoomControl />
 
         {isPopupVisible && !disableMarkerTooltip && (
