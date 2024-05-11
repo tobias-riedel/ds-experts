@@ -138,7 +138,8 @@ const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: ProjectW
                   offsetY={128}
                   tooltipText={data?.city}
                   tooltipSubtext={data?.partnerName || ''}
-                  disableMarkerTooltip={true}
+                  disableMarkerTooltip
+                  disableMouseEvents
                 />
               </div>
             </div>
