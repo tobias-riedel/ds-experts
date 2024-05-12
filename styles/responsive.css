@@ -263,19 +263,6 @@
   .faq-img {
     margin-bottom: 20px;
   }
-  .contact-with-map .contact-form {
-    position: relative;
-    right: 0;
-    top: 0;
-    -webkit-transform: unset;
-    transform: unset;
-    max-width: unset;
-    padding: 35px 15px 60px;
-  }
-  .contact-with-map .contact-form .contact-title h2 {
-    font-size: 24px;
-    margin-bottom: 25px;
-  }
   .pagination-area {
     margin-top: 18px;
   }
@@ -570,19 +557,6 @@
   .pagination-area {
     margin-top: 35px;
   }
-  .contact-with-map .contact-form {
-    position: relative;
-    right: 0;
-    top: 0;
-    -webkit-transform: unset;
-    transform: unset;
-    padding: 90px 25px 90px;
-    margin: 0 auto;
-  }
-  .contact-with-map .contact-form .contact-title h2 {
-    font-size: 27px;
-    margin-bottom: 25px;
-  }
   .footer-area {
     padding-top: 70px;
   }
@@ -610,8 +584,9 @@
   .navbar-area nav .navbar-nav .nav-item:nth-last-child(1) ul,
   .navbar-area nav .navbar-nav .nav-item:nth-last-child(2) ul,
   .navbar-area nav .navbar-nav .nav-item:nth-last-child(3) ul,
-  .navbar-area nav .navbar-nav .nav-item:nth-last-child(3) ul,
-  .navbar-area nav .navbar-nav .nav-item:nth-last-child(4) ul {
+  .navbar-area nav .navbar-nav .nav-item:nth-last-child(4) ul,
+  .navbar-area nav .navbar-nav .nav-item:nth-last-child(5) ul,
+  .navbar-area nav .navbar-nav .nav-item:nth-last-child(6) ul {
     right: 0;
     left: auto;
   }
