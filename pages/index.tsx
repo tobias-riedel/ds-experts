@@ -63,7 +63,7 @@ export const getStaticProps: GetStaticProps<{ experts: Expert[]; projects: Proje
 
   return {
     props: { experts, projects },
-    revalidate: 60,
+    revalidate: 120,
   };
 };
 
