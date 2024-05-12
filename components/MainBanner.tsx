@@ -47,7 +47,8 @@ const MainBanner = () => {
           </div>
         </div>
 
-        <div className="oval-shape">
+        {/* TODO: Check lighthouse performance changes */}
+        {/* <div className="oval-shape">
           <Image
             src="/images/oval-shape.png"
             alt="Shape"
@@ -58,7 +59,7 @@ const MainBanner = () => {
             priority
             aria-hidden={true}
           />
-        </div>
+        </div> */}
       </div>
     </>
   );
