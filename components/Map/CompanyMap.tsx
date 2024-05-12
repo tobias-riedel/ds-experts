@@ -15,6 +15,7 @@ const CompanyMap = ({
   tooltipSubtext = '',
   disableMarkerTooltip = false,
   disableMouseEvents = false,
+  disableZoom = false,
 }: {
   height: number;
   zoom?: number;
@@ -28,6 +29,7 @@ const CompanyMap = ({
   tooltipSubtext?: string;
   disableMarkerTooltip?: boolean;
   disableMouseEvents?: boolean;
+  disableZoom?: boolean;
 }) => {
   const address: [number, number] = [lattitude ?? 0, longitude ?? 0];
   const offset: [number, number] = [offsetX, offsetY];
@@ -47,7 +49,7 @@ const CompanyMap = ({
         defaultZoom={zoom}
         mouseEvents={!disableMouseEvents}
       >
-        <ZoomControl />
+        {!disableZoom && <ZoomControl />}
 
         {isPopupVisible && !disableMarkerTooltip && (
           <Overlay anchor={address} offset={offset}>
