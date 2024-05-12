@@ -125,20 +125,6 @@
     padding-top: 170px;
     padding-bottom: 170px;
   }
-  .main-banner-boxes .container-fluid {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  .main-banner-boxes .main-banner {
-    padding-bottom: 160px;
-  }
-  .main-banner-boxes .main-banner .container-fluid {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  .main-banner-boxes .main-banner .main-banner-content .btn-primary {
-    margin-right: 0;
-  }
   .main-banner-content {
     text-align: center;
     margin-top: 0;
@@ -164,14 +150,6 @@
   .banner-animation-image img.main-pic {
     display: inline-block;
   }
-  .banner-form {
-    margin-left: 0 !important;
-    margin-top: 40px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
   .banner-image {
     margin-top: 40px;
   }
@@ -187,37 +165,6 @@
   .hero-banner .main-banner-content .btn-secondary {
     font-size: 14px;
     padding: 10px 20px;
-  }
-  .slider-area ul li .tp-caption.NotGeneric-SubTitle-paragraph,
-  .slider-area ul li .NotGeneric-SubTitle-paragraph {
-    font-size: 14px !important;
-  }
-  .slider-area ul li .tp-caption.NotGeneric-btn .btn,
-  .slider-area ul li .NotGeneric-btn .btn {
-    padding: 15px 20px !important;
-    font-size: 13px !important;
-  }
-  .slider-area ul li .tp-caption.NotGeneric-SubTitle,
-  .slider-area ul li .NotGeneric-SubTitle {
-    display: none;
-  }
-  .slider-area .tp-caption.tp-hidden-caption,
-  .slider-area .tp-forcenotvisible,
-  .slider-area .tp-hide-revslider,
-  .slider-area .tp-parallax-wrap.tp-hidden-caption {
-    visibility: visible !important;
-    display: block !important;
-    opacity: 1 !important;
-    overflow: unset !important;
-    top: auto !important;
-    bottom: 0;
-  }
-  .slider-area .zeus.tparrows {
-    min-width: 50px;
-    min-height: 50px;
-  }
-  .slider-area .zeus.tparrows::before {
-    line-height: 50px;
   }
   .service-card-one i {
     margin-bottom: 20px;
@@ -493,31 +440,11 @@
   .about-inner-area .about-text h3 {
     font-size: 19px;
   }
-  .portfolio-information {
-    margin-top: 30px;
-  }
-  .portfolio-information h3 {
-    font-size: 19px;
-    margin-bottom: 15px;
-  }
-  .portfolio-information ul li span {
-    font-size: 13px;
-  }
-  .faq-accordion .accordion .accordion__item .accordion__button {
-    font-size: 15px;
-  }
   .contact-form .contact-title h2 {
     font-size: 26px;
   }
   .faq-img {
     margin-bottom: 20px;
-  }
-  .faq-contact {
-    padding: 25px 15px;
-  }
-  .faq-contact h3 {
-    margin-bottom: 30px;
-    font-size: 19px;
   }
   .contact-sidebar {
     margin-top: 30px;
@@ -688,24 +615,6 @@
     padding-top: 48px;
     padding-bottom: 100px;
   }
-  .hero-slider .swiper-button-prev,
-  .hero-slider .swiper-button-next {
-    display: none;
-  }
-  .hero-banner .main-banner-content p span {
-    font-size: 2.375rem;
-  }
-  .hero-slider .main-banner-content p {
-    font-size: 15px;
-  }
-  .hero-slider .main-banner-content .btn-primary {
-    font-size: 14px;
-    padding: 10px 20px;
-  }
-  .hero-slider .main-banner-content .btn-secondary {
-    font-size: 14px;
-    padding: 10px 20px;
-  }
   .service-style-two .service-info.pr-50 {
     padding-right: 0;
   }
@@ -783,17 +692,6 @@
   .newsletter-inner-area .newsletter-content .newsletter-form button {
     padding: 0 20px;
   }
-  .video-studio .video-box {
-    margin-top: 40px;
-  }
-  .video-studio .video-box .video-btn {
-    position: relative;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    width: 70px;
-    height: 70px;
-    font-size: 35px;
-  }
   .pricing-list-tab .tabs li {
     font-size: 14px;
     margin: 0 !important;
@@ -804,30 +702,6 @@
   .case-studies-tabs .react-tabs .react-tabs__tab-list li::before {
     bottom: -7px;
     height: 1px;
-  }
-  .service-details-info .single-info-box {
-    -ms-flex: 0 0 100%;
-    -webkit-box-flex: 0;
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-  .blog-left-sidebar {
-    margin-bottom: 40px;
-  }
-  .blog-left-sidebar .widget-area {
-    margin-top: 0;
-  }
-  .main-banner2 .container {
-    margin-top: 0;
-  }
-  .main-banner2 .banner-animation-image2 {
-    margin-top: 40px;
-  }
-  .video-studio.center .main-banner-content h1 {
-    font-size: 30px;
-  }
-  .video-studio.center .video-box .video-btn {
-    margin-top: 0;
   }
   .pl-20 {
     padding-left: 0;
@@ -900,12 +774,6 @@
   .single-pricing-table .btn-box {
     padding: 0px 25px;
   }
-  .service-details-info .single-info-box {
-    -ms-flex: 0 0 50%;
-    -webkit-box-flex: 0;
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
 }
 
 /* Min width 768px to Max width 991px */
@@ -970,17 +838,6 @@
     height: 100%;
     padding-top: 170px;
     padding-bottom: 170px;
-  }
-  .main-banner-boxes .container-fluid {
-    padding-left: 25px;
-    padding-right: 25px;
-  }
-  .main-banner-boxes .main-banner {
-    padding-bottom: 160px;
-  }
-  .main-banner-boxes .main-banner .container-fluid {
-    padding-left: 15px;
-    padding-right: 15px;
   }
   .faq-img {
     margin-bottom: 30px;
@@ -1173,18 +1030,6 @@
   .about-inner-area .about-text h3 {
     font-size: 20px;
   }
-  .portfolio-information {
-    margin-top: 30px;
-  }
-  .portfolio-information h3 {
-    font-size: 20px;
-  }
-  .portfolio-information ul li {
-    font-size: 14px;
-  }
-  .portfolio-information ul li span {
-    font-size: 14px;
-  }
   .pagination-area {
     margin-top: 35px;
   }
@@ -1215,13 +1060,6 @@
   .contact-with-map .contact-form .contact-title h2 {
     font-size: 27px;
     margin-bottom: 25px;
-  }
-  .faq-accordion .accordion .accordion-item .accordion-title {
-    font-size: 16px;
-  }
-  .faq-contact h3 {
-    margin-bottom: 30px;
-    font-size: 20px;
   }
   .footer-area {
     padding-top: 70px;
@@ -1318,49 +1156,8 @@
     padding: 15px 30px;
     font-size: 15px;
   }
-  .video-studio .video-box {
-    margin-top: 50px;
-  }
-  .video-studio .video-box .video-btn {
-    position: relative;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    width: 70px;
-    height: 70px;
-    font-size: 35px;
-  }
   .main-banner.startup-agency .main-banner-content h1 {
     font-size: 40px;
-  }
-  .portfolio-details .pr_0 {
-    padding-right: 0;
-  }
-  .portfolio-details .pl_0 {
-    padding-left: 0;
-  }
-  .service-details-info .single-info-box {
-    -ms-flex: 0 0 33.33%;
-    -webkit-box-flex: 0;
-    flex: 0 0 33.33%;
-    max-width: 33.33%;
-  }
-  .blog-left-sidebar {
-    margin-bottom: 40px;
-  }
-  .blog-left-sidebar .widget-area {
-    margin-top: 0;
-  }
-  .main-banner2 .container {
-    margin-top: 0;
-  }
-  .main-banner2 .banner-animation-image2 {
-    margin-top: 60px;
-  }
-  .video-studio.center .main-banner-content h1 {
-    font-size: 50px;
-  }
-  .video-studio.center .video-box .video-btn {
-    margin-top: 0;
   }
 }
 
@@ -1418,9 +1215,6 @@
     margin: 12px 0 17px;
   }
   .main-banner .offset-lg-1 {
-    margin-left: 0 !important;
-  }
-  .banner-form {
     margin-left: 0 !important;
   }
   .section-title h2 {
@@ -1484,26 +1278,11 @@
   .pricing-table .price span {
     font-size: 30px;
   }
-  .faq-accordion .accordion .accordion-item .accordion-title {
-    font-size: 16px;
-  }
-  .faq-contact h3 {
-    font-size: 22px;
-  }
   .about-content .section-title h2 {
     font-size: 22px;
   }
   .about-content h3 {
     font-size: 19px;
-  }
-  .portfolio-details .offset-md-3 {
-    margin-left: 0;
-  }
-  .portfolio-information h3 {
-    font-size: 22px;
-  }
-  .portfolio-information ul li span {
-    font-size: 15px;
   }
   .modal-video-body {
     padding: 0 50px;
@@ -1588,17 +1367,6 @@
   .cta-area-two .cta-content h3 {
     font-size: 50px;
   }
-  .lg-portfolio .work-card .content {
-    padding: 20px;
-  }
-  .lg-portfolio .work-card .content h3 {
-    font-size: 18px;
-  }
-  .lg-portfolio .work-card .content .custom-btn {
-    margin-top: 10px;
-    padding: 8px 20px;
-    font-size: 14px;
-  }
   .hero-banner .main-banner-content.left {
     max-width: 630px;
     margin-left: 80px;
@@ -1608,9 +1376,6 @@
   }
   .main-banner.startup-agency .main-banner-content h1 {
     font-size: 36px;
-  }
-  .faq-accordion .accordion .accordion__item .accordion__button {
-    font-size: 16px;
   }
   .contact-form .contact-title h2 {
     font-size: 28px;
@@ -1624,14 +1389,8 @@
   .pagination-area {
     margin-top: 25px;
   }
-  .main-banner2 .container {
-    margin-top: 30px;
-  }
   .service-card-one.center {
     padding: 0;
-  }
-  .video-studio.center .main-banner-content h1 {
-    font-size: 50px;
   }
   .contact-info-box {
     text-align: center;
@@ -1653,14 +1412,6 @@
   }
   .main-banner-content p {
     font-size: 17px;
-  }
-}
-
-/* Min width 1650px */
-@media only screen and (min-width: 1650px) {
-  .main-banner-boxes .main-banner .container-fluid {
-    padding-right: 130px;
-    padding-left: 130px;
   }
 }
 
