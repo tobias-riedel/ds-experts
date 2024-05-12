@@ -38,7 +38,7 @@ const MainBanner = () => {
                       placeholder="blur"
                       className="optimized-image"
                       sizes="(max-width: 992px) 85vw, 45vw"
-                      loading="eager"
+                      priority
                     />
                   </div>
                 </div>
@@ -56,7 +56,7 @@ const MainBanner = () => {
             style={{ height: 'auto' }}
             sizes="100vw"
             aria-hidden={true}
-            priority
+            loading="lazy"
           />
         </div>
       </div>
