@@ -56,7 +56,7 @@ const MainBanner = () => {
             style={{ height: 'auto' }}
             sizes="100vw"
             aria-hidden={true}
-            loading="lazy"
+            priority
           />
         </div>
       </div>
