@@ -146,11 +146,11 @@ const ContactForm = () => {
                       <input
                         type="checkbox"
                         className="form-check-input"
-                        id="contactAgreement"
+                        id="contact-agreement"
                         checked={agreedToGdpr}
                         onChange={() => setAgreedToGdpr(!agreedToGdpr)}
                       />
-                      <label htmlFor="contactAgreement">
+                      <label htmlFor="contact-agreement">
                         Ich habe die{' '}
                         <Link href="/legal#gdpr" target="_blank" rel="noopener" className="link--underlined">
                           Datenschutzerklärung
