@@ -49,10 +49,10 @@ const MainBanner = () => {
 
         <div className="oval-shape">
           <Image
-            src="/images/curve-shape.svg"
+            src="/images/oval-shape.png"
             alt="Shape"
-            width={612}
-            height={96}
+            width={5000}
+            height={330}
             style={{ height: 'auto' }}
             sizes="100vw"
             priority
