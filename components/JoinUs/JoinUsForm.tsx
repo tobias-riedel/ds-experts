@@ -213,11 +213,11 @@ const JoinUsForm = () => {
                       <input
                         type="checkbox"
                         className="form-check-input"
-                        id="joinUsAgreement"
+                        id="join-us-agreement"
                         checked={agreedToGdpr}
                         onChange={() => setAgreedToGdpr(!agreedToGdpr)}
                       />
-                      <label htmlFor="joinUsAgreement">
+                      <label htmlFor="join-us-agreement">
                         Ich habe die{' '}
                         <Link href="/legal#gdpr" target="_blank" rel="noopener" className="link--underlined">
                           Datenschutzerklärung
