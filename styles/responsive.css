@@ -140,16 +140,6 @@
   .main-banner-content p {
     margin-bottom: 20px;
   }
-  .banner-animation-image {
-    text-align: center;
-    margin-top: 45px;
-  }
-  .banner-animation-image img {
-    display: none;
-  }
-  .banner-animation-image img.main-pic {
-    display: inline-block;
-  }
   .banner-image {
     margin-top: 40px;
   }
@@ -183,46 +173,6 @@
 
   .read-more-btn {
     font-size: 14px;
-  }
-  .case-studies-tabs .react-tabs .react-tabs__tab-list {
-    padding: 0;
-    margin-bottom: 30px;
-  }
-  .case-studies-tabs .react-tabs .react-tabs__tab-list li {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 12px;
-    font-size: 14px;
-  }
-  .case-studies-tabs .react-tabs .react-tabs__tab-list li::before {
-    display: none;
-  }
-  .single-feedback p {
-    font-size: 15px;
-  }
-  .single-feedback .bar {
-    height: 30px;
-  }
-  .single-feedback h3 {
-    font-size: 16px;
-  }
-  .single-feedback span {
-    font-size: 14px;
-  }
-  .team-area {
-    padding-bottom: 30px;
-  }
-  .single-team .team-img .overlay ul li a {
-    line-height: 33px;
-  }
-  .single-team .team-content h3 {
-    font-size: 19px;
-  }
-  .single-team .team-content span {
-    font-size: 14px;
-  }
-  .team-slides {
-    margin-bottom: 30px;
   }
   .work-process-area {
     overflow: hidden;
@@ -287,27 +237,6 @@
     transform: unset;
     margin-top: 15px;
   }
-  .cta-area {
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
-  .cta-content {
-    text-align: center;
-  }
-  .cta-content h3 {
-    font-size: 26px;
-  }
-  .cta-content p {
-    font-size: 16px;
-  }
-  .cta-content .cta-btn-box .btn-primary {
-    padding: 12px 25px;
-    font-size: 15px;
-  }
-  .cta-btn-box {
-    text-align: center;
-    margin-top: 18px;
-  }
   .team-card .team-caption h3 {
     font-size: 20px;
   }
@@ -327,15 +256,6 @@
   }
   .about-content h3 {
     font-size: 16px;
-  }
-  .about-inner-area {
-    margin-top: 0;
-  }
-  .about-inner-area .about-text {
-    margin-top: 30px;
-  }
-  .about-inner-area .about-text h3 {
-    font-size: 19px;
   }
   .contact-form .contact-title h2 {
     font-size: 26px;
@@ -430,23 +350,8 @@
   .work-card .content h3 {
     font-size: 20px;
   }
-  .work-card .content .custom-btn {
-    margin-top: 10px;
-    padding: 8px 17px;
-    font-size: 13px;
-  }
   .case-studies-area .view-more-work {
     margin-top: 0;
-  }
-  .cta-area-two .cta-content h3 {
-    font-size: 30px;
-  }
-  .cta-area-two .cta-btn-box {
-    margin-top: 30px;
-  }
-  .cta-area-two .cta-btn-box .custom-btn {
-    padding: 10px 20px;
-    font-size: 14px;
   }
   .case-studies-area .container-fluid {
     padding-left: 15px;
@@ -454,10 +359,6 @@
   }
   .main-banner.startup-agency .main-banner-content h1 {
     font-size: 30px;
-  }
-  .case-studies-tabs .react-tabs .react-tabs__tab-list li::before {
-    bottom: -7px;
-    height: 1px;
   }
   .pl-20 {
     padding-left: 0;
@@ -476,12 +377,6 @@
 
 /* Min width 576px to Max width 767px */
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-  .case-studies-tabs .react-tabs .react-tabs__tab-list li {
-    margin-bottom: 5px;
-  }
-  .case-studies-tabs .react-tabs .react-tabs__tab-list li::before {
-    display: block;
-  }
   .work-process-list .single-work-process:nth-child(1) {
     left: 10%;
     top: -40px;
@@ -600,17 +495,6 @@
   .main-banner-content .btn-primary {
     margin-right: 15px;
   }
-  .banner-animation-image {
-    text-align: center;
-    margin-top: 50px;
-  }
-  .banner-animation-image img {
-    display: none;
-  }
-  .banner-animation-image img.main-pic {
-    max-width: 75%;
-    display: inline-block;
-  }
   .banner-image {
     text-align: center;
     margin-top: 50px;
@@ -628,17 +512,6 @@
     font-size: 32px;
   }
   .service-card-one h3 {
-    font-size: 20px;
-  }
-  .case-studies-tabs .react-tabs .react-tabs__tab-list li {
-    margin-left: 12px;
-    margin-right: 12px;
-    font-size: 14px;
-  }
-  .team-area {
-    padding-bottom: 60px;
-  }
-  .single-team .team-content h3 {
     font-size: 20px;
   }
   .work-process-area {
@@ -678,16 +551,6 @@
   .contact-cta-box {
     margin: 20px auto 0;
   }
-  .cta-area {
-    padding-top: 60px;
-    padding-bottom: 60px;
-  }
-  .cta-content h3 {
-    font-size: 27px;
-  }
-  .cta-content p {
-    font-size: 15px;
-  }
   .page-title-area {
     padding-top: 150px;
     padding-bottom: 90px;
@@ -703,15 +566,6 @@
   }
   .about-content h3 {
     font-size: 17px;
-  }
-  .about-inner-area {
-    margin-top: 10px;
-  }
-  .about-inner-area .about-text {
-    margin-top: 30px;
-  }
-  .about-inner-area .about-text h3 {
-    font-size: 20px;
   }
   .pagination-area {
     margin-top: 35px;
@@ -787,10 +641,6 @@
   .right-image {
     margin-top: 30px;
   }
-  .single-feedback p {
-    font-size: 20px;
-    line-height: 1.6;
-  }
   .hero-banner .main-banner-content .btn-secondary,
   .hero-banner .main-banner-content .btn-primary {
     font-size: 14px;
@@ -804,16 +654,6 @@
   }
   .work-card .content h3 {
     font-size: 22px;
-  }
-  .cta-area-two .cta-content h3 {
-    font-size: 35px;
-  }
-  .cta-area-two .cta-btn-box {
-    margin-top: 35px;
-  }
-  .cta-area-two .cta-btn-box .custom-btn {
-    padding: 15px 30px;
-    font-size: 15px;
   }
   .main-banner.startup-agency .main-banner-content h1 {
     font-size: 40px;
@@ -860,15 +700,6 @@
     -webkit-box-align: center !important;
     align-items: center !important;
   }
-  .banner-animation-image {
-    text-align: center;
-  }
-  .banner-animation-image img {
-    display: none;
-  }
-  .banner-animation-image img.main-pic {
-    display: inline-block;
-  }
   .main-banner-content h1 {
     font-size: 40px;
     margin: 12px 0 17px;
@@ -881,12 +712,6 @@
   }
   .tab .tabs li a {
     font-size: 15px;
-  }
-  .cta-content h3 {
-    font-size: 30px;
-  }
-  .cta-content p {
-    font-size: 16px;
   }
   .page-title-area h2 {
     font-size: 30px;
@@ -942,9 +767,6 @@
   .service-style-two .service-info .title {
     font-size: 34px;
   }
-  .single-feedback p {
-    font-size: 22px;
-  }
   .hero-banner .main-banner-content .btn-secondary,
   .hero-banner .main-banner-content .btn-primary {
     font-size: 14px;
@@ -967,9 +789,6 @@
   }
   .work-card .content h3 {
     font-size: 22px;
-  }
-  .cta-area-two .cta-content h3 {
-    font-size: 50px;
   }
   .hero-banner .main-banner-content.left {
     max-width: 630px;
