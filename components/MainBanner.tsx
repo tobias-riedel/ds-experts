@@ -38,7 +38,7 @@ const MainBanner = () => {
                       placeholder="blur"
                       className="optimized-image"
                       sizes="(max-width: 992px) 85vw, 45vw"
-                      loading="lazy"
+                      loading="eager"
                     />
                   </div>
                 </div>
@@ -49,10 +49,10 @@ const MainBanner = () => {
 
         <div className="oval-shape">
           <Image
-            src="/images/oval-shape.png"
+            src="/images/curve-shape.svg"
             alt="Shape"
-            width={5000}
-            height={330}
+            width={612}
+            height={96}
             style={{ height: 'auto' }}
             sizes="100vw"
             aria-hidden={true}
