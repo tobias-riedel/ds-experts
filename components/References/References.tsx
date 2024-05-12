@@ -1,5 +1,5 @@
 import { Project } from '@prisma/client';
-import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SectionDivider from '../Common/SectionDivider';
 import ProjectCard from './ReferenceCard';
