@@ -13,7 +13,7 @@ const ProjectCard = ({ data }: { data?: ProjectWithExperts | null }): JSX.Elemen
   return (
     <>
       <ReferenceDialog data={data}>
-        <Link href="" scroll={false} className="w-100 p-0">
+        <div role="button">
           <Image
             src={data?.img || DEFAULT_IMG}
             alt={`Referenzbild zu ${data?.projectName || 'Projektname'}`}
@@ -26,14 +26,16 @@ const ProjectCard = ({ data }: { data?: ProjectWithExperts | null }): JSX.Elemen
           <div className="content text-center">
             <span>
               <div>
-                <span className="ref-text">{data?.projectName || 'Projektname'}</span>
+                <Link href="/">{data?.projectName || 'Projektname'}</Link>
               </div>
               <div>
-                <span className="ref-text ref-location">({data?.city || 'Stadt'})</span>
+                <Link href="/" className="ref-location">
+                  ({data?.city || 'Stadt'})
+                </Link>
               </div>
             </span>
           </div>
-        </Link>
+        </div>
       </ReferenceDialog>
     </>
   );
