@@ -39,6 +39,7 @@ const MainBanner = () => {
                       className="optimized-image"
                       sizes="(max-width: 992px) 85vw, 45vw"
                       priority
+                      loading="lazy"
                     />
                   </div>
                 </div>
@@ -47,8 +48,7 @@ const MainBanner = () => {
           </div>
         </div>
 
-        {/* TODO: Check lighthouse performance changes */}
-        {/* <div className="oval-shape">
+        <div className="oval-shape">
           <Image
             src="/images/oval-shape.png"
             alt="Shape"
@@ -58,8 +58,9 @@ const MainBanner = () => {
             sizes="100vw"
             priority
             aria-hidden={true}
+            loading="lazy"
           />
-        </div> */}
+        </div>
       </div>
     </>
   );
