@@ -2181,6 +2181,9 @@ Case Studies CSS
   max-width: 1920px;
 }
 
+.case-studies-area .work-card .ref-location {
+  font-size: 1rem;
+}
 .case-studies-area .work-card ul {
   padding-left: 0;
 }
@@ -2195,6 +2198,7 @@ Case Studies CSS
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   hyphens: auto;
+  pointer-events: none;
 }
 
 .case-studies-tabs .react-tabs .react-tabs__tab-list {
@@ -2318,7 +2322,7 @@ Case Studies CSS
   display: block;
 }
 
-.work-card .content span.ref-text {
+.work-card .content a {
   color: var(--brand-white);
   background-color: #00000080;
   border-radius: 16px;
@@ -2327,22 +2331,17 @@ Case Studies CSS
   font-size: 1.25rem;
   font-weight: 600;
   display: inline-block;
-  transition: all 0.5s ease;
 }
 
-.work-card .content span.ref-location {
-  font-size: 1rem;
-}
-
-.work-card:hover .content span.ref-text {
+.work-card:hover .content a {
   background-color: initial;
 }
 
-.work-card:hover span.ref-text {
+.work-card:hover a {
   font-size: 1.5rem;
 }
 
-.work-card:hover span.ref-location {
+.work-card:hover a.ref-location {
   font-size: 1.25rem;
 }
 
