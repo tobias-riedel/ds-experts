@@ -19,7 +19,7 @@ const MainBanner = () => {
                 <div className="col-lg-6">
                   <div className="main-banner-content">
                     <p>
-                      Dein <span>IT-Traumjob</span> ist nur ein paar Klicks entfernt
+                      Dein <span>Traumjob</span> ist nur ein paar Klicks entfernt
                     </p>
 
                     <ScrollLink href="/#join-us" to="join-us" className="btn btn-primary" {...SCROLL_LINKS_PROPS}>
