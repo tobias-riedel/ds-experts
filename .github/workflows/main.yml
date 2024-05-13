@@ -14,6 +14,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_NODE_ENV: ${{ secrets.NODE_ENV }}
+          envkey_DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          envkey_SHADOW_DATABASE_URL: ${{ secrets.SHADOW_DATABASE_URL }}
+          envkey_NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          envkey_NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+          envkey_AZURE_AD_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+          envkey_AZURE_AD_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+          envkey_AZURE_AD_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+          envkey_SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          envkey_CONTACTS_MAIL_ADDRESS_FROM: ${{ secrets.CONTACTS_MAIL_ADDRESS_FROM }}
+          envkey_CONTACTS_MAIL_ADDRESS_TO: ${{ secrets.CONTACTS_MAIL_ADDRESS_TO }}
+          envkey_JOIN_US_MAIL_ADDRESS_FROM: ${{ secrets.JOIN_US_MAIL_ADDRESS_FROM }}
+          envkey_JOIN_US_MAIL_ADDRESS_TO: ${{ secrets.JOIN_US_MAIL_ADDRESS_TO }}
+          envkey_NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE: ${{ secrets.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE }}
+
       - name: Install dependencies
         run: npm install
 
