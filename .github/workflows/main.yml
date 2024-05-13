@@ -48,6 +48,26 @@ jobs:
           script: |
             cd /srv/ds-experts/git/ds-experts
             git pull
+            # updating the .env file
+            cat <<EOF > ${{ secrets.ENVFILE_PATH }}
+            # start of envfile
+            DJANGO_SECRET_KEY=${{ secrets.ENVFILE_DJANGO_SECRET_KEY }}
+            NODE_ENV=${{ secrets.NODE_ENV }}
+            DATABASE_URL=${{ secrets.DATABASE_URL }}
+            SHADOW_DATABASE_URL=${{ secrets.SHADOW_DATABASE_URL }}
+            NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}
+            NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}
+            AZURE_AD_CLIENT_ID=${{ secrets.AZURE_AD_CLIENT_ID }}
+            AZURE_AD_CLIENT_SECRET=${{ secrets.AZURE_AD_CLIENT_SECRET }}
+            AZURE_AD_TENANT_ID=${{ secrets.AZURE_AD_TENANT_ID }}
+            SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}
+            CONTACTS_MAIL_ADDRESS_FROM=${{ secrets.CONTACTS_MAIL_ADDRESS_FROM }}
+            CONTACTS_MAIL_ADDRESS_TO=${{ secrets.CONTACTS_MAIL_ADDRESS_TO }}
+            JOIN_US_MAIL_ADDRESS_FROM=${{ secrets.JOIN_US_MAIL_ADDRESS_FROM }}
+            JOIN_US_MAIL_ADDRESS_TO=${{ secrets.JOIN_US_MAIL_ADDRESS_TO }}
+            NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE=${{ secrets.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE }}
+            # end of envfile
+            EOF
             npm ci
             npm run build
             npm run pm2:restart
