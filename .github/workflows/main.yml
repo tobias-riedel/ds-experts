@@ -17,8 +17,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build Next.js app
-        run: npm run build
+#      - name: Build Next.js app
+#        run: npm run build
 
       - name: SSH Deploy
         # Use the 'appleboy/ssh-action' action for SSH deployment
