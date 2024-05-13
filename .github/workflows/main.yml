@@ -51,7 +51,6 @@ jobs:
             # updating the .env file
             cat <<EOF > ${{ secrets.ENVFILE_PATH }}
             # start of envfile
-            DJANGO_SECRET_KEY=${{ secrets.ENVFILE_DJANGO_SECRET_KEY }}
             NODE_ENV=${{ secrets.NODE_ENV }}
             DATABASE_URL=${{ secrets.DATABASE_URL }}
             SHADOW_DATABASE_URL=${{ secrets.SHADOW_DATABASE_URL }}
