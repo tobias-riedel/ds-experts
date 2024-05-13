@@ -50,7 +50,6 @@ jobs:
             git pull
             # updating the .env file
             cat <<EOF > ${{ secrets.ENVFILE_PATH }}
-            # start of envfile
             NODE_ENV=${{ secrets.NODE_ENV }}
             DATABASE_URL=${{ secrets.DATABASE_URL }}
             SHADOW_DATABASE_URL=${{ secrets.SHADOW_DATABASE_URL }}
@@ -65,9 +64,8 @@ jobs:
             JOIN_US_MAIL_ADDRESS_FROM=${{ secrets.JOIN_US_MAIL_ADDRESS_FROM }}
             JOIN_US_MAIL_ADDRESS_TO=${{ secrets.JOIN_US_MAIL_ADDRESS_TO }}
             NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE=${{ secrets.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE }}
-            # end of envfile
             EOF
-            ls -l ${{ secrets.ENVFILE_PATH }}
+            # end of .env file
             npm ci
             npm run build
             npm run pm2:restart
