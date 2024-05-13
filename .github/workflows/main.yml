@@ -66,8 +66,8 @@ jobs:
             JOIN_US_MAIL_ADDRESS_TO=${{ secrets.JOIN_US_MAIL_ADDRESS_TO }}
             NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE=${{ secrets.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE }}
             # end of envfile
-            ls -l ${{ secrets.ENVFILE_PATH }}
             EOF
+            ls -l ${{ secrets.ENVFILE_PATH }}
             npm ci
             npm run build
             npm run pm2:restart
