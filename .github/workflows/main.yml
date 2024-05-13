@@ -29,7 +29,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }} # Your server's SSH private key
           script: |
             cd /srv/ds-experts/git/ds-experts
-            date >> date.txt
             git pull
             npm ci
             npm run build
