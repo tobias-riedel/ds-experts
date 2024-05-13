@@ -19,7 +19,7 @@ const ProjectCard = ({ data }: { data?: ProjectWithExperts | null }): JSX.Elemen
             alt={`Referenzbild zu ${data?.projectName || 'Projektname'}`}
             width={SWIPER_CARDS.width}
             height={SWIPER_CARDS.height}
-            sizes="(max-width: 576px) 95vw, (max-width: 768px) 45vw, (max-width: 992px) 30vw, (max-width: 1200px) 24vw, 20vw"
+            sizes="(max-width: 576px) 90vw, (max-width: 768px) 45vw, (max-width: 992px) 30vw, (max-width: 1200px) 24vw, 20vw"
             className="optimized-image"
           />
 
