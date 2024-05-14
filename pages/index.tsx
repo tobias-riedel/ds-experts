@@ -36,9 +36,7 @@ const processProjects = (projects: ProjectWithExperts[]): ProjectWithExperts[] =
 
 const SECTION = 'Lade Abschnitt...';
 
-const Team = dynamic(import('@components/Team/Team'), {
-  loading: () => <>{SECTION}</>,
-});
+const Team = dynamic(import('@components/Team/Team'), { loading: () => <>{SECTION}</> });
 const Philosophy = dynamic(import('@components/Philosophy'), { loading: () => <>{SECTION}</> });
 const References = dynamic(import('@components/References/References'), { loading: () => <>{SECTION}</> });
 const MainBanner = dynamic(import('@components/MainBanner'), { loading: () => <>{SECTION}</> });
