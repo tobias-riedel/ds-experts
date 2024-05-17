@@ -16,8 +16,8 @@ const About = () => {
 
                 <div className="about-text" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
                   <p>
-                    Die ds-experts IT-Consulting GmbH unterstützt seit 2015 große und sehr große Unternehmen auf dem
-                    deutschen Markt bei der erfolgreichen Umsetzung von IT-Projekten in Form von Projekt- oder
+                    Die <b>ds-experts IT-Consulting GmbH</b> unterstützt seit 2015 große und sehr große Unternehmen auf
+                    dem deutschen Markt bei der erfolgreichen Umsetzung von IT-Projekten in Form von Projekt- oder
                     Beratungsleistungen.
                   </p>
 
