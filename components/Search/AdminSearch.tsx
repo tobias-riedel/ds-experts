@@ -70,7 +70,7 @@ const AdminSearch: React.FC<SearchProps<Record<string, unknown>>> = ({
         {!hideMatchCase && (
           <div className="input-group-text">
             <label className="mb-0" title="Groß-/Kleinschreibung beachten">
-              <input type="checkbox" onChange={toggleMatchCase} className="form-check-input" checked={matchCase} /> aA
+              <input type="checkbox" onChange={toggleMatchCase} className="form-check-input" checked={matchCase} /> Aa
             </label>
           </div>
         )}
