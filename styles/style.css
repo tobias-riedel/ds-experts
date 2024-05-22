@@ -2232,17 +2232,6 @@ Page Title CSS
 /*================================================
 Contact CSS
 =================================================*/
-.contact-form .contact-title {
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.contact-form .contact-title h2 {
-  font-size: 36px;
-  margin-bottom: 15px;
-}
-
 textarea.form-control {
   height: auto !important;
 }
