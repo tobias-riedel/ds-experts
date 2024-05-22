@@ -224,14 +224,8 @@
   .about-content {
     margin-top: 35px;
   }
-  .about-content .section-title h2 {
-    font-size: 19px;
-  }
   .about-content h3 {
     font-size: 16px;
-  }
-  .contact-form .contact-title h2 {
-    font-size: 26px;
   }
   .faq-img {
     margin-bottom: 20px;
@@ -488,9 +482,6 @@
   .about-content {
     margin-top: 35px;
   }
-  .about-content .section-title h2 {
-    font-size: 20px;
-  }
   .about-content h3 {
     font-size: 17px;
   }
@@ -608,9 +599,6 @@
   .case-studies-details .offset-md-3 {
     margin-left: 0;
   }
-  .about-content .section-title h2 {
-    font-size: 22px;
-  }
   .about-content h3 {
     font-size: 19px;
   }
@@ -667,9 +655,6 @@
   .hero-banner .main-banner-content.left {
     max-width: 630px;
     margin-left: 80px;
-  }
-  .contact-form .contact-title h2 {
-    font-size: 28px;
   }
   .pagination-area {
     margin-top: 25px;
