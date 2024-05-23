@@ -5,21 +5,21 @@ const About = () => {
   return (
     <section id="philosophy" className="pt-100">
       <div className="container">
-        <div className="row align-items-center">
-          <div className="col-lg-5 pe-4">
-            <div className="about-image">
+        <div className="text-with-img-grid">
+          <div className="text-with-img__img">
+            <div>
               <Image
                 src="/images/about-img6.jpg"
                 alt="Vereinte Hände"
                 className="rounded-10 shadow optimized-image"
                 width={500}
                 height={650}
-                sizes="(max-width: 992px) 95vw, 45vw"
+                sizes="(max-width: 380px) 1vw, (max-width: 576px) 90vw, (max-width: 768px) 45vw, (max-width: 992px) 65vw, 90vw"
               />
             </div>
           </div>
 
-          <div className="col-lg-7" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+          <div className="text-with-img__text" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
             <div className="section-title">
               <h2>Unternehmensphilosophie</h2>
             </div>
