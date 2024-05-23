@@ -26,11 +26,11 @@ jobs:
 #          envkey_AZURE_AD_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
 #          envkey_AZURE_AD_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
 #          envkey_SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
-#          envkey_CONTACTS_MAIL_ADDRESS_FROM: ${{ env.CONTACTS_MAIL_ADDRESS_FROM }}
-#          envkey_CONTACTS_MAIL_ADDRESS_TO: ${{ env.CONTACTS_MAIL_ADDRESS_TO }}
-#          envkey_JOIN_US_MAIL_ADDRESS_FROM: ${{ env.JOIN_US_MAIL_ADDRESS_FROM }}
-#          envkey_JOIN_US_MAIL_ADDRESS_TO: ${{ env.JOIN_US_MAIL_ADDRESS_TO }}
-#          envkey_NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE: ${{ env.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE }}
+#          envkey_CONTACTS_MAIL_ADDRESS_FROM: ${{ secrets.CONTACTS_MAIL_ADDRESS_FROM }}
+#          envkey_CONTACTS_MAIL_ADDRESS_TO: ${{ secrets.CONTACTS_MAIL_ADDRESS_TO }}
+#          envkey_JOIN_US_MAIL_ADDRESS_FROM: ${{ secrets.JOIN_US_MAIL_ADDRESS_FROM }}
+#          envkey_JOIN_US_MAIL_ADDRESS_TO: ${{ secrets.JOIN_US_MAIL_ADDRESS_TO }}
+#          envkey_NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE: ${{ secrets.NEXT_PUBLIC_JOIN_US_MAX_FILE_SIZE }}
 
 #      - name: Install dependencies
 #        run: npm install
@@ -49,6 +49,7 @@ jobs:
             cd /srv/ds-experts/git/ds-experts
             git pull
             # updating the .env file
+            echo ${{env.TESTER}} - $TESTER
             cat <<EOF > ${{ secrets.ENVFILE_PATH }}
             NODE_ENV=${{ secrets.NODE_ENV }}
             DATABASE_URL=${{ secrets.DATABASE_URL }}
