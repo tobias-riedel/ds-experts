@@ -14,7 +14,7 @@ const About = () => {
                 className="rounded-10 shadow optimized-image"
                 width={500}
                 height={650}
-                sizes="(max-width: 992px) 95vw, 45vw"
+                sizes="(max-width: 380px) 1vw, (max-width: 576px) 90vw, (max-width: 768px) 45vw, (max-width: 992px) 65vw, 90vw"
               />
             </div>
           </div>

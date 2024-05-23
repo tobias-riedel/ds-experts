@@ -1691,8 +1691,9 @@ Image left, description right grid CSS
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr;
-  grid-column-gap: 2rem;
+  grid-gap: 2rem;
   grid-template-areas: 'left-img-description-img left-img-description-text';
+  transition: 2s;
 }
 
 .left-img-description-img {
@@ -1713,7 +1714,6 @@ Image left, description right grid CSS
     grid-template-areas:
       'left-img-description-text'
       'left-img-description-img';
-    grid-row-gap: 1rem;
   }
 }
 
@@ -1731,8 +1731,9 @@ Image right, description left grid CSS
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: 1fr;
-  grid-column-gap: 2rem;
-  grid-template-areas: 'right-img-description-img right-img-description-text';
+  grid-gap: 2rem;
+  grid-template-areas: 'right-img-description-text right-img-description-img';
+  transition: 2s;
 }
 
 .right-img-description-img {
@@ -1753,7 +1754,6 @@ Image right, description left grid CSS
     grid-template-areas:
       'right-img-description-text'
       'right-img-description-img';
-    grid-row-gap: 1rem;
   }
 }
 
