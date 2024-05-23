@@ -23,10 +23,10 @@
   .pb-70 {
     padding-bottom: 20px;
   }
-  .section-title {
-    margin: -5px auto 30px;
+  .section-title.section-title {
+    margin: 20px auto 30px;
   }
-  .section-title h2 {
+  .section-title.section-title h2 {
     font-size: 26px;
   }
   .navbar-area.navbar-style-2 {
@@ -429,10 +429,10 @@
   .banner-image img {
     max-width: 75%;
   }
-  .section-title {
-    margin: -5px auto 40px;
+  .section-title.section-title {
+    margin: 20px auto 40px;
   }
-  .section-title h2 {
+  .section-title.section-title h2 {
     font-size: 32px;
   }
   .service-card-one h3 {
@@ -584,7 +584,7 @@
   .main-banner .offset-lg-1 {
     margin-left: 0 !important;
   }
-  .section-title h2 {
+  .section-title.section-title h2 {
     font-size: 40px;
   }
   .tab .tabs li a {
