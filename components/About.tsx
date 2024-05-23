@@ -6,8 +6,8 @@ const About = () => {
   return (
     <div className="pt-100">
       <div className="container">
-        <div className="right-img-description-container">
-          <div className="right-img-description-img">
+        <div className="text-with-img-grid text-with-img-grid--right">
+          <div className="text-with-img__img">
             <div>
               <Image
                 src="/images/about-img5.jpg"
@@ -20,13 +20,13 @@ const About = () => {
             </div>
           </div>
 
-          <div className="right-img-description-text">
+          <div className="text-with-img__text" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
             <div className="about-content about-content-two">
               <div className="section-title">
                 <h2>Was ist ds-experts?</h2>
               </div>
 
-              <div className="about-text" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+              <div className="about-text">
                 <p>
                   Die <b>ds-experts IT-Consulting GmbH</b> unterstützt seit 2015 große und sehr große Unternehmen auf
                   dem deutschen Markt bei der erfolgreichen Umsetzung von IT-Projekten in Form von Projekt- oder

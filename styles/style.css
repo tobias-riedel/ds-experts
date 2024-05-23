@@ -1684,81 +1684,45 @@ Services CSS
 }
 
 /*================================================
-Image left, description right grid CSS
+Text with image flaoting besides text grid CSS
 =================================================*/
 
-.left-img-description-container {
+.text-with-img-grid {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr;
   grid-gap: 2rem;
-  grid-template-areas: 'left-img-description-img left-img-description-text';
-  transition: 2s;
+  grid-template-areas: 'text-with-img__img text-with-img__text';
 }
 
-.left-img-description-img {
-  grid-area: left-img-description-img;
-  display: grid;
-  align-items: center;
-  justify-content: center;
-}
-
-.left-img-description-text {
-  grid-area: left-img-description-text;
-}
-
-@media only screen and (max-width: 991px) {
-  .left-img-description-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr auto;
-    grid-template-areas:
-      'left-img-description-text'
-      'left-img-description-img';
-  }
-}
-
-@media only screen and (max-width: 380px) {
-  .left-img-description-img {
-    display: none;
-  }
-}
-
-/*================================================
-Image right, description left grid CSS
-=================================================*/
-
-.right-img-description-container {
-  display: grid;
+.text-with-img-grid--right {
   grid-template-columns: 1fr auto;
-  grid-template-rows: 1fr;
-  grid-gap: 2rem;
-  grid-template-areas: 'right-img-description-text right-img-description-img';
-  transition: 2s;
+  grid-template-areas: 'text-with-img__text text-with-img__img';
 }
 
-.right-img-description-img {
-  grid-area: right-img-description-img;
+.text-with-img__img {
+  grid-area: text-with-img__img;
   display: grid;
   align-items: center;
   justify-content: center;
 }
 
-.right-img-description-text {
-  grid-area: right-img-description-text;
+.text-with-img__text {
+  grid-area: text-with-img__text;
 }
 
 @media only screen and (max-width: 991px) {
-  .right-img-description-container {
+  .text-with-img-grid {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr auto;
     grid-template-areas:
-      'right-img-description-text'
-      'right-img-description-img';
+      'text-with-img__text'
+      'text-with-img__img';
   }
 }
 
 @media only screen and (max-width: 380px) {
-  .right-img-description-img {
+  .text-with-img__img {
     display: none;
   }
 }

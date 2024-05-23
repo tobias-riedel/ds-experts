@@ -5,8 +5,8 @@ const About = () => {
   return (
     <section id="philosophy" className="pt-100">
       <div className="container">
-        <div className="left-img-description-container">
-          <div className="left-img-description-img">
+        <div className="text-with-img-grid">
+          <div className="text-with-img__img">
             <div>
               <Image
                 src="/images/about-img6.jpg"
@@ -19,7 +19,7 @@ const About = () => {
             </div>
           </div>
 
-          <div className="left-img-description-text" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+          <div className="text-with-img__text" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
             <div className="section-title">
               <h2>Unternehmensphilosophie</h2>
             </div>
