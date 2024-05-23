@@ -17,7 +17,7 @@ jobs:
 #      - name: Create .env file
 #        uses: SpicyPizza/create-envfile@v1
 #        with:
-#          envkey_NODE_ENV: ${{ secrets.NODE_ENV }}
+#          envkey_NODE_ENV: ${{ vars.NODE_ENV }}
 #          envkey_DATABASE_URL: ${{ secrets.DATABASE_URL }}
 #          envkey_SHADOW_DATABASE_URL: ${{ secrets.SHADOW_DATABASE_URL }}
 #          envkey_NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
@@ -49,8 +49,8 @@ jobs:
             cd /srv/ds-experts/git/ds-experts
             git pull
             # updating the .env file
-            cat <<EOF > ${{ secrets.ENVFILE_PATH }}
-            NODE_ENV=${{ secrets.NODE_ENV }}
+            cat <<EOF > ${{ vars.ENVFILE_PATH }}
+            NODE_ENV=${{ vars.NODE_ENV }}
             DATABASE_URL=${{ secrets.DATABASE_URL }}
             SHADOW_DATABASE_URL=${{ secrets.SHADOW_DATABASE_URL }}
             NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}
