@@ -1232,14 +1232,6 @@ About CSS
   margin: 0;
 }
 
-.about-image {
-  position: relative;
-}
-
-.about-image img {
-  width: 100%;
-}
-
 .about-content-two .about-text {
   margin-bottom: 30px;
 }
@@ -1625,6 +1617,156 @@ Services CSS
   color: #ffffff;
 }
 
+.service-card-one.bg-competencies {
+  background-color: var(--brand-light-blue);
+  padding: 40px 30px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.service-card-one.bg-competencies:hover,
+.service-card-one.bg-competencies--active {
+  background-color: var(--brand-blue);
+  margin-top: -5px;
+}
+
+.service-card-one.bg-competencies:hover i {
+  background-color: var(--brand-white) !important;
+  color: var(--brand-blue);
+}
+
+.service-card-one.bg-competencies:hover h3,
+.service-card-one.bg-competencies--active h3 {
+  color: #ffffff;
+}
+
+.service-card-one.bg-competencies:hover h3 a,
+.service-card-one.bg-competencies--active h3 a {
+  color: #ffffff;
+}
+
+.service-card-one.bg-competencies:hover h3 a:hover {
+  text-decoration: underline;
+}
+
+.service-card-one.bg-competencies:hover p,
+.service-card-one.bg-competencies--active p {
+  color: #ffffff;
+}
+
+.service-card-one.bg-fcfbfb {
+  padding: 45px 30px;
+  border: 1px solid #f1f1f1;
+}
+
+.service-card-one.bg-fcfbfb:hover {
+  margin-top: -5px;
+}
+
+.service-card-one .read-more {
+  color: #ff2c9c;
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.service-card-one.center {
+  text-align: center;
+  padding: 0 15px;
+}
+
+.service-card-one.border.text-center {
+  border-radius: 10px;
+}
+
+/* Service style two */
+.service-style-two .container {
+  width: 100%;
+}
+
+/*================================================
+Image left, description right grid CSS
+=================================================*/
+
+.left-img-description-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 2rem;
+  grid-template-areas: 'left-img-description-img left-img-description-text';
+}
+
+.left-img-description-img {
+  grid-area: left-img-description-img;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-img-description-text {
+  grid-area: left-img-description-text;
+}
+
+@media only screen and (max-width: 991px) {
+  .left-img-description-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+      'left-img-description-text'
+      'left-img-description-img';
+    grid-row-gap: 1rem;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .left-img-description-img {
+    display: none;
+  }
+}
+
+/*================================================
+Image right, description left grid CSS
+=================================================*/
+
+.right-img-description-container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr;
+  grid-column-gap: 2rem;
+  grid-template-areas: 'right-img-description-img right-img-description-text';
+}
+
+.right-img-description-img {
+  grid-area: right-img-description-img;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-img-description-text {
+  grid-area: right-img-description-text;
+}
+
+@media only screen and (max-width: 991px) {
+  .right-img-description-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+      'right-img-description-text'
+      'right-img-description-img';
+    grid-row-gap: 1rem;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .right-img-description-img {
+    display: none;
+  }
+}
+
+/*================================================
+Competencies CSS
+=================================================*/
+
 .competencies {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1699,72 +1841,6 @@ Services CSS
   .competency-icon {
     display: none;
   }
-}
-
-.service-card-one.bg-competencies {
-  background-color: var(--brand-light-blue);
-  padding: 40px 30px;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-
-.service-card-one.bg-competencies:hover,
-.service-card-one.bg-competencies--active {
-  background-color: var(--brand-blue);
-  margin-top: -5px;
-}
-
-.service-card-one.bg-competencies:hover i {
-  background-color: var(--brand-white) !important;
-  color: var(--brand-blue);
-}
-
-.service-card-one.bg-competencies:hover h3,
-.service-card-one.bg-competencies--active h3 {
-  color: #ffffff;
-}
-
-.service-card-one.bg-competencies:hover h3 a,
-.service-card-one.bg-competencies--active h3 a {
-  color: #ffffff;
-}
-
-.service-card-one.bg-competencies:hover h3 a:hover {
-  text-decoration: underline;
-}
-
-.service-card-one.bg-competencies:hover p,
-.service-card-one.bg-competencies--active p {
-  color: #ffffff;
-}
-
-.service-card-one.bg-fcfbfb {
-  padding: 45px 30px;
-  border: 1px solid #f1f1f1;
-}
-
-.service-card-one.bg-fcfbfb:hover {
-  margin-top: -5px;
-}
-
-.service-card-one .read-more {
-  color: #ff2c9c;
-  display: inline-block;
-  margin-top: 15px;
-}
-
-.service-card-one.center {
-  text-align: center;
-  padding: 0 15px;
-}
-
-.service-card-one.border.text-center {
-  border-radius: 10px;
-}
-
-/* Service style two */
-.service-style-two .container {
-  width: 100%;
 }
 
 /*================================================

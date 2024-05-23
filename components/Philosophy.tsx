@@ -5,9 +5,9 @@ const About = () => {
   return (
     <section id="philosophy" className="pt-100">
       <div className="container">
-        <div className="row align-items-center">
-          <div className="col-lg-5 pe-4">
-            <div className="about-image">
+        <div className="left-img-description-container">
+          <div className="left-img-description-img">
+            <div>
               <Image
                 src="/images/about-img6.jpg"
                 alt="Vereinte Hände"
@@ -19,7 +19,7 @@ const About = () => {
             </div>
           </div>
 
-          <div className="col-lg-7" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+          <div className="left-img-description-text" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
             <div className="section-title">
               <h2>Unternehmensphilosophie</h2>
             </div>
