@@ -49,7 +49,7 @@ jobs:
             cd /srv/ds-experts/git/ds-experts
             git pull
             # updating the .env file
-            echo ${{env.TESTER}} - $TESTER - ${{ variables.TESTER }}
+            echo ${{env.TESTER}} - $TESTER - ${{ vars.TESTER }}
             cat <<EOF > ${{ secrets.ENVFILE_PATH }}
             NODE_ENV=${{ secrets.NODE_ENV }}
             DATABASE_URL=${{ secrets.DATABASE_URL }}
