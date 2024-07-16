@@ -50,6 +50,7 @@ const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: ProjectW
             </Button>
           </Dialog.Close>
         </Flex>
+        <Dialog.Description />
 
         <Flex direction="column" gap="3">
           <div className="row">
