@@ -442,6 +442,26 @@ label {
 }
 
 /*================================================
+@radix-ui/themes
+=================================================*/
+/* v3 hack to show dialogs at correct position */
+.rt-BaseDialogScroll {
+  position: fixed;
+}
+
+/* Fix margins and paddings for dialogs */
+.rt-DialogContent {
+  max-width: min(850px, 94vw);
+  min-width: 320px;
+  max-height: 92dvh;
+}
+
+.rt-BaseDialogScrollPadding {
+  padding-top: var(--space-4, 1dvh);
+  padding-bottom: var(--space-4, 1dvh);
+}
+
+/*================================================
 Shared CSS
 =================================================*/
 @media only screen and (max-width: 991px) {
@@ -562,13 +582,6 @@ section:nth-child(2n + 2) .div-arrow-down:after {
 .swiper-horizontal > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic,
 .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
   position: relative;
-}
-
-.rt-DialogContent {
-  max-width: min(850px, 94vw);
-  min-width: 320;
-  margin-top: 3dvh;
-  max-height: 94dvh;
 }
 
 /*================================================
