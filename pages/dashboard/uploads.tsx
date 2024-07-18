@@ -1,13 +1,13 @@
 import { MySwal } from '@consts/misc';
 import { env } from '@env/client.mjs';
 import DashboardLayout from '@layouts/DashboardLayout';
+import { Flex, Progress, Spinner } from '@radix-ui/themes';
 import { imgUploadSchema as formSchema } from '@schema/imgUpload.schema';
 import { ctrlFieldClassName } from '@utils/form';
 import axios from 'axios';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import Image from 'next/image';
 import { ChangeEvent, useState } from 'react';
-import { ProgressBar, Spinner } from 'react-bootstrap';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
@@ -37,7 +37,7 @@ const INITIAL_STATE: FormItem = {
   destination: 'teams',
 };
 
-const JoinUsForm = () => {
+const Uploads = () => {
   const [fileMeta, setFileMeta] = useState('');
   const [previewUrl, setPreviewUrl] = useState<string | ArrayBuffer | null>(null);
 
@@ -193,40 +193,27 @@ const JoinUsForm = () => {
                         <div className="row">
                           <div className={`text-center ${isSubmitting ? 'col-6' : 'col-12'}`}>
                             <button type="submit" disabled={isSubmitBtnDisabled} className="btn btn-primary ">
-                              Senden{' '}
-                              {isSubmitting && (
-                                <Spinner
-                                  as="span"
-                                  size="sm"
-                                  role="status"
-                                  animation="border"
-                                  variant="light"
-                                  aria-hidden="true"
-                                />
-                              )}
+                              <Flex align="center" gap="2">
+                                <div>Senden</div>{' '}
+                                {isSubmitting && <Spinner size="3" role="status" aria-hidden="true" />}
+                              </Flex>
                             </button>
                           </div>
                           {isSubmitting && (
                             <div className="col-6">
-                              <ProgressBar
-                                striped
-                                animated
-                                variant="success"
-                                now={100}
-                                label="Formular wird verarbeitet..."
-                              />
-
+                              <Progress size="3" radius="none" color="green" value={100} />
+                              <small>Formular wird verarbeitet...</small>
                               {0 < progress && (
-                                <ProgressBar now={progress} animated label={`Datei-Upload: ${progress}%`} />
+                                <>
+                                  <Progress size="3" radius="none" color="blue" value={progress} />
+                                  <small>Datei-Upload: {progress}%</small>
+                                </>
                               )}
                               {progress === 100 && (
-                                <ProgressBar
-                                  striped
-                                  animated
-                                  variant="success"
-                                  now={100}
-                                  label="Upload wird verifiziert..."
-                                />
+                                <>
+                                  <Progress size="3" radius="none" color="sky" value={100} />
+                                  <small>Upload wird verifiziert...</small>
+                                </>
                               )}
                             </div>
                           )}
@@ -265,4 +252,4 @@ const JoinUsForm = () => {
   );
 };
 
-export default JoinUsForm;
+export default Uploads;
