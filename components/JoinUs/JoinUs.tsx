@@ -5,18 +5,19 @@ import JoinUsForm from './JoinUsForm';
 import JoinUsFrontEndDeveloper from './JoinUsFrontEndDeveloper';
 import JoinUsProjectManager from './JoinUsProjectManager';
 
-const profiles = {
-  backend: { key: 'backend', value: 'Back-End Developer' },
-  frontend: { key: 'frontend', value: 'Front-End Developer' },
-  projectLead: { key: 'projectLead', value: 'Projektleiter' },
+const jobProfiles = {
+  backend: { label: 'Back-End Developer', jsx: <JoinUsBackEndDeveloper /> },
+  frontend: { label: 'Front-End Developer', jsx: <JoinUsFrontEndDeveloper /> },
+  projectLead: { label: 'Projektleiter', jsx: <JoinUsProjectManager /> },
 } as const;
 
-type Profiles = keyof typeof profiles;
+type JobProfiles = keyof typeof jobProfiles;
 
 const ROLE_BTN_CLASSES = 'btn btn-primary';
+const BTN_GRID_CLASSES = 'col-lg-' + 12 / Object.keys(jobProfiles).length;
 
 const JoinUs = () => {
-  const [profile, setProfile] = useState<Profiles>(profiles.backend.key);
+  const [profile, setProfile] = useState<JobProfiles>('backend');
 
   return (
     <section id="join-us" className="pt-100">
@@ -26,39 +27,23 @@ const JoinUs = () => {
         </div>
 
         <div className="row text-center">
-          <div className="col-lg-4 pb-60">
-            <button
-              onClick={() => setProfile(profiles.backend.key)}
-              className={`${ROLE_BTN_CLASSES} ${profile === profiles.backend.key && 'btn-primary--active'}`}
-            >
-              Back-End Developer
-            </button>
-          </div>
-          <div className="col-lg-4 pb-60">
-            <button
-              onClick={() => setProfile(profiles.frontend.key)}
-              className={`${ROLE_BTN_CLASSES} ${profile === profiles.frontend.key && 'btn-primary--active'}`}
-            >
-              Front-End Developer
-            </button>
-          </div>
-          <div className="col-lg-4 pb-60">
-            <button
-              onClick={() => setProfile(profiles.projectLead.key)}
-              className={`${ROLE_BTN_CLASSES} ${profile === profiles.projectLead.key && 'btn-primary--active'}`}
-            >
-              Projektleiter
-            </button>
-          </div>
+          {Object.entries(jobProfiles).map(([key, { label }]) => {
+            return (
+              <div className={BTN_GRID_CLASSES + ' pb-60'} key={key}>
+                <button
+                  onClick={() => setProfile(key as JobProfiles)}
+                  className={`${ROLE_BTN_CLASSES} ${profile === key && 'btn-primary--active'}`}
+                >
+                  {label}
+                </button>
+              </div>
+            );
+          })}
         </div>
 
         <div className="row">
           <div className="col-lg-6">
-            <div className="join-us-info pb-70">
-              {profile === profiles.backend.key && <JoinUsBackEndDeveloper />}
-              {profile === profiles.frontend.key && <JoinUsFrontEndDeveloper />}
-              {profile === profiles.projectLead.key && <JoinUsProjectManager />}
-            </div>
+            <div className="join-us-info pb-70">{jobProfiles[profile].jsx}</div>
           </div>
           <div className="col-lg-6">
             <h3 className="text-center">Bewirb Dich bei uns!</h3>
