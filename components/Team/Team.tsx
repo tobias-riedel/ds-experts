@@ -38,6 +38,12 @@ const expertsStatic: Partial<Expert>[] = [
 ];
 
 const Team = ({ data: experts }: { data: Expert[] }): JSX.Element => {
+  const today = new Date();
+  today.setUTCHours(0, 0, 0, 0);
+
+  const currentExperts = experts?.filter((expert) => !expert.endedAt || today <= new Date(expert.endedAt)) ?? [];
+  const formerExperts = experts?.filter((expert) => expert.endedAt && today > new Date(expert.endedAt)) ?? [];
+
   return (
     <section id="team" className="pt-100">
       <div className="container">
@@ -48,13 +54,28 @@ const Team = ({ data: experts }: { data: Expert[] }): JSX.Element => {
         {experts?.length === 0 ? (
           <h3 className="text-center">Keine Experten eingetragen!</h3>
         ) : (
-          <div className="row justify-content-between">
-            {experts?.map((expert, idx) => (
-              <div className="col-lg-2 col-md-4 col-6" key={idx}>
-                <ExpertCard data={expert} />
-              </div>
-            ))}
-          </div>
+          <>
+            <div className="row justify-content-between">
+              {currentExperts?.map((expert, idx) => (
+                <div className="col-lg-2 col-md-4 col-6" key={idx}>
+                  <ExpertCard data={expert} />
+                </div>
+              ))}
+            </div>
+
+            {formerExperts?.length > 0 && (
+              <>
+                <h3 className="text-center">Ehemalige Experts</h3>
+                <div className="row justify-content-between">
+                  {formerExperts?.map((expert, idx) => (
+                    <div className="col-lg-2 col-md-4 col-6 former-employees" key={idx}>
+                      <ExpertCard data={expert} />
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </>
         )}
       </div>
 
