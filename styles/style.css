@@ -1938,6 +1938,11 @@ Team CSS
   transition: all 0.5s ease;
 }
 
+.former-employees .team-card img {
+  width: 80%;
+  filter: grayscale(100%);
+}
+
 .team-card .team-img ul {
   list-style-type: none;
   padding: 0;
