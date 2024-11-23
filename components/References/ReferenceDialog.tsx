@@ -1,5 +1,6 @@
 import CompanyMap from '@components/Map/CompanyMap';
 import { CENTER_OF_GERMANY_COORDINATES, DEFAULT_EXPERT_IMG, PROJECT_MAP_ZOOM } from '@consts/misc';
+import { Expert } from '@prisma/client';
 import { Button, Dialog, Flex, Text } from '@radix-ui/themes';
 import { ProjectWithExperts } from '@server/trpc/shared/project';
 import Image from 'next/image';
@@ -34,6 +35,12 @@ const getProjectDuration = (startedAt?: string, endedAt?: string): string => {
   return duration;
 };
 
+const today = new Date();
+today.setUTCHours(0, 0, 0, 0);
+
+const exmployeeClassName = (expert: Partial<Expert>): string =>
+  expert.endedAt && today > new Date(expert.endedAt) ? 'former-exployee' : 'asd';
+
 const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: ProjectWithExperts | null }>): JSX.Element => {
   const duration = getProjectDuration(data?.startedAt ?? '', data?.endedAt ?? '');
 
@@ -53,7 +60,7 @@ const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: ProjectW
         <Dialog.Description style={{ display: 'none' }} />
 
         <Flex direction="column" gap="3">
-          <div className="row">
+          <div className="row project-dialog__content">
             <div className="col-md-6">
               <div className="col-12">
                 <label>
@@ -102,7 +109,7 @@ const ReferenceDialog = ({ children, data }: PropsWithChildren<{ data?: ProjectW
                         ?.map((item) => item.expert)
                         .filter((expert) => expert != null)
                         .map((expert, idx) => (
-                          <li key={idx}>
+                          <li key={idx} className={exmployeeClassName(expert)}>
                             <Image
                               src={expert.img || DEFAULT_EXPERT_IMG}
                               alt={`Porträt von ${expert.firstName} ${expert.lastName}`}

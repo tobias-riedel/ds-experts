@@ -1072,7 +1072,6 @@ Hero Banner CSS
 .item-list .actions button i[class~='fa-trash'] {
   color: red;
 }
-/* /Project list table */
 
 .hero-banner .main-banner-content.left {
   max-width: 800px;
@@ -1977,6 +1976,13 @@ Team CSS
   height: 100%;
   -webkit-transform: scale(1);
   transform: scale(1);
+}
+
+/*================================================
+Projects CSS
+=================================================*/
+.project-dialog__content .former-exployee img {
+  filter: grayscale(1);
 }
 
 /*================================================
