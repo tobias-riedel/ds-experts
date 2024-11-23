@@ -119,6 +119,8 @@ const Projects = ({ data: projects }: { data: Project[] }): JSX.Element => {
             cssMode={false}
             spaceBetween={20}
             navigation={true}
+            loop={true}
+            loopedSlides={5}
             pagination={{
               clickable: true,
               dynamicBullets: true,
