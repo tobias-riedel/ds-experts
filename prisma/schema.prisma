@@ -1,0 +1,125 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "mysql"
+  // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.Text annotations in model Account below
+  // Further reading:
+  // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
+  // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  relationMode      = "prisma"
+}
+
+enum Visibility {
+  ADMIN
+  CV
+  PUBLIC
+}
+
+model Expert {
+  id         String              @id @default(cuid())
+  firstName  String
+  lastName   String
+  role       String
+  img        String?
+  startedAt  String
+  endedAt    String?
+  visibility Visibility          @default(ADMIN)
+  orderId    Int?                @default(0)
+  slug       String?
+  createdAt  DateTime?           @default(now())
+  updatedAt  DateTime?           @default(now()) @updatedAt
+  projects   ExpertsInProjects[]
+  // profile    Profile?
+}
+
+// model Profile {
+//   id         Int        @id @default(autoincrement())
+//   email      String?    @unique
+//   phone      String?    @unique
+//   bio        String
+//   visibility Visibility @default(ADMIN)
+//   expert     Expert     @relation(fields: [expertId], references: [id])
+//   expertId   String     @unique
+// }
+
+model Project {
+  id           String              @id @default(cuid())
+  partnerName  String
+  projectName  String
+  city         String
+  locationLat  Float?
+  locationLong Float?
+  startedAt    String?
+  endedAt      String?
+  img          String?
+  description  String?             @db.Text
+  visibility   Visibility          @default(ADMIN)
+  orderId      Int?                @default(0)
+  slug         String?
+  experts      ExpertsInProjects[]
+}
+
+model ExpertsInProjects {
+  expert    Expert  @relation(fields: [expertId], references: [id], onDelete: Cascade)
+  expertId  String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String
+
+  @@id([expertId, projectId])
+}
+
+// Necessary for Next auth
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  ext_expires_in    Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model VerificationRequest {
+  id         String   @id @default(cuid())
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([identifier, token])
+}
