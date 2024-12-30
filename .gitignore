@@ -72,3 +72,6 @@ build
 # database
 /prisma/db.sqlite
 /prisma/db.sqlite-journal
+
+# private images
+/public/images/team/ds-experts
